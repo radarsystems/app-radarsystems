@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Messina Bold";
+    src: url("./../fonts/MessinaSansWeb-Bold.woff2");
+}
+
+@font-face {
+    font-family: "Messina Light";
+    src: url("./../fonts/MessinaSansWeb-Light.woff2");
+}
+
+@font-face {
+    font-family: "Messina Regular";
+    src: url("./../fonts/MessinaSansWeb-Regular.woff2");
+}

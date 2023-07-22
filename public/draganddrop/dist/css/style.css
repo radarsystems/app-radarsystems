@@ -1,0 +1,127 @@
+
+  .inp1{
+    border:none;
+    }
+
+    #mdialTamanio{
+      width: 2600px !important;
+      position:center;
+      right: 650px;
+    }
+
+    #button {
+        background: none;
+        border: 0;
+        color: inherit;
+        cursor:pointer;
+        font: inherit;
+        line-height: normal;
+        overflow: visible;
+        padding: 0;
+    }
+
+   
+    #carrusel {
+        float:left;
+        width:1000px;
+        overflow:hidden;
+        height:203px;
+        position:relative;
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+
+    #carrusel .left-arrow {
+        position:absolute;
+        left:10px;
+        z-index:1;
+        top:50%;
+        margin-top:-9px;
+    }
+
+    #carrusel .right-arrow {
+        position:absolute;
+        right:10px;
+        z-index:1;
+        top:50%;
+        margin-top:-9px;
+    }
+
+    .carrusel {
+        width:4000px;
+        left:0px;
+        position:absolute;
+        z-index:0;
+    }
+
+    .carrusel>div {
+        float: left;
+        height: 203px;
+        margin-right: 5px;
+        width: 195px;
+        text-align:center;
+    }
+
+    .carrusel img {
+        cursor:pointer;
+    }
+
+    .product {
+        border:#CCCCCC 1px solid;
+    }
+
+    .inputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+
+
+    .inputfile + label {
+      /* float: right;
+
+      text-align: center;
+      padding: 14px 16px 0px 0px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight:normal; */
+
+      float: right;
+      color: #dedfe1;
+      text-align: center;
+      padding: 14px 16px 16px 0px;
+      margin-bottom:-5px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight:normal;
+    }
+
+    .inputfile + label svg {
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+        fill: currentColor;
+        margin-top:-5px;
+    }
+
+    /* .iborrainputfile {
+    	font-size:16px;
+    	font-weight:normal;
+    } */
+
+    /* style 2 */
+
+    .inputfile + label {
+        color: #fbc05d;
+        /* border: 2px solid currentColor; */
+    }
+
+    .inputfile:focus + label,
+    .inputfile.has-focus + label,
+    .inputfile + label:hover {
+      background-color: #293039;
+        color: #89b686;
+    }

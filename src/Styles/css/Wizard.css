@@ -1,0 +1,519 @@
+
+.wizard {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #2673ff, #9b82ff);
+}
+
+.wizard .body {
+    margin: auto;
+    min-height: 90%;
+    min-width: 70%;
+    max-width: 70%;
+    padding: 15px;
+    border-radius: 46px;
+    overflow: hidden;
+    justify-content: center;
+    box-shadow: 0px 0px 10px #0000001f;
+    background: white;
+    display: flex;
+    position: relative;
+    transition: .5s ease;
+}
+
+.wizard .body .option {
+    display: none !important;
+    width: 100%;
+    height: 100%;
+    transition: .5s ease;
+    opacity: 0;
+}
+
+.wizard .body .option.active {
+    display: flex !important;
+    opacity: 1;
+    animation: showOption .5s ease;
+}
+
+@keyframes showOption {
+    from {
+        transform: translateY(15px);
+    }
+
+}
+
+.wizard .body .option.center.active {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: grid !important;
+    padding: 15px;
+}
+
+.wizard .body .logo-center {
+    display: block;
+    max-width: 194px;
+    margin: auto;
+    margin-bottom: 25px;
+}
+
+.wizard .body .option .left {
+    width: 50%;
+}
+
+.wizard .body .option .right {
+    width: 50%;
+    display: grid;
+    padding: 20px;
+}
+
+
+.wizard .body .option .center {
+    width: max-content;
+    height: max-content;
+    min-width: 450px;
+    max-width: 450px;
+    margin: auto;
+    padding: 35px;
+}
+
+.wizard .buttons-action {
+    display: flex;
+    height: max-content;
+    margin-top: auto;
+    margin-left: auto;
+}
+
+.wizard .buttons-action .next {
+    background: var(--details-blue);
+    font-size: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 30px;
+    transition: .4s ease;
+}
+
+.wizard .buttons-action .next:hover {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.wizard .buttons-action .next:active {
+    transition: .1s ease;
+    opacity: 0.9;
+    transform: scale(1.1);
+}
+
+
+
+.wizard .option .prev {
+    border-radius: 90px;
+    color: var(--color-black);
+    margin-right: 5px;
+    width: 47px;
+    background: var(--grey-oscuro);
+    transition: .5s ease;
+    font-size: 15px;
+    width: 44px;
+
+}
+
+
+.wizard .buttons-action.absolute {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 33px;
+}
+
+.wizard .info {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.wizard .info .title {
+    font-size: 17px;
+    font-family: "Messina Bold";
+}
+
+.wizard .info .desc {
+    font-size: 14px;
+    display: block;
+    position: relative;
+}
+
+.wizard .buttons {
+    display: block;
+    position: relative;
+
+}
+
+.wizard .buttons.selector .active {
+    background: var(--details-blue);
+    border-radius: 120px;
+    color: white;
+}
+
+.wizard .buttons button {
+    color: var(--color-black);
+    background-color: var(--grey-oscuro);
+    border-radius: 12px;
+    display: block;
+    transition: .5s ease;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.wizard .options {
+    display: flex;
+    width: 100%;
+}
+
+.wizard .left {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.wizard .left .img-center {
+    margin: auto;
+}
+
+.wizard .left .img-center p {
+    display: block;
+    font-size: 19px;
+    font-family: "Messina Bold";
+    opacity: 0.8;
+}
+
+.wizard .left .img-center img {
+    max-width: 195px;
+}
+
+.form-input {
+    display: block;
+    width: 100%;
+}
+
+
+.form-input select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: var(--grey-oscuro);
+    border: 0px;
+    color: var(--text-white);
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.wizard .wizard-loading {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: white;
+    z-index: 99;
+    padding: 10px;
+}
+
+
+.wizard .wizard-loading .center {
+    margin: auto;
+    display: block;
+    position: absolute;
+    height: max-content;
+    width: max-content;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.wizard .wizard-loading .line {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 90px;
+    border: 2px solid #a5a5a5;
+    border-bottom: 2px solid transparent;
+    margin: auto;
+    animation: Rotate360 .7s linear infinite;
+}
+
+
+.wizard .companys .company .photo-profile {
+
+    display: block;
+    max-width: 50px;
+    border-radius: 94px;
+    object-fit: cover;
+    max-height: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+.wizard .companys .company .color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 93px;
+    margin-left: 8px;
+}
+
+.wizard .companys {
+    display: block;
+}
+
+.wizard .companys .company {
+    text-align: center;
+    height: max-content;
+    padding: 10px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0px 0px 13px #00000014;
+    display: flex;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.wizard .companys .company .use {
+    display: block;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 21px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: var(--details-blue);
+    top: 0;
+    height: max-content;
+    margin: auto;
+    margin-right: 18px;
+}
+
+.wizard .companys .company .title {
+    display: block;
+    padding: 19px;
+    padding-left: 11px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.wizard-loading-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 90px;
+    border: 4px solid #bdbdbd;
+    border-bottom: 4px solid transparent;
+    margin: auto;
+    animation: Rotate360 .7s linear infinite;
+}
+
+.wizard .buttons-action .button-company {
+    margin-right: 10px;
+    border-radius: 93px;
+    font-size: 14px;
+    background: var(--grey-oscuro);
+    color: black;
+    position: relative;
+    padding-left: 50px;
+}
+
+.wizard .buttons-action img {
+    max-width: 41px;
+    margin-right: 9px;
+    border-radius: 90px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: max-content;
+    margin: auto;
+}
+
+.wizard .items-result .item img {
+    max-width: 45px;
+    border-radius: 92px;
+    height: 45px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.wizard .items-result .item {
+    display: flex;
+    padding: 13px;
+    box-shadow: 0px 0px 14px var(--box-shadow-items);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.wizard .items-result .item .circle {
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 92PX;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    right: 23px;
+}
+
+.wizard .items-result {
+    display: block;
+    padding: 10px;
+    overflow: auto;
+    max-height: 94%;
+}
+
+.wizard .items-result .item.select {
+    cursor: pointer;
+}
+
+.wizard .items-result .item.select.active .circle {
+    color: var(--details-blue);
+    border: 2px solid var(--details-blue);
+}
+
+.wizard .items-result .item.select i {
+    display: none;
+}
+
+
+@keyframes ShowCheck {
+    from {
+        transform: scale(0.5);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+
+.wizard .items-result .item.select.active i {
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: 0;
+    margin: auto;
+    bottom: 0;
+    font-weight: 600;
+    animation: ShowCheck 1s ease;
+}
+
+.wizard .items-result .item .info p {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+
+.wizard .items-result .item .info {
+    padding-left: 15px;
+}
+
+.wizard .items-result .item .info span {
+    font-size: 14px;
+}
+
+.wizard .preview-html {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 42px 39rem;
+}
+
+
+.wizard .preview-html .actions-preview {
+    display: flex;
+    gap: 7px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.wizard .preview-html .actions-preview button {
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+
+    line-height: 1;
+    border-radius: 90px;
+    background-color: var(--grey-oscuro);
+    color: black;
+}
+
+.wizard .preview-html .actions-preview button.left {
+    width: 40px;
+    height: 40px;
+}
+
+.wizard .preview-html .actions-preview .right-preview {
+    margin-left: auto;
+}
+
+.wizard .preview-html .actions-preview .upload-new {
+    font-size: 14px;
+    margin: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.wizard .preview-html .preview {
+    border: 2px solid var(--grey-oscuro);
+    margin-top: 14px;
+    max-height: 590px;
+    overflow: auto;
+    border-radius: 12px;
+    position: relative;
+}
+
+.wizard .option .file-on {
+    display: flex;
+    position: relative;
+    padding: 10px;
+    border: 2px solid var(--grey-oscuro);
+    border-radius: 12px;
+}
+
+.wizard .option .file-on .remove {
+    display: block;
+    margin-left: auto;
+    border-radius: 93px;
+    width: 54px;
+    height: 54px;
+    line-height: 1;
+    background: var(--grey-oscuro);
+    color: black;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+
+.wizard .option .file-on .name-file {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 10px;
+    padding-right: 176px;
+}
+
+
+.wizard .opacity-tutorial {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.wizard .text-yellow {
+    color: #ff6a00;
+}

@@ -1,0 +1,512 @@
+:root {
+    --color-text: #fff;
+}
+
+
+div[colorbox="dark"] {
+    --color-text: #fff;
+    --color-box: #191a1c;
+}
+
+div[colorbox="ligth"] {
+    --color-text: #000;
+    --color-box: #fff;
+}
+
+
+.editor-surveys {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 9;
+}
+
+.editor-surveys .rows {
+    display: flex;
+    height: inherit;
+}
+
+.editor-surveys .rows .left {
+    display: block;
+    background: var(--background-body);
+    padding: 15px;
+    height: inherit;
+    width: 22%;
+    color: var(--text-white);
+    z-index: 2;
+    overflow: auto;
+}
+
+.editor-surveys .left .title-top p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.editor-surveys .left .title-top span {
+    display: block;
+    font-size: 14px;
+    opacity: 0.8;
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+.editor-surveys .center {
+    padding: 15px;
+    width: 56%;
+    background: var(--bs-black);
+    color: var(--text-white);
+    overflow: auto;
+    padding-top: 80px;
+    background-position: center !important;
+    background-size: cover !important;
+    position: relative;
+    border-right: 1px solid var(--box-actions);
+    border-left: 1px solid var(--box-actions);
+}
+
+.editor-surveys .center .background2 {
+    position: fixed;
+    width: 85%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.editor-surveys .head-top {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: var(--background-body);
+    left: 0;
+    padding: 10px;
+    z-index: 99;
+}
+
+
+.editor-surveys .head-top .right button {
+    padding: 10px;
+    font-size: 14px;
+    background: var(--border-box);
+    border-radius: 25px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.editor-surveys .head-top .right button svg {
+    font-size: 17px;
+    top: -2px;
+    position: relative;
+    margin-right: 5px;
+}
+
+.editor-surveys .head-top .right {
+    display: flex;
+    margin-left: auto;
+    width: max-content;
+    gap: 5px;
+}
+
+.editor-surveys .center .survey {
+    max-width: 80%;
+    margin: auto;
+    z-index: 99;
+    display: block;
+    position: relative;
+}
+
+.editor-surveys .right {
+    width: 22%;
+    background: var(--background-body);
+    color: var(--text-white);
+    z-index: 2;
+}
+
+.editor-surveys .add-new {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    border: 1px dashed;
+    cursor: pointer;
+    color: var(--text-white);
+    background-color: transparent;
+    width: 100%;
+    font-size: 14px;
+}
+
+.editor-surveys .flex-colors {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.editor-surveys .flex-colors button {
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid;
+    opacity: 0.8;
+    border-radius: 12px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.editor-surveys .add-new-quest {
+    display: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-top: 5px;
+    background: transparent;
+    border: 1px dashed;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+}
+
+.editor-surveys .type-editor {
+    display: block;
+    padding: 15px;
+    background-color: var(--);
+}
+
+.survey .page {
+    display: block;
+    width: 100%;
+    position: relative;
+    border: 1px dashed;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.survey .page .info-page .delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 11px;
+    padding: 10px;
+    line-height: 1;
+    border-radius: 29px;
+    border: 1px solid;
+    background: transparent;
+}
+
+.editor-surveys .survey .page .info-page {
+    display: block;
+    padding: 10px;
+    margin-bottom: 0;
+}
+
+.survey .img-quest {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+}
+
+.editor-surveys .option {
+    margin-bottom: 15px;
+}
+
+.editor-surveys .option input {
+    padding: 10px;
+    width: 100%;
+    background: transparent;
+    border-radius: 8px;
+    border: 1px solid var(--border-box);
+    color: var(--text-white);
+    font-size: 14px;
+}
+
+
+.editor-surveys .option .save {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 28px;
+    font-size: 14px;
+    background: var(--border-box);
+    margin-top: 15px;
+}
+
+.question {
+    background-color: var(--color-box);
+    transition: .1s ease;
+}
+
+.question {
+    padding: 20px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+
+
+.border-dash {
+    border: 1px dashed;
+}
+
+.editor-surveys .question.edit .delete-question {
+    display: none;
+    margin-left: auto;
+    position: absolute;
+    right: 0;
+    margin-right: 18px;
+    padding: 13px;
+    border-radius: 35px;
+    border: 1px solid;
+    line-height: 1;
+    background: transparent;
+    color: var(--color-text);
+}
+
+.survey .head p {
+    font-size: 25px;
+    color: var(--color-box);
+}
+
+.survey .head .logo {
+    max-width: 116px;
+    margin-bottom: 15px;
+}
+
+
+.question .top p {
+    font-size: 18px;
+    margin-bottom: 5px;
+    width: max-content;
+    color: var(--color-text);
+}
+
+.question .top span {
+    opacity: 0.8;
+    font-size: 14px;
+    color: var(--color-text);
+
+}
+
+.editor-surveys .select-types {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.editor-surveys .select-types select {
+    background: transparent;
+    border-radius: 8px;
+    font-size: 14px;
+    border: 1px solid;
+    padding: 10px;
+    width: 100%;
+    color: var(--color-text);
+}
+
+.editor-surveys .select-types button {
+    padding: 10px;
+    margin-right: 15px;
+    font-size: 19px;
+    line-height: 1.2;
+    background-color: transparent;
+    color: var(--color-text);
+}
+
+.question .quest {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    color: var(--color-text);
+}
+
+.question .quest .options {
+    margin-left: 15px;
+    display: flex;
+}
+
+.question .quest .options button {
+    line-height: 1;
+    margin-right: 5px;
+    padding: 10px;
+    padding-right: 13px;
+    padding-left: 13px;
+    border-radius: 90px;
+    background-color: transparent;
+    color: var(--color-text);
+}
+
+.question .quest input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 8px;
+}
+
+.question .quest .radio {
+    width: 100%;
+    line-height: 2.5;
+    padding-left: 7px;
+}
+
+.editor-surveys .question .quest .options {
+    float: right;
+}
+
+.editor-surveys .question.active .edit-active {
+    border: 1px dashed var(--details-green);
+}
+
+
+
+
+.editor-surveys .select-types .add-quest {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid;
+    width: 100%;
+}
+
+
+/* SOLO HOVER*/
+
+
+.editor-surveys .question.edit:hover .add-new-quest {
+    display: block;
+}
+
+.editor-surveys .question.edit:hover .delete-question {
+    display: block;
+}
+
+.editor-surveys .question.edit:hover {
+
+    border: 1px dashed;
+}
+
+/*CUANDO ANDE ACTIVO EL EDITOR*/
+
+.editor-surveys .question.active .add-new-quest {
+    display: block;
+}
+
+.editor-surveys .question.active .delete-question {
+    display: block;
+}
+
+.editor-surveys .question.active {
+
+    border: 1px dashed;
+}
+
+.survey.real{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.survey.real .img-quest{
+    max-height: 200px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.survey.real .page{
+    display: none;
+}
+
+.survey.real .page.active{
+    display: block;
+}
+
+.survey.real .background2{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+
+.survey.real .buttons-bottom{
+    position: relative;
+    width: max-content;
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+
+.survey.real .buttons-bottom button{
+    padding: 10px;
+    border-radius: 27px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background: var(--color-box);
+    color: var(--color-text);
+}
+
+
+.survey.real{
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.survey.real .page{
+    border: 0px;
+}
+
+.survey.real .margin-survey{
+    max-width: 700px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    z-index: 1;
+    position: relative;
+}
+
+#bl-1 {
+    backdrop-filter: blur(1px);
+}
+
+
+.survey-b .preview{
+    height: 170px;
+    border-radius: 12px 12px 0px 0px;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.survey-b .top{
+    color: var(--text-white);
+}
+
+.survey-b .top p{
+    margin-bottom: 5px;
+}
+
+.survey-b .top span{
+    display: block;
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.survey-b .preview .right-top{
+    width: max-content;
+    margin-left: auto;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.survey-b .preview .right-top button{
+    padding: 10px;
+    line-height: 1;
+    border-radius: 90px;
+    background-color: var(--box-actions);
+}
