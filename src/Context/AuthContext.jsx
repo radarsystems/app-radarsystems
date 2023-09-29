@@ -13,6 +13,24 @@ export const AuthProvider = (params) => {
 
     useEffect(() => {
 
+
+        function loadCompany() {
+            let companyId = GetCookie("company")
+
+            let formData = new FormData()
+
+            formData.append("id_company", companyId);
+
+            if (companyId) {
+                axios.post(API_URL + "/api/get/company", formData, { withCredentials: true })
+                    .then((response) => { return response.data })
+                    .then((data) => {
+                        setUserInfo({ ...UserInfo, company: data[0] })
+                    })
+            }
+
+        }
+
         (async function () {
             let token = GetCookie("token")
 
@@ -21,6 +39,7 @@ export const AuthProvider = (params) => {
                     if (data.id_admin) {
                         setAuth(true)
                         setUserInfo(data)
+                        loadCompany()
                         setLoading(false)
                     }
                 })

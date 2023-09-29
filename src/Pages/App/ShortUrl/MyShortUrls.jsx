@@ -7,6 +7,8 @@ import { AuthContext } from "../../../Context/AuthContext"
 import { useEffect } from "react"
 import { IoColorWandOutline, IoStatsChartOutline, IoTrashOutline } from "react-icons/io5"
 import ModalSmall from "../../../Components/App/ModalSmall"
+import LoadingCircleApp from "../../../Components/App/LoadingCircle"
+import NotFoundItems from "../../../Components/App/NotFoundItems"
 
 export default function MyShortUrls() {
 
@@ -15,15 +17,43 @@ export default function MyShortUrls() {
     const [urls, setUrls] = useState([])
     const [loading, setLoading] = useState(true)
     const { UserInfo } = useContext(AuthContext)
+    const [pending, setPending] = useState(false)
+    const [viewModal, setViewModal] = useState(false)
+    const [form, setForm] = useState({ url: "" })
 
-    function LoadUrls() {
+    function LoadUrls(scroll = false) {
         let formData = new FormData()
         formData.append("id_company", UserInfo?.company?.id_company)
+
+        setLoading(true)
+
+        if (!scroll) {
+            setUrls([])
+        }
 
         axios.post(API_URL + "/api/get/myurls", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
+                setLoading(false)
                 setUrls(data)
+            })
+    }
+
+    function NewShort() {
+        let formData = new FormData()
+        formData.append("url", form.url)
+        formData.append("id_company", UserInfo?.company?.id_company)
+        setPending(true)
+        axios.post(API_URL + "/api/upload/shortlink", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                setPending(false)
+                if (data.status) {
+                    LoadUrls()
+                    setViewModal(false)
+                }
+            }).catch((err) => {
+                setPending(false)
             })
     }
 
@@ -33,8 +63,15 @@ export default function MyShortUrls() {
 
     return (<>
 
-        <ModalSmall visible={true}>
-            xd
+        <ModalSmall visible={viewModal} onClick={NewShort} callback={setViewModal} Pending={pending} next={'Crear'}>
+            <div className="top">
+                <p>Nuevo enlace</p>
+                <span>Crea tu nuevo enlace rapidamente con esta herramienta</span>
+            </div>
+            <br />
+            <div className="form-input">
+                <input type="url" placeholder="Enlace" onChange={(ev) => { setForm({ url: ev.target.value }) }} />
+            </div>
         </ModalSmall>
 
         <div className="page-info">
@@ -43,7 +80,7 @@ export default function MyShortUrls() {
                 <span>Estas son tus urls cortas que has creado donde podras llevar las estadisticas de cada una.</span>
             </div>
             <div className="right">
-                <button className="add" onClick={""}>Crear nueva URL</button>
+                <button className="add" onClick={(ev) => { setViewModal(true) }}>Crear nueva URL</button>
             </div>
         </div>
 
@@ -77,9 +114,11 @@ export default function MyShortUrls() {
                             </div>
                         </div>
                     ))}
+                    {loading == true ? <LoadingCircleApp /> : loading == false ? urls.length == 0 ? <NotFoundItems name={"urls"} /> : '' : ''}
                 </div>
             </div>
         </div>
+
 
     </>)
 }

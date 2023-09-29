@@ -4,6 +4,10 @@ body[theme="ligth"] {
     --details-grey: #abbee31a;
     --details-ad: #ff000014;
     --background-body: #f5f5f5;
+    --text-white: #000;
+    --left-menu: #e7e8ed;
+    --grey-oscuro: #121212;
+    --dropbackground-modal: #00000061;
 }
 
 body[theme="dark"] {
@@ -35,13 +39,15 @@ body {
 }
 
 .header-left {
-
     display: block;
     width: 258px;
     background: var(--left-menu);
     height: 100%;
     position: fixed;
     left: 0;
+    overflow: auto;
+    padding-top: 140px;
+    padding-bottom: 20px;
 
 }
 
@@ -129,6 +135,11 @@ body {
 .header-left .logo {
     display: block;
     padding: 25px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: var(--left-menu);
+    z-index: 9;
 }
 
 .header-top {
@@ -192,6 +203,17 @@ body {
     margin-left: auto;
 }
 
+.type-editor .delete {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 26px;
+    background: transparent;
+    border: 1px solid var(--bs-danger);
+    color: var(--bs-danger);
+}
+
 .header-top .right button.option {
     border-radius: 90px;
     background: transparent;
@@ -230,6 +252,32 @@ body {
     width: 100%;
     position: relative;
 }
+
+.app .page .center-loading {
+    display: block;
+    margin: auto;
+    width: max-content;
+    margin-top: 35vh;
+    color: var(--text-white);
+}
+
+.app .page .center-loading .circle {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--details-blue);
+    border-radius: 90px;
+    border-bottom: 3px solid transparent;
+    margin: auto;
+    animation: rotate360 1s linear infinite;
+}
+
+.app .page .center-loading img {
+    max-height: 100px;
+    margin: auto;
+    display: block;
+    margin-bottom: 34px;
+}
+
 
 
 .app .page-info {
@@ -347,6 +395,13 @@ body {
     padding: 10px;
     border-bottom: 1px solid var(--border-box);
     color: var(--text-white);
+}
+
+.app .box .item .icon-app {
+    max-width: 31px;
+    margin: auto;
+    display: block;
+    position: relative;
 }
 
 .app .box.steps .information .title {
@@ -1067,6 +1122,19 @@ table th {
     }
 }
 
+.wizard-home .qr-result {
+    display: block;
+    width: max-content;
+    height: max-content;
+    margin: auto;
+}
+
+.wizard-home .qr-result canvas {
+    max-width: 250px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .wizard-home {
     display: flex;
     width: 100%;
@@ -1077,6 +1145,7 @@ table th {
     top: 0;
     z-index: 9;
     box-shadow: 0px 0px 90px #0000001c;
+    overflow: auto;
 }
 
 .wizard-home .top-actions {
@@ -1128,6 +1197,40 @@ table th {
 
 .wizard-home .body .case {
     display: none;
+}
+
+.wizard-home .body .case .upload-qr .upload {
+    color: var(--text-white);
+    padding: 117px;
+    width: 100%;
+    border: 2px dashed;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+
+.wizard-home .body .case .upload-qr .preview {
+    width: 100%;
+    min-height: 300px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid var(--border-box);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.wizard-home .body .case .upload-qr .preview img {
+    height: max-content;
+    width: max-content;
+    margin: auto;
+    display: block;
+    position: relative;
+    max-height: 258px;
+    max-width: 100%;
 }
 
 .wizard-home .body .case .upload-contact {
@@ -1569,6 +1672,40 @@ table th {
     margin: auto;
 }
 
+.qr-code {
+    display: block;
+    position: relative;
+    width: max-content;
+    margin: auto;
+}
+
+.qr-code canvas {
+    max-width: 115px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.qr-code .logo {
+    display: block;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: max-content;
+    height: max-content;
+}
+
+.qr-code .logo img {
+    max-width: 42px;
+    border-radius: 26px;
+    margin: auto;
+    background: white;
+    padding-top: 4px;
+    object-fit: cover;
+}
+
 .apexcharts-legend-text {
     color: var(--text-white) !important;
 }
@@ -1576,4 +1713,326 @@ table th {
 .apexcharts-yaxis-label,
 .apexcharts-xaxis-label {
     fill: var(--text-white) !important;
+}
+
+.page.buttonsbody .buttons {
+    width: 100%;
+    display: block;
+}
+
+.page.buttonsbody .buttons a {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: grey;
+    transition: 1s ease;
+    text-decoration: none !important;
+}
+
+.page.buttonsbody img.logo {
+    max-width: 120px;
+    margin: auto;
+    display: block;
+    position: relative;
+    border-radius: 107px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.page.buttonsbody .center-top {
+    display: block;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.page.buttonsbody .buttons .edit-active {
+    display: block;
+    margin-left: auto;
+    position: relative;
+    width: max-content;
+    margin-bottom: 15px;
+}
+
+.page.buttonsbody .buttons .edit-active button {
+    padding: 10px;
+    border-radius: 26px;
+    line-height: 1;
+    background: var(--bs-blue);
+}
+
+.page.buttonsbody {
+    max-width: 572px;
+    margin: auto;
+    display: block;
+    position: relative;
+}
+
+.page.buttonsbody .rs {
+    display: flex;
+    margin: auto;
+    position: relative;
+    width: max-content;
+    height: max-content;
+    padding: 20px;
+}
+
+.page.buttonsbody .rs .r {
+    display: block;
+    font-size: 30px;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.page.buttonsbody .rs .r a {
+    text-decoration: none;
+    color: var(--text-white);
+}
+
+svg {
+    pointer-events: none;
+}
+
+.page.buttonsbody.dark a {
+    background: #34373f !important;
+    color: white !important;
+}
+
+
+.page.buttonsbody.ligth a {
+    background: white !important;
+    color: black;
+    font-weight: 600;
+}
+
+.page.buttonsbody .rs .r a {
+    background: transparent !important;
+}
+
+.data .qrs img {
+    max-width: 80px;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.data .qrs {
+    display: block;
+    padding: 10px;
+    background: var(--border-box);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.data .qrs img {
+    pointer-events: none;
+}
+
+.data .qrs p {
+    pointer-events: none;
+}
+
+.data .qrs:hover {
+    background-color: var(--box-actions);
+}
+
+.data .qrs p {
+    font-size: 13px;
+    margin-bottom: auto;
+}
+
+.page.buttonsqr .boxqr {
+    display: block;
+    border: 1px dashed;
+    margin-bottom: 10px;
+    min-height: 250px;
+    position: relative;
+}
+
+.page.buttonsqr .boxqr .top {
+    display: flex;
+}
+
+.prodbuttonsqr .center {
+    width: 100% !important;
+    height: 100%;
+}
+
+.prodbuttonsqr .boxqr {
+    border: 0px !important;
+    text-align: center;
+}
+
+.prodbuttonsqr .boxqr .top-left {
+    margin: auto;
+    opacity: 1 !important;
+}
+
+.prodbuttonsqr .boxqr .top-left p {
+    opacity: 1 !important;
+    font-weight: 600;
+    font-size: 20px;
+    z-index: 99;
+    color: white;
+}
+
+.prod-buttons .background2 {
+    width: 100% !important;
+}
+
+.buttonsbody .share-now {
+    width: max-content;
+    margin-left: auto;
+}
+
+.buttonsbody .share-now button {
+    padding: 10px;
+    line-height: 1;
+    border-radius: 90px;
+    background-color: transparent;
+    border: 1px solid;
+}
+
+
+.prodbuttonsqr .background2 {
+    width: 100% !important;
+}
+
+.prodbuttonsqr .boxqr .top-left p {
+    text-align: center !important;
+}
+
+
+.page.buttonsqr .boxqr .top .top-left {
+    display: block;
+    padding: 11px;
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+.page.buttonsqr .top-right {
+    display: block;
+    width: max-content;
+    height: max-content;
+    margin-left: auto;
+    padding: 10px;
+}
+
+.page.buttonsqr .top-right button {
+    font-size: 14px;
+    border-radius: 91px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background: var(--box-actions);
+    margin-right: 5px;
+}
+
+.page.buttonsqr .add-qr {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: 0;
+    left: 0;
+    width: max-content;
+    height: max-content;
+    font-size: 57px;
+    cursor: pointer;
+}
+
+.page.buttonsqr .boxqr .qr img {
+    display: block;
+    max-width: max-content;
+    margin: auto;
+    max-height: 200px;
+    border-radius: 12px;
+}
+
+.page.buttonsqr .qr .delete {
+    margin-left: auto;
+    display: block;
+    margin-bottom: 10px;
+    margin-right: 12px;
+    margin-top: 10px;
+    border-radius: 27px;
+    padding: 10px;
+    line-height: 1;
+    background: transparent;
+    border: 1px solid;
+    color: var(--bs-danger);
+}
+
+.recovery {
+    display: block;
+    max-width: 400px;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: #343435;
+    max-height: fit-content;
+    border-radius: 12px;
+}
+
+.recovery .top {
+    display: block;
+    color: var(--text-white);
+}
+
+
+.recovery .top p {
+    margin-bottom: 0px;
+}
+
+.recovery .top span {
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+.recovery .go {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    border-radius: 29px;
+    font-size: 14px;
+    background: var(--bs-blue);
+}
+
+.recovery button.transparent {
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 93px;
+    background: transparent;
+    border: 1px solid;
+}
+
+.box table {
+    width: 100%;
+    color: var(--text-white);
+}
+
+.box table tr:nth-child(1) td {
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    opacity: 1;
+}
+
+.box table td {
+    font-size: 14px;
+    opacity: 0.8;
+    padding: 10px;
 }

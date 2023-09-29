@@ -30,6 +30,16 @@ export function GetCookie(cookie) {
     return response
 }
 
+export function SetCookie(cookieName, cookieValue) {
+    var expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 10);
+
+    var cookie = cookieName + "=" + encodeURIComponent(cookieValue) + "; expires=" + expirationDate.toUTCString() + "; path=/";
+
+    document.cookie = cookie;
+}
+
+
 
 export function addWait(target) {
     $(target).addClass("await")
@@ -183,6 +193,10 @@ export function LoadFlagCountry(code) {
 export function LoadNameCountry(code) {
     let realName;
 
+    if (code) {
+        code = String(code).toLocaleLowerCase()
+    }
+
     switch (code) {
         case 've':
             realName = "Venezuela"
@@ -226,4 +240,41 @@ export function LoadLogoSystems(name) {
     }
 
     return "/img/icons/systems/" + name + ".png"
+}
+
+export function LoadIconApp(code) {
+    return "/img/icons/apps/" + code + ".png"
+}
+
+export function LoadPreviewQr(qr) {
+    return API_URL + "/api/get/previewqr?url=" + qr
+}
+
+export function getRealAppName(value) {
+    const appNames = {
+        'fb': 'Facebook',
+        'in': 'Instagram',
+        'x': 'X (Twitter)',
+        'email': 'Correo',
+        'sms': 'Sms',
+        'tik': 'Tiktok',
+        'linkd': 'Linkedin',
+        'yt': 'Youtube',
+        'tele': 'Telegram',
+        'ws': 'Whatsapp',
+        'others': 'Otros',
+    };
+
+    return appNames[value] || '';
+}
+
+export function validateDomain(dominio) {
+    // Expresión regular para validar un dominio simple
+    const regexDominio = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (regexDominio.test(dominio)) {
+        return true;
+    } else {
+        return false;
+    }
 }

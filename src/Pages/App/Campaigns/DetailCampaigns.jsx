@@ -113,7 +113,7 @@ export default function DetailCampaigns() {
 
             let add = false
 
-            if (!campaign.lists.length) {
+            if (!campaign?.lists?.length) {
                 setCampaign(prevData => ({ ...prevData, lists: value }))
                 add = true
             } else {
@@ -303,6 +303,7 @@ export default function DetailCampaigns() {
 
             <div className="menu-top-right">
                 <button className="programming">Programar Campaña</button>
+                <button className="programming">Estadisticas</button>
                 <button className={`send-campaign ${pending.sendCampaign ? 'await' : ''}`} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
             </div>
 

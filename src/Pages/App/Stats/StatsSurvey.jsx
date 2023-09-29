@@ -163,7 +163,7 @@ export default function StatsSurvey() {
                                 {countrys.map((element, key) => (
                                     <div className="country" key={key}>
                                         <img src={LoadFlagCountry(element.country)} alt="" />
-                                        <p className="">{element.country == "" ? 'Undefined' : LoadNameCountry(element.country)}</p>
+                                        <p className="">{element.country == "" ? 'Undefined' : LoadNameCountry(String(element.country).toLocaleLowerCase())}</p>
                                         <span>({element.amount})</span>
                                     </div>
                                 ))}

@@ -9,7 +9,7 @@ import ModalSmall from "../../../Components/App/ModalSmall";
 import CircleColor from "../../../Components/CircleColor";
 import SelectTypeCompany from "../../../Components/SelectTypeCompany";
 import $ from "jquery"
-import { randomId } from "../../../Functions/Global";
+import { GetCookie, SetCookie, randomId } from "../../../Functions/Global";
 import { AuthContext } from "../../../Context/AuthContext";
 import { toast } from "react-hot-toast";
 
@@ -131,6 +131,7 @@ export default function MyCompanys() {
 
         try {
             setUserInfo(prevData => ({ ...prevData, company: companys[key] }))
+            document.cookie = `company=${companys[key].id_company}`
             toast.success("Empresa asignada correctamente.")
         } catch (err) {
 
@@ -190,7 +191,7 @@ export default function MyCompanys() {
 
             <div className="page-info">
                 <div className="">
-                    <p className="title">Tus empresas</p>
+                    <p className="title">MIS CUENTAS</p>
                     <span>Crea y administra tus empresas, agrega nuevos encargados u nuevos cargos</span>
 
                 </div>

@@ -63,7 +63,7 @@ export function Auth() {
                         <div className="form-input">
                             <label>Password
 
-                                <Link className="forgot">¿Olvidó?</Link>
+                                <Link className="forgot" to={"/recovery"}>¿Olvidó?</Link>
                             </label>
                             <input type="password" name="password" onChange={setAuth} />
                         </div>

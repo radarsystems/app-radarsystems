@@ -6,16 +6,18 @@ export default function CompanyMenuTop() {
         <div className="menu-top">
             <ul>
                 <li>
-                    <Link to="/companys">Empresas</Link>
+                    <Link to="/companys">Cuentas</Link>
                 </li>
 
-                <li>
-                    <Link to="/companys/roles">Roles</Link>
-                </li>
 
                 <li>
                     <Link to="/companys/users">Usuarios</Link>
                 </li>
+                
+                <li>
+                    <Link to="/companys/roles">Roles</Link>
+                </li>
+
             </ul>
 
             <div className="right">
