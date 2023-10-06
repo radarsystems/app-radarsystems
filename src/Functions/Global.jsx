@@ -14,6 +14,11 @@ export async function MyCompanys() {
     return await axios.post(API_URL + "/api/get/companys", {}, { withCredentials: true }).then((response) => { return response.data })
 }
 
+export function existsStringInPath(substring) {
+    const currentPath = window.location.pathname;
+    return currentPath.includes(substring);
+}
+
 export function GetCookie(cookie) {
     let cookies = document.cookie
     cookies = cookies.split(";")

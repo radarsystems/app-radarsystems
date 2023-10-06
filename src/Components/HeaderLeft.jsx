@@ -96,7 +96,7 @@ export default function HeaderLeft() {
                         <button onClick={ToggleChild}><i className="icon"><IoBusinessOutline /></i> Cuentas <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/companys">Mis Cuentas</Link></li>
-                            <li><Link to="/companys">Crear Cuenta</Link></li>
+                            <li><Link to="/companys/add">Crear Cuenta</Link></li>
 
                         </ul>
                     </li>
@@ -170,7 +170,7 @@ export default function HeaderLeft() {
                         <button onClick={ToggleChild}><i className="icon"><IoCopyOutline /></i> Encuestas <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/surveys">Mis Encuestas</Link></li>
-                            <li><Link to="/surveys">Crear Encuesta</Link></li>
+                            <li><Link to="/surveys/editor">Crear Encuesta</Link></li>
                             <li><Link to="/surveys">Plantillas</Link></li>
 
                         </ul>
@@ -190,7 +190,7 @@ export default function HeaderLeft() {
                         <button onClick={ToggleChild}><i className="icon"><IoReceiptOutline /></i> Landings Page <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/landings">Mis Landings</Link></li>
-                            <li><Link to="/landings">Crear Landings</Link></li>
+                            <li><Link to="/editor/landings">Crear Landings</Link></li>
                         </ul>
                     </li>
 

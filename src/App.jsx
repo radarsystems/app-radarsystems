@@ -46,6 +46,7 @@ import ButtonsStats from './Pages/App/Buttons/ButtonsStats'
 import StatsCampaigns from './Pages/App/Campaigns/StatsCampaigns'
 import MySegments from './Pages/App/Contacts/MySegments'
 import MyDomains from './Pages/App/Domains/MyDomains'
+import AddSegments from './Pages/App/Contacts/AddSegments'
 
 
 
@@ -70,6 +71,7 @@ function App() {
           <Route path="/campaigns/stats/:id" element={<Global CompanyNeed={true} Element={StatsCampaigns} />} />
           <Route path="/campaigns/detail/:id" element={<Global CompanyNeed={true} Element={DetailCampaigns} />} />
           <Route path="/companys" element={<Global CompanyNeed={false} Element={MyCompanys} />} />
+          <Route path="/companys/add" element={<Global CompanyNeed={false} Element={MyCompanys} />} />
           <Route path="/companys/roles" element={<Global CompanyNeed={true} Element={RolsCompany} />} />
           <Route path="/companys/users" element={<Global CompanyNeed={true} Element={UsersCompany} />} />
 
@@ -80,6 +82,7 @@ function App() {
           <Route path="/contacts/detail/:id" element={<Global CompanyNeed={true} Element={DetailLists} />} />
           <Route path="/contacts/upload/:id" element={<Global CompanyNeed={true} Element={UploadContacts} />} />
           <Route path="/contacts/segments" element={<Global CompanyNeed={true} Element={MySegments} />} />
+          <Route path="/contacts/segments/add" element={<Global CompanyNeed={true} Element={AddSegments} />} />
           <Route path="/contacts" element={<Global CompanyNeed={true} Element={MyContacts} />} />
 
 

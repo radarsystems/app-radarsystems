@@ -14,7 +14,7 @@ export default function MySegments() {
                 </div>
 
                 <div className="right">
-                    <button className="add" onClick={(ev) => { "" }}>Crear nuevo segmento</button>
+                    <button className="add" onClick={(ev) => { Navigator("/contacts/segments/add") }}>Crear nuevo segmento</button>
                 </div>
             </div>
         </>

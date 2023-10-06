@@ -2036,3 +2036,103 @@ svg {
     opacity: 0.8;
     padding: 10px;
 }
+
+.segments-creator {
+    display: block;
+    padding: 15px;
+    background: var(--left-menu);
+    border-radius: 12px;
+}
+
+#form-segment input,
+#form-segment select {
+    padding: 10px;
+    background-color: transparent;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+#form-segment select {
+    border: 0px;
+    background-color: var(--border-box);
+    border-radius: 12px;
+    height: max-content;
+
+}
+
+#form-segment select option {
+    background-color: var(--left-menu);
+}
+
+#form-segment .inputs input {
+    border: 1px solid var(--border-box);
+    border-radius: 12px;
+    outline: none;
+    height: max-content;
+}
+
+#form-segment .inputs {
+    display: flex;
+}
+
+#form-segment .add-button {
+    padding: 10px;
+    line-height: 1;
+    margin-left: 5px;
+    border-radius: 31px;
+    background: var(--border-box);
+}
+
+#form-segment .where-contact {
+    display: flex;
+    color: var(--text-white);
+    background-color: var(--border-box);
+    margin-top: 10px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+#form-segment .where-contact p {
+    display: flex;
+    margin-right: 5px;
+    line-height: 1;
+    margin-bottom: 0;
+    padding: 10px;
+    width: max-content;
+}
+
+#form-segment .buttons-right {
+    width: max-content;
+    height: max-content;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+
+#form-segment .buttons-right button.save {
+    background: blue;
+}
+
+.segments-creator .buttons-right {
+    width: max-content;
+    margin-left: auto;
+    position: relative;
+    gap: 10px;
+    display: flex;
+    margin-top: 15px;
+}
+
+.segments-creator .buttons-right button {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 90px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.segments-creator .buttons-right button.save {
+    background-color: var(--details-blue);
+    border: 1px transparent;
+}

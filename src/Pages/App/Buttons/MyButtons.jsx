@@ -50,7 +50,7 @@ export default function MyButtons() {
                             <div className="preview" style={{ background: `url(${API_URL}/api/get/previewbuttons?hash=${element.preview}&w=buttons)` }}>
                                 <div className="right-top">
                                     <button onClick={(ev) => { Navigator("/editor/buttons/" + element.id_buttons) }}><IoColorWandOutline /></button>
-                                    <button onClick={(ev) => { Navigator(`/stats/buttons/${element.id_buttons}`) }}><IoDocumentTextOutline /></button>
+                                    <button onClick={(ev) => { Navigator(`/stats/buttons/${element.token}`) }}><IoDocumentTextOutline /></button>
                                     <button onClick={(ev) => { Navigator(`/buttons/${element.token}`) }}><IoEyeOutline /></button>
                                 </div>
                             </div>

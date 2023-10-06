@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import CompanyMenuTop from "../../../Components/App/Companys/MenuTop";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -9,7 +9,7 @@ import ModalSmall from "../../../Components/App/ModalSmall";
 import CircleColor from "../../../Components/CircleColor";
 import SelectTypeCompany from "../../../Components/SelectTypeCompany";
 import $ from "jquery"
-import { GetCookie, SetCookie, randomId } from "../../../Functions/Global";
+import { GetCookie, SetCookie, existsStringInPath, randomId } from "../../../Functions/Global";
 import { AuthContext } from "../../../Context/AuthContext";
 import { toast } from "react-hot-toast";
 
@@ -24,6 +24,14 @@ export default function MyCompanys() {
     const [formCompany, setFormCompany] = useState({ name: "", color: "", type: "" })
     const { setUserInfo, UserInfo } = useContext(AuthContext)
     const [pending, setPending] = useState(false)
+    const location = useLocation()
+
+
+    useEffect(() => {
+        if (existsStringInPath("/add")) {
+            setModalEditCompany(true)
+        }
+    }, [location])
 
     function LoadCompanys() {
         setCompanys([])

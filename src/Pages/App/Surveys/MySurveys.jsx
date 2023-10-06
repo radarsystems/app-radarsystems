@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoArrowBackOutline, IoColorWandOutline, IoDocumentTextOutline, IoStatsChartOutline, IoTrash, IoTrashOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LoadingCircleApp from "../../../Components/App/LoadingCircle";
 import { useEffect } from "react";
 import axios from "axios";
@@ -8,7 +8,7 @@ import { API_URL } from "../../../ExportUrl";
 import { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
 import { toast } from "react-hot-toast";
-import { Time } from "../../../Functions/Global";
+import { Time, existsStringInPath } from "../../../Functions/Global";
 import ModalDelete from "../../../Components/App/ModalDelete";
 import NotFoundItems from "../../../Components/App/NotFoundItems";
 
@@ -19,6 +19,9 @@ export default function MySurveys() {
     const [loading, setLoading] = useState(true)
     const [modalDelete, setModalDelete] = useState({ id_delete: undefined, pending: false })
     const [viewModalDelete, setViewModalDelete] = useState(false)
+    const location = useLocation()
+
+  
 
     const { UserInfo } = useContext(AuthContext)
 

@@ -5,7 +5,8 @@ import LoadingCircleApp from "../../../Components/App/LoadingCircle";
 import WizardCampaign from "../../../Components/App/Campaigns/WizardCampaign";
 import { AuthContext } from "../../../Context/AuthContext";
 import { IoColorWandOutline, IoDocumentTextOutline, IoStatsChartOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { existsStringInPath } from "../../../Functions/Global";
 
 
 export default function MyCampaigns() {
@@ -16,6 +17,13 @@ export default function MyCampaigns() {
     const [campaign, setCampaign] = useState([])
     const [modalWizard, setModalWizard] = useState(false)
     const [loading, setLoading] = useState(true)
+    const location = useLocation()
+
+    useEffect(() => {
+        if(existsStringInPath("/new")){
+            setModalWizard(true)
+        }
+    }, [location])
 
     useEffect(() => {
         let formData = new FormData()
