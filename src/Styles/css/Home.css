@@ -1621,7 +1621,7 @@ table th {
 
 .stat .resp-number p {
     font-size: 38px;
-    color: white;
+    color: var(--text-white);
     margin: auto;
     display: block;
     position: relative;
