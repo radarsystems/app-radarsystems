@@ -63,7 +63,7 @@ export default function HeaderLeft() {
 
 
                     <li className={opacityMenu ? 'opacity' : ''}>
-                        <button onClick={ToggleChild}><i className="icon"><IoHomeOutline /></i> Home <i className="arrow"></i></button>
+                        <button onClick={(ev) => { Navigator("/home") }}><i className="icon"><IoHomeOutline /></i> Home <i className="arrow"></i></button>
                     </li>
 
                     <li>

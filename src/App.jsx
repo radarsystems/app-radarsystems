@@ -47,6 +47,7 @@ import StatsCampaigns from './Pages/App/Campaigns/StatsCampaigns'
 import MySegments from './Pages/App/Contacts/MySegments'
 import MyDomains from './Pages/App/Domains/MyDomains'
 import AddSegments from './Pages/App/Contacts/AddSegments'
+import Home from './Pages/App/Home/Home'
 
 
 
@@ -64,8 +65,8 @@ function App() {
 
 
           {/* ROUTES PRIVATE IN APP */}
-
-          <Route path="/home" element={<Global CompanyNeed={true} Element={function () { }} />} />
+          <Route path="/" element={<Global CompanyNeed={true} Element={Home} />} />
+          <Route path="/home" element={<Global CompanyNeed={true} Element={Home} />} />
           <Route path="/campaigns" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
           <Route path="/campaigns/new" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
           <Route path="/campaigns/stats/:id" element={<Global CompanyNeed={true} Element={StatsCampaigns} />} />
