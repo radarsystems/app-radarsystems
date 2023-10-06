@@ -7,7 +7,8 @@ import axios from "axios"
 import { API_URL } from "../../../ExportUrl"
 import { AuthContext } from "../../../Context/AuthContext"
 import { IoDocumentTextOutline, IoTrashOutline } from "react-icons/io5"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
+import { existsStringInPath } from "../../../Functions/Global"
 
 export default function CampaignsUrl() {
 
@@ -18,6 +19,14 @@ export default function CampaignsUrl() {
     const [pending, setPending] = useState(false)
     const [form, setForm] = useState({ name: "" })
     const { UserInfo } = useContext(AuthContext)
+
+    const location = useLocation()
+
+    useEffect(() => {
+        if(existsStringInPath("/add")){
+            setModalView(true)
+        }
+    }, [location])
 
 
     function LoadCampaigns() {

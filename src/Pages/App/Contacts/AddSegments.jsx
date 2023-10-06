@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useContext, useState } from "react"
-import { IoCheckmarkOutline } from "react-icons/io5"
+import { IoCheckmarkOutline, IoTrashOutline } from "react-icons/io5"
 import { API_URL } from "../../../ExportUrl"
 import { AuthContext } from "../../../Context/AuthContext"
 
@@ -212,6 +212,8 @@ export default function AddSegments() {
                                                                 <div className="where-contact" key={key}>
                                                                     <p>{key} (Where)</p>
                                                                     <p>{value}</p>
+
+                                                                    <button><IoTrashOutline /></button>
                                                                 </div>
                                                             ))}
                                                         </div>

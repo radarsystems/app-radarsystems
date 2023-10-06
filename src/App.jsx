@@ -107,12 +107,18 @@ function App() {
 
 
           <Route path="/shorturls" element={<Global CompanyNeed={true} Element={MyShortUrls} />} />
+          <Route path="/shorturls/add" element={<Global CompanyNeed={true} Element={MyShortUrls} />} />
           <Route path='/shorturls/:id' element={<Global CompanyNeed={true} Element={DetailShortUrl} />} />
           <Route path='/shorturls/campaigns' element={<Global CompanyNeed={true} Element={CampaignsUrl} />} />
+          <Route path='/shorturls/campaigns/add' element={<Global CompanyNeed={true} Element={CampaignsUrl} />} />
           <Route path='/shorturls/campaigns/:id' element={<Global CompanyNeed={true} Element={StatsCampaignShort} />} />
 
           {/* MY QRS */}
           <Route path='/qr' element={<Global CompanyNeed={true} Element={MyQr} />} />
+          <Route path='/qr/add' element={<Global CompanyNeed={true} Element={MyQr} />} />
+          <Route path='/qr/import' element={<Global CompanyNeed={true} Element={MyQr} />} />
+
+
 
           {/* MY DOMAINS */}
           <Route path='/domains' element={<Global CompanyNeed={true} Element={MyDomains} />} />

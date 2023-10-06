@@ -199,9 +199,9 @@ export default function HeaderLeft() {
                         <button onClick={ToggleChild}><i className="icon"><AiOutlineLink /></i> Medusa <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/shorturls/campaigns">Mis Campañas</Link></li>
-                            <li><Link to="/shorturls/campaigns">Crear Campana</Link></li>
+                            <li><Link to="/shorturls/campaigns/add">Crear Campana</Link></li>
                             <li><Link to="/shorturls">Mis Enlaces</Link></li>
-                            <li><Link to="/shorturls/campaigns">Crear Enlace</Link></li>
+                            <li><Link to="/shorturls/add">Crear Enlace</Link></li>
                         </ul>
                     </li>
 
@@ -209,9 +209,11 @@ export default function HeaderLeft() {
                         <button onClick={ToggleChild}><i className="icon"><IoQrCode /></i> Botonera QR <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/qr">Mis Qr's</Link></li>
-                            <li><Link to="/qr">Crear QR</Link></li>
-                            <li><Link to="/qr">Importar QR</Link></li>
+                            <li><Link to="/qr/add">Crear QR</Link></li>
+                            <li><Link to="/qr/import">Importar QR</Link></li>
                             <li><Link to="/buttonsqr">Botoneras QR</Link></li>
+                            <li><Link to="/editor/buttonsqr">Crear Botonera QR</Link></li>
+
 
 
                         </ul>
@@ -221,7 +223,7 @@ export default function HeaderLeft() {
                         <button onClick={ToggleChild}><i className="icon"><IoAtSharp /></i> Botonera URL <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/buttons">Mis Botoneras URL</Link></li>
-                            <li><Link to="/buttons">Crear Botonera URL</Link></li>
+                            <li><Link to="/editor/buttons">Crear Botonera URL</Link></li>
                         </ul>
                     </li>
 

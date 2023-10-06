@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { API_SHORT, API_URL } from "../../../ExportUrl"
 import { useContext } from "react"
 import { AuthContext } from "../../../Context/AuthContext"
@@ -9,6 +9,7 @@ import { IoColorWandOutline, IoStatsChartOutline, IoTrashOutline } from "react-i
 import ModalSmall from "../../../Components/App/ModalSmall"
 import LoadingCircleApp from "../../../Components/App/LoadingCircle"
 import NotFoundItems from "../../../Components/App/NotFoundItems"
+import { existsStringInPath } from "../../../Functions/Global"
 
 export default function MyShortUrls() {
 
@@ -20,6 +21,17 @@ export default function MyShortUrls() {
     const [pending, setPending] = useState(false)
     const [viewModal, setViewModal] = useState(false)
     const [form, setForm] = useState({ url: "" })
+
+
+
+    const location = useLocation()
+
+    useEffect(() => {
+        if (existsStringInPath("/add")) {
+            setViewModal(true)
+        }
+    }, [location])
+
 
     function LoadUrls(scroll = false) {
         let formData = new FormData()

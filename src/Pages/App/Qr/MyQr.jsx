@@ -7,10 +7,11 @@ import { AuthContext } from "../../../Context/AuthContext"
 import axios from "axios"
 import { API_URL } from "../../../ExportUrl"
 import { useEffect } from "react"
-import { LoadPreviewQr } from "../../../Functions/Global"
+import { LoadPreviewQr, existsStringInPath } from "../../../Functions/Global"
 import { IoAddCircleOutline, IoAddOutline, IoCloudDownloadOutline, IoCloudUploadOutline, IoTrashOutline } from "react-icons/io5"
 import $ from "jquery"
 import WizardUploadQr from "../../../Components/App/Qr/WizardUploadQr"
+import { useLocation } from "react-router-dom"
 
 export default function MyQr() {
 
@@ -19,6 +20,17 @@ export default function MyQr() {
     const [loading, setLoading] = useState(false)
     const [qrs, setQrs] = useState([{}, {}])
     const { UserInfo } = useContext(AuthContext)
+    const location = useLocation()
+
+    useEffect(() => {
+        if (existsStringInPath("/add")) {
+            setModalView(true)
+        }
+
+        if (existsStringInPath("/import")) {
+            setUploadView(true)
+        }
+    }, [location])
 
     function loadQrs() {
         let formData = new FormData()
