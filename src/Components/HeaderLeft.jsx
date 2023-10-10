@@ -69,10 +69,10 @@ export default function HeaderLeft() {
                     <li>
                         <button onClick={ToggleChild}><i className="icon"><IoLinkOutline /></i> Configuracion <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
-                            <li><Link to="/domains">Cuenta</Link></li>
-                            <li><Link to="/domains">Seguridad</Link></li>
-                            <li><Link to="/domains">Footer</Link></li>
-                            <li><Link to="/domains">Dominios</Link></li>
+                            <li><Link to="/settings-account/account">Cuenta</Link></li>
+                            <li><Link to="/settings-account/security">Seguridad</Link></li>
+                            <li><Link to="/settings-account/footer">Footer</Link></li>
+                            <li><Link to="/settings-account/domains">Dominios</Link></li>
                         </ul>
                     </li>
                     <li className={opacityMenu ? 'opacity' : ''}>
@@ -124,10 +124,10 @@ export default function HeaderLeft() {
                         <button onClick={ToggleChild}><i className="icon"><IoSendOutline /></i> Campañas <i className="arrow"><MdArrowForwardIos /></i></button>
 
                         <ul>
-                            <li><Link to="/campaigns">Email Marketing</Link></li>
-                            <li><Link to="/campaigns">Email MT</Link></li>
-                            <li><Link to="/campaigns">SMS Marketing</Link></li>
-                            <li><Link to="/campaigns">SMS</Link></li>
+                            <li><Link to="/campaigns/em">Email Marketing</Link></li>
+                            <li><Link to="/campaigns/em-mt">Email MT</Link></li>
+                            <li><Link to="/campaigns/sms">SMS Marketing</Link></li>
+                            <li><Link to="/campaigns/sms-mt">SMS MT</Link></li>
                             <li><Link to="/campaigns/new">Crear Campana</Link></li>
                         </ul>
                     </li>

@@ -6,6 +6,7 @@ import axios from "axios"
 import { API_URL } from "../../../ExportUrl"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../../Context/AuthContext"
+import toast from "react-hot-toast"
 
 export default function WizardCampaign({ Visible, Close }) {
 
@@ -35,7 +36,7 @@ export default function WizardCampaign({ Visible, Close }) {
         let approve = false
         let target = $(ev.target)
 
-        if (count === 0 && form.type == "em" || form.type == "sms") {
+        if (count === 0 && form.type.includes("em") || form.type.includes("sms")) {
             approve = true
         }
 
@@ -53,6 +54,10 @@ export default function WizardCampaign({ Visible, Close }) {
 
                 if (data.status) {
                     Navigate("/campaigns/detail/" + data.id_campaign)
+                } else {
+                    if (data.msg) {
+                        toast.error(data.msg)
+                    }
                 }
 
                 target.removeClass('await')
@@ -99,14 +104,24 @@ export default function WizardCampaign({ Visible, Close }) {
                             <span className="desc">Selecciona el tipo de campaña que te gustaría enviar</span>
                         </div>
 
-                        <div className="options flex" id={`options-${idOptions[0]}`}>
+                        <div className="options flex half" id={`options-${idOptions[0]}`}>
                             <div className="selector" onClick={selectOption} value={"em"}>
                                 <div className="check">
                                     <IoCheckmarkSharp />
                                 </div>
                                 <div className="info">
-                                    <p>CAMPAÑA EMAIL REGULAR</p>
+                                    <p>CAMPAÑA EMAIL MARKETING</p>
                                     <span>Crea tu campaña de email con uno de nuestros editores para que la envíes inmediatamente o programes para enviar más tarde.</span>
+                                </div>
+                            </div>
+
+                            <div className="selector" onClick={selectOption} value={"em-mt"}>
+                                <div className="check">
+                                    <IoCheckmarkSharp />
+                                </div>
+                                <div className="info">
+                                    <p>CAMPAÑA EMAIL TRANSACCIONAL</p>
+                                    <span>Crea tu campaña de email transaccional estas seran enviada 1x1 mediante la conexion a la api.</span>
                                 </div>
                             </div>
 
@@ -115,10 +130,23 @@ export default function WizardCampaign({ Visible, Close }) {
                                     <IoCheckmarkSharp />
                                 </div>
                                 <div className="info">
-                                    <p>CAMPAÑA SMS REGULAR</p>
+                                    <p>CAMPAÑA SMS MARKETING</p>
                                     <span>Envía mensajes de texto rápidos y confiables a cualquier país con nuestras herramientas de campaña de SMS.</span>
                                 </div>
                             </div>
+
+
+                            <div className="selector" onClick={selectOption} value={"sms-mt"}>
+                                <div className="check">
+                                    <IoCheckmarkSharp />
+                                </div>
+                                <div className="info">
+                                    <p>CAMPAÑA SMS TRANSACCIONAL</p>
+                                    <span>Crea tu campaña de sms transaccional estas seran enviada 1x1 mediante la conexion a la api.</span>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 

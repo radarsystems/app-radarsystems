@@ -48,6 +48,7 @@ import MySegments from './Pages/App/Contacts/MySegments'
 import MyDomains from './Pages/App/Domains/MyDomains'
 import AddSegments from './Pages/App/Contacts/AddSegments'
 import Home from './Pages/App/Home/Home'
+import StatsDetailCampaigns from './Pages/App/Campaigns/StatsDetailCampaigns'
 
 
 
@@ -63,13 +64,25 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path="/wizard" element={<Wizard />} />
 
+          {/* SETTINGS */}
+          <Route path="/settings-account/account" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/settings-account/security" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/settings-account/footer" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/settings-account/domains" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+
 
           {/* ROUTES PRIVATE IN APP */}
           <Route path="/" element={<Global CompanyNeed={true} Element={Home} />} />
           <Route path="/home" element={<Global CompanyNeed={true} Element={Home} />} />
           <Route path="/campaigns" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/campaigns/em" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/campaigns/sms" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/campaigns/sms-mt" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/campaigns/em-mt" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+
           <Route path="/campaigns/new" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
           <Route path="/campaigns/stats/:id" element={<Global CompanyNeed={true} Element={StatsCampaigns} />} />
+          <Route path="/campaigns/stats/detail/:id" element={<Global CompanyNeed={true} Element={StatsDetailCampaigns} />} />
           <Route path="/campaigns/detail/:id" element={<Global CompanyNeed={true} Element={DetailCampaigns} />} />
           <Route path="/companys" element={<Global CompanyNeed={false} Element={MyCompanys} />} />
           <Route path="/companys/add" element={<Global CompanyNeed={false} Element={MyCompanys} />} />

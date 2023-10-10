@@ -7,6 +7,7 @@ import { AuthContext } from "../../../Context/AuthContext";
 import { IoColorWandOutline, IoDocumentTextOutline, IoStatsChartOutline } from "react-icons/io5";
 import { useLocation, useNavigate } from "react-router-dom";
 import { existsStringInPath } from "../../../Functions/Global";
+import NotFoundItems from "../../../Components/App/NotFoundItems";
 
 
 export default function MyCampaigns() {
@@ -20,18 +21,56 @@ export default function MyCampaigns() {
     const location = useLocation()
 
     useEffect(() => {
-        if(existsStringInPath("/new")){
+        if (existsStringInPath("/new")) {
             setModalWizard(true)
         }
     }, [location])
 
-    useEffect(() => {
+    function searchCampaign(next) {
         let formData = new FormData()
+
+        setLoading(true)
+
+        let type = "em";
+        if (existsStringInPath("/em")) {
+            type = "em"
+        }
+
+        if (existsStringInPath("/em-mt")) {
+            type = "em-mt"
+        }
+
+        if (existsStringInPath("/sms-mt")) {
+            type = "sms-mt"
+        }
+
+
+        if (existsStringInPath("/sms")) {
+            type = "sms"
+        }
+
+        if(!next){
+            setCampaign([])
+        }
+
         formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("type", type);
         axios.post(API_URL + "/api/get/campaign", formData, { withCredentials: true }).then((response) => { return response.data }).then((data) => {
-            setCampaign(data.results)
+            if (data?.results?.length) {
+                setCampaign(data.results)
+            }
+
+            setLoading(false)
+        }).catch((err) => {
+            setLoading(false)
         })
-    }, [])
+    }
+
+    useEffect(() => {
+
+        searchCampaign(false)
+
+    }, [location])
 
 
     function ViewDetail(ev) {
@@ -62,11 +101,11 @@ export default function MyCampaigns() {
             <div className="row">
                 <div className="col-md-12">
                     <div className="box box-padding">
-                        {campaign.map((element, key) => (
+                        {campaign?.map((element, key) => (
                             <div className="item flex">
                                 <div className="info">
                                     <div className="icon">
-                                        <img src="img/icons/campaign_profile.png" alt="" />
+                                        <img src="/img/icons/campaign_profile.png" alt="" />
                                     </div>
 
                                     <div className="text">
@@ -77,14 +116,13 @@ export default function MyCampaigns() {
                                 </div>
 
                                 <div className="actions">
-                                    <button><IoColorWandOutline /></button>
                                     <button onClick={ViewDetail} value={element.id_campaign}><IoDocumentTextOutline /></button>
                                     <button><IoStatsChartOutline /></button>
                                 </div>
                             </div>
                         ))}
 
-                        {loading ? campaign.length == 0 ? <LoadingCircleApp /> : '' : ''}
+                        {loading == false ? campaign?.length == 0 ? <NotFoundItems name={"campanas"} /> : '' : <LoadingCircleApp />}
                     </div>
                 </div>
             </div>

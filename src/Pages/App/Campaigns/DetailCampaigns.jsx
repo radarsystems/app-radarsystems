@@ -11,6 +11,7 @@ import $, { param } from "jquery"
 import { PreviewTemplate, Time } from "../../../Functions/Global"
 import { toast } from "react-hot-toast"
 import ModalSmall from "../../../Components/App/ModalSmall"
+import ModalDelete from "../../../Components/App/ModalDelete"
 
 export default function DetailCampaigns() {
 
@@ -27,6 +28,8 @@ export default function DetailCampaigns() {
     const [campaign, setCampaign] = useState([])
     const [pending, setPending] = useState({ sendCampaign: false });
     const [form, setForm] = useState({ affair: "" });
+    const [deleteModal, setDeleteModal] = useState(false)
+    const [pendingDelete, setPendingDelete] = useState(false)
 
     function searchLists(search) {
 
@@ -231,10 +234,31 @@ export default function DetailCampaigns() {
         setPending(prevData => ({ ...prevData, [name]: value }))
     }
 
+    function deleteCampaign() {
+
+        setPendingDelete(true)
+
+        let formData = new FormData()
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("id_campaign", params.id)
+
+        axios.post(API_URL + "/api/delete/campaign", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                setPendingDelete(false)
+
+                if (data.status) {
+                    Navigator("/campaigns")
+                }
+            }).catch((err) => {
+                setPendingDelete(false)
+            })
+    }
+
     return (
         <>
 
-            <ModalSmall visible={true} width={"30%"} maxWidth={"500px"}>
+            <ModalSmall visible={false} width={"30%"} maxWidth={"500px"}>
                 <div className="top">
                     <p>Programar campaña</p>
 
@@ -287,6 +311,10 @@ export default function DetailCampaigns() {
                     </div>
                 </div>
             </ModalSmall>
+
+            <ModalDelete visible={deleteModal} callback={setDeleteModal} Pending={pendingDelete} onClick={deleteCampaign} name={"campana"}>
+
+            </ModalDelete>
             <div className="page-info">
                 <div className="">
                     <p className="title">Detalles de campaña</p>
@@ -302,8 +330,9 @@ export default function DetailCampaigns() {
 
 
             <div className="menu-top-right">
-                <button className="programming">Programar Campaña</button>
-                <button className="programming">Estadisticas</button>
+                <button className="programming">Programar</button>
+                <button className="programming" onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}>Estadisticas</button>
+                <button className="programming" onClick={(ev) => { setDeleteModal(true) }}>Eliminar</button>
                 <button className={`send-campaign ${pending.sendCampaign ? 'await' : ''}`} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
             </div>
 

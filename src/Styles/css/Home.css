@@ -344,6 +344,41 @@ body {
     margin-bottom: 20px;
 }
 
+.app .box.stat .result span {
+    color: var(--text-white);
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.app .box.stat button.status-send {
+    padding: 10px;
+    font-size: 13px;
+    border-radius: 99px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: var(--box-actions);
+    margin-left: 8px;
+}
+
+.app .box .show-all button {
+    display: block;
+    margin: auto;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 34px;
+    background: transparent;
+    color: var(--text-white);
+    margin-top: 10px;
+    width: 100%;
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.app .box.stat button.status-send.error {
+    background: var(--bs-danger);
+    font-weight: 600;
+}
+
 .app .box.box-padding {
     padding: 10px;
 }
@@ -1330,6 +1365,15 @@ table th {
 .wizard-home .body .options.flex {
     display: flex;
     gap: 25px;
+}
+
+.wizard-home .body .options.flex.half {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.wizard-home .body .options.flex.half .selector {
+    width: 48%;
 }
 
 .wizard-home .body .options .selector {

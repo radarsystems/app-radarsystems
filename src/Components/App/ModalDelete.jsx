@@ -3,7 +3,7 @@ import { randomId } from "../../Functions/Global";
 import $ from "jquery"
 import { toast } from "react-hot-toast";
 
-export default function ModalDelete({ visible, onClick, callback, Pending }) {
+export default function ModalDelete({ visible, onClick, callback, Pending, name }) {
     const [visibleModal, setVisible] = useState(visible == false ? false : true);
     const [modalId, setModalId] = useState(randomId());
 
@@ -56,7 +56,7 @@ export default function ModalDelete({ visible, onClick, callback, Pending }) {
                     </div>
 
                     <span className="dialog">
-                        Estas apunto de eliminar este objeto, estas seguro que quieres eliminarlo?
+                        Estas apunto de eliminar {name == undefined ? 'este objeto' : `esta ` + name}, estas seguro que quieres eliminarlo?
                     </span>
                     <div className="actions">
                         <button id="close" onClick={closeModal}>{'Cancelar'}</button>
