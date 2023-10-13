@@ -2180,3 +2180,12 @@ svg {
     background-color: var(--details-blue);
     border: 1px transparent;
 }
+
+.control-scroll {
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.control-scroll.stats-detail {
+    max-height: 150px;
+}
