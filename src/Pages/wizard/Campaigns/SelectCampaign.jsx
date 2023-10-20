@@ -81,6 +81,6 @@ export default function SelectCampaign() {
             </div>
         </div>
 
-        {Number(campaign) !== NaN ? <SelectType /> : ''}
+        {Number(campaign) == 'NaN' ? <SelectType /> : ''}
     </>)
 }
