@@ -199,7 +199,7 @@ export default function StatsCampaigns() {
                 {charts?.series[0]?.data?.length ? <Chart options={charts} series={charts.series} type="area" height={300} />
                     : ''}
             </div>
-            <div className="row container">
+            <div className="row ">
                 <div className="col-md-6">
                     <div className="box stat box-padding">
                         <div className="top">

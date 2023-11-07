@@ -10,6 +10,8 @@ body[theme="ligth"] {
     --details-grey: #abbee31a;
     --details-ad: #ff000014;
     --background-body: #f5f5f5;
+    --box-actions: #d0d1d8;
+    --border-box: #d0d1d8;
 }
 
 body[theme="dark"] {
@@ -209,16 +211,16 @@ body[theme="dark"] {
     color: var(--text-white);
 }
 
-.form-input.flex{
+.form-input.flex {
     display: flex;
 }
 
-.form-input.flex input{
+.form-input.flex input {
     margin-right: 10px;
 }
 
 
-.form-input.flex button.save{
+.form-input.flex button.save {
     width: max-content;
     padding: 10px;
     display: block;
@@ -265,7 +267,7 @@ body[theme="dark"] {
     gap: 5px;
 }
 
-.form-input span.desc{
+.form-input span.desc {
     opacity: 0.5;
     font-size: 14px;
 }
@@ -314,6 +316,7 @@ body[theme="dark"] {
 }
 
 .await {
+    display: inline-block;
     opacity: 0.8;
     pointer-events: none;
 }
@@ -347,7 +350,6 @@ body[theme="dark"] {
     color: #33c193;
 }
 
-.editor-surveys.btnactive .center{
+.editor-surveys.btnactive .center {
     width: 100% !important;
 }
-

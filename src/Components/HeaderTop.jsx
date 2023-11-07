@@ -4,6 +4,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Link } from "react-router-dom";
 import $ from "jquery"
+import { LoadImageProfile } from "../Functions/Global";
 
 export function HeaderTop() {
     const { UserInfo } = useContext(AuthContext)
@@ -39,7 +40,7 @@ export function HeaderTop() {
                             UserInfo?.company?.name ?
                                 <>
                                     <div className="body">
-                                        <img src="img/icons/default_profile.png" alt="" />
+                                        <img src={UserInfo?.company?.photo !== undefined ? LoadImageProfile(UserInfo) : "img/icons/default_profile.png"} alt="" />
                                         <span>{UserInfo?.company?.name}</span>
                                     </div>
                                 </>
@@ -51,7 +52,7 @@ export function HeaderTop() {
                     <button className="option" onClick={changeTheme} >
                         {theme == "dark" ? <IoMoonOutline /> : ""}
                         {theme == "ligth" ? <IoSunnyOutline /> : ""}
-                    
+
                     </button>
                     <button className="option"><IoNotificationsOutline /></button>
                     <div className="user">

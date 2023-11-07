@@ -8,10 +8,14 @@ import { API_URL } from "../../../ExportUrl"
 import LoadingCircleApp from "../../../Components/App/LoadingCircle"
 import NotFoundItems from "../../../Components/App/NotFoundItems"
 import $, { param } from "jquery"
-import { PreviewTemplate, Time } from "../../../Functions/Global"
+import { PreviewTemplate, Time, formatNumberZero } from "../../../Functions/Global"
 import { toast } from "react-hot-toast"
 import ModalSmall from "../../../Components/App/ModalSmall"
 import ModalDelete from "../../../Components/App/ModalDelete"
+import Calendar from "react-calendar"
+import 'react-calendar/dist/Calendar.css';
+import ModalProgrammingCampaign from "../../../Components/App/Campaigns/ModalProgrammingCampaign"
+
 
 export default function DetailCampaigns() {
 
@@ -29,7 +33,10 @@ export default function DetailCampaigns() {
     const [pending, setPending] = useState({ sendCampaign: false });
     const [form, setForm] = useState({ affair: "" });
     const [deleteModal, setDeleteModal] = useState(false)
+    const [viewModalProgramming, setModalProgramming] = useState()
     const [pendingDelete, setPendingDelete] = useState(false)
+    const [formProgramming, setFormProgamming] = useState({ hh: "", mm: "", dd: "", ii: "", yy: "" })
+    const [pendingProgramming, setPendingProgramming] = useState(false)
 
     function searchLists(search) {
 
@@ -255,61 +262,61 @@ export default function DetailCampaigns() {
             })
     }
 
+
+    function setNewProgramming(ev) {
+        let value = ev.target.value
+        let name = ev.target.name
+
+        if (name == "date") {
+            const dateObj = new Date(value);
+            const day = dateObj.getDate();
+            const year = dateObj.getFullYear();
+            const month = dateObj.getMonth() + 1;
+
+
+            setFormProgamming({ ...formProgramming, dd: day, yy: year, mm: month })
+        } else {
+            setFormProgamming({ ...formProgramming, [name]: value })
+        }
+
+
+    }
+
+    function programmingCampaign() {
+        let formData = new FormData()
+
+        setPendingProgramming(true)
+
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("hh", formProgramming.hh)
+        formData.append("dd", formatNumberZero(formProgramming.dd))
+        formData.append("yy", formProgramming.yy)
+        formData.append("mm", formProgramming.mm)
+        formData.append("ii", formProgramming.ii)
+        formData.append("id_campaign", params.id)
+        formData.append("p_type", "default");
+        formData.append("type", "campaign")
+
+        axios.post(API_URL + "/api/update/programming", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+        setPendingProgramming(false)
+            .catch((err) => {
+                setPendingProgramming(false)
+
+            })
+
+    }
+
+
+    useEffect(() => {
+        console.log(formProgramming)
+    }, [formProgramming])
+
     return (
         <>
 
-            <ModalSmall visible={false} width={"30%"} maxWidth={"500px"}>
-                <div className="top">
-                    <p>Programar campaña</p>
-
-
-                    <div className="flex">
-                        <select name="" id="">
-                            <option disabled selected>Hora</option>
-                        </select>
-                        <select name="" id="">
-                            <option disabled selected>Dia</option>
-                        </select>
-                        <select name="" id="">
-                            <option disabled selected>Mes</option>
-                        </select>
-                        <select name="" id="">
-                            <option disabled selected>Ano</option>
-                        </select>
-                    </div>
-
-
-                    <div className="flex">
-                        <div className="input-form">
-                            <span>Lunes</span>
-                            <input type="radio" name="day" />
-                        </div>
-                        <div className="input-form">
-                            <span>Martes</span>
-                            <input type="radio" name="day" />
-                        </div>
-                        <div className="input-form">
-                            <span>Miercoles</span>
-                            <input type="radio" name="day" />
-                        </div>
-                        <div className="input-form">
-                            <span>Jueves</span>
-                            <input type="radio" name="day" />
-                        </div>
-                        <div className="input-form">
-                            <span>Viernes</span>
-                            <input type="radio" name="day" />
-                        </div>
-                        <div className="input-form">
-                            <span>Sabado</span>
-                            <input type="radio" name="day" />
-                        </div>
-                        <div className="input-form">
-                            <span>Domingo</span>
-                            <input type="radio" name="day" />
-                        </div>
-                    </div>
-                </div>
+            <ModalSmall visible={viewModalProgramming} callback={setModalProgramming} width={"30%"} onClick={programmingCampaign} maxWidth={"500px"} next={"Programar"} Pending={pendingProgramming}>
+                <ModalProgrammingCampaign setFormProgamming={setNewProgramming} campaign={campaign} />
             </ModalSmall>
 
             <ModalDelete visible={deleteModal} callback={setDeleteModal} Pending={pendingDelete} onClick={deleteCampaign} name={"campana"}>
@@ -330,7 +337,7 @@ export default function DetailCampaigns() {
 
 
             <div className="menu-top-right">
-                <button className="programming">Programar</button>
+                <button className="programming" onClick={(ev) => { setModalProgramming(true) }}>Programar</button>
                 <button className="programming" onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}>Estadisticas</button>
                 <button className="programming" onClick={(ev) => { setDeleteModal(true) }}>Eliminar</button>
                 <button className={`send-campaign ${pending.sendCampaign ? 'await' : ''}`} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>

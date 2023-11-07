@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 
 
+
 export async function InfoCompany(id) {
     let data = await axios.get(API_URL + "/api/get/company?id_company=" + id, { withCredentials: true }).then((response) => { return response.data })
     return data
@@ -281,5 +282,25 @@ export function validateDomain(dominio) {
         return true;
     } else {
         return false;
+    }
+}
+
+export function LoadImageProfile(UserInfo) {
+
+    let url;
+
+    if (UserInfo?.company?.photo) {
+        url = API_URL + "/api/get/photoprofile?hash=" + UserInfo?.company?.photo
+    } else {
+        url = "img/icons/default_profile.png";
+    }
+    return url;
+}
+
+export function formatNumberZero(numero) {
+    if (numero >= 1 && numero <= 9) {
+        return "0" + numero;
+    } else {
+        return numero.toString(); // Convertir a cadena si es mayor o igual a 10
     }
 }

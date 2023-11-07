@@ -9,7 +9,7 @@ import ModalSmall from "../../../Components/App/ModalSmall";
 import CircleColor from "../../../Components/CircleColor";
 import SelectTypeCompany from "../../../Components/SelectTypeCompany";
 import $ from "jquery"
-import { GetCookie, SetCookie, existsStringInPath, randomId } from "../../../Functions/Global";
+import { GetCookie, LoadImageProfile, SetCookie, existsStringInPath, randomId } from "../../../Functions/Global";
 import { AuthContext } from "../../../Context/AuthContext";
 import { toast } from "react-hot-toast";
 
@@ -223,7 +223,7 @@ export default function MyCompanys() {
 
                                 <div className="info">
                                     <div className="icon">
-                                        <img src="img/icons/default_profile.png" alt="" />
+                                        <img src={element.photo ? LoadImageProfile({ company: { photo: element.photo } }) : "img/icons/default_profile.png"} alt="" />
                                     </div>
 
                                     <div className="text">

@@ -49,6 +49,10 @@ import MyDomains from './Pages/App/Domains/MyDomains'
 import AddSegments from './Pages/App/Contacts/AddSegments'
 import Home from './Pages/App/Home/Home'
 import StatsDetailCampaigns from './Pages/App/Campaigns/StatsDetailCampaigns'
+import Templates from './Pages/App/Templates/Templates'
+import CompanyAccount from './Pages/App/SettingsAccount/Account'
+import "./Functions/Jquery.js"
+import CompanyDomains from './Pages/App/SettingsAccount/Domains'
 
 
 
@@ -65,10 +69,10 @@ function App() {
           <Route path="/wizard" element={<Wizard />} />
 
           {/* SETTINGS */}
-          <Route path="/settings-account/account" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/settings-account/account" element={<Global CompanyNeed={true} Element={CompanyAccount} />} />
           <Route path="/settings-account/security" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
           <Route path="/settings-account/footer" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
-          <Route path="/settings-account/domains" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/settings-account/domains" element={<Global CompanyNeed={true} Element={CompanyDomains} />} />
 
 
           {/* ROUTES PRIVATE IN APP */}
@@ -163,6 +167,9 @@ function App() {
           <Route path='/editor/landings' element={<LandingEditor />} />
           <Route path='/landings' element={<Global CompanyNeed={true} Element={MyLandings} />} />
           <Route path='/landing/:id' element={<Landing />} />
+
+          {/* TEMPLATES */}
+          <Route path="/templates" element={<Global CompanyNeed={true} Element={Templates} />} />
 
 
 

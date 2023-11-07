@@ -881,6 +881,39 @@ body {
     padding-bottom: 45px;
 }
 
+
+.modal-small .data {
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.modal-small .return-top {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 15px;
+}
+
+.modal-small .return-top button {
+    line-height: 1;
+    padding: 8px;
+    border-radius: 90px;
+    background: var(--border-box);
+}
+
+.modal-small .select-buttons button {
+    display: block;
+    width: 100%;
+    color: var(--text-white);
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 90px;
+    font-size: 14px;
+    background: var(--box-actions);
+}
+
 .modal-small {
     display: flex;
     position: fixed;
@@ -2188,4 +2221,188 @@ svg {
 
 .control-scroll.stats-detail {
     max-height: 150px;
+}
+
+
+.stat-home {
+    border-collapse: collapse;
+}
+
+.stat-home td {
+    border: #ffffff17 1px solid;
+
+}
+
+.box .result-go .i {
+    display: flex;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+}
+
+.box .result-go .i .right {
+    display: block;
+    position: relative;
+    margin-left: auto;
+}
+
+.box .result-go .i .right button {
+    border-radius: 90px;
+    padding: 10px;
+    font-size: 14px;
+    background-color: var(--box-actions);
+    color: var(--text-white);
+}
+
+.box .result-go {
+    padding: 10px;
+}
+
+.box .result-go .i .left p {
+    margin-bottom: auto;
+    color: var(--text-white);
+}
+
+.box .result-go .i .left span {
+    color: var(--text-white);
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+.box.hr .top {
+    border-bottom: 1px solid var(--box-actions);
+}
+
+
+.settings-account {
+    background: var(--left-menu);
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 60px;
+    display: block;
+    position: relative;
+}
+
+.settings-account .action {
+    display: none;
+}
+
+.settings-account .case.active .action {
+    display: block;
+}
+
+.settings-account .action .change-photo {
+    width: max-content;
+    margin: auto;
+}
+
+.settings-account .action button {
+    background: var(--border-box);
+    color: var(--text-white);
+}
+
+.settings-account .action .change-photo button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 93px;
+    font-size: 14px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.settings-account .action .change-photo button i {
+    padding-left: 5px;
+}
+
+.settings-account .action .change-photo .buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.settings-account .action .change-photo .photo {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 111px;
+    border: 2px solid var(--box-actions);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-position: center !important;
+    background-size: cover !important;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.settings-account .case {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+.settings-account .case .info {
+    color: var(--text-white);
+    width: 100%;
+    position: relative;
+}
+
+.settings-account .case .info p {
+    font-size: 21px;
+    margin-bottom: auto;
+}
+
+.settings-account .case .info span {
+    opacity: 0.8;
+    font-size: 13px;
+}
+
+.settings-account .case .info button {
+    padding: 10px;
+    margin-left: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: max-content;
+    font-size: 14px;
+    border-radius: 90px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: var(--details-blue);
+    border: 0px;
+}
+
+.domains {
+    margin-top: 20px;
+}
+
+.domains .domain {
+    display: block;
+    padding: 15px;
+    background: var(--box-actions);
+    margin-bottom: 10px;
+    border-radius: 12px;
+    color: var(--text-white);
+    position: relative;
+}
+
+.domains .domain .buttons {
+    display: block;
+    height: max-content;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-left: auto;
+    width: max-content;
+    padding: 10px;
+}
+
+
+.domains .domain .buttons button {
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1;
+    border-radius: 94px;
+    margin-left: 10px;
 }

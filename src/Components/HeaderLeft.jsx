@@ -75,13 +75,6 @@ export default function HeaderLeft() {
                             <li><Link to="/settings-account/domains">Dominios</Link></li>
                         </ul>
                     </li>
-                    <li className={opacityMenu ? 'opacity' : ''}>
-                        <button onClick={ToggleChild}><i className="icon"><VscTools /></i> Home <i className="arrow"><MdArrowForwardIos /></i></button>
-                        <ul>
-                            <li><Link to="/editor/canvas">Editor Canvas</Link></li>
-                            <li><Link to="/editor/buttons">Editor Botonera</Link></li>
-                        </ul>
-                    </li>
 
 
                     <li className={opacityMenu ? 'opacity' : ''}>
@@ -102,14 +95,6 @@ export default function HeaderLeft() {
                     </li>
 
 
-                    <li><button onClick={ToggleChild}><i className="icon"><IoPersonOutline /></i> Administracion <i className="arrow"><MdArrowForwardIos /></i></button>
-
-                        <ul>
-                            <li><Link to="/contacts/me">Mis Contactos</Link></li>
-                            <li><Link to="/contacts/upload">Subir Nuevos</Link></li>
-                            <li><Link to="/contacts/segments">Segmentos</Link></li>
-                        </ul>
-                    </li>
 
                     <li className={opacityMenu ? 'opacity' : ''}>
                         <button onClick={ToggleChild}><i className="icon"><IoSendOutline /></i> Recordatorios <i className="arrow"><MdArrowForwardIos /></i></button>
@@ -178,8 +163,8 @@ export default function HeaderLeft() {
                     <li className={""}>
                         <button onClick={ToggleChild}><i className="icon"><IoReceiptOutline /></i> Boletines Electronicos <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
-                            <li><Link to="/landings">Mis Boletines</Link></li>
-                            <li><Link to="/landings">Crear Boletin</Link></li>
+                            <li><Link to="/templates">Mis Boletines</Link></li>
+                            <li><Link to="/editor/canvas">Crear Boletin</Link></li>
                             <li><Link to="/landings">Plantillas</Link></li>
                             <li><Link to="/landings">Plantillas IA</Link></li>
                         </ul>

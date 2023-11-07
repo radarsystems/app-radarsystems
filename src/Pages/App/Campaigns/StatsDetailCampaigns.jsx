@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { useEffect } from "react";
 import { IoArrowBackOutline } from "react-icons/io5"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../../../Context/AuthContext";
 import { API_URL } from "../../../ExportUrl";
 import { useState } from "react";
@@ -12,20 +12,28 @@ export default function StatsDetailCampaigns() {
 
     const Navigator = useNavigate()
     const params = useParams();
+    const Location = useLocation()
     const { UserInfo } = useContext(AuthContext)
     const [lastId, setLastId] = useState(null)
     const [stats, setStats] = useState([])
+    const [loading, setLoading] = useState(true)
 
-    function searchDetailSend() {
+    function searchDetailSend(where = undefined) {
         let formData = new FormData()
+
+        setLoading(true)
 
         formData.append("id_company", UserInfo?.company?.id_company)
         formData.append("id_campaign", params.id)
+        if (where !== undefined) {
+            formData.append("type", where);
+        }
 
         axios.post(API_URL + "/api/get/detailsends", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
                 setStats(data)
+                setLoading(false)
             })
     }
 
@@ -33,6 +41,15 @@ export default function StatsDetailCampaigns() {
     useEffect(() => {
         searchDetailSend()
     }, [])
+
+    useEffect(() => {
+        let where = new URLSearchParams(Location.search).get("where")
+
+        if (where) {
+            searchDetailSend(where)
+        }
+
+    }, [Location])
 
     return (
         <>
@@ -46,8 +63,8 @@ export default function StatsDetailCampaigns() {
 
                 <div className="right">
                     <button className="go-wizard" onClick={(ev) => { Navigator("/campaigns/stats/" + params.id) }}><IoArrowBackOutline /></button>
-                    <button className="go-wizard" onClick={(ev) => { Navigator("/campaigns/stats/" + params.id) }}>Descargar CSV</button>
-                    <button className="go-wizard" onClick={(ev) => { Navigator("/campaigns/stats/" + params.id) }}>Descargar JSON</button>
+                    <button className="go-wizard" onClick={(ev) => { Navigator("/campaigns/stats/" + params.id) }}>Crear Segmento</button>
+                    <button className="go-wizard" onClick={(ev) => { Navigator("/campaigns/stats/" + params.id) }}>Descargar</button>
 
                 </div>
             </div>
@@ -90,6 +107,8 @@ export default function StatsDetailCampaigns() {
                                 </div>
                             ))}
                         </InfiniteScroll>
+
+
                     </div>
                 </div>
 
