@@ -59,7 +59,8 @@ export default function Lists() {
                 </div>
             </div>
 
-            <div className="box box-padding">
+            <div className="box box-padding row ">
+
                 {lists.map((element, key) => (
                     <div className="item flex">
                         <div className="info">
