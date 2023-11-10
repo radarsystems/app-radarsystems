@@ -7,7 +7,7 @@ import { API_URL } from "../../../ExportUrl"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../../Context/AuthContext"
 
-export default function WizardContactsList({ Visible, Close, Callback }) {
+export default function WizardContactsList({ Visible, Close, Callback, loadLists }) {
 
     const { UserInfo } = useContext(AuthContext)
 
@@ -53,6 +53,7 @@ export default function WizardContactsList({ Visible, Close, Callback }) {
                 if (data.status) {
                     Close(false)
                     Callback(true)
+                    loadLists()
                 }
 
 

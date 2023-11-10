@@ -39,7 +39,7 @@ export default function MyButtons() {
                 </div>
 
                 <div className="right">
-                    <button className="add" onClick={(ev) => { Navigate("/editor/buttons") }}>Crear nueva botonera</button>
+                    <button className="add" onClick={(ev) => { Navigator("/editor/buttons") }}>Crear nueva botonera</button>
                 </div>
             </div>
 

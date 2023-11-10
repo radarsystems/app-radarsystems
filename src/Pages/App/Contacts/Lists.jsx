@@ -46,7 +46,7 @@ export default function Lists() {
     return (
         <>
 
-            <WizardContactsList Visible={openWizard} Close={setOpenWizard} Callback={CallbackWizard} />
+            <WizardContactsList Visible={openWizard} Close={setOpenWizard} Callback={CallbackWizard} loadLists={loadLists} />
 
             <div className="page-info">
                 <div className="">
@@ -64,7 +64,7 @@ export default function Lists() {
                     <div className="item flex">
                         <div className="info">
                             <div className="icon">
-                                <img src="/img/icons/default_profile.png" alt="" />
+                                <img src="/img/icons/lists.png" alt="" />
                             </div>
 
                             <div className="text">

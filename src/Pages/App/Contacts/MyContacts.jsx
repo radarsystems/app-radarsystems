@@ -72,7 +72,7 @@ export default function MyContacts() {
 
                                 <td><span>{element.dni ? element.dni : 'No disponible'}</span></td>
 
-                                <td><span>{element.number ? element.number : 'No disponible'}</span></td>
+                                <td><span>{element.phone ? element.phone : 'No disponible'}</span></td>
 
                                 <td><span>{element.sexo ? element.name : 'No disponible'}</span></td>
 

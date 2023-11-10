@@ -92,7 +92,7 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
                 setForm(prevData => ({ ...prevData, file: response.file }))
             }
         }).catch((err) => {
-            console.log(err)
+            DeleteFile()
             toast.error("Opps! el archivo que intentastes subir no es compatible o tiene algun error.")
             setActions(prevData => ({ ...prevData, analize: false, percentAnalize: 0 }))
         })
@@ -111,6 +111,8 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
 
             if (data.status) {
                 Navigator("/contacts/detail/" + params.id)
+            } else {
+                toast.error(data.msg)
             }
         }).catch((err) => {
             setPending(false)
@@ -132,7 +134,7 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
                     {count > 0 ? <button className="return" onClick={(ev) => { setCount(prevData => (prevData - 1)) }}><IoChevronBackOutline /> <span>Volver</span> </button> : ''}
 
 
-                    <button className="closed" onClick={(ev) => { Close(false) }}>X</button>
+                    <button className="closed" onClick={(ev) => { Navigator("/contacts/detail/" + params.id) }}>X</button>
                 </div>
                 <div className="body">
 

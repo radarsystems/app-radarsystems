@@ -7,11 +7,12 @@ import { AuthContext } from "../../../Context/AuthContext"
 import axios from "axios"
 import { API_URL } from "../../../ExportUrl"
 import { useEffect } from "react"
-import { LoadPreviewQr, existsStringInPath } from "../../../Functions/Global"
+import { LoadPreviewQr, Time, existsStringInPath } from "../../../Functions/Global"
 import { IoAddCircleOutline, IoAddOutline, IoCloudDownloadOutline, IoCloudUploadOutline, IoTrashOutline } from "react-icons/io5"
 import $ from "jquery"
 import WizardUploadQr from "../../../Components/App/Qr/WizardUploadQr"
 import { useLocation } from "react-router-dom"
+import ModalDelete from "../../../Components/App/ModalDelete"
 
 export default function MyQr() {
 
@@ -20,6 +21,8 @@ export default function MyQr() {
     const [loading, setLoading] = useState(false)
     const [qrs, setQrs] = useState([{}, {}])
     const { UserInfo } = useContext(AuthContext)
+    const [modalDelete, setModalDelete] = useState(false)
+    const [deleteId, setDeleteId] = useState()
     const location = useLocation()
 
     useEffect(() => {
@@ -67,11 +70,26 @@ export default function MyQr() {
         loadQrs()
     }, [])
 
+    function deleteQr() {
+
+        let formData = new FormData()
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("id_qr", deleteId)
+
+        axios.post(API_URL + "/api/delete/qr", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+
+            })
+    }
+
     return (
         <>
+
+            <ModalDelete visible={modalDelete} callback={setModalDelete} onClick={deleteQr}></ModalDelete>
             <div className="page-info">
                 <div className="">
-                    <p className="title">Qr</p>
+                    <p className="title">QR</p>
                     <span>Crea qr personalizados con enlaces para tus webs o qr de contacto</span>
                 </div>
 
@@ -96,7 +114,7 @@ export default function MyQr() {
 
                             <div className="text">
                                 <p className="title">{element.title}</p>
-                                <span className="desc">Creado el: 29 de may de 2023</span>
+                                <span className="desc">Creado el: {Time(element.time_add)}</span>
                             </div>
 
                         </div>
@@ -111,7 +129,7 @@ export default function MyQr() {
 
                         <div className="actions">
                             <button onClick={downloadImage}><IoCloudDownloadOutline /></button>
-                            <button><IoTrashOutline /></button>
+                            <button onClick={(ev) => { setDeleteId(element.id_qr); setModalDelete(true) }}><IoTrashOutline /></button>
 
                         </div>
                     </div>

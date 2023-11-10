@@ -882,10 +882,15 @@ body {
 }
 
 
+
 .modal-small .data {
     display: block;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.modal-small .data.flex {
+    display: flex !important;
 }
 
 .modal-small .return-top {
@@ -1441,6 +1446,11 @@ table th {
     color: #ff9b00;
 }
 
+.error-list {
+    font-size: 14px;
+    color: #ff4848;
+}
+
 .wizard-home .body .options .selector .check {
     width: 30px;
     background: transparent;
@@ -1795,6 +1805,19 @@ table th {
 .page.buttonsbody .buttons {
     width: 100%;
     display: block;
+}
+
+.page.buttonsbody.editmode .logo {
+    cursor: pointer;
+}
+
+
+.page.buttonsbody.editmode p[type='title'].active,
+.page.buttonsbody.editmode span[type='desc'].active,
+.page.buttonsbody.editmode .logo.active,
+.page.buttonsbody.editmode p[type='titlespace'] {
+    border: 2px dotted #7a9fff;
+    padding: 1px;
 }
 
 .page.buttonsbody .buttons a {

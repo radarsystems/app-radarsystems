@@ -545,16 +545,38 @@ export default function DetailCampaigns() {
                             <>
                                 <div className="option">
 
-                                    {campaign?.template ?
-                                        <div className="preview-template">
-                                            <p>{campaign?.template?.title}</p>
-                                            <span>Plantilla creada:  {Time(campaign?.template?.time_add)}</span>
-                                            <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
-                                            <br />
-                                            <Link to={`/editor/canvas/${campaign?.template?.id_template}?campaign=` + params.id}>Editar plantilla</Link>
-                                        </div>
-                                        : <Link to={`/editor/canvas/?campaign=` + params.id}>Crear una plantilla</Link>
-                                    }
+                                    {campaign?.type_c == "em" ?
+
+                                        <>
+                                            {campaign?.template ?
+                                                <div className="preview-template">
+                                                    <p>{campaign?.template?.title}</p>
+                                                    <span>Plantilla creada:  {Time(campaign?.template?.time_add)}</span>
+                                                    <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
+                                                    <br />
+                                                    <Link to={`/editor/canvas/${campaign?.template?.id_template}?campaign=` + params.id}>Editar plantilla</Link>
+                                                </div>
+                                                : <Link to={`/editor/canvas/?campaign=` + params.id}>Crear una plantilla</Link>
+                                            }
+                                        </>
+                                        : ''}
+
+
+                                    {campaign?.type_c == "sms" ?
+
+                                        <>
+                                            {editActive.body == true ? <>
+                                                <div className="option">
+                                                    <div className="form-input flex">
+                                                        <input type="search" onChange={updateForm} name="message" placeholder="Mensaje de texto..." />
+                                                        <button onClick={setAffair} className="save">Guardar</button>
+                                                    </div>
+                                                </div>
+                                            </> : ""}
+                                        </>
+                                        : ''}
+
+
 
                                 </div>
                             </>
@@ -562,9 +584,10 @@ export default function DetailCampaigns() {
                             ''
                         }
 
-                        <div className="right">
+                        {editActive.body == false ? <div className="right">
                             <button onClick={(ev) => { ActiveList("body") }}>Editar</button>
-                        </div>
+                        </div> : ""}
+
                     </div>
 
                 </div>

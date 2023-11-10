@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { IoArrowBackOutline, IoCheckmarkSharp, IoCloudUploadOutline, IoColorWandOutline, IoSunnyOutline } from "react-icons/io5"
+import { IoArrowBackOutline, IoCheckmarkSharp, IoCloudUploadOutline, IoColorWandOutline, IoDocumentTextOutline, IoSunnyOutline, IoTrashOutline } from "react-icons/io5"
 import { FaCheck } from "react-icons/fa"
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
@@ -39,8 +39,11 @@ export default function DetailLists() {
 
                 <div className="right">
                     <button className="go-wizard" onClick={(ev) => { Navigator("/contacts/lists") }}><IoArrowBackOutline /></button>
-
                 </div>
+            </div>
+
+            <div className="menu-top-right">
+                <button className="programming" onClick={(ev) => { "" }}>Logs</button>
             </div>
 
             <div className="box steps">
@@ -68,8 +71,9 @@ export default function DetailLists() {
                     </div>
 
                     <div className="actions">
-                        <button><IoColorWandOutline /></button>
+                        <button><IoDocumentTextOutline /></button>
                         <button onClick={(ev) => { Navigator("/contacts/upload/" + params.id) }}><IoCloudUploadOutline /></button>
+                        <button><IoTrashOutline /></button>
                     </div>
 
                 </div>

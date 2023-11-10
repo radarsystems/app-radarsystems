@@ -92,6 +92,9 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
         let image = target.attr("image")
         let title = target.attr("title")
 
+        setVisible(false)
+        toast.success("Has seleccionado correctamente el QR")
+
         setButtons((prevData) => {
             let newData = { ...prevData }
 
@@ -200,7 +203,7 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
                     <span>Tu galeria de qrs, donde podras seleccionar que qr quieres integrar</span>
                 </div>
 
-                <div className="data row">
+                <div className="data row flex">
                     {myQrs.map((element, key) => (
                         <div className="col-md-6">
                             <div className="qrs" onClick={addNewQr} image={LoadPreviewQr(element.qr_preview)} title={element.title}>
@@ -237,7 +240,7 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
             <div className="background2" style={{ backdropFilter: `blur(${buttons?.header?.blur}px)brightness(${buttons?.header?.brightness})`, background: buttons?.header?.background2 }}>
             </div>
 
-            <div className={`${"page buttonsbody buttonsqr " + buttons?.header?.colorBox}`}>
+            <div className={`${"page buttonsbody buttonsqr editmode " + buttons?.header?.colorBox}`}>
                 <div className="center-top">
 
 

@@ -16,7 +16,7 @@ export default function EditTitleButtons({ setButtons, buttons }) {
             <div className="option">
                 <div className="top">
                     <p>Titulo</p>
-                    <input onChange={changeTitle} id="title-edit" type="text" placeholder="Ej: Mis redes sociales" />
+                    <input onChange={changeTitle} id="title-edit" type="text" placeholder="Ej: Mis redes sociales" value={buttons?.header?.title} />
                 </div>
             </div>
         </>
