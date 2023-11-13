@@ -54,7 +54,7 @@ export default function HeaderLeft() {
     }
 
     if (!GetCookie('token')) {
-        Navigator("/")
+   
     }
 
     return (
