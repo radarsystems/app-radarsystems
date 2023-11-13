@@ -344,6 +344,75 @@ body {
     margin-bottom: 20px;
 }
 
+.app .box.select-list {
+    display: block;
+    padding: 15px;
+    justify-content: center;
+    text-align: center;
+}
+
+.app .box.select-list span {
+    display: block;
+    color: var(--text-white);
+}
+
+.app .box.select-list button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 90px;
+    font-size: 14px;
+    background: var(--box-actions);
+}
+
+.app .page-lists .box .item .icon img {
+    max-width: 26px;
+}
+
+.app .page-lists .box .item .info .title {
+    font-size: 14px;
+    padding-right: 4.8vw;
+}
+
+.app .page-lists .actions {
+    display: flex;
+    width: fit-content;
+    margin-left: auto;
+    position: absolute;
+    right: 21px;
+    top: 7px;
+    gap: 8px;
+}
+
+.app .page-lists .actions button {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1;
+    background: var(--border-box);
+    border-radius: 90px;
+    position: relative;
+    display: block;
+    color: var(--text-white);
+}
+
+.app .page-lists {
+    position: relative;
+}
+
+.app .page-lists .box .item .info .desc {
+    font-size: 12px;
+}
+
+
+.app .box.select-list img {
+    max-width: 72px;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
 .app .box.stat .result span {
     color: var(--text-white);
     font-size: 14px;
@@ -387,6 +456,53 @@ body {
     display: flex;
     width: 100%;
     margin-bottom: 15px;
+}
+
+.app .menu-top.gl {
+    width: 100%;
+    display: flex;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    gap: 15px;
+    position: relative;
+}
+
+
+.app .menu-top.gl button {
+    padding: 10px;
+    font-size: 12px;
+    background-color: transparent;
+    border: 1px solid var(--border-box);
+    border-radius: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
+    color: var(--text-white);
+}
+
+.app .menu-top.gl .search {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: max-content;
+    border: 1px solid var(--border-box);
+    border-radius: 92px;
+    padding: 8px;
+    font-size: 12px;
+    color: var(--text-white);
+}
+
+.app .menu-top.gl .search i {
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 7px;
+}
+
+.app .menu-top.gl .search input {
+    background: transparent;
+    border-radius: 19px;
+    border: 0px;
+    outline: none;
 }
 
 .app .menu-top ul {
@@ -1180,19 +1296,7 @@ table th {
 
 
 @keyframes openWizardHome {
-    0% {
-        transform: scale(0.1);
-        border-radius: 90px;
-    }
 
-    90% {
-        border-radius: 15px;
-    }
-
-    100% {
-        border-radius: 0;
-        transform: scale(1);
-    }
 }
 
 .wizard-home .qr-result {
@@ -1247,6 +1351,7 @@ table th {
 
 .wizard-home.open {
     animation: openWizardHome .5s ease;
+    z-index: 99;
 }
 
 .wizard-home.close {
@@ -2428,4 +2533,82 @@ svg {
     line-height: 1;
     border-radius: 94px;
     margin-left: 10px;
+}
+
+.textarea-sms {
+    display: block;
+    width: 100%;
+    background: var(--border-box);
+    padding: 10px;
+    border-radius: 12px;
+    margin-right: 10px;
+    margin-left: 10px;
+    position: relative;
+}
+
+.textarea-sms .options {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-flow: wrap;
+    padding-right: 59px;
+}
+
+.textarea-sms .options button {
+    font-size: 13px;
+    background-color: #28292c;
+    padding: 5px;
+    border-radius: 19px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.textarea-sms .text {
+    outline: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid transparent;
+    border-top: 1px solid var(--border-box);
+    margin-top: 11px;
+    width: 100%;
+    background-color: transparent;
+    max-height: 200px;
+    height: 58px;
+    font-size: 14px;
+}
+
+.textarea-sms .bottom-actions {
+    margin-left: auto;
+    width: max-content;
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    position: relative;
+}
+
+.textarea-sms .bottom-actions button {
+    font-size: 14px;
+    background-color: #28292c;
+    padding: 5px;
+    border-radius: 19px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.textarea-sms .bottom-actions button.preview {
+    background-color: var(--details-blue);
+}
+
+.textarea-sms .count {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 14px;
+    font-size: 14px;
+    padding-right: 18px;
+
 }

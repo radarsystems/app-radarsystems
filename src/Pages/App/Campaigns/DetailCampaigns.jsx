@@ -15,6 +15,7 @@ import ModalDelete from "../../../Components/App/ModalDelete"
 import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
 import ModalProgrammingCampaign from "../../../Components/App/Campaigns/ModalProgrammingCampaign"
+import TextareaSms from "../../../Components/Textarea/TextareaSms"
 
 
 export default function DetailCampaigns() {
@@ -37,6 +38,8 @@ export default function DetailCampaigns() {
     const [pendingDelete, setPendingDelete] = useState(false)
     const [formProgramming, setFormProgamming] = useState({ hh: "", mm: "", dd: "", ii: "", yy: "" })
     const [pendingProgramming, setPendingProgramming] = useState(false)
+    const [template, setTemplate] = useState({})
+    const [newText, setNewText] = useState()
 
     function searchLists(search) {
 
@@ -108,7 +111,33 @@ export default function DetailCampaigns() {
             .catch((err) => {
 
             })
+
+
     }, [])
+
+    useEffect(() => {
+
+        if (campaign?.id_template) {
+            searchTemplateSms()
+        }
+
+    }, [campaign])
+
+    function searchTemplateSms() {
+        let formData = new FormData()
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("id_template", campaign?.id_template)
+        formData.append("type", "all")
+
+        axios.post(API_URL + "/api/get/templatejson", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                setNewText(data?.json?.msg)
+            })
+            .catch((err) => {
+                toast.error(String(err))
+            })
+    }
 
     // LISTS CAMPAGINS
 
@@ -303,6 +332,30 @@ export default function DetailCampaigns() {
             .catch((err) => {
                 setPendingProgramming(false)
 
+            })
+
+    }
+
+    function saveBody() {
+
+        let formData = new FormData()
+        formData.append("msg", newText)
+        formData.append("id_campaign", params.id)
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("type", "sms")
+        formData.append("id_template", campaign?.id_template)
+
+        axios.post(API_URL + "/api/upload/bodycampaign", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                console.log(data)
+
+                if (data.status) {
+                    toast.success("Guardado con exito")
+                }
+            })
+            .catch((err) => {
+                toast.error(String(err))
             })
 
     }
@@ -568,8 +621,7 @@ export default function DetailCampaigns() {
                                             {editActive.body == true ? <>
                                                 <div className="option">
                                                     <div className="form-input flex">
-                                                        <input type="search" onChange={updateForm} name="message" placeholder="Mensaje de texto..." />
-                                                        <button onClick={setAffair} className="save">Guardar</button>
+                                                        <TextareaSms value={newText} onChange={setNewText} onSave={saveBody} />
                                                     </div>
                                                 </div>
                                             </> : ""}

@@ -7,12 +7,12 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { AiOutlineLink } from "react-icons/ai";
 import { VscTools } from "react-icons/vsc"
+import { GetCookie } from "../Functions/Global";
 
 export default function HeaderLeft() {
 
     const { UserInfo } = useContext(AuthContext)
     const [opacityMenu, setOpacity] = useState();
-
     const Navigator = useNavigate()
 
     useEffect(() => {
@@ -51,6 +51,10 @@ export default function HeaderLeft() {
             ulActive.slideToggle()
         }
 
+    }
+
+    if (!GetCookie('token')) {
+        Navigator("/")
     }
 
     return (
@@ -121,6 +125,9 @@ export default function HeaderLeft() {
                         <ul>
                             <li><Link to="/contacts">Mis Contactos</Link></li>
                             <li><Link to="/contacts/lists">Mis Listas</Link></li>
+                            <li><Link to="/contacts/lists/email">Listas Correo</Link></li>
+                            <li><Link to="/contacts/lists/sms">Listas Mensajeria</Link></li>
+                            <li><Link to="/contacts/lists/ws">Listas Whatsapp</Link></li>
                             <li><Link to="/contacts/segments">Segmentos</Link></li>
                         </ul>
                     </li>

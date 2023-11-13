@@ -6,7 +6,7 @@ import WizardCampaign from "../../../Components/App/Campaigns/WizardCampaign";
 import { AuthContext } from "../../../Context/AuthContext";
 import { IoColorWandOutline, IoDocumentTextOutline, IoStatsChartOutline } from "react-icons/io5";
 import { useLocation, useNavigate } from "react-router-dom";
-import { existsStringInPath } from "../../../Functions/Global";
+import { Time, existsStringInPath } from "../../../Functions/Global";
 import NotFoundItems from "../../../Components/App/NotFoundItems";
 
 
@@ -49,7 +49,7 @@ export default function MyCampaigns() {
             type = "sms"
         }
 
-        if(!next){
+        if (!next) {
             setCampaign([])
         }
 
@@ -110,7 +110,7 @@ export default function MyCampaigns() {
 
                                     <div className="text">
                                         <p className="title">{element.name}</p>
-                                        <span className="desc">Creado el: 29 de may de 2023</span>
+                                        <span className="desc">Creado el: {Time(element.time_add)}</span>
                                     </div>
 
                                 </div>

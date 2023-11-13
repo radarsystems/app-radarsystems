@@ -304,3 +304,11 @@ export function formatNumberZero(numero) {
         return numero.toString(); // Convertir a cadena si es mayor o igual a 10
     }
 }
+
+export function limitText(text, limit) {
+    if (text.length > limit) {
+        return text.substring(0, limit) + '...';
+    } else {
+        return text;
+    }
+}

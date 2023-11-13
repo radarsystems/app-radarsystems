@@ -6,7 +6,8 @@ import axios from "axios";
 import { API_URL } from "../../../ExportUrl";
 import { AuthContext } from "../../../Context/AuthContext";
 import { IoDocumentTextOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import RequireLists from "../../../Components/App/Lists/RequireLists";
 
 export default function Lists() {
 
@@ -14,6 +15,7 @@ export default function Lists() {
     const [lists, setLists] = useState([])
     const [loading, setLoading] = useState(false)
     const { UserInfo } = useContext(AuthContext)
+    const params = useParams()
 
     const Navigator = useNavigate()
 
@@ -39,7 +41,9 @@ export default function Lists() {
 
     useEffect(() => {
         loadLists()
+
     }, [])
+
 
 
 
@@ -59,31 +63,37 @@ export default function Lists() {
                 </div>
             </div>
 
-            <div className="box box-padding row ">
-
-                {lists.map((element, key) => (
-                    <div className="item flex">
-                        <div className="info">
-                            <div className="icon">
-                                <img src="/img/icons/lists.png" alt="" />
-                            </div>
-
-                            <div className="text">
-                                <p className="title">{element.name}</p>
-                                <span className="desc">Creado el: 29 de may de 2023</span>
-                            </div>
-
-                        </div>
-
-                        <div className="actions">
-                            <button onClick={(ev) => { Navigator("/contacts/detail/" + element.id_list) }}><IoDocumentTextOutline /></button>
+            {params.type == undefined ? <div className="row">
+                <div className="col-md-3">
+                    <div className="box select-list">
+                        <div className="top">
+                            <img src="/img/icons/email_list.png" alt="" />
+                            <span>Listas Correos</span>
+                            <button>Ir</button>
                         </div>
                     </div>
-                ))}
+                </div>
+                <div className="col-md-3">
+                    <div className="box select-list">
+                        <div className="top">
+                            <img src="/img/icons/message_list.png" alt="" />
+                            <span>Listas Mensajeria</span>
+                            <button>Ir</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-3">
+                    <div className="box select-list">
+                        <div className="top">
+                            <img src="/img/icons/whatsapp_list.png" alt="" />
+                            <span>Listas Whatsapp</span>
+                            <button>Ir</button>
+                        </div>
+                    </div>
+                </div>
+            </div > : <RequireLists lists={lists} type={params?.type} />}
 
-                {loading ? <LoadingCircleApp /> : lists.length == 0 ? <div className="item"><NotFoundItems name={"listas"} /></div> : ''}
 
-            </div>
 
 
 
