@@ -43,7 +43,7 @@ export default function DetailLists() {
             </div>
 
             <div className="menu-top-right">
-                <button className="programming" onClick={(ev) => { "" }}>Logs</button>
+                <button className="programming" onClick={(ev) => { Navigator("/contacts/lists/logs/" + params.id) }}>Logs</button>
             </div>
 
             <div className="box steps">
@@ -63,6 +63,13 @@ export default function DetailLists() {
                         <p>Contactos</p>
                         <span>{list.contacts}</span>
                     </div>
+
+
+                    <div>
+                        <p>Tipo</p>
+                        <span>{list.type}</span>
+                    </div>
+
                     <div>
                         <p>Estatus</p>
 

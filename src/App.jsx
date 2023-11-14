@@ -53,6 +53,7 @@ import Templates from './Pages/App/Templates/Templates'
 import CompanyAccount from './Pages/App/SettingsAccount/Account'
 import "./Functions/Jquery.js"
 import CompanyDomains from './Pages/App/SettingsAccount/Domains'
+import LogsList from './Pages/App/Contacts/LogsList.jsx'
 
 
 
@@ -97,6 +98,7 @@ function App() {
           {/* LISTASD */}
 
           <Route path="/contacts/lists" element={<Global CompanyNeed={true} Element={Lists} />} />
+          <Route path="/contacts/lists/logs/:id" element={<Global CompanyNeed={true} Element={LogsList} />} />
           <Route path="/contacts/lists/:type" element={<Global CompanyNeed={true} Element={Lists} />} />
           <Route path="/contacts/detail/:id" element={<Global CompanyNeed={true} Element={DetailLists} />} />
           <Route path="/contacts/upload/:id" element={<Global CompanyNeed={true} Element={UploadContacts} />} />

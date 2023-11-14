@@ -5,6 +5,7 @@ import axios from "axios";
 import { API_URL } from "../../../ExportUrl";
 import { useParams } from "react-router-dom";
 import ModalSmall from "../../../Components/App/ModalSmall";
+import ModalShare from "../../../Components/App/ModalShare";
 
 
 
@@ -71,6 +72,8 @@ export default function ButtonsBody() {
 
     return (
         <>
+
+            <ModalShare />
 
             <div className="editor-surveys btnactive prod-buttons">
                 <div className="rows">

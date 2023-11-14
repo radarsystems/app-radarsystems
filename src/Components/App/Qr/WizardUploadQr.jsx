@@ -38,7 +38,13 @@ export default function WizardUploadQr({ Visible, Close, loadQrs }) {
             axios.post(API_URL + "/api/upload/qr", formData, { withCredentials: true })
                 .then((response) => { return response.data })
                 .then((data) => {
-                    console.log(data)
+                    if (data.status) {
+                        Close(false)
+                    }
+
+                    if (data.msg) {
+                        toast.error(data.msg)
+                    }
                 })
 
         } else {

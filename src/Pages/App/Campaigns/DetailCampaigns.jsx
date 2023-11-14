@@ -343,7 +343,10 @@ export default function DetailCampaigns() {
         formData.append("id_campaign", params.id)
         formData.append("id_company", UserInfo?.company?.id_company)
         formData.append("type", "sms")
-        formData.append("id_template", campaign?.id_template)
+
+        if (campaign?.id_template) {
+            formData.append("id_template", campaign?.id_template)
+        }
 
         axios.post(API_URL + "/api/upload/bodycampaign", formData, { withCredentials: true })
             .then((response) => { return response.data })
@@ -393,6 +396,7 @@ export default function DetailCampaigns() {
                 <button className="programming" onClick={(ev) => { setModalProgramming(true) }}>Programar</button>
                 <button className="programming" onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}>Estadisticas</button>
                 <button className="programming" onClick={(ev) => { setDeleteModal(true) }}>Eliminar</button>
+                <button className={`programming ${pending.sendCampaign ? 'await' : ''}`} onClick={sendCampaign}>Enviar Prueba <div className="loading"></div></button>
                 <button className={`send-campaign ${pending.sendCampaign ? 'await' : ''}`} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
             </div>
 
@@ -432,7 +436,7 @@ export default function DetailCampaigns() {
 
                         <div className="information">
                             <p className="title">Crear Campaña</p>
-                            <span className="desc approve">Perfecto!</span>
+                            <span className="desc approve">Aprobado!</span>
                         </div>
 
                     </div>
@@ -449,7 +453,7 @@ export default function DetailCampaigns() {
 
                         <div className="information">
                             <p className="title">Elegir Tipo</p>
-                            <span className="desc approve">Perfecto!</span>
+                            <span className="desc approve">Aprobado!</span>
                         </div>
 
 
@@ -470,7 +474,7 @@ export default function DetailCampaigns() {
 
                         <div className="information">
                             <p className="title">Contactos</p>
-                            <span className="desc approve">Perfecto!</span>
+                            <span className="desc approve">Aprobado!</span>
 
                             <div className="selects">
 
@@ -538,7 +542,7 @@ export default function DetailCampaigns() {
 
                                 <div className="information">
                                     <p className="title">Remitente</p>
-                                    <span className="desc approve">Perfecto!</span>
+                                    <span className="desc approve">Aprobado!</span>
                                 </div>
 
 
@@ -559,7 +563,7 @@ export default function DetailCampaigns() {
 
                                 <div className="information">
                                     <p className="title">Asunto</p>
-                                    <span className="desc approve">Perfecto!</span>
+                                    <span className="desc approve">Aprobado!</span>
                                 </div>
 
                                 {editActive.affair == true ?
@@ -591,7 +595,7 @@ export default function DetailCampaigns() {
 
                         <div className="information">
                             <p className="title">Plantilla</p>
-                            <span className="desc approve">Perfecto!</span>
+                            <span className="desc approve">Aprobado!</span>
                         </div>
 
                         {editActive.body == true ?
