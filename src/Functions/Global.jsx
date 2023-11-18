@@ -144,7 +144,7 @@ export function PreviewTemplate(folder, image) {
     return `${API_URL}/api/get/imgtemplate?img=${image}&folder=${folder}`
 }
 
-export function Time(timestamp) {
+export function Time(timestamp, type = undefined) {
     // Multiplica el timestamp por 1000 para convertirlo a milisegundos
     const date = new Date(timestamp * 1000);
 
@@ -152,9 +152,20 @@ export function Time(timestamp) {
     const dia = date.getDate();
     const mes = date.getMonth() + 1; // Los meses van de 0 a 11, por eso se suma 1
     const anio = date.getFullYear();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
 
     // Formatea la fecha como "d/m/Y"
-    const fechaFormateada = `${dia}/${mes}/${anio}`;
+
+    switch (type) {
+        case 'full':
+            var fechaFormateada = `${dia}/${mes}/${anio} ${hour}:${minute}`;
+            break;
+
+        default:
+            var fechaFormateada = `${dia}/${mes}/${anio}`;
+            break;
+    }
 
     return fechaFormateada;
 }

@@ -12,7 +12,7 @@ import { toast } from "react-hot-toast"
 import html2canvas from "html2canvas"
 
 
-export default function WizardUploadQr({ Visible, Close, loadQrs }) {
+export default function WizardUploadQr({ Visible, Close, Return = true }) {
 
     const { UserInfo } = useContext(AuthContext)
     const ref = useRef(null)
@@ -40,6 +40,7 @@ export default function WizardUploadQr({ Visible, Close, loadQrs }) {
                 .then((data) => {
                     if (data.status) {
                         Close(false)
+                        toast.success("Se ha subido tu qr correctamente")
                     }
 
                     if (data.msg) {

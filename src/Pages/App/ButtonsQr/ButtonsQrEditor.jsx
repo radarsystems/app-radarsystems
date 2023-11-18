@@ -43,14 +43,17 @@ export default function ButtonsQrEditor() {
                     <div className="left">
                         <EditorLeftButtonsQr editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
-                    <div className="center " style={{ background: buttons?.header?.background }}>
+                    <div className="center complete" style={{ background: buttons?.header?.background }}>
                         <BodyButtonsQr editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
+
+                    {/*
                     <div className="right">
                         <div className="type-editor">
                             <EditorRightButtonsQr editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                         </div>
                     </div>
+    */}
                 </div>
             </div>
         </>

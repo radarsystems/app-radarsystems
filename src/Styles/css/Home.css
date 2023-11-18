@@ -736,6 +736,22 @@ body {
     opacity: 0.8;
 }
 
+.loading-modal {
+    display: block;
+    width: 100%;
+}
+
+.loading-modal .circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 90px;
+    border: 2px solid var(--details-blue);
+    border-bottom: 2px solid transparent;
+    margin: auto;
+    animation: rotate360 1s linear infinite;
+
+}
+
 @keyframes loadingTemplate {
     from {
         filter: drop-shadow(0px 0px 48px #40c3fb);
@@ -857,7 +873,30 @@ body {
     font-size: 14px;
 }
 
+.app .item .actions-item {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
 
+.app .item .actions-item.complete {
+    display: block;
+}
+
+.app .item .actions-item.complete button {
+    margin-bottom: 10px;
+}
+
+.app .item .actions-item button {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    font-size: 12px;
+    border-radius: 90px;
+    background: var(--box-actions);
+}
 
 .app .box.steps .item .option .preview-template p {
     margin-bottom: 5px;
@@ -1404,7 +1443,7 @@ table th {
 
 .wizard-home.open {
     animation: openWizardHome .5s ease;
-    z-index: 99;
+    z-index: 999;
 }
 
 .wizard-home.close {
@@ -1969,6 +2008,15 @@ table th {
     cursor: pointer;
 }
 
+.editmode button.action {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    font-size: 13px;
+    border-radius: 90px;
+    background-color: var(--box-actions);
+}
+
 
 .page.buttonsbody.editmode p[type='title'].active,
 .page.buttonsbody.editmode span[type='desc'].active,
@@ -2171,7 +2219,6 @@ svg {
     display: block;
     padding: 11px;
     font-size: 15px;
-    opacity: 0.8;
 }
 
 .page.buttonsqr .top-right {
@@ -2404,6 +2451,13 @@ svg {
     max-height: 150px;
 }
 
+.control-scroll.lists-detail {
+    max-height: 50vh;
+    min-height: 56px;
+
+}
+
+
 
 .stat-home {
     border-collapse: collapse;
@@ -2435,6 +2489,30 @@ svg {
     background-color: var(--box-actions);
     color: var(--text-white);
 }
+
+.box .quality-upload {
+    font-size: 11px;
+    padding: 5px;
+
+    margin-left: 7px;
+    border-radius: 93px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.box .quality-upload.await {
+    background: var(--border-box);
+}
+
+
+.box .quality-upload.good {
+    background: var(--bs-green);
+}
+
+.box .quality-upload.error {
+    background-color: var(--bs-red);
+}
+
 
 .box .result-go {
     padding: 10px;
@@ -2664,4 +2742,14 @@ svg {
     font-size: 14px;
     padding-right: 18px;
 
+}
+
+.editor-surveys .center.complete {
+    width: 78%;
+}
+
+.control-scroll-qrs {
+    max-height: 65vh;
+    overflow: auto;
+    margin-bottom: 15px;
 }

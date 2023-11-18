@@ -32,9 +32,9 @@ export default function MenuViewLists({ functions }) {
                     :
                     <>
                         <button onClick={(ev) => { setSelectMultiple(true) }}>Seleccionar Multiple</button>
-                        <button>Listas Email</button>
-                        <button>Listas Mensajeria</button>
-                        <button>Listas Whatsapp</button>
+                        <button onClick={(ev) => { Navigator(`/contacts/lists/email`) }}>Listas Email</button>
+                        <button onClick={(ev) => { Navigator(`/contacts/lists/sms`) }}>Listas Mensajeria</button>
+                        <button onClick={(ev) => { Navigator(`/contacts/lists/whatsapp`) }}>Listas Whatsapp</button>
                     </>
 
 

@@ -29,6 +29,7 @@ export default function Lists() {
     function loadLists() {
         let formData = new FormData()
         formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("type", params?.type)
 
         setLoading(true)
         setLists([])

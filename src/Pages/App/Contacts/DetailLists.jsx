@@ -17,6 +17,7 @@ export default function DetailLists() {
     const [editMode, setEditMode] = useState(false)
     const [loading, setLoading] = useState(true)
 
+
     useEffect(() => {
         let formData = new FormData()
         formData.append("id_list", params.id)

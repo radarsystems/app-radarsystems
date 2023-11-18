@@ -47,10 +47,14 @@ div[colorbox="ligth"] {
 
 .editor-surveys .left .title-top span {
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     opacity: 0.8;
     border-bottom: 1px solid;
     padding-bottom: 10px;
+}
+
+.editor-surveys .option .title {
+    font-size: 14px;
 }
 
 .editor-surveys .center {
@@ -88,7 +92,7 @@ div[colorbox="ligth"] {
 
 .editor-surveys .head-top .right button {
     padding: 10px;
-    font-size: 14px;
+    font-size: 12px;
     background: var(--border-box);
     border-radius: 25px;
     padding-right: 15px;
@@ -149,7 +153,7 @@ div[colorbox="ligth"] {
     opacity: 0.8;
     border-radius: 12px;
     line-height: 1.5;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .editor-surveys .add-new-quest {
@@ -403,27 +407,27 @@ div[colorbox="ligth"] {
     border: 1px dashed;
 }
 
-.survey.real{
+.survey.real {
     width: 100%;
     height: 100%;
     overflow: auto;
 }
 
-.survey.real .img-quest{
+.survey.real .img-quest {
     max-height: 200px;
     width: 100%;
     object-fit: contain;
 }
 
-.survey.real .page{
+.survey.real .page {
     display: none;
 }
 
-.survey.real .page.active{
+.survey.real .page.active {
     display: block;
 }
 
-.survey.real .background2{
+.survey.real .background2 {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -433,7 +437,7 @@ div[colorbox="ligth"] {
 }
 
 
-.survey.real .buttons-bottom{
+.survey.real .buttons-bottom {
     position: relative;
     width: max-content;
     margin-left: auto;
@@ -442,7 +446,7 @@ div[colorbox="ligth"] {
 }
 
 
-.survey.real .buttons-bottom button{
+.survey.real .buttons-bottom button {
     padding: 10px;
     border-radius: 27px;
     padding-right: 15px;
@@ -452,16 +456,16 @@ div[colorbox="ligth"] {
 }
 
 
-.survey.real{
+.survey.real {
     background-position: center !important;
     background-size: cover !important;
 }
 
-.survey.real .page{
+.survey.real .page {
     border: 0px;
 }
 
-.survey.real .margin-survey{
+.survey.real .margin-survey {
     max-width: 700px;
     margin: auto;
     margin-top: 50px;
@@ -475,28 +479,28 @@ div[colorbox="ligth"] {
 }
 
 
-.survey-b .preview{
+.survey-b .preview {
     height: 170px;
     border-radius: 12px 12px 0px 0px;
     background-position: center !important;
     background-size: cover !important;
 }
 
-.survey-b .top{
+.survey-b .top {
     color: var(--text-white);
 }
 
-.survey-b .top p{
+.survey-b .top p {
     margin-bottom: 5px;
 }
 
-.survey-b .top span{
+.survey-b .top span {
     display: block;
     font-size: 13px;
     opacity: 0.7;
 }
 
-.survey-b .preview .right-top{
+.survey-b .preview .right-top {
     width: max-content;
     margin-left: auto;
     padding: 10px;
@@ -504,7 +508,7 @@ div[colorbox="ligth"] {
     gap: 10px;
 }
 
-.survey-b .preview .right-top button{
+.survey-b .preview .right-top button {
     padding: 10px;
     line-height: 1;
     border-radius: 90px;

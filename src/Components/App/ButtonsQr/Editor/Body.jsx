@@ -3,7 +3,7 @@ import ModalSmall from "../../ModalSmall";
 import axios from "axios";
 import { API_URL } from "../../../../ExportUrl";
 import { LoadPreviewQr } from "../../../../Functions/Global";
-import { IoAdd, IoEyeOutline, IoSendOutline, IoTrashOutline } from "react-icons/io5";
+import { IoAdd, IoCloudUploadOutline, IoEyeOutline, IoSendOutline, IoTrashOutline } from "react-icons/io5";
 import $ from "jquery"
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -11,6 +11,9 @@ import { AuthContext } from "../../../../Context/AuthContext";
 import { toast } from "react-hot-toast";
 import html2canvas from "html2canvas";
 import { useParams } from "react-router-dom";
+import WizardUploadQr from "../../Qr/WizardUploadQr";
+import WizardQr from "../../Qr/WizardQr";
+import { FiUpload } from "react-icons/fi"
 
 
 export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }) {
@@ -19,6 +22,9 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
     const [visibleTitle, setVisibleTitle] = useState(false)
     const [editId, setEditId] = useState(undefined)
     const [pending, setPending] = useState(false)
+    const [importQr, setImportQr] = useState(false)
+    const [first, setFirst] = useState(true)
+    const [modalPhoto, setModalPhoto] = useState(false)
 
     const params = useParams()
 
@@ -75,18 +81,27 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
             })
     }
 
-    function addNewBox() {
-        setButtons((prevData) => {
-            let newData = { ...prevData }
+    function addNewBox(ev) {
+        ev.stopPropagation()
 
-            newData.elements.push({ qrs: [] })
+        let add = true;
+        setButtons(prevData => {
 
-            return newData
+            const newData = { ...prevData };
 
-        })
+            if (add) {
+                add = false
+                newData.elements.push({ qrs: [] });
+            }
+            return newData;
+        });
+
     }
 
     function addNewQr(ev) {
+        ev.stopPropagation()
+        console.log('addNewQr function called');
+
         let target = $(ev.target)
 
         let image = target.attr("image")
@@ -95,18 +110,35 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
         setVisible(false)
         toast.success("Has seleccionado correctamente el QR")
 
+        let upload = true;
+
         setButtons((prevData) => {
-            let newData = { ...prevData }
+            const newData = { ...prevData };
+            if (upload) {
+                upload = false
+                // Hacer una copia del estado anterior
 
-            newData.elements[editor.key].qrs.push({ image, title })
 
-            return newData
-        })
+                // Crear una nueva instancia del array qrs con el contenido actual y agregar un nuevo elemento
+                const updatedQrs = [...newData.elements[editor.key].qrs, { image, title }];
+
+                // Actualizar el array qrs dentro del estado copiado
+                newData.elements[editor.key].qrs = updatedQrs;
+
+            }
+            return newData;
+        });
 
     }
 
     function deleteQr(father, qr) {
-
+        setButtons(prevData => {
+            const newData = { ...prevData };
+            if (newData.elements[father] && newData.elements[father].qrs[qr]) {
+                newData.elements[father].qrs.splice(qr, 1);
+            }
+            return newData;
+        });
     }
 
     async function save() {
@@ -174,6 +206,15 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
         }
     }
 
+    function updateEditing() {
+        $("#title").text(buttons?.header?.title)
+        $("#desc").text(buttons?.header?.desc)
+
+        buttons?.elements?.forEach((element, key) => {
+            $("p[type='titlespace']").eq(key).text(element.title)
+        })
+    }
+
     useEffect(() => {
         getMyQrs()
 
@@ -189,13 +230,38 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
                         setButtons(JSON.parse(data.json))
                         setEditId(data.id_buttonsqr)
                     }
-
                 })
         }
     }, [])
 
+    useEffect(() => {
+
+        if (editId) {
+            updateEditing()
+        }
+    }, [editId])
+
+    function changeTitle(ev) {
+
+        setButtons((prevData) => {
+            let newData = { ...prevData }
+            newData.header.title = ev.target.textContent
+            return newData
+        })
+    }
+
+    function changeTitleSpace(ev) {
+        setButtons((prevData) => {
+            let newData = { ...prevData }
+            newData.elements[editor.key].title = ev.target.textContent
+            return newData
+        })
+    }
+
     return (
         <>
+
+            <ModalSmall visible={modalPhoto} callback={setModalPhoto} />
 
             <ModalSmall visible={visible} maxWidth={"450px"} callback={setVisible}>
                 <div className="top">
@@ -203,7 +269,9 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
                     <span>Tu galeria de qrs, donde podras seleccionar que qr quieres integrar</span>
                 </div>
 
-                <div className="data row flex">
+                <div className="data row flex control-scroll-qrs">
+
+
                     {myQrs.map((element, key) => (
                         <div className="col-md-6">
                             <div className="qrs" onClick={addNewQr} image={LoadPreviewQr(element.qr_preview)} title={element.title}>
@@ -213,6 +281,7 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
                         </div>
                     ))}
                 </div>
+
             </ModalSmall>
 
             <ModalSmall visible={visibleTitle} close={setVisibleTitle} callback={setVisibleTitle} onClick={saveTitleGlobal}>
@@ -228,9 +297,13 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
                 </div>
             </ModalSmall>
 
+            <WizardUploadQr Visible={importQr} Close={setImportQr} />
+
 
             <div className="head-top">
                 <div className="right">
+                    <button ><IoCloudUploadOutline /> Subir QR</button>
+                    <button onClick={(ev) => { setImportQr(true) }}><IoCloudUploadOutline /> Importar QR</button>
                     <button ><IoEyeOutline /> Previsualizar</button>
                     <button className={pending ? 'await' : ''} onClick={save}><IoSendOutline /> Guardar <div className="loading"></div></button>
                 </div>
@@ -245,8 +318,13 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
 
 
                     <img className="logo" onClick={editThis} type="logo" src={buttons?.header?.logo ? buttons?.header?.logo : "/img/icons/default-img.jpg"} alt="" />
-                    <p onClick={editThis} type="title">{buttons?.header?.title ? buttons?.header?.title : "Agregar titulo"}</p>
-                    <span onClick={editThis} type="desc">{buttons?.header?.desc ? buttons?.header?.desc : "Agregar Descripcion"}</span>
+
+                    <button className="action" onClick={(ev) => { setModalPhoto(true) }}><FiUpload /> Cambiar Foto</button>
+                    <br />
+
+
+                    <p id="title" onClick={editThis} onInput={changeTitle} suppressContentEditableWarning={true} contentEditable={true}>{"Agregar titulo"}</p>
+                    <span id="desc" onClick={editThis} suppressContentEditableWarning={true} contentEditable={true} type="desc">{"Agregar Descripcion"}</span>
 
                     <br />
                     <br />
@@ -257,7 +335,7 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
 
                             <div className="top">
                                 <div className="top-left">
-                                    <p id={key} type="titlespace" onClick={(ev) => { editThis(ev) }}>{element.title ? element.title : 'Escribe un titulo...'}</p>
+                                    <p id={key} suppressContentEditableWarning={true} contentEditable={true} type="titlespace" onInput={changeTitleSpace} onClick={(ev) => { editThis(ev) }}>{'Escribe titulo...'}</p>
                                 </div>
                                 <div className="top-right">
                                     <button id={key} type="addqr" onClick={(ev) => { setVisible((true), editThis(ev)) }}>Agregar QR</button>
@@ -266,7 +344,7 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
                             </div>
 
 
-                            <Carousel showThumbs={false} showIndicators={false} showStatus={false}>
+                            <Carousel showThumbs={false} showStatus={false} >
                                 {element.qrs.map((element, key2) => (
 
 
@@ -274,6 +352,7 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
                                         <button className="delete" onClick={(ev) => { deleteQr(key, key2) }}><IoTrashOutline /></button>
                                         <img src={element.image} />
                                         <p>{element.title}</p>
+                                        <br />
                                     </div>
 
 
