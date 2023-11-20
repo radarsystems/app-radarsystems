@@ -69,14 +69,16 @@ div[colorbox="ligth"] {
     position: relative;
     border-right: 1px solid var(--box-actions);
     border-left: 1px solid var(--box-actions);
+    transition: .5s ease;
 }
 
 .editor-surveys .center .background2 {
     position: fixed;
-    width: 85%;
+    width: 77vw;
     height: 100%;
     left: 0;
     top: 0;
+    pointer-events: none;
 }
 
 .editor-surveys .head-top {

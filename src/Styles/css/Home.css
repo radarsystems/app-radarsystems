@@ -1036,7 +1036,67 @@ body {
     padding-bottom: 45px;
 }
 
+.modal-small .select-file {
+    display: block;
+    width: 100%;
+}
 
+.modal-small .select-file .right button {
+    padding: 10px;
+    border-radius: 37px;
+    line-height: 1;
+    margin-bottom: 12px;
+    background: var(--border-box);
+}
+
+.modal-small .file {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.modal-small .file .right {
+    float: right;
+    width: max-content;
+    display: block;
+}
+
+.modal-small .file .preview .fi {
+    display: flex;
+    background-color: var(--box-actions);
+    padding: 10px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.modal-small .file .preview .fi p {
+    margin-bottom: 2px;
+}
+
+.modal-small .file .preview .fi span {
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+
+
+
+.modal-small .select-file .drop-file {
+    display: flex;
+    padding: 10px;
+    min-height: 180px;
+    width: 100%;
+    border: 1px dashed;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.modal-small .select-file .drop-file i {
+    display: block;
+    font-size: 40px;
+    margin: auto;
+}
 
 .modal-small .data {
     display: block;
@@ -2039,13 +2099,12 @@ table th {
 }
 
 .page.buttonsbody img.logo {
-    max-width: 120px;
     margin: auto;
     display: block;
     position: relative;
     border-radius: 107px;
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     margin-bottom: 20px;
 }
@@ -2230,12 +2289,28 @@ svg {
 }
 
 .page.buttonsqr .top-right button {
-    font-size: 14px;
+    font-size: 12px;
     border-radius: 91px;
     padding-right: 15px;
     padding-left: 15px;
     background: var(--box-actions);
     margin-right: 5px;
+    padding-top: 5px;
+    transition: 0.5s;
+    padding-bottom: 5px;
+}
+
+.page.buttonsqr .top-right button i {
+    display: none;
+}
+
+.page.buttonsqr .top-right button.select {
+    background-color: var(--details-blue);
+}
+
+
+.page.buttonsqr .top-right button.select i {
+    display: inline;
 }
 
 .page.buttonsqr .add-qr {
@@ -2256,7 +2331,7 @@ svg {
     display: block;
     max-width: max-content;
     margin: auto;
-    max-height: 200px;
+    max-height: 43vh;
     border-radius: 12px;
 }
 
@@ -2752,4 +2827,113 @@ svg {
     max-height: 65vh;
     overflow: auto;
     margin-bottom: 15px;
+}
+
+.buttons-services {
+    width: 100%;
+    display: block;
+    overflow: auto;
+    max-height: 98vh;
+    padding: 10px;
+}
+
+.buttons-services .button img {
+    width: fit-content;
+    display: inline-block;
+    position: absolute;
+    height: fit-content;
+    left: 6px;
+    top: 0px;
+    bottom: 0;
+    margin: auto;
+    max-width: 55px;
+}
+
+.buttons-services .button {
+    display: block;
+    padding: 10px;
+    background-color: var(--box-actions);
+    margin-bottom: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .2s;
+    opacity: 0.5;
+    position: relative;
+}
+
+.buttons-services .button:hover {
+    transform: scale(1.05);
+}
+
+.buttons-services .button p,
+.buttons-services .button span,
+.buttons-services .button i {
+    pointer-events: none;
+}
+
+.buttons-services.vcard div[type="vcard"] {
+    opacity: 1;
+}
+
+.buttons-services.all div {
+    opacity: 1;
+}
+
+
+
+
+.buttons-services.rs div[type="rs"] {
+    opacity: 1;
+}
+
+.buttons-services .button p {
+    margin-bottom: -3px;
+    padding-left: 55px;
+}
+
+.buttons-services .button span {
+    font-size: 12px;
+    opacity: 0.8;
+    padding-left: 55px;
+}
+
+.buttons-services .submenu {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--box-actions);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.buttons-services .submenu p {
+    display: inline;
+    margin-bottom: auto;
+    font-size: 14px;
+}
+
+.buttons-services .submenu i {
+    float: right;
+    padding-right: 10px;
+}
+
+.colorPicker-basic {
+    display: flex;
+    width: 100%;
+    flex-flow: wrap;
+    justify-content: left;
+    gap: 9.2px;
+}
+
+.colorPicker-basic .color {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 90px;
+    transition: .5s ease;
+    cursor: pointer;
+}
+
+.colorPicker-basic .color:hover{
+    transform: scale(1.3);
 }

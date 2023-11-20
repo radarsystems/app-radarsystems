@@ -3,7 +3,7 @@ import ModalSmall from "../../ModalSmall";
 import axios from "axios";
 import { API_URL } from "../../../../ExportUrl";
 import { LoadPreviewQr } from "../../../../Functions/Global";
-import { IoAdd, IoCloudUploadOutline, IoEyeOutline, IoSendOutline, IoTrashOutline } from "react-icons/io5";
+import { IoAdd, IoCheckmark, IoCloudUploadOutline, IoDocumentTextOutline, IoEyeOutline, IoSendOutline, IoTrashOutline } from "react-icons/io5";
 import $ from "jquery"
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -16,19 +16,19 @@ import WizardQr from "../../Qr/WizardQr";
 import { FiUpload } from "react-icons/fi"
 
 
-export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }) {
+export default function BodyButtonsQr({ visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
 
-    const [visible, setVisible] = useState(false)
     const [visibleTitle, setVisibleTitle] = useState(false)
     const [editId, setEditId] = useState(undefined)
     const [pending, setPending] = useState(false)
+    const [pendingPhoto, setPendingPhoto] = useState(false)
     const [importQr, setImportQr] = useState(false)
     const [first, setFirst] = useState(true)
     const [modalPhoto, setModalPhoto] = useState(false)
+    const [photoUpload, setPhotoUpload] = useState({})
 
     const params = useParams()
 
-    const [myQrs, setMyQrs] = useState([])
 
     const { UserInfo } = useContext(AuthContext)
 
@@ -48,6 +48,22 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
                 var key = target.attr("id")
 
                 setEditor({ type: "addqr", key })
+
+                switch (key) {
+                    case "0":
+                        setBoxType("vcard")
+                        break;
+
+
+                    case '1':
+                        setBoxType("rs")
+                        break;
+
+                    default:
+                        setBoxType("all")
+                        break;
+                }
+
                 break;
 
             case 'rs':
@@ -70,16 +86,6 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
 
     }
 
-    function getMyQrs(name) {
-        let formData = new FormData()
-
-        formData.append("id_company", UserInfo?.company?.id_company)
-
-        axios.post(API_URL + "/api/get/qrs", formData, { withCredentials: true }).then((response) => { return response.data })
-            .then((data) => {
-                setMyQrs(data)
-            })
-    }
 
     function addNewBox(ev) {
         ev.stopPropagation()
@@ -107,7 +113,7 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
         let image = target.attr("image")
         let title = target.attr("title")
 
-        setVisible(false)
+        setVisibleQr(false)
         toast.success("Has seleccionado correctamente el QR")
 
         let upload = true;
@@ -216,7 +222,6 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
     }
 
     useEffect(() => {
-        getMyQrs()
 
         if (params.id) {
             let formData = new FormData()
@@ -258,31 +263,125 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
         })
     }
 
+    function deleteBox(idBox) {
+
+        let Delete = true
+
+        setButtons(prevData => {
+
+            let newData = { ...prevData }
+
+            if (Delete) {
+                Delete = false
+                newData.elements.splice(idBox, 1);
+            }
+
+
+            return newData
+        })
+    }
+
+    function selectPhoto() {
+        document.querySelector("input[name='photo']").click()
+    }
+
+    function changePhoto(ev) {
+        let file = ev.target.files[0]
+
+
+        if (file) {
+            if (file?.type.indexOf("image") >= 0) {
+                setPhotoUpload(file)
+            } else {
+                toast.error("El archivo no es compatible")
+            }
+        }
+    }
+
+    function uploadPhoto() {
+        setPendingPhoto(true);
+
+        if (photoUpload) {
+            let formData = new FormData();
+            formData.append("id_company", UserInfo?.company?.id_company)
+            formData.append("file", photoUpload)
+
+            axios.post(API_URL + "/api/upload/fileqr", formData, { withCredentials: true })
+                .then((response) => { return response.data })
+                .then((data) => {
+                    setPendingPhoto(false)
+                    if (data.status) {
+                        setButtons(prevData => {
+                            let newData = { ...prevData }
+                            newData.header.logo = data.download;
+                            return newData
+                        })
+
+                        deletePhoto()
+                        setModalPhoto(false)
+                        toast.success("Nueva imagen!")
+                    }
+                })
+                .catch((err) => {
+
+                    setPendingPhoto(false)
+
+                })
+
+        }
+
+    }
+
+    function deletePhoto() {
+        setPhotoUpload({})
+        document.querySelector("input[name='photo']").value = ""
+    }
+
     return (
         <>
 
-            <ModalSmall visible={modalPhoto} callback={setModalPhoto} />
+            <ModalSmall visible={modalPhoto} callback={setModalPhoto} onClick={uploadPhoto} Pending={pendingPhoto}>
+                <input type="file" name="photo" onChange={changePhoto} hidden />
 
-            <ModalSmall visible={visible} maxWidth={"450px"} callback={setVisible}>
                 <div className="top">
-                    <p>Galeria de Qr's</p>
-                    <span>Tu galeria de qrs, donde podras seleccionar que qr quieres integrar</span>
+                    <p>Subir archivo</p>
+                    <span>Sube tu imagen que no sea mayor a 5 MB</span>
                 </div>
 
-                <div className="data row flex control-scroll-qrs">
+                <div className="select-file">
 
+                    {photoUpload.name ?
+                        <div className="file">
+                            <div className="right">
+                                <button onClick={deletePhoto}><IoTrashOutline /></button>
+                            </div>
 
-                    {myQrs.map((element, key) => (
-                        <div className="col-md-6">
-                            <div className="qrs" onClick={addNewQr} image={LoadPreviewQr(element.qr_preview)} title={element.title}>
-                                <img src={LoadPreviewQr(element.qr_preview)} alt="" />
-                                <p>{element.title}</p>
+                            <div className="preview">
+                                <div className="fi">
+                                    <div className="icon">
+                                        <IoDocumentTextOutline />
+                                    </div>
+                                    <div className="info">
+                                        <p>{photoUpload?.name}</p>
+                                        <span>{photoUpload?.type}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    ))}
-                </div>
+                        :
+                        <div className="drop-file" onClick={selectPhoto}>
+                            <i>
+                                <IoCloudUploadOutline />
+                            </i>
+                        </div>
+                    }
 
+
+                </div>
             </ModalSmall>
+
+
+
 
             <ModalSmall visible={visibleTitle} close={setVisibleTitle} callback={setVisibleTitle} onClick={saveTitleGlobal}>
                 <div className="top">
@@ -331,14 +430,18 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
 
 
                     {buttons.elements.map((element, key) => (
-                        <div className="boxqr">
+                        <div className="boxqr" key={key}>
 
                             <div className="top">
                                 <div className="top-left">
                                     <p id={key} suppressContentEditableWarning={true} contentEditable={true} type="titlespace" onInput={changeTitleSpace} onClick={(ev) => { editThis(ev) }}>{'Escribe titulo...'}</p>
                                 </div>
                                 <div className="top-right">
-                                    <button id={key} type="addqr" onClick={(ev) => { setVisible((true), editThis(ev)) }}>Agregar QR</button>
+                                    <button className={`${editor?.key == key ? editor?.type == "addqr" ? "select" : "" : ""}`} id={key} type="addqr" onClick={(ev) => { editThis(ev) }}>
+                                        <i><IoCheckmark /></i>  Agregar
+                                    </button>
+                                    <button id={key} onClick={(ev) => { deleteBox(key) }}>Eliminar</button>
+
                                 </div>
 
                             </div>
@@ -348,7 +451,7 @@ export default function BodyButtonsQr({ buttons, setButtons, editor, setEditor }
                                 {element.qrs.map((element, key2) => (
 
 
-                                    <div className="qr">
+                                    <div className="qr" key={key2}>
                                         <button className="delete" onClick={(ev) => { deleteQr(key, key2) }}><IoTrashOutline /></button>
                                         <img src={element.image} />
                                         <p>{element.title}</p>

@@ -78,16 +78,7 @@ export default function Lists() {
                     <div className="box select-list">
                         <div className="top">
                             <img src="/img/icons/message_list.png" alt="" />
-                            <span>Listas Mensajeria</span>
-                            <button>Ir</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-3">
-                    <div className="box select-list">
-                        <div className="top">
-                            <img src="/img/icons/whatsapp_list.png" alt="" />
-                            <span>Listas Whatsapp</span>
+                            <span>Listas Telefonicas</span>
                             <button>Ir</button>
                         </div>
                     </div>

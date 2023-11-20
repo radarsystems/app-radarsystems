@@ -1,3 +1,5 @@
+import ColorPickerBasic from "../../ColorPicker/ColorPickerBasic"
+
 export default function EditorLeftButtonsQr({ setButtons }) {
 
     function changeTheme(ev) {
@@ -19,6 +21,16 @@ export default function EditorLeftButtonsQr({ setButtons }) {
         })
     }
 
+    function setColor(color) {
+        setButtons(prevData => {
+            let newData = { ...prevData }
+
+            newData.header.background = color;
+
+            return newData
+        })
+    }
+
     return (
         <>
             <div className="title-top">
@@ -30,6 +42,12 @@ export default function EditorLeftButtonsQr({ setButtons }) {
             <div className="option">
                 <p className="title">Elige el fondo</p>
                 <input type="text" defaultValue={"#fff"} onChange={changeTheme} name="background" />
+
+                <hr />
+                <p className="title">Colores</p>
+                <ColorPickerBasic onClick={setColor} />
+                <br />
+
             </div>
 
             <div className="option">

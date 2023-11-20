@@ -54,7 +54,7 @@ export default function HeaderLeft() {
     }
 
     if (!GetCookie('token')) {
-   
+
     }
 
     return (
@@ -200,11 +200,13 @@ export default function HeaderLeft() {
                     <li className={""}>
                         <button onClick={ToggleChild}><i className="icon"><IoQrCode /></i> Botonera QR <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
+
+                            <li><Link to="/buttonsqr">Botoneras QR</Link></li>
+                            <li><Link to="/editor/buttonsqr">Crear Botonera QR</Link></li>
                             <li><Link to="/qr">Mis Qr's</Link></li>
                             <li><Link to="/qr/add">Crear QR</Link></li>
                             <li><Link to="/qr/import">Importar QR</Link></li>
-                            <li><Link to="/buttonsqr">Botoneras QR</Link></li>
-                            <li><Link to="/editor/buttonsqr">Crear Botonera QR</Link></li>
+
 
 
 
