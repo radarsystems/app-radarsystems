@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { IoArrowBackOutline } from "react-icons/io5"
 
 export default function ModalProgrammingCampaign({ campaign, setFormProgamming }) {
@@ -23,6 +23,14 @@ export default function ModalProgrammingCampaign({ campaign, setFormProgamming }
             </>
         )
     }
+
+    useEffect(() => {
+        switch (Case) {
+            case 'daysname':
+                setFormProgamming({ target: { value: "bucle", name: "p_type" } })
+                break;
+        }
+    }, [Case])
 
     return (
         <>
@@ -59,6 +67,52 @@ export default function ModalProgrammingCampaign({ campaign, setFormProgamming }
                                 <option value="pm">p.m.</option>
                                 <option value="am">a.m.</option>
                             </select>
+                        </div>
+                    </>
+                    : ""}
+
+                {Case == "daysname" ?
+                    <>
+                        <HtmlReturn />
+
+                        <div className="form-input">
+                            <label htmlFor="">Que dia quieres que se envie</label>
+                            <select name="dd" onChange={setFormProgamming} id="">
+                                <option value="Sun">Domingo</option>
+                                <option value="Mon">Lunes</option>
+                                <option value="Tues">Martes</option>
+                                <option value="Wed">Miércoles</option>
+                                <option value="Thurs">Jueves</option>
+                                <option value="Fri">Viernes</option>
+                                <option value="Sat">Sábado</option>
+                            </select>
+                        </div>
+
+                        <div className="form-input">
+                            <label htmlFor="">Cuando expira</label>
+                            <input type="date" onChange={setFormProgamming} name="timeExpire" />
+                        </div>
+                    </>
+                    : ""}
+
+                {Case == "daysnumber" ?
+                    <>
+                        <HtmlReturn />
+
+                        <div className="form-input">
+                            <label htmlFor="">Que dia quieres que se envie (Esto enviara el numero elegio cada mes, es decir ejemplo: 01 es igual a los 01 de cada mes)</label>
+                            <select name="dd" onChange={setFormProgamming}>
+                                {Array.from({ length: 31 }, (_, index) => (
+                                    <option key={index + 1} value={String(index + 1).padStart(2, '0')}>
+                                        {String(index + 1).padStart(2, '0')}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="form-input">
+                            <label htmlFor="">Cuando expira (Si no pones fecha es indefinido)</label>
+                            <input type="date" onChange={setFormProgamming} name="timeExpire" />
                         </div>
                     </>
                     : ""}

@@ -16,6 +16,7 @@ import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
 import ModalProgrammingCampaign from "../../../Components/App/Campaigns/ModalProgrammingCampaign"
 import TextareaSms from "../../../Components/Textarea/TextareaSms"
+import CampaignStatus from "../../../Components/App/Campaigns/CampaignStatus"
 
 
 export default function DetailCampaigns() {
@@ -36,7 +37,7 @@ export default function DetailCampaigns() {
     const [deleteModal, setDeleteModal] = useState(false)
     const [viewModalProgramming, setModalProgramming] = useState()
     const [pendingDelete, setPendingDelete] = useState(false)
-    const [formProgramming, setFormProgamming] = useState({ hh: "", mm: "", dd: "", ii: "", yy: "" })
+    const [formProgramming, setFormProgamming] = useState({ hh: "", mm: "", dd: "", ii: "", yy: "", timeExpire: "", "p_type": "default" })
     const [pendingProgramming, setPendingProgramming] = useState(false)
     const [template, setTemplate] = useState({})
     const [newText, setNewText] = useState()
@@ -317,18 +318,26 @@ export default function DetailCampaigns() {
         setPendingProgramming(true)
 
         formData.append("id_company", UserInfo?.company?.id_company)
-        formData.append("hh", formProgramming.hh)
-        formData.append("dd", formatNumberZero(formProgramming.dd))
-        formData.append("yy", formProgramming.yy)
-        formData.append("mm", formProgramming.mm)
-        formData.append("ii", formProgramming.ii)
+        formData.append("hh", formProgramming.hh ? formProgramming.hh : "?")
+        formData.append("dd", formatNumberZero(formProgramming.dd) ? formatNumberZero(formProgramming.dd) : "?")
+        formData.append("yy", formProgramming.yy ? formProgramming.yy : "?")
+        formData.append("mm", formProgramming.mm ? formProgramming.mm : "?")
+        formData.append("ii", formProgramming.ii ? formProgramming.ii : "?")
         formData.append("id_campaign", params.id)
-        formData.append("p_type", "default");
+        formData.append("timeExpire", formProgramming?.timeExpire)
+        formData.append("p_type", formProgramming?.p_type);
         formData.append("type", "campaign")
 
         axios.post(API_URL + "/api/update/programming", formData, { withCredentials: true })
             .then((response) => { return response.data })
-        setPendingProgramming(false)
+            .then((data) => {
+                setPendingProgramming(false)
+                if (data.status) {
+
+                    setModalProgramming(false)
+                    toast.success("Campana programada con exito")
+                }
+            })
             .catch((err) => {
                 setPendingProgramming(false)
 
@@ -363,6 +372,21 @@ export default function DetailCampaigns() {
 
     }
 
+    function PauseCampaign() {
+        let formData = new FormData()
+
+        formData.append("id_campaign", campaign?.id_campaign)
+        formData.append("id_company", UserInfo?.company?.id_company)
+
+        axios.post(API_URL + "/api/update/pausecampaign", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                if (data.status) {
+                    setCampaign({ ...campaign, status: "prepare" })
+                }
+            })
+    }
+
 
     useEffect(() => {
         console.log(formProgramming)
@@ -371,7 +395,7 @@ export default function DetailCampaigns() {
     return (
         <>
 
-            <ModalSmall visible={viewModalProgramming} callback={setModalProgramming} width={"30%"} onClick={programmingCampaign} maxWidth={"500px"} next={"Programar"} Pending={pendingProgramming}>
+            <ModalSmall key={ModalProgrammingCampaign ? "XD" : "xd"} visible={viewModalProgramming} callback={setModalProgramming} width={"30%"} onClick={programmingCampaign} maxWidth={"500px"} next={"Programar"} Pending={pendingProgramming}>
                 <ModalProgrammingCampaign setFormProgamming={setNewProgramming} campaign={campaign} />
             </ModalSmall>
 
@@ -418,6 +442,7 @@ export default function DetailCampaigns() {
 
                     <div>
                         <p>Estatus</p>
+                        <CampaignStatus PauseCampaign={PauseCampaign} status={campaign?.status} />
                     </div>
 
                     <div className="actions">
