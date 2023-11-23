@@ -95,7 +95,7 @@ export default function ButtonsQrEditor() {
 
                     {myQrs.map((element, key) => (
                         <div className="col-md-6" key={key}>
-                            <div className="qrs" onClick={addNewQr} image={LoadPreviewQr(element.qr_preview)} title={element.title}>
+                            <div className="qrs" onClick={(ev) => { addNewQr(element?.title, LoadPreviewQr(element.qr_preview)) }} image={LoadPreviewQr(element.qr_preview)} title={element.title}>
                                 <img src={LoadPreviewQr(element.qr_preview)} alt="" />
                                 <p>{element.title}</p>
                             </div>
@@ -113,7 +113,7 @@ export default function ButtonsQrEditor() {
                         <EditorLeftButtonsQr editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
                     <div className="center " style={{ background: buttons?.header?.background }}>
-                        <BodyButtonsQr setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
+                        <BodyButtonsQr type={type} setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
 
 

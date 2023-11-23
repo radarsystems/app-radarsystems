@@ -80,6 +80,7 @@ export default function TextareaSms({ value, onChange, onSave }) {
                 <div className="bottom-actions">
                     <button><IoTrash /> Borrar</button>
                     <button ><IoEyeOutline /> Previsualizar SMS</button>
+                    <button className="preview" onClick={onSave}>Enviar Campaña</button>
                     <button className="preview" onClick={onSave}>Guardar </button>
                 </div>
             </div>

@@ -46,6 +46,8 @@ export default function ModalProgrammingCampaign({ campaign, setFormProgamming }
                             <button onClick={selectCase} value="date">Fecha especifica</button>
                             <button onClick={selectCase} value="daysname">Dias especificos</button>
                             <button onClick={selectCase} value="daysnumber">Recordatorios</button>
+                            <button onClick={selectCase} value="fidelizacion">Fidelizacion</button>
+
                         </div>
                     </>
                     : ''}
@@ -76,7 +78,7 @@ export default function ModalProgrammingCampaign({ campaign, setFormProgamming }
                         <HtmlReturn />
 
                         <div className="form-input">
-                            <label htmlFor="">Que dia quieres que se envie</label>
+                            <label htmlFor="">Que dia de la semana quieres que se envie</label>
                             <select name="dd" onChange={setFormProgamming} id="">
                                 <option value="Sun">Domingo</option>
                                 <option value="Mon">Lunes</option>
@@ -86,6 +88,16 @@ export default function ModalProgrammingCampaign({ campaign, setFormProgamming }
                                 <option value="Fri">Viernes</option>
                                 <option value="Sat">Sábado</option>
                             </select>
+                        </div>
+
+                        <div className="form-input">
+                            <button>Cada 1 mes</button>
+                            <br />
+                            <button>Cada 2 meses</button>
+                            <br />
+                            <button>Cada 3 meses</button>
+
+
                         </div>
 
                         <div className="form-input">
@@ -107,6 +119,31 @@ export default function ModalProgrammingCampaign({ campaign, setFormProgamming }
                                         {String(index + 1).padStart(2, '0')}
                                     </option>
                                 ))}
+                            </select>
+                        </div>
+
+                        <div className="form-input">
+                            <label htmlFor="">Cuando expira (Si no pones fecha es indefinido)</label>
+                            <input type="date" onChange={setFormProgamming} name="timeExpire" />
+                        </div>
+                    </>
+                    : ""}
+
+                {Case == "fidelizacion" ?
+                    <>
+                        <HtmlReturn />
+
+                        <div className="form-input">
+                            <label htmlFor="">Que campo validador quieres utilizar</label>
+                            <select name="dd" onChange={setFormProgamming}>
+                                <option value="">Selecciona el campo</option>
+                                <option value="">Birthday</option>
+                                <option value="">Extra 1</option>
+                                <option value="">Extra 2</option>
+                                <option value="">Extra 3</option>
+                                <option value="">Extra 4</option>
+                                <option value="">Extra 5</option>
+
                             </select>
                         </div>
 

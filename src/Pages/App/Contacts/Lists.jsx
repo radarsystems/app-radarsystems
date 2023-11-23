@@ -43,7 +43,7 @@ export default function Lists() {
     useEffect(() => {
         loadLists()
 
-    }, [])
+    }, [params?.type])
 
 
 
@@ -70,7 +70,7 @@ export default function Lists() {
                         <div className="top">
                             <img src="/img/icons/email_list.png" alt="" />
                             <span>Listas Correos</span>
-                            <button>Ir</button>
+                            <button onClick={(ev) => { Navigator("/contacts/lists/em") }}>Ir</button>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@ export default function Lists() {
                         <div className="top">
                             <img src="/img/icons/message_list.png" alt="" />
                             <span>Listas Telefonicas</span>
-                            <button>Ir</button>
+                            <button onClick={(ev) => { Navigator("/contacts/lists/sms") }}>Ir</button>
                         </div>
                     </div>
                 </div>

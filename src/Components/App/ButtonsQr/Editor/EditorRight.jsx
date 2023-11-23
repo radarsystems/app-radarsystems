@@ -444,17 +444,7 @@ export default function EditorRightButtonsQr({ getMyQrs, addNewQr, setVisibleQr,
                     <p>Website URL</p>
                     <span>Link to a website of your choice</span>
                 </div>
-                <div className="button" onClick={(ev) => { clickButton(ev, 'btn-url') }} type="rs">
-
-                    <div className="img">
-                        <img src="/img/icons/website-www.png" alt="" />
-                    </div>
-
-
-                    <p>Botonera URL</p>
-                    <span>Link to a website of your choice</span>
-                </div>
-
+               
                 <br />
 
 

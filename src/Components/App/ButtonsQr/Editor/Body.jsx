@@ -16,7 +16,7 @@ import WizardQr from "../../Qr/WizardQr";
 import { FiUpload } from "react-icons/fi"
 
 
-export default function BodyButtonsQr({ visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
+export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
 
     const [visibleTitle, setVisibleTitle] = useState(false)
     const [editId, setEditId] = useState(undefined)
@@ -213,10 +213,11 @@ export default function BodyButtonsQr({ visibleQr, setVisibleQr, buttons, setBox
     }
 
     function updateEditing() {
-        $("#title").text(buttons?.header?.title)
-        $("#desc").text(buttons?.header?.desc)
+        $("#title").text(buttons?.header?.title ? buttons?.header?.title : "Agregar Nombre...")
+        $("#desc").text(buttons?.header?.desc ? buttons?.header?.des : "Agregar descripcion...")
 
         buttons?.elements?.forEach((element, key) => {
+            console.log(element)
             $("p[type='titlespace']").eq(key).text(element.title)
         })
     }
@@ -241,10 +242,9 @@ export default function BodyButtonsQr({ visibleQr, setVisibleQr, buttons, setBox
 
     useEffect(() => {
 
-        if (editId) {
-            updateEditing()
-        }
-    }, [editId])
+        updateEditing()
+
+    }, [editId, type])
 
     function changeTitle(ev) {
 
