@@ -3,10 +3,14 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { API_URL } from "../../../ExportUrl"
 import { Carousel } from "react-responsive-carousel"
+import "../../../Styles/css/app.css"
 import "../../../Styles/css/Home.css"
+import ModalSmall from "../../../Components/App/ModalSmall"
+import { GetParams } from "../../../Functions/Global"
 
 export default function ButtonsQr() {
     let params = useParams()
+    const [install, setInstall] = useState(false)
     const [buttons, setButtons] = useState({ elements: [] })
 
     function searchButtons() {
@@ -23,10 +27,56 @@ export default function ButtonsQr() {
 
     useEffect(() => {
         searchButtons()
+
+        if (GetParams('install') == "true") {
+            setInstall(true)
+
+            const linkElement = document.createElement('link');
+            linkElement.rel = 'manifest';
+            linkElement.href = '/manifest.json';
+
+            //document.head.appendChild(linkElement);
+        }
+
     }, [])
 
     return (
         <>
+
+
+            {install ?
+                <ModalSmall visible={true} maxWidth={250} next={`Listo`}>
+                    <div className="top">
+                        <p>Instalar</p>
+                        <span>instalar acceso directo rapidamente en iphone.</span>
+                        <br />
+                        <br />
+
+
+                    </div>
+
+                    <div className="img-tuto-buttonsqr">
+                        <Carousel showThumbs={false}>
+                            <div>
+                                <img src="/img/icons/tuto/buttonsqr/iphone1.png" alt="" />
+                                <span>Preciona el boton de compartir en la parte de abajo</span>
+                            </div>
+                            <div>
+                                <img src="/img/icons/tuto/buttonsqr/iphone2.png" alt="" />
+                                <span>Luego ve al final con el scroll</span>
+                            </div>
+                            <div>
+                                <img src="/img/icons/tuto/buttonsqr/iphone3.png" alt="" />
+                                <span>Agrega a inicio</span>
+                            </div>
+                            <div>
+                                <img src="/img/icons/tuto/buttonsqr/iphone4.png" alt="" />
+                                <span>Ahora configura y guarda</span>
+                            </div>
+                        </Carousel>
+                    </div>
+                </ModalSmall>
+                : ""}
 
             <div className="editor-surveys prodbuttonsqr">
 
@@ -34,7 +84,7 @@ export default function ButtonsQr() {
                     <div className="background2" style={{ backdropFilter: `blur(${buttons?.header?.blur}px)brightness(${buttons?.header?.brightness})`, background: buttons?.header?.background2 }}>
                     </div>
 
-                    <div className={`${"page buttonsbody buttonsqr " + buttons?.header?.colorBox}`}>
+                    <div className={`${"page buttonsbody buttonsqr " + buttons?.header?.theme}`}>
                         <div className="center-top">
 
                             <img className="logo" type="logo" src={buttons?.header?.logo ? buttons?.header?.logo : "/img/icons/default-img.jpg"} alt="" />

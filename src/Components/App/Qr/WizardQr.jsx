@@ -21,6 +21,7 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
     const [form, setForm] = useState({ type: "" })
     const [qr, setQr] = useState({})
     const [pending, setPending] = useState(false)
+    const idModal = randomId()
 
     const QrCode = new QrStyling({
         width: 600,
@@ -74,10 +75,20 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
 
             if (form.type == "qr-contact") {
                 QrCode.update({
-                    data: 'BEGIN:VCARD \
-                VERSION:3.0 \
-                N:' + formQr.lname + ';' + formQr.fname + ';;;' + '\n' + 'FN:' + formQr.fname + ' ' + formQr.lname + '\n' + 'ORG:' + formQr.company + ';' + '\n' + 'TITLE:' + formQr.jobtitle + '\n' + 'TEL;type=CELL:' + formQr.number + '\n' + 'TEL;type=WORK:' + formQr.officenum + '\n' + 'EMAIL;type=INTERNET;type=WORK;type=pref:' + formQr.email + '\n' + 'URL%3A' + formQr.web + '%0A' + '\n' + 'ADR;TYPE=work:;;' + formQr.address1 + ';' + formQr.address2 + ';' + formQr.city + ';' + formQr.province + ';' + formQr.country + ';' + formQr.pcode + '\n' + 'REV:' + new Date() + '\n' + 'END:VCARD'
-                })
+                    data: 'BEGIN:VCARD\n' +
+                        'VERSION:3.0\n' +
+                        'N:' + formQr.lname + ';' + formQr.fname + ';;;\n' +
+                        'FN:' + formQr.fname + ' ' + formQr.lname + '\n' +
+                        'ORG:' + formQr.company + ';\n' +
+                        'TITLE:' + formQr.jobtitle + '\n' +
+                        'TEL;type=CELL:' + formQr.number + '\n' +
+                        'TEL;type=WORK:' + formQr.officenum + '\n' +
+                        'EMAIL;type=INTERNET;type=WORK;type=pref:' + formQr.email + '\n' +
+                        'URL:' + formQr.web + '\n' +
+                        'ADR;TYPE=work:;;' + formQr.address1 + ';' + formQr.address2 + ';' + formQr.city + ';' + formQr.province + ';' + formQr.country + ';' + formQr.pcode + '\n' +
+                        'REV:' + new Date() + '\n' +
+                        'END:VCARD'
+                });
             } else {
                 QrCode.update({
                     data: formQr.url
@@ -148,8 +159,8 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
     }
 
     useEffect(() => {
-        $(".case.active").removeClass('active')
-        $(".case").eq(count).addClass("active")
+        $(`#modal-${idModal} .case.active`).removeClass('active')
+        $(`#modal-${idModal} .case`).eq(count).addClass("active")
     }, [count])
 
 
@@ -158,7 +169,8 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
     return (
         <>
 
-            <div className={`wizard-home ${Visible ? 'open' : 'close'}`} >
+
+            <div className={`wizard-home ${Visible ? 'open' : 'close'}`} id={`modal-${idModal}`}>
 
                 <div className="top-actions">
 
@@ -167,10 +179,11 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
 
                     <button className="closed" onClick={(ev) => { Close(false) }}>X</button>
                 </div>
+
                 <div className="body">
-                    <div className="case">
+                    <div className="case active">
                         <div className="top">
-                            <p className="title">Crear un nuevo QR</p>
+                            <p className="title">Crear un nuevo QR individual</p>
                             <span className="desc">Selecciona el tipo de qr que quieres crear</span>
                         </div>
 
@@ -229,6 +242,12 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
 
                             <div className="form">
                                 <div className="row">
+                                    <div className="col-md-12">
+                                        <div className="form-input">
+                                            <label>Nombre del qr</label>
+                                            <input type="text" onChange={setNewFormqr} name="name" placeholder="Nombre para tu QR" />
+                                        </div>
+                                    </div>
                                     <div className="col-md-6">
                                         <div className="form-input">
                                             <label>Nombre</label>
@@ -322,8 +341,8 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
                     <div className="case">
 
                         <div className="top">
-                            <p className="title">Elige un nombre</p>
-                            <span className="desc">Elige un nombre a tu qr para poder identificarlo</span>
+                            <p className="title">Previsualiza QR</p>
+                            <span className="desc">Este es el qr que has creado, dale click en siguiente para subirlo a tu galeria.</span>
                         </div>
 
 

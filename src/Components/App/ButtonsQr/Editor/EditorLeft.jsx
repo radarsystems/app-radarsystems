@@ -13,10 +13,13 @@ export default function EditorLeftButtonsQr({ setButtons }) {
             }
         }
 
+
         setButtons((prevData) => {
             let newData = { ...prevData }
 
             newData.header[ev.target.name] = value
+
+            console.log(newData)
             return newData
         })
     }
@@ -69,8 +72,8 @@ export default function EditorLeftButtonsQr({ setButtons }) {
                 <p className="title">Fondo</p>
 
                 <div className="flex-colors">
-                    <button name="colorBox" onClick={changeTheme} value="ligth">Modo Claro</button>
-                    <button name="colorBox" onClick={changeTheme} value="dark">Modo Oscuro</button>
+                    <button name="theme" onClick={changeTheme} value="ligth">Modo Claro</button>
+                    <button name="theme" onClick={changeTheme} value="dark">Modo Oscuro</button>
                 </div>
             </div>
         </>

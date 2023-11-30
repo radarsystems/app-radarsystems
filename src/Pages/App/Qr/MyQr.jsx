@@ -13,6 +13,7 @@ import $ from "jquery"
 import WizardUploadQr from "../../../Components/App/Qr/WizardUploadQr"
 import { useLocation } from "react-router-dom"
 import ModalDelete from "../../../Components/App/ModalDelete"
+import { Icon } from "@iconify/react"
 
 export default function MyQr() {
 
@@ -128,6 +129,7 @@ export default function MyQr() {
                         </div>
 
                         <div className="actions">
+                            <button><Icon icon="ion:stats-chart-outline" /></button>
                             <button onClick={downloadImage}><IoCloudDownloadOutline /></button>
                             <button onClick={(ev) => { setDeleteId(element.id_qr); setModalDelete(true) }}><IoTrashOutline /></button>
 

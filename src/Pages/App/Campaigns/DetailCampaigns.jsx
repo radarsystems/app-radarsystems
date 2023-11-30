@@ -17,6 +17,7 @@ import 'react-calendar/dist/Calendar.css';
 import ModalProgrammingCampaign from "../../../Components/App/Campaigns/ModalProgrammingCampaign"
 import TextareaSms from "../../../Components/Textarea/TextareaSms"
 import CampaignStatus from "../../../Components/App/Campaigns/CampaignStatus"
+import ModalSendTest from "../../../Components/App/Campaigns/ModalSendTest"
 
 
 export default function DetailCampaigns() {
@@ -41,6 +42,7 @@ export default function DetailCampaigns() {
     const [pendingProgramming, setPendingProgramming] = useState(false)
     const [template, setTemplate] = useState({})
     const [newText, setNewText] = useState()
+    const [modalSendTest, setModalTest] = useState(false)
 
     function searchLists(search) {
 
@@ -226,6 +228,8 @@ export default function DetailCampaigns() {
                 setAwait("sendCampaign", false)
                 if (data.status) {
                     toast.success("Campaña enviada!")
+                } else {
+                    toast.error(data.msg)
                 }
             }).catch((err) => {
                 setAwait("sendCampaign", false)
@@ -395,6 +399,10 @@ export default function DetailCampaigns() {
     return (
         <>
 
+            <ModalSmall maxWidth={400} minWidth={400} visible={modalSendTest} callback={setModalTest} buttonsActions={false}>
+                <ModalSendTest Close={setModalTest} setCampaign={setCampaign} campaign={campaign} />
+            </ModalSmall>
+
             <ModalSmall key={ModalProgrammingCampaign ? "XD" : "xd"} visible={viewModalProgramming} callback={setModalProgramming} width={"30%"} onClick={programmingCampaign} maxWidth={"500px"} next={"Programar"} Pending={pendingProgramming}>
                 <ModalProgrammingCampaign setFormProgamming={setNewProgramming} campaign={campaign} />
             </ModalSmall>
@@ -420,7 +428,7 @@ export default function DetailCampaigns() {
                 <button className="programming" onClick={(ev) => { setModalProgramming(true) }}>Programar</button>
                 <button className="programming" onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}>Estadisticas</button>
                 <button className="programming" onClick={(ev) => { setDeleteModal(true) }}>Eliminar</button>
-                <button className={`programming ${pending.sendCampaign ? 'await' : ''}`} onClick={sendCampaign}>Enviar Prueba <div className="loading"></div></button>
+                <button className={`programming ${pending.sendCampaign ? 'await' : ''}`} onClick={(ev) => { setModalTest(true) }}>Enviar Prueba <div className="loading"></div></button>
                 <button className={`send-campaign ${pending.sendCampaign ? 'await' : ''}`} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
             </div>
 

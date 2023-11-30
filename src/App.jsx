@@ -54,6 +54,8 @@ import CompanyAccount from './Pages/App/SettingsAccount/Account'
 import "./Functions/Jquery.js"
 import CompanyDomains from './Pages/App/SettingsAccount/Domains'
 import LogsList from './Pages/App/Contacts/LogsList.jsx'
+import WizardQr from './Components/App/Qr/WizardQr.jsx'
+import PreviewIphone from './Components/App/Preview/Iphone.jsx'
 
 
 
@@ -161,8 +163,8 @@ function App() {
           <Route path='/buttonsqr/:id' element={<ButtonsQr />} />
 
           {/* TEST PAGE*/}
-          <Route path='/test' element={<Test />} />
-
+          <Route path='/test' element={<WizardQr Visible={true} />} />
+          <Route path='/testiphone' element={<PreviewIphone />} />
           {/* RECOVERY */}
           <Route path='/recovery' element={<Recovery />} />
 

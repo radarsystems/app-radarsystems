@@ -11,9 +11,10 @@ import { AuthContext } from "../../../Context/AuthContext";
 import axios from "axios";
 import { API_URL } from "../../../ExportUrl";
 import { LoadPreviewQr } from "../../../Functions/Global";
+import toast from "react-hot-toast";
 
 export default function ButtonsQrEditor() {
-    const [buttons, setButtons] = useState({ header: { titlegl: "", title: "", desc: "", img: "", background: "" }, elements: [] });
+    const [buttons, setButtons] = useState({ header: { titlegl: "", title: "", desc: "", img: "", background: "", theme: "ligth" }, elements: [] });
     const [editor, setEditor] = useState({ key: "", type: "" })
     const params = useParams()
     const [type, setType] = useState(undefined)
@@ -39,6 +40,8 @@ export default function ButtonsQrEditor() {
 
     function addNewQr(title, image) {
         let upload = true;
+        setVisibleQr(false)
+        toast.success("Qr agregado con exito")
         setButtons((prevData) => {
             const newData = { ...prevData };
             if (upload) {

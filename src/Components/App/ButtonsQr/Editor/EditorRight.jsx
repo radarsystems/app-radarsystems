@@ -265,7 +265,7 @@ export default function EditorRightButtonsQr({ getMyQrs, addNewQr, setVisibleQr,
 
 
 
-            <ModalSmall key={modalWifi ? randomId() : randomId()} visible={modalWifi} onClick={(ev) => { CreateQr(`WIFI:T:${formWifi.encrypt};S:${formWifi.ssid};P:${formWifi.password};;`) }} callback={setModalWifi} maxWidth={400} Pending={pending?.rs} >
+            <ModalSmall key={modalWifi ? 'x23' : 'x24'} visible={modalWifi} onClick={(ev) => { CreateQr(`WIFI:T:${formWifi.encrypt};S:${formWifi.ssid};P:${formWifi.password};;`) }} callback={setModalWifi} maxWidth={400} Pending={pending?.rs} >
 
                 <div className="top">
                     <p>Red WiFi</p>
@@ -306,7 +306,7 @@ export default function EditorRightButtonsQr({ getMyQrs, addNewQr, setVisibleQr,
             </ModalSmall>
 
 
-            <ModalSmall visible={modalRs} callback={setModalRs} key={modalRs ? "xd" : "XD"} Pending={pending.rs} maxWidth={450} next={"Crear"} onClick={() => { CreateQr(clickType == "tiktok" ? rs[clickType] + "@" + formRs : rs[clickType] + formRs) }}>
+            <ModalSmall visible={modalRs} callback={setModalRs} key={modalRs ? "12" : "13"} Pending={pending.rs} maxWidth={450} next={"Crear"} onClick={() => { CreateQr(clickType == "tiktok" ? rs[clickType] + "@" + formRs : rs[clickType] + formRs) }}>
 
                 {clickType == "websiteurl" ?
                     <div className="top">
@@ -331,7 +331,7 @@ export default function EditorRightButtonsQr({ getMyQrs, addNewQr, setVisibleQr,
             </ModalSmall>
 
 
-            <ModalSmall visible={modalPdf} Pending={pending?.modalFile} callback={setModalPdf} next={"Subir"} onClick={uploadFile}>
+            <ModalSmall key={modalPdf ? "14" : "15"} visible={modalPdf} Pending={pending?.modalFile} callback={setModalPdf} next={"Subir"} onClick={uploadFile}>
                 <input type="file" name="file" onChange={changeFile} hidden />
 
                 <div className="top">
@@ -444,7 +444,7 @@ export default function EditorRightButtonsQr({ getMyQrs, addNewQr, setVisibleQr,
                     <p>Website URL</p>
                     <span>Link to a website of your choice</span>
                 </div>
-               
+
                 <br />
 
 

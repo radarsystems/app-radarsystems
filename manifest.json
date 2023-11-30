@@ -1,0 +1,24 @@
+{
+    "name": "RadarLink - Registro rápido",
+    "short_name": "RadarLink - Registro rápido",
+    "description": "Añade un icono de pantalla de inicio para acceder a Registro Rápido fácilmente.",
+    "start_url": "/",
+    "orientation": "portrait",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "prompt_message": "Añade un icono de pantalla de inicio para acceder a Registro Rápido fácilmente",
+    "icons": [
+        {
+            "src": "../imagenes/RadarLink-144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "../imagenes/RadarLink-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "status": "ok"
+}

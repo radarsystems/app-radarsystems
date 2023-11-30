@@ -134,7 +134,7 @@ export default function ModalProgrammingCampaign({ campaign, setFormProgamming }
                         <HtmlReturn />
 
                         <div className="form-input">
-                            <label htmlFor="">Que campo validador quieres utilizar</label>
+                            <label htmlFor="">Que campo validador quieres utilizar (estas campañas funcionan de forma que verifican si en el campo validador elegido esta una fecha en caso de ser asi se enviara un correo al usuario, con los parametros configurados)</label>
                             <select name="dd" onChange={setFormProgamming}>
                                 <option value="">Selecciona el campo</option>
                                 <option value="">Birthday</option>

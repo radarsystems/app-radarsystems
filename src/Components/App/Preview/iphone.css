@@ -1,0 +1,55 @@
+.iphone {
+    width: 250px;
+    height: 500px;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+}
+
+.iphone .top {
+    display: flex;
+    width: 85%;
+    margin: auto;
+    position: relative;
+    z-index: -1;
+    top: 10px;
+    background: white;
+}
+
+.iphone .hour {
+    font-size: 10px;
+    padding: 10px;
+    position: relative;
+    left: 6px;
+    top: 0px;
+    font-weight: 600;
+}
+
+.iphone .battery {
+    margin-left: auto;
+    top: 5px;
+    position: relative;
+}
+
+.iphone .signal span {
+    font-size: 7px;
+}
+
+
+.iphone .signal i {
+    font-size: 9px;
+}
+
+.iphone .signal {
+    position: relative;
+    margin-top: 5px;
+}
+
+.iphone .battery {
+    padding-right: 2px;
+    padding-left: 5px;
+    line-height: 0.1;
+    font-size: 13px;
+    position: relative;
+    top: 2px;
+}

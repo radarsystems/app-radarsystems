@@ -10,24 +10,28 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AuthContext } from "../../../../Context/AuthContext";
 import { toast } from "react-hot-toast";
 import html2canvas from "html2canvas";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import WizardUploadQr from "../../Qr/WizardUploadQr";
 import WizardQr from "../../Qr/WizardQr";
 import { FiUpload } from "react-icons/fi"
+import { Icon } from "@iconify/react";
 
 
 export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
 
     const [visibleTitle, setVisibleTitle] = useState(false)
     const [editId, setEditId] = useState(undefined)
+    const [token, setToken] = useState();
     const [pending, setPending] = useState(false)
     const [pendingPhoto, setPendingPhoto] = useState(false)
     const [importQr, setImportQr] = useState(false)
+    const [createQr, setCreateQr] = useState(false)
     const [first, setFirst] = useState(true)
     const [modalPhoto, setModalPhoto] = useState(false)
     const [photoUpload, setPhotoUpload] = useState({})
 
     const params = useParams()
+    const Navigator = useNavigate()
 
 
     const { UserInfo } = useContext(AuthContext)
@@ -177,7 +181,15 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
                     setPending(false)
 
                     if (data.id_buttonsqr) {
-                        setEditId(data.id_buttonsqr)
+                        setEditId(Number(data.id_buttonsqr))
+                        setToken(data.token)
+                        if (!params.id) {
+                            Navigator(`/editor/buttonsqr/${Number(data.id_buttonsqr)}`)
+                        }
+                    }
+
+                    if (data.status) {
+                        toast.success("Guardado con exito")
                     }
 
                     if (data.msg) {
@@ -235,6 +247,7 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
                     if (data.id_buttonsqr) {
                         setButtons(JSON.parse(data.json))
                         setEditId(data.id_buttonsqr)
+                        setToken(data.token)
                     }
                 })
         }
@@ -251,6 +264,15 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
         setButtons((prevData) => {
             let newData = { ...prevData }
             newData.header.title = ev.target.textContent
+            return newData
+        })
+    }
+
+    function changeDesc(ev) {
+
+        setButtons((prevData) => {
+            let newData = { ...prevData }
+            newData.header.desc = ev.target.textContent
             return newData
         })
     }
@@ -337,6 +359,7 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
         document.querySelector("input[name='photo']").value = ""
     }
 
+
     return (
         <>
 
@@ -396,14 +419,18 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
                 </div>
             </ModalSmall>
 
-            <WizardUploadQr Visible={importQr} Close={setImportQr} />
+            <WizardUploadQr Visible={importQr} Close={setImportQr} key={importQr ? "x12" : "x23"} />
 
+            <WizardQr Visible={createQr} Close={setCreateQr} key={createQr ? "s14" : "s15"} />
 
             <div className="head-top">
                 <div className="right">
-                    <button ><IoCloudUploadOutline /> Subir QR</button>
+                    <button onClick={(ev) => { setCreateQr(true) }}><IoCloudUploadOutline /> Subir QR</button>
                     <button onClick={(ev) => { setImportQr(true) }}><IoCloudUploadOutline /> Importar QR</button>
-                    <button ><IoEyeOutline /> Previsualizar</button>
+                    <button onClick={(ev) => { }}><IoEyeOutline /> Previsualizar</button>
+                    {token ?
+                        <button onClick={(ev) => { Navigator(`/buttonsqr/${token}?install=true`) }}><Icon icon="ic:round-install-mobile" /> Instalar</button>
+                        : ""}
                     <button className={pending ? 'await' : ''} onClick={save}><IoSendOutline /> Guardar <div className="loading"></div></button>
                 </div>
             </div>
@@ -412,7 +439,7 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
             <div className="background2" style={{ backdropFilter: `blur(${buttons?.header?.blur}px)brightness(${buttons?.header?.brightness})`, background: buttons?.header?.background2 }}>
             </div>
 
-            <div className={`${"page buttonsbody buttonsqr editmode " + buttons?.header?.colorBox}`}>
+            <div className={`${"page buttonsbody buttonsqr editmode " + buttons?.header?.theme}`}>
                 <div className="center-top">
 
 
@@ -423,7 +450,7 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
 
 
                     <p id="title" onClick={editThis} onInput={changeTitle} suppressContentEditableWarning={true} contentEditable={true}>{"Agregar titulo"}</p>
-                    <span id="desc" onClick={editThis} suppressContentEditableWarning={true} contentEditable={true} type="desc">{"Agregar Descripcion"}</span>
+                    <span id="desc" onClick={editThis} onInput={changeDesc} suppressContentEditableWarning={true} contentEditable={true} type="desc">{"Agregar Descripcion"}</span>
 
                     <br />
                     <br />

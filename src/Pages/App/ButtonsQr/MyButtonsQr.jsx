@@ -37,7 +37,7 @@ export default function MyButtonsQr() {
         <>
             <div className="page-info">
                 <div className="">
-                    <p className="title">BOTONERAS QR</p>
+                    <p className="title">MIS BOTONERAS QR</p>
                     <span>Gestiona tus botoneras estandares</span>
 
                 </div>

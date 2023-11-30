@@ -159,10 +159,10 @@ export default function HeaderLeft() {
 
 
                     <li className={""}>
-                        <button onClick={ToggleChild}><i className="icon"><IoCopyOutline /></i> Encuestas <i className="arrow"><MdArrowForwardIos /></i></button>
+                        <button onClick={ToggleChild}><i className="icon"><IoCopyOutline /></i> Formulario <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
-                            <li><Link to="/surveys">Mis Encuestas</Link></li>
-                            <li><Link to="/surveys/editor">Crear Encuesta</Link></li>
+                            <li><Link to="/surveys/editor">Crear Formulario</Link></li>
+                            <li><Link to="/surveys">Mis Formularios</Link></li>
                             <li><Link to="/surveys">Plantillas</Link></li>
 
                         </ul>
@@ -201,11 +201,11 @@ export default function HeaderLeft() {
                         <button onClick={ToggleChild}><i className="icon"><IoQrCode /></i> Botonera QR <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
 
-                            <li><Link to="/buttonsqr">Botoneras QR</Link></li>
                             <li><Link to="/editor/buttonsqr">Crear Botonera QR</Link></li>
-                            <li><Link to="/qr">Mis Qr's</Link></li>
-                            <li><Link to="/qr/add">Crear QR</Link></li>
+                            <li><Link to="/buttonsqr">Mi Botoneras QR</Link></li>
+                            <li><Link to="/qr/add">Crear QR individual</Link></li>
                             <li><Link to="/qr/import">Importar QR</Link></li>
+                            <li><Link to="/qr">Mis Qr's</Link></li>
 
 
 
@@ -216,8 +216,8 @@ export default function HeaderLeft() {
                     <li className={""}>
                         <button onClick={ToggleChild}><i className="icon"><IoAtSharp /></i> Botonera URL <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
-                            <li><Link to="/buttons">Mis Botoneras URL</Link></li>
                             <li><Link to="/editor/buttons">Crear Botonera URL</Link></li>
+                            <li><Link to="/buttons">Mis Botoneras URL</Link></li>
                         </ul>
                     </li>
 

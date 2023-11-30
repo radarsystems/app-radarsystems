@@ -5,6 +5,22 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 
 
+export function ConvertCampaignTypeToList(CampaignType) {
+
+    let response = undefined;
+    switch (CampaignType) {
+        case 'sms':
+            response = "sms"
+            break;
+
+        case 'em':
+        case 'em-mt':
+            response = "em"
+            break;
+    }
+
+    return response
+}
 
 export async function InfoCompany(id) {
     let data = await axios.get(API_URL + "/api/get/company?id_company=" + id, { withCredentials: true }).then((response) => { return response.data })
@@ -35,6 +51,15 @@ export function GetCookie(cookie) {
 
     return response
 }
+
+export function GetParams(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has(name)) {
+        return urlParams.get(name);
+    }
+    return null; // Si el parámetro no está presente en la URL
+}
+
 
 export function SetCookie(cookieName, cookieValue) {
     var expirationDate = new Date();
@@ -321,5 +346,18 @@ export function limitText(text, limit) {
         return text.substring(0, limit) + '...';
     } else {
         return text;
+    }
+}
+
+
+export function getDevice() {
+    const userAgent = navigator.userAgent;
+
+    if (userAgent.match(/Android/i)) {
+        return 'Android';
+    } else if (userAgent.match(/iPhone|iPad|iPod/i)) {
+        return 'iPhone';
+    } else {
+        return 'Desktop';
     }
 }
