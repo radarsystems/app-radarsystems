@@ -23,7 +23,7 @@ export default function CompanyMenuTop() {
 
             <div className="right">
                 <div className="form-search">
-                    <input type="text" placeholder="Buscar empresa..." />
+                    <input type="text" placeholder="Buscar cuenta..." />
                 </div>
             </div>
         </div>

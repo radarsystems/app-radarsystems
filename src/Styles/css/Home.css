@@ -1,6 +1,4 @@
 body[theme="ligth"] {
-    --details-purple2: #4036bb;
-    --details-blue: #4367ff;
     --details-grey: #abbee31a;
     --details-ad: #ff000014;
     --background-body: #f5f5f5;
@@ -11,11 +9,7 @@ body[theme="ligth"] {
 }
 
 body[theme="dark"] {
-    --details-purple2: #4036bb;
-    --details-blue: var(--bs-blue);
-    --details-grey: #abbee31a;
-    --details-grey3: #eaebed;
-    --details-ad: #ff000014;
+
     --text-white: #fff;
     --background-body: #191a1c;
     --left-menu: #24262a;
@@ -26,6 +20,17 @@ body[theme="dark"] {
 
     --box-actions: #34373f;
     --border-box: #f5f5f512;
+}
+
+
+:root {
+    --text-fullwhite: #fff;
+    --details-purple2: #4036bb;
+    --details-blue: #4367ff;
+    --details-grey: #abbee31a;
+    --details-grey3: #eaebed;
+    --details-ad: #ff000014;
+    --details-lila: #8f83f3;
 }
 
 body {
@@ -264,7 +269,7 @@ body {
 .app .page .center-loading .circle {
     width: 50px;
     height: 50px;
-    border: 3px solid var(--details-blue);
+    border: 3px solid var(--details-lila);
     border-radius: 90px;
     border-bottom: 3px solid transparent;
     margin: auto;
@@ -307,10 +312,10 @@ body {
     padding-right: 15px;
     padding-left: 15px;
     display: flex;
-    background: var(--details-blue);
+    background: var(--details-lila);
     width: max-content;
     margin: auto;
-    color: var(--text-white);
+    color: var(--text-fullwhite) !important;
 }
 
 .app .page-info .right {
@@ -682,6 +687,7 @@ body {
     width: 26px;
     height: 26px;
     margin-left: 5px;
+    color: var(--text-white);
 }
 
 .app .editor-canvas {
@@ -751,7 +757,7 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 90px;
-    border: 2px solid var(--details-blue);
+    border: 2px solid var(--details-lila);
     border-bottom: 2px solid transparent;
     margin: auto;
     animation: rotate360 1s linear infinite;
@@ -863,7 +869,7 @@ body {
     margin: auto;
     display: block;
     margin-top: 7px;
-    background: var(--details-blue);
+    background: var(--details-lila);
     width: 100%;
     border-radius: 28px;
 }
@@ -1030,7 +1036,7 @@ body {
 .app .box .loading .circle {
     width: 50px;
     height: 50px;
-    border: 3px solid var(--details-blue);
+    border: 3px solid var(--details-lila);
     border-radius: 90px;
     border-bottom: 3px solid transparent;
     margin: auto;
@@ -1331,7 +1337,7 @@ table th {
 
 
 .modal-small .actions button.done {
-    background-color: var(--details-blue);
+    background-color: var(--details-lila);
     color: white;
 }
 
@@ -1695,24 +1701,46 @@ table th {
 }
 
 .ready-list {
-    color: #77fd77;
-    font-size: 14px;
+    font-weight: 600;
+    background: var(--details-lila);
+    padding: 9px;
+    border-radius: 93px;
+    padding-right: 15px;
+    padding-left: 15px;
+    color: white;
 }
 
 .setting-list {
-    color: var(--text-white);
     font-size: 14px;
-    opacity: 0.8;
+    font-weight: 600;
+    background: var(--details-lila);
+    padding: 9px;
+    border-radius: 93px;
+    padding-right: 15px;
+    padding-left: 15px;
+    color: white;
 }
 
 .wait-list {
     font-size: 14px;
-    color: #ff9b00;
+    font-weight: 600;
+    background: var(--details-lila);
+    padding: 9px;
+    border-radius: 93px;
+    padding-right: 15px;
+    padding-left: 15px;
+    color: white;
 }
 
 .error-list {
     font-size: 14px;
-    color: #ff4848;
+    font-weight: 600;
+    background: var(--details-lila);
+    padding: 9px;
+    border-radius: 93px;
+    padding-right: 15px;
+    padding-left: 15px;
+    color: white;
 }
 
 .wizard-home .body .options .selector .check {
@@ -1746,7 +1774,7 @@ table th {
 }
 
 .wizard-home .body .selector.active .check {
-    color: var(--details-blue) !important;
+    color: var(--details-lila) !important;
     opacity: 1;
 }
 
@@ -1763,7 +1791,7 @@ table th {
 
 .wizard-home .actions .next {
     display: block;
-    background-color: var(--details-blue);
+    background-color: var(--details-lila);
     padding: 10px;
     padding-right: 15px;
     padding-left: 15px;
@@ -1780,14 +1808,17 @@ table th {
 
 .menu-top-right button {
     padding: 10px;
-    font-size: 14px;
-    border-radius: 90px;
+    font-size: 12px;
+    background: var(--border-box);
+    border-radius: 25px;
     padding-right: 15px;
     padding-left: 15px;
+    color: var(--text-white);
 }
 
 .menu-top-right button.send-campaign {
-    background: var(--details-blue);
+    background: var(--details-lila);
+    color: var(--text-fullwhite);
 }
 
 .menu-top-right button.programming {
@@ -2081,6 +2112,7 @@ table th {
     padding: 10px;
     font-size: 13px;
     border-radius: 90px;
+    color: var(--text-white);
     background-color: var(--box-actions);
 }
 
@@ -2327,6 +2359,8 @@ svg {
     padding-top: 5px;
     transition: 0.5s;
     padding-bottom: 5px;
+    color: var(--text-white);
+
 }
 
 .page.buttonsqr .top-right button i {
@@ -2334,7 +2368,7 @@ svg {
 }
 
 .page.buttonsqr .top-right button.select {
-    background-color: var(--details-blue);
+    background-color: var(--details-lila);
 }
 
 
@@ -2542,7 +2576,7 @@ svg {
 }
 
 .segments-creator .buttons-right button.save {
-    background-color: var(--details-blue);
+    background-color: var(--details-lila);
     border: 1px transparent;
 }
 
@@ -2732,7 +2766,7 @@ svg {
     border-radius: 90px;
     padding-right: 15px;
     padding-left: 15px;
-    background-color: var(--details-blue);
+    background-color: var(--details-lila);
     border: 0px;
 }
 
@@ -2834,7 +2868,7 @@ svg {
 }
 
 .textarea-sms .bottom-actions button.preview {
-    background-color: var(--details-blue);
+    background-color: var(--details-lila);
 }
 
 .textarea-sms .count {
@@ -2978,7 +3012,7 @@ svg {
     background: black;
 }
 
-.img-tuto-buttonsqr span{
+.img-tuto-buttonsqr span {
     color: white;
     margin-bottom: 36px;
     display: block;

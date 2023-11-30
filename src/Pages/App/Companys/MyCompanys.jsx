@@ -106,7 +106,7 @@ export default function MyCompanys() {
                 if (data.status) {
                     LoadCompanys()
                     setModalEditCompany(false)
-                    toast.success("Has creado tu empresa correctamente.")
+                    toast.success("Has creado tu cuenta correctamente.")
                 }
 
                 if (data.msg) {
@@ -165,7 +165,7 @@ export default function MyCompanys() {
 
             <ModalSmall onClick={SaveEdit} visible={modalEditCompany} callback={setModalEditCompany} close={(ev) => { setEditCompany({}) }} Pending={pending} next={`${modeEdit ? 'Editar' : 'Agregar'}`}>
                 <div className="top">
-                    <p>{modeEdit ? 'Editar empresa' : 'Agregar empresa'}</p>
+                    <p>{modeEdit ? 'Editar cuenta' : 'Agregar cuenta'}</p>
                 </div>
 
                 <div className="content">
@@ -180,8 +180,8 @@ export default function MyCompanys() {
                     </div>
 
                     <div className="form-input">
-                        <label>Elige color de empresa</label>
-                        <span className="desc">El color te ayudara a identificar tu empresa.</span>
+                        <label>Elige color de tu cuenta</label>
+                        <span className="desc">El color te ayudara a identificar tu tipo de cuenta.</span>
                         <div className="colors" key={modalEditCompany ? 'a' : 'x'}>
                             <CircleColor color={"#2e56ff"} fn={setColor} />
                             <CircleColor color={"#57c583"} fn={setColor} />
@@ -200,7 +200,7 @@ export default function MyCompanys() {
             <div className="page-info">
                 <div className="">
                     <p className="title">MIS CUENTAS</p>
-                    <span>Crea y administra tus cuentas, agrega roles y perfiles</span>
+                    <span>Crea y administra tus cuentas, agrega Roles y Perfiles</span>
 
                 </div>
 

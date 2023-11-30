@@ -448,9 +448,17 @@ export default function DetailCampaigns() {
                         </div>
                     </div>
 
-                    <div>
-                        <p>Estatus</p>
-                        <CampaignStatus PauseCampaign={PauseCampaign} status={campaign?.status} />
+                    <div style={{
+                        position: "relative",
+                        top: "21px"
+                    }}>
+                        <p style={{ display: "inline" }}>Estatus:</p>
+                        <CampaignStatus style={{
+                            marginLeft: "9px",
+                            fontSize: "13px",
+                            position: "relative",
+                            top: "-1px"
+                        }} PauseCampaign={PauseCampaign} status={campaign?.status} />
                     </div>
 
                     <div className="actions">

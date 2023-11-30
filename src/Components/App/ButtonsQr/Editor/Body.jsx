@@ -28,6 +28,7 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
     const [createQr, setCreateQr] = useState(false)
     const [first, setFirst] = useState(true)
     const [modalPhoto, setModalPhoto] = useState(false)
+    const [fixRepeat, setFixRepeat] = useState(false)
     const [photoUpload, setPhotoUpload] = useState({})
 
     const params = useParams()
@@ -252,12 +253,26 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
                 })
         }
     }, [])
+    let limitUpdate = 0;
 
     useEffect(() => {
 
-        updateEditing()
 
-    }, [editId, type])
+        if (!fixRepeat) {
+            if (
+                (type === 'company' && editId === undefined && buttons.elements[0]?.title === 'Business Card') ||
+                (type !== 'company')
+            ) {
+                if (buttons && buttons.elements.length > 0) {
+                    updateEditing();
+                    setFixRepeat(true);
+                }
+            }
+        }
+
+
+
+    }, [editId, type, buttons])
 
     function changeTitle(ev) {
 

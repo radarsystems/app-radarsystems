@@ -1,33 +1,34 @@
 import { IoCheckmarkDone, IoPause, IoTimerOutline } from "react-icons/io5";
 import { FiLoader } from "react-icons/fi"
+import { Icon } from "@iconify/react";
 
-export default function CampaignStatus({ status, PauseCampaign }) {
+export default function CampaignStatus({ status, PauseCampaign, style }) {
 
     return (
         <>
 
             {status == "prepare" ?
                 <>
-                    <span><FiLoader /> En espera...</span>
+                    <span style={style}>En espera... <Icon icon="mdi:check" /></span>
                 </>
                 : ""}
 
             {status == "programmed" ?
                 <>
-                    <span className="wait-list"><IoTimerOutline /> Programada </span>
+                    <span style={style} className="wait-list"> Programada <IoTimerOutline /></span>
                 </>
                 : ""}
 
             {status == "sent" ?
                 <>
-                    <span className="ready-list"><IoCheckmarkDone /> Enviado</span>
+                    <span style={style} className="ready-list">Enviado <Icon icon="mdi:check-all" /> </span>
                 </>
                 : ""}
 
 
             {status == "sending" ?
                 <>
-                    <span className="ready-list"><FiLoader /> Enviando...</span>
+                    <span style={style} className="ready-list"> Enviando... <FiLoader /></span>
                     <button onClick={PauseCampaign}><IoPause /></button>
                 </>
                 : ""}
