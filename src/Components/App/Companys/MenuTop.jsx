@@ -9,14 +9,15 @@ export default function CompanyMenuTop() {
                     <Link to="/companys">Cuentas</Link>
                 </li>
 
-
-                <li>
-                    <Link to="/companys/users">Usuarios</Link>
-                </li>
-                
                 <li>
                     <Link to="/companys/roles">Roles</Link>
                 </li>
+
+                <li>
+                    <Link to="/companys/users">Perfiles</Link>
+                </li>
+
+
 
             </ul>
 

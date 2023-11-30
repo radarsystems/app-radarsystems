@@ -310,6 +310,7 @@ body {
     background: var(--details-blue);
     width: max-content;
     margin: auto;
+    color: var(--text-white);
 }
 
 .app .page-info .right {

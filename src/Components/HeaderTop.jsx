@@ -45,7 +45,7 @@ export function HeaderTop() {
                                     </div>
                                 </>
                                 :
-                                <Link to="/companys" className="select-company">Seleccionar Empresa</Link>
+                                <Link to="/companys" className="select-company">Seleccionar Cuenta</Link>
                         }
                     </div>
                     <button className="option"><IoHelpCircleOutline /></button>

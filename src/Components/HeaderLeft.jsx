@@ -202,7 +202,7 @@ export default function HeaderLeft() {
                         <ul>
 
                             <li><Link to="/editor/buttonsqr">Crear Botonera QR</Link></li>
-                            <li><Link to="/buttonsqr">Mi Botoneras QR</Link></li>
+                            <li><Link to="/buttonsqr">Mis Botoneras QR</Link></li>
                             <li><Link to="/qr/add">Crear QR individual</Link></li>
                             <li><Link to="/qr/import">Importar QR</Link></li>
                             <li><Link to="/qr">Mis Qr's</Link></li>

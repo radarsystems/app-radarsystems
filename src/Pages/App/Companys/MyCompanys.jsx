@@ -200,12 +200,12 @@ export default function MyCompanys() {
             <div className="page-info">
                 <div className="">
                     <p className="title">MIS CUENTAS</p>
-                    <span>Crea y administra tus empresas, agrega nuevos encargados u nuevos cargos</span>
+                    <span>Crea y administra tus cuentas, agrega roles y perfiles</span>
 
                 </div>
 
                 <div className="right">
-                    <button className="add" onClick={(ev) => { setModalEditCompany(true); setModeEdit(false) }}>Crear nueva empresa</button>
+                    <button className="add" onClick={(ev) => { setModalEditCompany(true); setModeEdit(false) }}>Crear nueva cuenta</button>
                 </div>
             </div>
 
