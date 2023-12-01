@@ -78,8 +78,8 @@ export default function WizardButtonsQr({ Visible, Close, Callback, setType, Typ
                 <div className="body">
                     <div className="case">
                         <div className="top">
-                            <p className="title">Crear una nueva botonera QR</p>
-                            <span className="desc">Selecciona el tipo de lista que te gustaría crear</span>
+                            <p className="title">Crea tu botonera QR</p>
+                            <span className="desc">Selecciona el tipo de botonera QR que deseas crear</span>
                         </div>
 
                         <div className="options flex" id={`options-${idOptions[0]}`}>
@@ -90,7 +90,7 @@ export default function WizardButtonsQr({ Visible, Close, Callback, setType, Typ
                                 <div className="info">
                                     <p>Botonera Personal</p>
                                     <span>
-                                        La botonera personal, es totalmente vacia y modificable a tu manera
+                                        Crea tu botonera y unifica toda tu presencia personal / online de manera sencilla, rápida y gratuita.
                                     </span>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@ export default function WizardButtonsQr({ Visible, Close, Callback, setType, Typ
                                 <div className="info">
                                     <p>Botonera Empresarial</p>
                                     <span>
-                                        La botonera empresarial viene con una plantilla predeterminada para ingresar qrs referente al tema
+                                        La botonera empresarial viene con una plantilla predeterminada, donde podras generar multiples QR's y donde puedes crear a tu estilo, fondos y colores.
                                     </span>
                                 </div>
                             </div>

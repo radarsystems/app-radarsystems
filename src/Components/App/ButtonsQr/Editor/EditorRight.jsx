@@ -385,7 +385,15 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     <div className="img">
                         <img src="/img/icons/vCard.svg" alt="" />
                     </div>
-                    <p>Tarjeta de presentacion</p>
+                    <p>Crear QR De Presentacion</p>
+                    <span>Comparte </span>
+                </div>
+
+                <div className="button" onClick={(ev) => { clickButton(ev, 'vcard') }} type="vcard">
+                    <div className="img">
+                        <img src="/img/icons/vCard.svg" alt="" />
+                    </div>
+                    <p>Mis QR's De Presentacion</p>
                     <span>Comparte </span>
                 </div>
 
@@ -401,7 +409,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     <div className="img">
                         <img src="/img/icons/apps/whatsapp-icon.svg" alt="" />
                     </div>
-                    <p>Whatsapp</p>
+                    <p>Crear Whatsapp</p>
                     <span>Link to a website of your choice</span>
                 </div>
                 <div className="button" onClick={(ev) => { clickButton(ev, 'instagram') }} type="rs">
@@ -410,7 +418,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         <img src="/img/icons/apps/instagram.svg" alt="" />
                     </div>
 
-                    <p>Instagram</p>
+                    <p>Crear Instagram</p>
                     <span>Link to a website of your choice</span>
                 </div>
                 <div className="button" onClick={(ev) => { clickButton(ev, 'facebook') }} type="rs">
@@ -419,7 +427,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         <img src="/img/icons/apps/facebook.svg" alt="" />
                     </div>
 
-                    <p>Facebook</p>
+                    <p>Crear Facebook</p>
                     <span>Link to a website of your choice</span>
                 </div>
                 <div className="button" onClick={(ev) => { clickButton(ev, 'twitter') }} type="rs">
@@ -428,7 +436,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         <img src="/img/icons/apps/twitter.svg" alt="" />
                     </div>
 
-                    <p>X</p>
+                    <p>Crear X</p>
                     <span>Link to a website of your choice</span>
                 </div>
                 <div className="button" onClick={(ev) => { clickButton(ev, 'tiktok') }} type="rs">
@@ -437,7 +445,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         <img src="/img/icons/apps/tiktok.svg" alt="" />
                     </div>
 
-                    <p>Tiktok</p>
+                    <p>Crear Tiktok</p>
                     <span>Link to a website of your choice</span>
                 </div>
 
@@ -446,7 +454,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         <img src="/img/icons/website.png" alt="" />
                     </div>
 
-                    <p>Website URL</p>
+                    <p>Crear Website URL</p>
                     <span>Link to a website of your choice</span>
                 </div>
 
@@ -466,7 +474,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         <img src="/img/icons/pdf.svg" alt="" />
                     </div>
 
-                    <p>PDF</p>
+                    <p>Subir PDF</p>
                     <span>Link to a website of your choice</span>
                 </div>
                 <div className="button" onClick={(ev) => { clickButton(ev, 'img') }}>
@@ -474,7 +482,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     <div className="img">
                         <img src="/img/icons/images.svg" alt="" />
                     </div>
-                    <p>Imagenes</p>
+                    <p>Subir Imagenes</p>
                     <span>Link to a website of your choice</span>
                 </div>
 
@@ -488,7 +496,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         <img src="/img/icons/wifi.svg" alt="" />
                     </div>
 
-                    <p>WIFI</p>
+                    <p>Crear WIFI</p>
                     <span>Link to a website of your choice</span>
                 </div>
 

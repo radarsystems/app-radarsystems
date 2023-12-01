@@ -1808,10 +1808,9 @@ table th {
 .wizard-home .actions .next {
     display: block;
     background-color: var(--details-lila);
-    padding: 10px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 10px 15px;
     border-radius: 25px;
+    color: var(--text-fullwhite);
 }
 
 .menu-top-right {
@@ -2952,6 +2951,18 @@ svg {
 
 .buttons-services.vcard div[type="vcard"] {
     opacity: 1;
+    animation: activeButtonService .5s ease infinite alternate;
+    border: 1px solid var(--details-lila);
+}
+
+@keyframes activeButtonService {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.03);
+    }
 }
 
 .buttons-services.all div {
@@ -2963,6 +2974,8 @@ svg {
 
 .buttons-services.rs div[type="rs"] {
     opacity: 1;
+    animation: activeButtonService .5s ease infinite alternate;
+    border: 1px solid var(--details-lila);
 }
 
 .buttons-services .button p {
@@ -3204,6 +3217,7 @@ svg {
         font-size: 14px;
         border-radius: 90px;
         background: var(--border-box);
+        color: var(--text-white);
     }
 
 

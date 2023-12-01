@@ -383,7 +383,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
     return (
         <>
 
-            <ModalSmall visible={modalPhoto} callback={setModalPhoto} onClick={uploadPhoto} Pending={pendingPhoto}>
+            <ModalSmall visible={modalPhoto} next={`Agregar`} callback={setModalPhoto} onClick={uploadPhoto} Pending={pendingPhoto}>
                 <input type="file" name="photo" onChange={changePhoto} hidden />
 
                 <div className="top">
@@ -445,7 +445,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
 
             <div className="head-top">
                 <div className="right">
-                    <button onClick={(ev) => { setCreateQr(true) }}><IoCloudUploadOutline /> Subir QR</button>
+                    <button onClick={(ev) => { setCreateQr(true) }}><IoCloudUploadOutline /> Crear QR</button>
                     <button onClick={(ev) => { setImportQr(true) }}><IoCloudUploadOutline /> Importar QR</button>
                     <button onClick={(ev) => { }}><IoEyeOutline /> Previsualizar</button>
                     {token ?
@@ -465,7 +465,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
 
                     <img className="logo" onClick={editThis} type="logo" src={buttons?.header?.logo ? buttons?.header?.logo : "/img/icons/default-img.jpg"} alt="" />
 
-                    <button className="action" onClick={(ev) => { setModalPhoto(true) }}><FiUpload /> Cambiar Foto</button>
+                    <button className="action" onClick={(ev) => { setModalPhoto(true) }}><FiUpload /> Agregar Imagen</button>
                     <br />
 
 
@@ -485,7 +485,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
                                 </div>
                                 <div className="top-right">
                                     <button className={`${editor?.key == key ? editor?.type == "addqr" ? "select" : "" : ""}`} id={key} type="addqr" onClick={(ev) => { editThis(ev), VisibleMenu('right') }}>
-                                        <i><IoCheckmark /></i>  Agregar
+                                        <i><IoCheckmark /></i>  Seleccionar QR
                                     </button>
                                     <button id={key} onClick={(ev) => { deleteBox(key) }}>Eliminar</button>
 
