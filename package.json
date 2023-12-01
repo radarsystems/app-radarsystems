@@ -4,8 +4,8 @@
   "type": "module",
   "homepage": "/",
   "scripts": {
-    "dev": "vite --host=192.168.18.6",
-    "build": "vite build",
+    "dev": "copy .env.dev .env && vite --host=192.168.18.6",
+    "build": "copy .env.prod .env && vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
