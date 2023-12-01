@@ -13,8 +13,9 @@ import { AuthContext } from "../../../../Context/AuthContext";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { randomId } from "../../../../Functions/Global";
+import { Icon } from "@iconify/react";
 
-export default function EditorRightButtonsQr({ getMyQrs, addNewQr, setVisibleQr, boxType, editor, buttons, setButtons }) {
+export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, setVisibleQr, boxType, editor, buttons, setButtons }) {
 
     const [modalPdf, setModalPdf] = useState(false)
     const [modalImages, setModalImages] = useState(false)
@@ -374,7 +375,11 @@ export default function EditorRightButtonsQr({ getMyQrs, addNewQr, setVisibleQr,
 
                 <div className="qr-result" ref={ref} hidden />
 
-                <p>1. Servicios QR</p>
+                <div className="top-title">
+                    <p>1. Servicios QR</p>
+                    <button className="close mb" onClick={(ev) => { VisibleMenu() }}><Icon icon="teenyicons:x-outline" /></button>
+                </div>
+
 
                 <div className="button" onClick={(ev) => { clickButton(ev, 'vcard') }} type="vcard">
                     <div className="img">

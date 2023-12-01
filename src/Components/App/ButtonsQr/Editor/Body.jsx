@@ -17,7 +17,7 @@ import { FiUpload } from "react-icons/fi"
 import { Icon } from "@iconify/react";
 
 
-export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
+export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
 
     const [visibleTitle, setVisibleTitle] = useState(false)
     const [editId, setEditId] = useState(undefined)
@@ -375,6 +375,11 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
     }
 
 
+    useEffect(() => {
+        VisibleMenu()
+    }, [modalPhoto, importQr])
+
+
     return (
         <>
 
@@ -451,7 +456,7 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
             </div>
 
 
-            <div className="background2" style={{ backdropFilter: `blur(${buttons?.header?.blur}px)brightness(${buttons?.header?.brightness})`, background: buttons?.header?.background2 }}>
+            <div className="background2" style={{ backdropFilter: `blur(${buttons?.header?.blur}px)brightness(${buttons?.header?.brightness})`, WebkitBackdropFilter: `blur(${buttons?.header?.blur}px)brightness(${buttons?.header?.brightness})`, background: buttons?.header?.background2 }}>
             </div>
 
             <div className={`${"page buttonsbody buttonsqr editmode " + buttons?.header?.theme}`}>
@@ -479,7 +484,7 @@ export default function BodyButtonsQr({ type, visibleQr, setVisibleQr, buttons, 
                                     <p id={key} suppressContentEditableWarning={true} contentEditable={true} type="titlespace" onInput={changeTitleSpace} onClick={(ev) => { editThis(ev) }}>{'Escribe titulo...'}</p>
                                 </div>
                                 <div className="top-right">
-                                    <button className={`${editor?.key == key ? editor?.type == "addqr" ? "select" : "" : ""}`} id={key} type="addqr" onClick={(ev) => { editThis(ev) }}>
+                                    <button className={`${editor?.key == key ? editor?.type == "addqr" ? "select" : "" : ""}`} id={key} type="addqr" onClick={(ev) => { editThis(ev), VisibleMenu('right') }}>
                                         <i><IoCheckmark /></i>  Agregar
                                     </button>
                                     <button id={key} onClick={(ev) => { deleteBox(key) }}>Eliminar</button>

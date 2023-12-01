@@ -158,6 +158,21 @@ body {
     z-index: 9;
 }
 
+.header-top .left {
+    display: flex;
+    padding: 10px;
+    position: absolute;
+    top: 5px;
+}
+
+.header-top .left .open {
+    padding: 5px;
+    line-height: 1;
+    border-radius: 90px;
+    font-size: 22px;
+    background-color: transparent;
+}
+
 .header-top .right .company {
     margin: auto;
 }
@@ -369,6 +384,7 @@ body {
     border-radius: 90px;
     font-size: 14px;
     background: var(--box-actions);
+    color: var(--text-white);
 }
 
 .app .page-lists .box .item .icon img {
@@ -3019,4 +3035,187 @@ svg {
     font-size: 14px;
     margin-top: 10px;
     padding: 10px;
+}
+
+.mb {
+    display: none;
+}
+
+
+@media (max-width:800px) {
+    .header-left {
+        transform: translateX(-70vw);
+        transition: .5s ease;
+        z-index: 99;
+
+    }
+
+    .header-left.active {
+        transform: translateX(0vw);
+    }
+
+    .app {
+        padding-left: 0px;
+    }
+
+    .app .page {
+        padding: 0px 20px 0px 20px;
+        width: 100%;
+    }
+
+    .app .box .item.flex .actions button {
+        width: 33px;
+        height: 33px;
+        line-height: 0.1;
+        text-align: center;
+    }
+
+    .app .page-info {
+        display: block;
+    }
+
+    .app .page-info .right {
+        width: max-content;
+        height: max-content;
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    .app .page-info span {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .wizard-home .body .options.flex.half .selector {
+        width: 100%;
+    }
+
+    .wizard-home .body .case {
+        padding: 15px;
+    }
+
+    .app .box .item .icon img {
+        max-width: 30px;
+        margin-right: 12px;
+    }
+
+    .app .box .item.flex .actions {
+        display: flex;
+        position: relative;
+        left: 10px;
+    }
+
+    .wizard-home .body .options.flex {
+        flex-wrap: wrap;
+    }
+
+    .editor-surveys .rows>.right {
+        position: fixed;
+        right: 0;
+        left: 0;
+        margin: auto;
+        max-height: 60vh;
+        bottom: 2vh;
+        overflow: auto;
+        z-index: 999 !important;
+        width: 93vw !important;
+        border-radius: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: none !important;
+    }
+
+
+    .editor-surveys .rows .left {
+        position: fixed;
+        right: 0;
+        left: 0;
+        margin: auto;
+        max-height: 60vh;
+        bottom: 2vh;
+        overflow: auto;
+        z-index: 999 !important;
+        width: 93vw !important;
+        border-radius: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: none !important;
+    }
+
+    .editor-surveys .rows .left.active {
+        display: block !important;
+    }
+
+    .editor-surveys .rows .right.active {
+        display: block !important;
+    }
+
+    .editor-surveys .center {
+        width: 100% !important;
+    }
+
+    .editor-surveys .head-top {
+        overflow: auto;
+    }
+
+    .editor-surveys .center .background2 {
+        width: 100vw !important;
+    }
+
+    .editor-surveys .fixed-button-right {
+        color: var(--text-white);
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background: var(--box-actions);
+        z-index: 9;
+        border-radius: 90px;
+        padding: 10px;
+        line-height: 1;
+        font-size: 31px;
+        margin-right: 4vw;
+        margin-bottom: 2vh;
+    }
+
+    .editor-surveys .title-top {
+        position: sticky;
+        top: -24px;
+        background: var(--background-body);
+        padding-top: 17px;
+        z-index: 1;
+    }
+
+    .editor-surveys .buttons-services .top-title {
+        top: -25px;
+        background: var(--background-body);
+        padding-top: 18px;
+        z-index: 1;
+        position: sticky;
+        padding-bottom: 1px;
+    }
+
+    .editor-surveys .title-top .close,
+    .buttons-services .close {
+        position: absolute;
+        right: 0;
+        top: 19px;
+        padding: 10px;
+        line-height: 0;
+        font-size: 14px;
+        border-radius: 90px;
+        background: var(--border-box);
+    }
+
+
+    .buttons-services .close {
+        top: 16px;
+    }
+
+    .editor-surveys .title-top span {
+        max-width: 88%;
+    }
+
+    .mb {
+        display: block;
+    }
 }

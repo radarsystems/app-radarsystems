@@ -5,8 +5,9 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { Link } from "react-router-dom";
 import $ from "jquery"
 import { LoadImageProfile } from "../Functions/Global";
+import { Icon } from "@iconify/react";
 
-export function HeaderTop() {
+export function HeaderTop({ MenuLeft, MenuLeftAction }) {
     const { UserInfo } = useContext(AuthContext)
     const [theme, setTheme] = useState('dark')
 
@@ -34,6 +35,12 @@ export function HeaderTop() {
     return (
         <>
             <div className="header-top">
+
+                <div className="left mb">
+                    <button className="open" onClick={(ev) => { MenuLeftAction() }}>
+                        <Icon icon="iconoir:nav-arrow-right" />
+                    </button>
+                </div>
                 <div className="right">
                     <div className="company">
                         {
@@ -48,7 +55,6 @@ export function HeaderTop() {
                                 <Link to="/companys" className="select-company">Seleccionar Cuenta</Link>
                         }
                     </div>
-                    <button className="option"><IoHelpCircleOutline /></button>
                     <button className="option" onClick={changeTheme} >
                         {theme == "dark" ? <IoMoonOutline /> : ""}
                         {theme == "ligth" ? <IoSunnyOutline /> : ""}
@@ -57,10 +63,6 @@ export function HeaderTop() {
                     <button className="option"><IoNotificationsOutline /></button>
                     <div className="user">
                         <img src="img/icons/default-user.jpg" alt="" />
-                        <p className="name">
-                            {UserInfo.user}
-                            <i><MdKeyboardArrowDown /></i>
-                        </p>
                     </div>
                 </div>
             </div>

@@ -99,6 +99,7 @@ div[colorbox="ligth"] {
     border-radius: 25px;
     padding-right: 15px;
     padding-left: 15px;
+    color: var(--text-white);
 }
 
 .editor-surveys .head-top .right button svg {

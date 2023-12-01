@@ -4,7 +4,7 @@ import { HeaderTop } from "../Components/HeaderTop";
 import "../Styles/css/Home.css"
 import { AuthContext } from "../Context/AuthContext";
 import { GetCookie } from "../Functions/Global";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Global({ Element, CompanyNeed }) {
@@ -15,6 +15,16 @@ export default function Global({ Element, CompanyNeed }) {
 
     const [loading, setLoading] = useState(false)
     const [cookie, setCookie] = useState('wait')
+    const [MenuLeft, setMenuLeft] = useState(false)
+    const location = useLocation()
+
+    function MenuLeftAction(value) {
+        if (value == undefined) {
+            MenuLeft == true ? setMenuLeft(false) : setMenuLeft(true)
+        } else {
+            setMenuLeft(false)
+        }
+    }
 
     useEffect(() => {
 
@@ -27,14 +37,18 @@ export default function Global({ Element, CompanyNeed }) {
 
     }, [])
 
+    useEffect(() => {
+        MenuLeftAction('x')
+    }, [location])
+
     return (
         <>
             <div className="app">
-                <HeaderLeft />
-                <HeaderTop />
+                <HeaderLeft MenuLeftAction={MenuLeftAction} MenuLeft={MenuLeft} />
+                <HeaderTop MenuLeftAction={MenuLeftAction} MenuLeft={MenuLeft} />
 
 
-                <div className="page">
+                <div className="page" onClick={(ev) => { MenuLeftAction('x') }}>
 
                     {CompanyNeed ?
                         UserInfo?.company?.id_company ? <Element /> :

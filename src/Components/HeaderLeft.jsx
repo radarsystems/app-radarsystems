@@ -9,7 +9,7 @@ import { AiOutlineLink } from "react-icons/ai";
 import { VscTools } from "react-icons/vsc"
 import { GetCookie } from "../Functions/Global";
 
-export default function HeaderLeft() {
+export default function HeaderLeft({ MenuLeft }) {
 
     const { UserInfo } = useContext(AuthContext)
     const [opacityMenu, setOpacity] = useState();
@@ -59,7 +59,7 @@ export default function HeaderLeft() {
 
     return (
         <>
-            <div className="header-left">
+            <div className={`header-left ${MenuLeft ? 'active' : ''}`}>
                 <div className="logo">
                     <img src="/img/icons/logo.png" alt="" />
                 </div>

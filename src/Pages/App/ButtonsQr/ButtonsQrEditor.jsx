@@ -12,6 +12,7 @@ import axios from "axios";
 import { API_URL } from "../../../ExportUrl";
 import { LoadPreviewQr } from "../../../Functions/Global";
 import toast from "react-hot-toast";
+import { Icon } from "@iconify/react";
 
 export default function ButtonsQrEditor() {
     const [buttons, setButtons] = useState({ header: { titlegl: "", title: "", desc: "", img: "", background: "", theme: "ligth" }, elements: [] });
@@ -23,6 +24,7 @@ export default function ButtonsQrEditor() {
     const [visibleQr, setVisibleQr] = useState(false)
     const [myQrs, setMyQrs] = useState([])
     const { UserInfo } = useContext(AuthContext)
+    const [menuVisible, setMenuVisible] = useState({ left: false, right: false })
 
     useEffect(() => {
         switch (type) {
@@ -37,6 +39,26 @@ export default function ButtonsQrEditor() {
 
 
     }, [type])
+
+    function VisibleMenu(what) {
+        let updatedMenuVisible = { left: false, right: false };
+
+        switch (what) {
+            case 'left':
+                updatedMenuVisible = { ...updatedMenuVisible, left: true };
+                break;
+
+            case 'right':
+                updatedMenuVisible = { ...updatedMenuVisible, right: true };
+                break;
+
+            default:
+                break;
+        }
+
+        setMenuVisible(updatedMenuVisible);
+    }
+
 
     function addNewQr(title, image) {
         let upload = true;
@@ -84,6 +106,11 @@ export default function ButtonsQrEditor() {
     }, [])
 
 
+    useEffect(() => {
+        VisibleMenu()
+    }, [visibleQr])
+
+
     return (
         <>
 
@@ -111,18 +138,21 @@ export default function ButtonsQrEditor() {
             <WizardButtonsQr Visible={wizardVisible} Callback={setWizardVisible} setType={setType} TypeSelect={type} />
 
             <div className="editor-surveys">
+
+                <button className="fixed-button-right mb" onClick={(ev) => { VisibleMenu('left') }}>
+                    <Icon icon="streamline:paint-palette" />
+                </button>
                 <div className="rows">
-                    <div className="left">
-                        <EditorLeftButtonsQr editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
+                    <div className={`left ${menuVisible.left == true ? 'active' : ''}`}>
+                        <EditorLeftButtonsQr VisibleMenu={VisibleMenu} Visible={menuVisible.left} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
                     <div className="center " style={{ background: buttons?.header?.background }}>
-                        <BodyButtonsQr type={type} setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
+                        <BodyButtonsQr VisibleMenu={VisibleMenu} type={type} setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
 
-
-                    <div className="right">
+                    <div className={`right ${menuVisible.right == true ? 'active' : ''}`}>
                         <div className="type-editor">
-                            <EditorRightButtonsQr getMyQrs={getMyQrs} addNewQr={addNewQr} setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
+                            <EditorRightButtonsQr VisibleMenu={VisibleMenu} Visible={menuVisible.right} getMyQrs={getMyQrs} addNewQr={addNewQr} setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                         </div>
                     </div>
 

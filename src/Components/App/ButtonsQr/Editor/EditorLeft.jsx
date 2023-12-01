@@ -1,6 +1,7 @@
+import { Icon } from "@iconify/react"
 import ColorPickerBasic from "../../ColorPicker/ColorPickerBasic"
 
-export default function EditorLeftButtonsQr({ setButtons }) {
+export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }) {
 
     function changeTheme(ev) {
         let value = ev.target.value
@@ -39,6 +40,7 @@ export default function EditorLeftButtonsQr({ setButtons }) {
             <div className="title-top">
                 <p>Personalizar botonera</p>
                 <span>Personaliza tu botonera, cambiando imagenes, fondo, texto, botones, enlaces.</span>
+                <button className="close mb" onClick={VisibleMenu}><Icon icon="teenyicons:x-outline" /></button>
             </div>
 
             <br />
