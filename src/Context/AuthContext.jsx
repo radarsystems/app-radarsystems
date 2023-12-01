@@ -17,6 +17,7 @@ export const AuthProvider = (params) => {
         function loadCompany() {
             let companyId = GetCookie("company")
 
+
             let formData = new FormData()
 
             formData.append("id_company", companyId);
@@ -34,16 +35,15 @@ export const AuthProvider = (params) => {
         (async function () {
             let token = GetCookie("token")
 
-            if (token) {
-                await axios.get(API_URL + "/api/get/my", { withCredentials: true }).then((response) => { return response.data }).then((data) => {
-                    if (data.id_admin) {
-                        setAuth(true)
-                        setUserInfo(data)
-                        loadCompany()
-                        setLoading(false)
-                    }
-                })
-            }
+            await axios.get(API_URL + "/api/get/my", { withCredentials: true }).then((response) => { return response.data }).then((data) => {
+                if (data.id_admin) {
+                    setAuth(true)
+                    setUserInfo(data)
+                    loadCompany()
+                    setLoading(false)
+                }
+            })
+
         }())
 
 

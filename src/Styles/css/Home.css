@@ -1568,8 +1568,27 @@ table th {
     justify-content: center;
     font-size: 40px;
     cursor: pointer;
+    position: relative;
 }
 
+
+.wizard-home .body .case .upload-qr .upload p.upload-desc {
+    font-size: 14px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+}
+
+
+.wizard-home .open-cam{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 37px;
+    background: var(--box-actions);
+}
 
 .wizard-home .body .case .upload-qr .preview {
     width: 100%;
@@ -1811,6 +1830,7 @@ table th {
     padding: 10px 15px;
     border-radius: 25px;
     color: var(--text-fullwhite);
+    font-size: 14px;
 }
 
 .menu-top-right {
