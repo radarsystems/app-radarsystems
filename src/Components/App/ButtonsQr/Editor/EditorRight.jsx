@@ -252,6 +252,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     toast.success("Se ha subido tu archivo correctamente, se esta procesando el QR");
                     await CreateQr(data.download)
                     pendingNow("modalFile", false)
+                    setModalPdf(false)
                 }
             })
             .catch((err) => {
