@@ -167,7 +167,9 @@ export default function WizardUploadQr({ Visible, Close, Return = true }) {
                                             <Camera callback={photoCamera} Close={setCameraVisible} />
                                             : ""}
 
-                                        <button className="open-cam" onClick={(ev) => { setCameraVisible(true) }}><Icon icon="ph:camera" /> Abrir Camara</button>
+                                        <br />
+                                        <span style={{ fontSize: "14px", opacity: "0.8" }}>Cuando le das activar camara toma la foto al QR de tu preferencia, luego dale click en la opcacion Subir Imagen, busca el QR y agregalo a tu botonera.</span>
+                                        <button className="open-cam" onClick={(ev) => { setCameraVisible(true) }}><Icon icon="ph:camera" /> Activar Camara</button>
                                     </>
                                     :
                                     <div className="preview">

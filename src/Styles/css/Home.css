@@ -1118,6 +1118,15 @@ body {
     margin-bottom: 15px;
     justify-content: center;
     cursor: pointer;
+    position: relative;
+}
+
+.modal-small .select-file .drop-file span.desc-upload {
+    position: absolute;
+    bottom: 0px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    opacity: 0.8;
 }
 
 .modal-small .select-file .drop-file i {
@@ -1577,6 +1586,7 @@ table th {
     display: block;
     position: absolute;
     bottom: 0;
+    color: var(--text-white);
 }
 
 
@@ -2141,6 +2151,21 @@ table th {
     cursor: pointer;
 }
 
+.page.buttonsbody .actions-bottom {
+    display: flex;
+    gap: 10px;
+}
+
+.page.buttonsbody .actions-bottom button {
+    color: var(--text-white);
+    border-radius: 12px !important;
+    border: 1px solid;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    background: transparent;
+}
+
 .page.buttonsbody.editmode input#title,
 .page.buttonsbody.editmode textarea#desc {
     width: 100%;
@@ -2152,6 +2177,16 @@ table th {
     font-size: 14px;
     max-height: 130px;
     color: var(--text-white);
+}
+
+.page.buttonsbody.ligth input#title,
+.page.buttonsbody.ligth  textarea#desc {
+    color: black !important;
+}
+
+.page.buttonsbody.dark input#title,
+.page.buttonsbody.dark  textarea#desc {
+    color: white !important;
 }
 
 

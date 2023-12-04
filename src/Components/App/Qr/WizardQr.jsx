@@ -12,7 +12,7 @@ import { toast } from "react-hot-toast"
 import html2canvas from "html2canvas"
 
 
-export default function WizardQr({ Visible, Close, loadQrs }) {
+export default function WizardQr({ Visible, Close, loadQrs = () => { }, callbackUrl = (title, img) => { } }) {
 
     const { UserInfo } = useContext(AuthContext)
     const ref = useRef(null)
@@ -120,11 +120,19 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
                 axios.post(API_URL + "/api/upload/qr", formData, { withCredentials: true })
                     .then((response) => { return response.data })
                     .then((data) => {
-                        Close(false)
+
                         if (data.status) {
-                            loadQrs()
+                            try {
+                                loadQrs()
+                                callbackUrl(formQr.name, data.img)
+                            } catch (err) {
+                                console.log(err)
+                            }
+
+                            toast.success('Has subido tu qr con exito')
                         }
 
+                        Close(false)
 
                         setPending(false)
                     }).catch((err) => {
@@ -341,8 +349,8 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
                     <div className="case">
 
                         <div className="top">
-                            <p className="title">Previsualiza QR</p>
-                            <span className="desc">Este es el qr que has creado, dale click en siguiente para subirlo a tu galeria.</span>
+                            <p className="title">Previsualiza tu QR </p>
+                            <span className="desc">Este es el QR que has creado, dale click para subirlo.</span>
                         </div>
 
 

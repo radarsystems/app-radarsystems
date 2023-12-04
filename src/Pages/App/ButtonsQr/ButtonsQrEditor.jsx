@@ -147,7 +147,7 @@ export default function ButtonsQrEditor() {
                         <EditorLeftButtonsQr VisibleMenu={VisibleMenu} Visible={menuVisible.left} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
                     <div className="center " style={{ background: buttons?.header?.background }}>
-                        <BodyButtonsQr VisibleMenu={VisibleMenu} type={type} setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
+                        <BodyButtonsQr addNewQr={addNewQr} VisibleMenu={VisibleMenu} type={type} setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
 
                     <div className={`right ${menuVisible.right == true ? 'active' : ''}`}>

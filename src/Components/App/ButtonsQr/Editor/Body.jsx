@@ -17,7 +17,7 @@ import { FiUpload } from "react-icons/fi"
 import { Icon } from "@iconify/react";
 
 
-export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
+export default function BodyButtonsQr({ addNewQr, VisibleMenu, type, visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
 
     const [visibleTitle, setVisibleTitle] = useState(false)
     const [editId, setEditId] = useState(undefined)
@@ -109,38 +109,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
 
     }
 
-    function addNewQr(ev) {
-        ev.stopPropagation()
-        console.log('addNewQr function called');
 
-        let target = $(ev.target)
-
-        let image = target.attr("image")
-        let title = target.attr("title")
-
-        setVisibleQr(false)
-        toast.success("Has seleccionado correctamente el QR")
-
-        let upload = true;
-
-        setButtons((prevData) => {
-            const newData = { ...prevData };
-            if (upload) {
-                upload = false
-                // Hacer una copia del estado anterior
-
-
-                // Crear una nueva instancia del array qrs con el contenido actual y agregar un nuevo elemento
-                const updatedQrs = [...newData.elements[editor.key].qrs, { image, title }];
-
-                // Actualizar el array qrs dentro del estado copiado
-                newData.elements[editor.key].qrs = updatedQrs;
-
-            }
-            return newData;
-        });
-
-    }
 
     function deleteQr(father, qr) {
         setButtons(prevData => {
@@ -404,6 +373,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
                                 <div className="fi">
                                     <div className="icon">
                                         <IoDocumentTextOutline />
+
                                     </div>
                                     <div className="info">
                                         <p>{photoUpload?.name}</p>
@@ -417,6 +387,9 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
                             <i>
                                 <IoCloudUploadOutline />
                             </i>
+
+                            <span className="desc">Has click aca para buscar tu archivo</span>
+
                         </div>
                     }
 
@@ -442,7 +415,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
 
             <WizardUploadQr Visible={importQr} Close={setImportQr} key={importQr ? "x12" : "x23"} />
 
-            <WizardQr Visible={createQr} Close={setCreateQr} key={createQr ? "s14" : "s15"} />
+            <WizardQr callbackUrl={addNewQr} Visible={createQr} Close={setCreateQr} key={createQr ? "s14" : "s15"} />
 
             <div className="head-top">
                 <div className="right">
@@ -514,6 +487,15 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
 
 
                     <div className="add-new" onClick={addNewBox} ><IoAdd /> Agregar Caja</div>
+                    <br />
+
+                    <div className="actions-bottom">
+                        <button className={pending ? 'await' : ''} onClick={save} ><IoAdd /> Guardar <div className="loading"></div></button>
+                        <br />
+                        <button onClick={(ev) => { Navigator(`/buttonsqr/${token}?install=true`) }} ><Icon icon="ic:round-install-mobile" /> Instalar</button>
+
+                    </div>
+
 
                 </div>
             </div>
