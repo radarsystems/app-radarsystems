@@ -1580,7 +1580,7 @@ table th {
 }
 
 
-.wizard-home .open-cam{
+.wizard-home .open-cam {
     display: block;
     width: 100%;
     margin-top: 10px;
@@ -2140,6 +2140,18 @@ table th {
 .page.buttonsbody.editmode .logo {
     cursor: pointer;
 }
+
+.page.buttonsbody.editmode input#title,
+.page.buttonsbody.editmode textarea#desc {
+    width: 100%;
+    margin-bottom: 10px;
+    background: transparent;
+    border: 1px solid;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
 
 .editmode button.action {
     width: 100%;

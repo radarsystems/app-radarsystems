@@ -36,7 +36,8 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
         "twitter": "https://x.com/",
         "facebook": "https://m.facebook.com/",
         "tiktok": "https://tiktok.com/",
-        "websiteurl": ""
+        "whatsapp": "https://api.whatsapp.com/send/?phone=",
+        "websiteurl": "",
     };
 
     function clickButton(ev, type) {

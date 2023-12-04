@@ -226,8 +226,8 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
     }
 
     function updateEditing() {
-        $("#title").text(buttons?.header?.title ? buttons?.header?.title : "Agregar Nombre...")
-        $("#desc").text(buttons?.header?.desc ? buttons?.header?.des : "Agregar descripcion...")
+        $("#title").val(buttons?.header?.title)
+        $("#desc").val(buttons?.header?.desc)
 
         buttons?.elements?.forEach((element, key) => {
             console.log(element)
@@ -266,6 +266,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
                 if (buttons && buttons.elements.length > 0) {
                     updateEditing();
                     setFixRepeat(true);
+
                 }
             }
         }
@@ -278,7 +279,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
 
         setButtons((prevData) => {
             let newData = { ...prevData }
-            newData.header.title = ev.target.textContent
+            newData.header.title = ev.target.value
             return newData
         })
     }
@@ -287,7 +288,7 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
 
         setButtons((prevData) => {
             let newData = { ...prevData }
-            newData.header.desc = ev.target.textContent
+            newData.header.desc = ev.target.value
             return newData
         })
     }
@@ -468,9 +469,8 @@ export default function BodyButtonsQr({ VisibleMenu, type, visibleQr, setVisible
                     <button className="action" onClick={(ev) => { setModalPhoto(true) }}><FiUpload /> Agregar Imagen</button>
                     <br />
 
-
-                    <p id="title" onClick={editThis} onInput={changeTitle} suppressContentEditableWarning={true} contentEditable={true}>{"Agregar titulo"}</p>
-                    <span id="desc" onClick={editThis} onInput={changeDesc} suppressContentEditableWarning={true} contentEditable={true} type="desc">{"Agregar Descripcion"}</span>
+                    <input id="title" onClick={editThis} onChange={changeTitle} suppressContentEditableWarning={true} contentEditable={true} placeholder="Nombre" />
+                    <textarea placeholder="Descripcion" id="desc" onClick={editThis} onChange={changeDesc} suppressContentEditableWarning={true} contentEditable={true} type="desc"></textarea>
 
                     <br />
                     <br />

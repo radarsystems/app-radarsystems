@@ -236,7 +236,7 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
                         <div className="case">
                             <div className="top">
                                 <p className="title">Personaliza tu QR</p>
-                                <span className="desc">Este es un qr para agregar contactos a un dispositivo movil, puedes personalizarlo con tu informacion necesaria</span>
+                                <span className="desc">Este es un QR de contacto para generar tu tarjeta de presentacion, puedes personalizarlo con tu informacion necesaria.</span>
                             </div>
 
 
@@ -244,7 +244,7 @@ export default function WizardQr({ Visible, Close, loadQrs }) {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="form-input">
-                                            <label>Nombre del qr</label>
+                                            <label>Nombre del QR</label>
                                             <input type="text" onChange={setNewFormqr} name="name" placeholder="Nombre para tu QR" />
                                         </div>
                                     </div>
