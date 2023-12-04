@@ -60,6 +60,22 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     getMyQrs("qr-contact")
                     break;
 
+                case 'vcard-add':
+
+                    document.querySelector(".head-top .right button").click()
+
+                    setTimeout(() => {
+                        document.querySelectorAll(".wizard-home.open .case.active .selector")[1].click()
+                    }, 20)
+
+                    setTimeout(() => {
+                        let next = $(document.querySelector(".wizard-home.open .next"))
+                        next.click()
+                    }, 20)
+
+
+                    break;
+
                 case 'instagram':
                 case 'facebook':
                 case 'tiktok':
@@ -382,7 +398,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                 </div>
 
 
-                <div className="button" onClick={(ev) => { clickButton(ev, 'vcard') }} type="vcard">
+                <div className="button" onClick={(ev) => { clickButton(ev, 'vcard-add') }} type="vcard">
                     <div className="img">
                         <img src="/img/icons/vCard.svg" alt="" />
                     </div>
