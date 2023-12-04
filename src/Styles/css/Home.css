@@ -2150,6 +2150,8 @@ table th {
     text-align: center;
     padding: 10px;
     font-size: 14px;
+    max-height: 130px;
+    color: var(--text-white);
 }
 
 
