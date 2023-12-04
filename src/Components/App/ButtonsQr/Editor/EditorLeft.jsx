@@ -56,6 +56,17 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
             </div>
 
             <div className="option">
+                <p className="title">Fondo</p>
+
+                <div className="flex-colors">
+                    <button name="theme" onClick={changeTheme} value="ligth">Modo Claro</button>
+                    <button name="theme" onClick={changeTheme} value="dark">Modo Oscuro</button>
+                </div>
+            </div>
+
+            <br />
+
+            <div className="option">
                 <p className="title">Blur</p>
                 <input type="range" onChange={changeTheme} defaultValue={0.0} step={"0.1"} max={"10"} name="blur" />
             </div>
@@ -70,14 +81,7 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
                 <input type="range" onChange={changeTheme} defaultValue={1} step={"0.1"} max={"50"} name="radius" />
             </div>
 
-            <div className="option">
-                <p className="title">Fondo</p>
 
-                <div className="flex-colors">
-                    <button name="theme" onClick={changeTheme} value="ligth">Modo Claro</button>
-                    <button name="theme" onClick={changeTheme} value="dark">Modo Oscuro</button>
-                </div>
-            </div>
         </>
     )
 }
