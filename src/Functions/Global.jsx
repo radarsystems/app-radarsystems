@@ -85,6 +85,16 @@ export function randomId(length = 15) {
     return Math.random().toString(36).substring(2, length + 2);
 }
 
+export function AnalizeImage(file) {
+    let response = false
+
+    if (file.type.indexOf("image") >= 0) {
+        response = true
+    }
+
+    return response
+}
+
 export function AnalizeFileCsv(ev, setPercent) {
     return new Promise((resolve, reject) => {
         try {

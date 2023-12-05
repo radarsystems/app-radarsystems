@@ -244,6 +244,7 @@ body {
     height: max-content;
 }
 
+
 .header-top .right .name {
     display: inline-block;
     padding: 10px;
@@ -1185,6 +1186,13 @@ body {
     transform: translateY(-50px);
 }
 
+.modal-small .drop-file .desc{
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+    margin-bottom: 11px;
+}
+
 .modal-small .menu-change ul {
     display: flex;
     width: 100%;
@@ -1288,8 +1296,9 @@ body {
 .modal-small.delete .dialog {
     margin-bottom: 15px;
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 15px;
+    opacity: 0.8;
 }
 
 .modal-small.delete button.done {
@@ -1340,7 +1349,7 @@ table th {
     padding-right: 15px;
     padding-left: 15px;
     margin-left: 5px;
-    font-size: 14px;
+    font-size: 12px;
     background-color: var(--details-grey);
     border-radius: 120px;
     color: var(--text-white);

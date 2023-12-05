@@ -56,7 +56,7 @@ export default function ModalDelete({ visible, onClick, callback, Pending, name 
                     </div>
 
                     <span className="dialog">
-                        Estas apunto de eliminar {name == undefined ? 'este objeto' : `esta ` + name}, estas seguro que quieres eliminarlo?
+                        Estas apunto de eliminar {name == undefined ? 'este objeto' : `esta ` + name}. ¿Estas seguro de querer eliminarlo?
                     </span>
                     <div className="actions">
                         <button id="close" onClick={closeModal}>{'Cancelar'}</button>

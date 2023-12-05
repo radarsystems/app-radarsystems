@@ -8,6 +8,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { AiOutlineLink } from "react-icons/ai";
 import { VscTools } from "react-icons/vsc"
 import { GetCookie } from "../Functions/Global";
+import { Icon } from "@iconify/react";
 
 export default function HeaderLeft({ MenuLeft }) {
 
@@ -188,7 +189,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
 
                     <li className={""}>
-                        <button onClick={ToggleChild}><i className="icon"><AiOutlineLink /></i> Medusa <i className="arrow"><MdArrowForwardIos /></i></button>
+                        <button onClick={ToggleChild}><i className="icon"><Icon icon="mdi:jellyfish-outline" /></i> Medusa <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/shorturls/campaigns">Mis Campañas</Link></li>
                             <li><Link to="/shorturls/campaigns/add">Crear Campana</Link></li>
@@ -214,7 +215,7 @@ export default function HeaderLeft({ MenuLeft }) {
                     </li>
 
                     <li className={""}>
-                        <button onClick={ToggleChild}><i className="icon"><IoAtSharp /></i> Botonera URL <i className="arrow"><MdArrowForwardIos /></i></button>
+                        <button onClick={ToggleChild}><i className="icon"><Icon icon="ri:links-fill" /></i> Botonera URL <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/editor/buttons">Crear Botonera URL</Link></li>
                             <li><Link to="/buttons">Mis Botoneras URL</Link></li>

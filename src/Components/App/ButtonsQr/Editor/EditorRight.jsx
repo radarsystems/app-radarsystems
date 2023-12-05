@@ -403,7 +403,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     <div className="img">
                         <img src="/img/icons/vCard.svg" alt="" />
                     </div>
-                    <p>Crear QR De Presentacion</p>
+                    <p>Crear Tarjeta De Presentacion QR</p>
                     <span>Comparte </span>
                 </div>
 
@@ -411,7 +411,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     <div className="img">
                         <img src="/img/icons/vCard.svg" alt="" />
                     </div>
-                    <p>Mis QR's De Presentacion</p>
+                    <p>Mis Tarjeta De Presentacion QR</p>
                     <span>Comparte </span>
                 </div>
 
