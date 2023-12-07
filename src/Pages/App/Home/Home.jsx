@@ -179,11 +179,11 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Campaña</td>
-                                    <td>Enviados</td>
-                                    <td>Devueltos</td>
-                                    <td>Leidos</td>
-                                    <td>Click</td>
+                                    <td>Cam.</td>
+                                    <td>Env.</td>
+                                    <td>Dev.</td>
+                                    <td>Lei.</td>
+                                    <td>Click.</td>
                                     <td>Rep. Spam</td>
                                     <td>Opt. Out</td>
                                     <td>Opt. Net</td>
@@ -226,11 +226,11 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Campaña</td>
-                                    <td>Enviados</td>
-                                    <td>Devueltos</td>
-                                    <td>Leidos</td>
-                                    <td>Click</td>
+                                    <td>Cam.</td>
+                                    <td>Env.</td>
+                                    <td>Dev.</td>
+                                    <td>Lei.</td>
+                                    <td>Click.</td>
                                     <td>Rep. Spam</td>
                                     <td>Opt. Out</td>
                                     <td>Opt. Net</td>
@@ -273,11 +273,11 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Campaña</td>
-                                    <td>Enviados</td>
-                                    <td>Devueltos</td>
-                                    <td>Recibidos</td>
-                                    <td>Click</td>
+                                    <td>Cam.</td>
+                                    <td>Env.</td>
+                                    <td>Dev.</td>
+                                    <td>Rec.</td>
+                                    <td>Click.</td>
                                     <td><IoStatsChartOutline /></td>
 
                                 </tr>
@@ -313,11 +313,11 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Campaña</td>
-                                    <td>Enviados</td>
-                                    <td>Devueltos</td>
-                                    <td>Recibidos</td>
-                                    <td>Click</td>
+                                    <td>Cam.</td>
+                                    <td>Env.</td>
+                                    <td>Dev.</td>
+                                    <td>Rec.</td>
+                                    <td>Click.</td>
                                     <td><IoStatsChartOutline /></td>
 
                                 </tr>
@@ -353,11 +353,11 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Campaña</td>
-                                    <td>Enviados</td>
-                                    <td>Devueltos</td>
-                                    <td>Recibidos</td>
-                                    <td>Click</td>
+                                    <td>Cam.</td>
+                                    <td>Env.</td>
+                                    <td>Dev.</td>
+                                    <td>Rec.</td>
+                                    <td>Click.</td>
                                     <td><IoStatsChartOutline /></td>
 
                                 </tr>
@@ -395,11 +395,11 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Campaña</td>
-                                    <td>Enviados</td>
-                                    <td>Devueltos</td>
-                                    <td>Recibidos</td>
-                                    <td>Click</td>
+                                    <td>Cam.</td>
+                                    <td>Env.</td>
+                                    <td>Dev.</td>
+                                    <td>Rec.</td>
+                                    <td>Click.</td>
                                     <td><IoStatsChartOutline /></td>
 
                                 </tr>
