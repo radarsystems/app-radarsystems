@@ -43,7 +43,7 @@ export default function Home() {
                         break;
 
                     case 'em':
-                        setLastCampaignEmail(data.results)
+                        setLastCampaignEmail(data.results ?? [])
                         break;
                 }
             })
@@ -89,7 +89,7 @@ export default function Home() {
     return (
         <>
 
-            <ModalSmall visible={true}>
+            <ModalSmall visible={false}>
                 STATS
             </ModalSmall>
             <div className="page-info">

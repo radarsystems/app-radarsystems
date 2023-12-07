@@ -60,7 +60,7 @@ div[colorbox="ligth"] {
 .editor-surveys .center {
     padding: 15px;
     width: 56%;
-    background: var(--bs-black);
+    background: var(--editors-background);
     color: var(--text-white);
     overflow: auto;
     padding-top: 80px;

@@ -25,7 +25,7 @@ export function Auth() {
         if (LoginForm.password && LoginForm.user) {
             axios.post(API_URL + "/api/auth/login", LoginForm, { withCredentials: true }).then((response) => { return response.data }).then((data) => {
                 if (data.status) {
-                    Navigator("/home")
+                    window.location.href = "/home"
                 }
 
                 if (data.msg) {
