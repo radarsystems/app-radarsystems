@@ -19,7 +19,6 @@ export default function EditRs({ editor, buttons, setButtons, setEditor }) {
 
             const newData = { ...prevData };
 
-            console.log(editor)
             newData.rs = newData.rs.filter((element, id) => id !== Number(editor.key));
 
             setEditor({ type: "", key: "" })

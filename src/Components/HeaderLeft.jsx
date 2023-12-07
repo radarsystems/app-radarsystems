@@ -58,11 +58,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
     }
 
-    useEffect(() => {
-        document.querySelectorAll(".none").forEach((element, key) => {
-            console.log(element)
-        })
-    }, [])
+  
 
     return (
         <>
@@ -96,7 +92,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li>
+                    <li className="none">
                         <button onClick={ToggleChild}><i className="icon"><IoBusinessOutline /></i> Cuentas <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/companys">Mis Cuentas</Link></li>
@@ -194,7 +190,7 @@ export default function HeaderLeft({ MenuLeft }) {
                     </li>
 
 
-                    <li className={""}>
+                    <li className={"none"}>
                         <button onClick={ToggleChild}><i className="icon"><Icon icon="mdi:jellyfish-outline" /></i> Medusa <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/shorturls/campaigns">Mis Campañas</Link></li>

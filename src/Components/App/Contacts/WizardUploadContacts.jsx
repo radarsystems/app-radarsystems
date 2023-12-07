@@ -86,7 +86,6 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
         setActions(prevData => ({ ...prevData, analize: true }))
         AnalizeFileCsv(ev, setPercentAnalize).then((response) => {
 
-            console.log(response)
             if (response.analize == "good") {
                 setActions(prevData => ({ ...prevData, approve: true }))
                 setForm(prevData => ({ ...prevData, file: response.file }))

@@ -151,7 +151,6 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
         let formData = new FormData();
 
         let goForm = false
-        console.log(data)
         let msg = "";
 
         if (modalRs) {
@@ -164,7 +163,6 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
 
         if (modalWifi) {
 
-            console.log(formWifi)
             if (formWifi.encrypt && formWifi.password.length && formWifi.ssid) {
                 goForm = true
             } else {
@@ -211,7 +209,6 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                 switch (clickType) {
                     case 'facebook':
                     case 'instagram':
-                    case 'twitter':
                     case 'x':
                     case 'twitter':
                     case 'linkedin':

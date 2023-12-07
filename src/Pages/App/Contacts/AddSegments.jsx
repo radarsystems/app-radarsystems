@@ -25,7 +25,6 @@ export default function AddSegments() {
         let value = ev.target.value
         let action = ev.target.getAttribute("action")
 
-        console.log(action)
 
         switch (action) {
             case 'add':
@@ -91,7 +90,6 @@ export default function AddSegments() {
         axios.post(API_URL + "/api/upload/segments", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
-                console.log(data)
             })
     }
 

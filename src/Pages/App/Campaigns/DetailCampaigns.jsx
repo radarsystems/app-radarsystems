@@ -364,7 +364,6 @@ export default function DetailCampaigns() {
         axios.post(API_URL + "/api/upload/bodycampaign", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
-                console.log(data)
 
                 if (data.status) {
                     toast.success("Guardado con exito")
@@ -392,10 +391,7 @@ export default function DetailCampaigns() {
     }
 
 
-    useEffect(() => {
-        console.log(formProgramming)
-    }, [formProgramming])
-
+  
     return (
         <>
 

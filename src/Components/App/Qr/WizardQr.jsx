@@ -126,7 +126,6 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                                 loadQrs()
                                 callbackUrl(formQr.name, data.img)
                             } catch (err) {
-                                console.log(err)
                             }
 
                             toast.success('Has subido tu qr con exito')

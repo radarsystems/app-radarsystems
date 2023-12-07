@@ -45,7 +45,6 @@ export default function SurveysBodyEditor({ json = [], header = {}, setJson, set
             let newUpdate = []
             update.forEach((element, keypage) => {
                 if (keypage !== key) {
-                    console.log(key === keypage)
                     newUpdate.push(element)
                 }
             })

@@ -78,7 +78,6 @@ export default function BodyButtonsQr({ addNewQr, VisibleMenu, type, visibleQr, 
 
             case 'titlespace':
 
-                console.log(key)
                 setEditor({ type: "titlespace", key: Number(target.attr("id")) })
                 break;
 
@@ -199,7 +198,6 @@ export default function BodyButtonsQr({ addNewQr, VisibleMenu, type, visibleQr, 
         $("#desc").val(buttons?.header?.desc)
 
         buttons?.elements?.forEach((element, key) => {
-            console.log(element)
             $("p[type='titlespace']").eq(key).text(element.title)
         })
     }

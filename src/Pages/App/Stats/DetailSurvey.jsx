@@ -126,7 +126,6 @@ export default function DetailSurvey() {
         axios.post(API_URL + "/api/get/downloadsurvey", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
-                console.log(data)
             })
     }
 

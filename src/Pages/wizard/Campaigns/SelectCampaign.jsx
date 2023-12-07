@@ -42,9 +42,7 @@ export default function SelectCampaign() {
         })
     }, [])
 
-    useEffect(() => {
-        console.log(wizard)
-    }, [wizard])
+
 
     return (<>
         <div className="option ">

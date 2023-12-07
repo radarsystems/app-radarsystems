@@ -11,6 +11,7 @@ export function HeaderTop({ MenuLeft, MenuLeftAction }) {
     const { UserInfo } = useContext(AuthContext)
     const [theme, setTheme] = useState('dark')
     const Navigator = useNavigate()
+    const [menuVisible, setMenuVisible] = useState(false)
 
     function changeTheme() {
 
@@ -27,6 +28,10 @@ export function HeaderTop({ MenuLeft, MenuLeftAction }) {
                 setTheme("ligth")
                 break;
         }
+    }
+
+    function changeMenuVisible() {
+        menuVisible ? setMenuVisible(false) : setMenuVisible(true)
     }
 
     useEffect(() => {
@@ -62,18 +67,20 @@ export function HeaderTop({ MenuLeft, MenuLeftAction }) {
 
                     </button>
                     <button className="option"><IoNotificationsOutline /></button>
-                    <div className="user">
-                        <img src="img/icons/default-user.jpg" alt="" />
+                    <div className="user" onClick={changeMenuVisible}>
+                        <span className="name">{UserInfo?.user}</span>
+                        <img src="/img/icons/default-user.jpg" alt="" />
                     </div>
                 </div>
             </div>
 
-            <div className="menu-top-user">
+            {menuVisible ? <div className="menu-top-user">
                 <ul>
                     <li><button onClick={(ev) => { Navigator("") }}><Icon icon="material-symbols:report-outline" /> Reportar</button></li>
                     <li><button onClick={(ev) => { Navigator("/logout") }}><Icon icon="ic:outline-no-meeting-room" /> Cerrar sesión</button></li>
                 </ul>
-            </div>
+            </div> : ""}
+
         </>
     )
 }

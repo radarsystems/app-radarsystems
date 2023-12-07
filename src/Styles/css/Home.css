@@ -204,6 +204,7 @@ body {
     border-radius: 93px;
 }
 
+
 .header-top .right .company .select-company {
     display: block;
     padding: 10px;
@@ -282,11 +283,11 @@ body {
 .header-top .right .name {
     display: inline-block;
     padding: 10px;
-    font-size: 16px;
     padding-right: 10px;
     padding-left: 12px;
     cursor: pointer;
     margin-bottom: auto;
+    font-size: 13px;
     color: var(--text-white);
 }
 
@@ -769,7 +770,7 @@ body {
     color: var(--details-green) !important;
 }
 
- .loading-template {
+.loading-template {
     display: flex;
     position: fixed;
     width: 100%;
@@ -1084,11 +1085,11 @@ body {
     transform: scale(0.8);
 }
 
-.app .box .loading {
+.app .loading-box {
     margin: auto;
 }
 
-.app .box .loading .circle {
+.app .loading-box .circle {
     width: 50px;
     height: 50px;
     border: 3px solid var(--details-lila);
@@ -1098,7 +1099,7 @@ body {
     animation: rotate360 1s linear infinite;
 }
 
-.app .box .loading {
+.app .loading-box .loading {
     padding-top: 45px;
     padding-bottom: 45px;
 }
@@ -1467,8 +1468,20 @@ table th {
     text-align: center;
 }
 
+.app .nofound-items button {
+    background: var(--details-lila);
+    color: var(--text-fullwhite);
+    padding: 8px;
+    width: 100%;
+    border-radius: 129px;
+    font-size: 13px;
+    margin-top: -30px;
+}
+
 .app .nofound-items p {
     color: var(--text-white);
+    font-size: 14px;
+    margin-bottom: 0;
 }
 
 .app .nofound-items img {
@@ -3182,7 +3195,7 @@ svg {
 }
 
 .mb {
-    display: none;
+    display: none !important;
 }
 
 
@@ -3361,6 +3374,6 @@ svg {
     }
 
     .mb {
-        display: block;
+        display: block !important;
     }
 }

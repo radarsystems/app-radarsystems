@@ -30,6 +30,8 @@ export const AuthProvider = (params) => {
                         })
 
                     })
+            } else {
+                window.location.href = "/companys"
             }
 
         }

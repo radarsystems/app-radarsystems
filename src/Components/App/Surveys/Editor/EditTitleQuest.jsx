@@ -17,7 +17,6 @@ export default function EditTitleQuest({ quest_key, page, value, setJson, keyid 
     }
 
     useEffect(() => {
-        console.log(value)
     }, [])
 
     return (<>

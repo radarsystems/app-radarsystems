@@ -152,7 +152,6 @@ export default function MyCompanys() {
 
     function updateForm(ev) {
 
-        console.log(modeEdit)
         if (modeEdit) {
 
         } else {

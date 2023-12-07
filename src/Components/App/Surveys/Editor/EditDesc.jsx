@@ -12,7 +12,6 @@ export default function EditDesc({ page, value, setJson, keyid }) {
 
     useEffect(() => {
         if (value?.desc) {
-            console.log("ok")
             document.querySelector("#title-edit").value = value.desc
         }
     }, [])

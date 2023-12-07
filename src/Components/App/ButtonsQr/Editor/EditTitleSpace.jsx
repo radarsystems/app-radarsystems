@@ -15,7 +15,6 @@ export default function EditTitleSpace({ editor, buttons, setButtons }) {
     useEffect(() => {
         if (buttons.elements[editor.key].title !== undefined) {
             $("#title-edit").val(buttons.elements[editor.key].title)
-            console.log("op")
         }
 
  

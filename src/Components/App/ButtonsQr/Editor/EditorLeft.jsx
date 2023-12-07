@@ -36,7 +36,6 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
 
             newData.header[ev.target.name] = value
 
-            console.log(newData)
             return newData
         })
     }

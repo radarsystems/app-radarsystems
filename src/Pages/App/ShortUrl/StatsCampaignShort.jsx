@@ -100,7 +100,6 @@ export default function StatsCampaignShort() {
 
                 data?.stats?.forEach((value, index) => {
 
-                    console.log(total)
                     counts.push(value.count)
                     app.push(getRealAppName(value.app) + " (" + (value.count * 100 / total).toFixed(0) + "%)")
                 });

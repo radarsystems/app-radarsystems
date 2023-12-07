@@ -13,7 +13,6 @@ export default function EditTitle({ value, page, setJson, keyid }) {
 
     useEffect(() => {
         if (value?.title) {
-            console.log("ok")
             document.querySelector("#title-edit").value = value.title
         }
     }, [])

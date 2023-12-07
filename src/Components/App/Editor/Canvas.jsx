@@ -43,11 +43,9 @@ export default function EditorCanvas() {
         if (editorLoad) {
 
             loadScript('//editor.unlayer.com/embed.js', function (ev) {
-                console.log(ev)
             })
 
             loadScript('/draganddrop/dist/js/body.js', function (ev) {
-                console.log(ev)
 
                 setTimeout(() => {
                     setLoading(false)

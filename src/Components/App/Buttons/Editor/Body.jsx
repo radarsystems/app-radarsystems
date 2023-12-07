@@ -21,9 +21,7 @@ export default function BodyButtonsEditor({ buttons, setButtons, editor, setEdit
     const { UserInfo } = useContext(AuthContext)
     const params = useParams()
 
-    useEffect(() => {
-        console.log(buttons)
-    }, [buttons])
+
 
     function addNewButton() {
         setButtons((prevData) => ({

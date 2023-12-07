@@ -22,8 +22,6 @@ export default function ModalSendTest({ Close, campaign, setCampaign }) {
         axios.post(API_URL + "/api/get/list", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
-                console.log(data)
-
                 setLists(data)
             })
     }

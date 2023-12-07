@@ -26,16 +26,6 @@ export default function Global({ Element, CompanyNeed }) {
         }
     }
 
-    useEffect(() => {
-
-        let company = GetCookie('company')
-
-        if (!company) {
-            Navigate("/companys")
-            setCookie(false)
-        }
-
-    }, [])
 
     useEffect(() => {
         MenuLeftAction('x')

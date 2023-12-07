@@ -10,6 +10,8 @@ import { Time } from "../../../Functions/Global"
 import { Icon } from "@iconify/react"
 import ModalDelete from "../../../Components/App/ModalDelete"
 import toast from "react-hot-toast"
+import LoadingCircleApp from "../../../Components/App/LoadingCircle"
+import NotFoundItems from "../../../Components/App/NotFoundItems"
 
 export default function MyButtonsQr() {
 
@@ -20,9 +22,12 @@ export default function MyButtonsQr() {
     const [pendingDelete, setPendingDelete] = useState(false)
     const [modalDelete, setModalDelete] = useState(false)
     const Navigator = useNavigate()
+    const [loading, setLoading] = useState(false)
 
     function LoadButtonsQr() {
         let formData = new FormData()
+
+        setLoading(true)
 
         formData.append("id_company", UserInfo?.company?.id_company)
 
@@ -30,8 +35,9 @@ export default function MyButtonsQr() {
             .then((response) => { return response.data })
             .then((data) => {
                 setButtons(data)
+                setLoading(false)
             }).catch((err) => {
-
+                setLoading(false)
             })
     }
 
@@ -56,7 +62,6 @@ export default function MyButtonsQr() {
                     setPendingDelete(false)
                 })
                 .catch((err) => {
-                    console.log(err)
                     setPendingDelete(false)
                 })
         }
@@ -68,6 +73,7 @@ export default function MyButtonsQr() {
 
     return (
         <>
+
 
             <ModalDelete visible={modalDelete} onClick={deleteNow} Pending={pendingDelete} callback={setModalDelete}>
 
@@ -84,8 +90,12 @@ export default function MyButtonsQr() {
                 </div>
             </div>
 
+            <div className="loading-box">
+                {loading ? <LoadingCircleApp /> : Buttons.length == 0 ? <NotFoundItems addNew={true} name={"botoneras"} callback={(ev) => { Navigator("/editor/buttonsqr") }} /> : ""}
+            </div>
 
             <div className="row">
+
                 {Buttons.map((element, key) => (
                     <div className="col-md-3" key={key}>
                         <div className="box survey-b">
