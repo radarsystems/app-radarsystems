@@ -21,7 +21,6 @@ export default function Register() {
         let name = ev.target.name;
         let value = ev.target.value;
 
-
         setRegister({ ...register, [name]: value })
     }
 
@@ -36,6 +35,13 @@ export default function Register() {
             if (data.msg) {
                 toast.error(data.msg)
             }
+
+
+            if (data.status) {
+                toast.success("Cuenta registrada inicia sesion.");
+            }
+
+            Navigator("/")
 
 
             $(ev.target).removeClass("await");

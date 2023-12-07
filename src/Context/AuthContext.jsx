@@ -15,15 +15,11 @@ export const AuthProvider = (params) => {
     useEffect(() => {
 
 
-        function loadCompany() {
-            let companyId = GetCookie("company")
+        function loadCompany(companySearch) {
 
-
-            let formData = new FormData()
-
-            formData.append("id_company", companyId);
-
-            if (companyId) {
+            if (companySearch) {
+                let formData = new FormData()
+                formData.append("id_company", companySearch);
                 axios.post(API_URL + "/api/get/company", formData, { withCredentials: true })
                     .then((response) => { return response.data })
                     .then((data) => {
@@ -41,14 +37,14 @@ export const AuthProvider = (params) => {
         (async function () {
             let token = GetCookie("token")
             let route = window.location.pathname;
+            let company = GetCookie("company")
 
             await axios.get(API_URL + "/api/get/my", { withCredentials: true }).then((response) => { return response.data }).then((data) => {
                 if (data.id_admin) {
                     setAuth(true)
                     setUserInfo(data)
-                    loadCompany()
+                    loadCompany(company ?? (data?.company_default ?? null))
                     setLoading(false)
-
                 } else {
                     if (route !== "/" && route !== "/auth" && !route.startsWith("/buttonsqr/")) {
                         window.location.href = "/";
