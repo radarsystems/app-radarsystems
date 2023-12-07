@@ -10,16 +10,16 @@ export function Logout() {
 
     useEffect(() => {
 
-        axios.get(API_URL + "/api/get/logout")
+        axios.get(API_URL + "/api/get/logout", { withCredentials: true })
             .then((response) => { return response.json })
             .then((data) => {
-                SetCookie('token', "");
-                SetCookie('company', "")
+                SetCookie('token', "", true);
+                SetCookie('company', "", true)
                 window.location.href = "/"
             })
             .catch((err) => {
-                SetCookie('token', "");
-                SetCookie('company', "")
+                SetCookie('token', "", true);
+                SetCookie('company', "", true)
                 window.location.href = "/"
             })
     }, [])

@@ -61,14 +61,20 @@ export function GetParams(name) {
 }
 
 
-export function SetCookie(cookieName, cookieValue) {
+export function SetCookie(cookieName, cookieValue, expire = false) {
     var expirationDate = new Date();
-    expirationDate.setDate(expirationDate.getDate() + 10);
+
+    if (expire) {
+        expirationDate.setTime(expirationDate.getTime() - 1); 
+    } else {
+        expirationDate.setDate(expirationDate.getDate() + 10); 
+    }
 
     var cookie = cookieName + "=" + encodeURIComponent(cookieValue) + "; expires=" + expirationDate.toUTCString() + "; path=/";
 
     document.cookie = cookie;
 }
+
 
 
 
