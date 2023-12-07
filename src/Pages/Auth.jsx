@@ -4,12 +4,17 @@ import { API_URL } from "../ExportUrl";
 import axios from "axios"
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
+import { useEffect } from "react";
 
 export function Auth() {
 
     let Navigator = useNavigate()
 
     const [LoginForm, setLoginForm] = useState({ user: "", password: "" })
+
+    const { UserInfo } = useContext(AuthContext)
 
     function sign(ev) {
         ev.stopPropagation()
@@ -42,6 +47,14 @@ export function Auth() {
     function setAuth(ev) {
         setLoginForm({ ...LoginForm, [ev.target.name]: ev.target.value })
     }
+
+    useEffect(() => {
+
+        if (UserInfo?.id_admin) {
+            Navigator("/home")
+        }
+
+    }, [UserInfo])
 
     return (<>
         <div className="row auth">

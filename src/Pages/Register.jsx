@@ -1,13 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../ExportUrl";
 import $ from "jquery"
 import { toast } from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
+import { useEffect } from "react";
 
 export default function Register() {
 
     const [register, setRegister] = useState({ user: "", email: "", password: "", rpassword: "" });
+
+    const { UserInfo } = useContext(AuthContext)
+    const Navigator = useNavigate()
 
     function setForm(ev) {
         ev.stopPropagation()
@@ -31,12 +37,18 @@ export default function Register() {
                 toast.error(data.msg)
             }
 
-            
+
             $(ev.target).removeClass("await");
         }).catch((err) => {
             $(ev.target).removeClass('await')
         })
     }
+
+    useEffect(() => {
+        if (UserInfo?.id_admin) {
+            Navigator("/home")
+        }
+    }, [UserInfo])
 
     return (<>
         <div className="row auth">

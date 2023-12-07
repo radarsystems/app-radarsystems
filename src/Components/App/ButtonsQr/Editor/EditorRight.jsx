@@ -413,6 +413,9 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                             <i>
                                 <IoCloudUploadOutline />
                             </i>
+
+                            <span className="desc">Has click aca para buscar tu archivo</span>
+
                         </div>
                     }
 
@@ -512,7 +515,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
 
 
                 <div className="submenu">
-                    <p>Documentos</p>
+                    <p>Crear Otros QR's</p>
                     <i><IoArrowDown /></i>
                 </div>
                 <br />
@@ -534,8 +537,6 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     <span>Link to a website of your choice</span>
                 </div>
 
-                <br />
-
 
                 <div className="button" onClick={(ev) => { clickButton(ev, 'wifi') }}>
 
@@ -544,7 +545,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         <img src="/img/icons/wifi.svg" alt="" />
                     </div>
 
-                    <p>Crear WIFI</p>
+                    <p>Crear Acceso WIFI</p>
                     <span>Link to a website of your choice</span>
                 </div>
 

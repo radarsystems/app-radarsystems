@@ -527,4 +527,5 @@ div[colorbox="ligth"] {
     font-size: 14px;
     border-radius: 32px;
     background: var(--box-actions);
+    color: var(--text-white);
 }

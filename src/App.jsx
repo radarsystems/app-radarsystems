@@ -56,13 +56,32 @@ import CompanyDomains from './Pages/App/SettingsAccount/Domains'
 import LogsList from './Pages/App/Contacts/LogsList.jsx'
 import WizardQr from './Components/App/Qr/WizardQr.jsx'
 import PreviewIphone from './Components/App/Preview/Iphone.jsx'
+import { Logout } from './Pages/App/Logout.jsx'
+import { useContext } from 'react'
+import { AuthContext } from './Context/AuthContext.jsx'
 
 
 
 function App() {
+
+  const { LoadingAuth } = useContext(AuthContext)
+
   return (
     <>
       <Toaster />
+
+      {LoadingAuth ? <>
+        <div className="loading-template">
+          <div className="center">
+            <img src="/img/icons/logo.png" alt="" />
+            <p className="await">Cargando... <div className="loading"></div></p>
+          </div>
+        </div>
+      </> :
+        <>
+
+        </>
+      }
 
 
       <BrowserRouter>
@@ -178,6 +197,9 @@ function App() {
 
 
 
+          {/* LOGOUT */}
+
+          <Route path={`/logout`} element={<Logout />} />
 
         </Routes>
       </BrowserRouter>
