@@ -1186,7 +1186,7 @@ body {
     transform: translateY(-50px);
 }
 
-.modal-small .drop-file .desc{
+.modal-small .drop-file .desc {
     position: absolute;
     bottom: 0;
     font-size: 12px;
@@ -2151,6 +2151,17 @@ table th {
     fill: var(--text-white) !important;
 }
 
+.page.buttonsbody .update {
+    position: absolute;
+    top: -6vh;
+    right: 0;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 90px;
+    background-color: #494949;
+    color: white;
+}
+
 .page.buttonsbody .buttons {
     width: 100%;
     display: block;
@@ -2189,12 +2200,12 @@ table th {
 }
 
 .page.buttonsbody.ligth input#title,
-.page.buttonsbody.ligth  textarea#desc {
+.page.buttonsbody.ligth textarea#desc {
     color: black !important;
 }
 
 .page.buttonsbody.dark input#title,
-.page.buttonsbody.dark  textarea#desc {
+.page.buttonsbody.dark textarea#desc {
     color: white !important;
 }
 

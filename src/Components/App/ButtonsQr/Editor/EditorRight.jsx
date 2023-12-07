@@ -27,6 +27,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
     const [formRs, setFormRs] = useState("");
     const [formWifi, setFormWifi] = useState({ ssid: "", password: "", encrypt: "" })
     const [pending, setPending] = useState({ rs: false, modalFile: false })
+    const [nameQr, setFormName] = useState()
     const { UserInfo } = useContext(AuthContext)
 
     const ref = useRef(null)
@@ -34,7 +35,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
     const rs = {
         "instagram": "https://www.instagram.com/",
         "twitter": "https://x.com/",
-        "facebook": "https://m.facebook.com/",
+        "facebook": "https://facebook.com/",
         "tiktok": "https://tiktok.com/",
         "whatsapp": "https://api.whatsapp.com/send/?phone=",
         "websiteurl": "",
@@ -199,7 +200,13 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
 
                 formData.append("preview", photo)
                 formData.append("id_company", UserInfo?.company?.id_company)
-                formData.append("formqr", JSON.stringify({ name: qrName }))
+
+                if (nameQr == null) {
+                    formData.append("formqr", JSON.stringify({ name: qrName }))
+                } else {
+                    qrName = nameQr
+                    formData.append("formqr", JSON.stringify({ name: nameQr }))
+                }
 
                 switch (clickType) {
                     case 'facebook':
@@ -232,12 +239,17 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                                 toast.error(String(err))
                             }
 
+                        } else {
+                            toast.error(`${data.msg}`)
                         }
+
+                        setFormName(null)
                     })
                     .catch((err) => {
+                        setFormName(null)
                         pendingNow("rs", false)
                     })
-            }, 150)
+            }, 300)
         } else {
             toast.error(msg)
         }
@@ -279,6 +291,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
     }
 
 
+
     return (
         <>
 
@@ -292,6 +305,12 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                 </div>
 
                 <div className="data">
+
+
+                    <div className="form-input">
+                        <label htmlFor="ssid">Nombre QR</label>
+                        <input type="text" onChange={(ev) => { setFormName(ev.target.value) }} name="user" placeholder={clickType == "websiteurl" ? "https://mysiteweb.com" : "Nombre del QR"} />
+                    </div>
                     <div className="form-input">
                         <label htmlFor="ssid">SSID</label>
                         <input
@@ -342,6 +361,11 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
 
 
                 <div className="data">
+
+                    <div className="form-input">
+                        <input type="text" onChange={(ev) => { setFormName(ev.target.value) }} name="user" placeholder={"Nombre del QR"} />
+                    </div>
+
                     <div className="form-input">
                         <label htmlFor="">{rs[clickType]}{formRs}</label>
                         <input type="text" onChange={(ev) => { setFormRs(ev.target.value) }} name="user" placeholder={clickType == "websiteurl" ? "https://mysiteweb.com" : "@usuario"} />
@@ -359,6 +383,12 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                 </div>
 
                 <div className="select-file">
+
+                    <br />
+
+                    <div className="form-input">
+                        <input type="text" onChange={(ev) => { setFormName(ev.target.value) }} name="user" placeholder={clickType == "websiteurl" ? "https://mysiteweb.com" : "Nombre del QR"} />
+                    </div>
 
                     {fileUpload.name ?
                         <div className="file">

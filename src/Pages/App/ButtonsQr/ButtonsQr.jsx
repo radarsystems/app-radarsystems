@@ -30,12 +30,6 @@ export default function ButtonsQr() {
 
         if (GetParams('install') == "true") {
             setInstall(true)
-
-            const linkElement = document.createElement('link');
-            linkElement.rel = 'manifest';
-            linkElement.href = '/manifest.json';
-
-            //document.head.appendChild(linkElement);
         }
 
     }, [])
@@ -73,6 +67,11 @@ export default function ButtonsQr() {
                                 <img src="/img/icons/tuto/buttonsqr/iphone4.png" alt="" />
                                 <span>Ahora configura y guarda</span>
                             </div>
+
+                            <div>
+                                <img src="/img/icons/tuto/buttonsqr/iphone5.png" alt="" />
+                                <span>Listo ya tienes tu acceso directo.</span>
+                            </div>
                         </Carousel>
                     </div>
                 </ModalSmall>
@@ -93,6 +92,8 @@ export default function ButtonsQr() {
 
                             <br />
                             <br />
+
+                            <button className="update" onClick={(ev) => { window.location.href = window.location.href }}>Actualizar</button>
 
                             {buttons.elements.map((element, key) => (
                                 <div className="boxqr">
