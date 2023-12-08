@@ -2614,6 +2614,7 @@ svg {
     border-radius: 29px;
     font-size: 14px;
     background: var(--bs-blue);
+    color: var(--text-fullwhite);
 }
 
 .recovery button.transparent {
