@@ -2578,7 +2578,6 @@ svg {
 }
 
 .recovery {
-    display: block;
     max-width: 400px;
     margin: auto;
     display: block;
@@ -2588,7 +2587,7 @@ svg {
     left: 0;
     right: 0;
     padding: 15px;
-    background: #343435;
+    background: var(--box-shadow-items);
     max-height: fit-content;
     border-radius: 12px;
 }
