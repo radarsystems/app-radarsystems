@@ -27,7 +27,7 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
         width: 600,
         height: 600,
         image:
-            "/img/icons/iconsvg.png",
+            "/img/icons/logo.png",
         dotsOptions: {
             color: "gradient",
             type: "extra-rounded",
