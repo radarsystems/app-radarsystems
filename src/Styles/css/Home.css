@@ -2422,12 +2422,14 @@ svg {
 }
 
 .page.buttonsqr.dark p,
-.page.buttonsqr.dark span {
+.page.buttonsqr.dark span,
+.page.buttonsqr.ligth .add-qr {
     color: white !important;
 }
 
 .page.buttonsqr.ligth p,
-.page.buttonsqr.ligth span {
+.page.buttonsqr.ligth span,
+.page.buttonsqr.ligth .add-qr {
     color: black !important;
 }
 
@@ -2550,6 +2552,7 @@ svg {
     height: max-content;
     font-size: 57px;
     cursor: pointer;
+    color: var(--text-white);
 }
 
 .page.buttonsqr .boxqr .qr img {
