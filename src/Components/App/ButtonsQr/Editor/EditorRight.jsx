@@ -217,7 +217,6 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
     }
 
     async function CreateQr(data) {
-        let formData = new FormData();
 
         let goForm = false
         let msg = "";
@@ -248,87 +247,82 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
         if (goForm) {
             pendingNow("rs", true)
 
-            let photo = null
+            QrCode.append(ref.current)
 
-            const generateAndCaptureQR = async () => {
-                QrCode.append(ref.current);
+            QrCode.update({
+                data: data
+            })
 
-                QrCode.update({
-                    data: data
-                });
+            setTimeout(() => {
+                const canvas = document.querySelector(".qr-result-2 canvas");
+                const qrImageBase64 = canvas.toDataURL("image/png");
 
-                // Espera un tiempo prudente para asegurar que el código QR se genere completamente
-                await new Promise((resolve) => setTimeout(resolve, 500));
+                // qrImageBase64 contiene la imagen del código QR en formato base64
+                goCreateQRForm(qrImageBase64)
 
-                photo = await new Promise((resolve) => {
-                    let canvas = document.querySelector(".qr-result canvas");
-                    let url = canvas.toDataURL("image/png");
-                    resolve(url);
-                });
+                // Continúa con el resto del código utilizando qrImageBase64 como sea necesario
+            }, 500);
 
-                // Continúa con el resto del código para guardar la imagen o realizar las operaciones necesarias
-                // ... (tu código para procesar la imagen capturada)
-            };
-
-            await generateAndCaptureQR()
-
-            let qrName = `${clickType + "-" + (new Date() / 1000).toFixed()}`;
-
-            formData.append("preview", photo)
-            formData.append("id_company", UserInfo?.company?.id_company)
-
-            if (nameQr == null) {
-                formData.append("formqr", JSON.stringify({ name: qrName }))
-            } else {
-                qrName = nameQr
-                formData.append("formqr", JSON.stringify({ name: nameQr }))
-            }
-
-            switch (clickType) {
-                case 'facebook':
-                case 'instagram':
-                case 'x':
-                case 'twitter':
-                case 'linkedin':
-                    formData.append("type", "qr-rs")
-                    break;
-
-                case 'wifi':
-                    formData.append("type", "qr-wifi")
-                    break;
-            }
+        }
+    }
 
 
-            axios.post(API_URL + "/api/upload/qr", formData, { withCredentials: true })
-                .then((response) => { return response.data })
-                .then((data) => {
-                    pendingNow("rs", false)
+    function goCreateQRForm(image) {
 
-                    if (data.status) {
-                        setModalRs(false)
+        let formData = new FormData();
 
-                        try {
-                            addNewQr(qrName, data.img)
-                            toast.success("QR agregado con exito")
-                        } catch (err) {
-                            toast.error(String(err))
-                        }
 
-                    } else {
-                        toast.error(`${data.msg}`)
-                    }
+        let qrName = `${clickType + "-" + (new Date() / 1000).toFixed()}`;
+        formData.append("preview", image)
+        formData.append("id_company", UserInfo?.company?.id_company)
 
-                    setFormName(null)
-                })
-                .catch((err) => {
-                    setFormName(null)
-                    pendingNow("rs", false)
-                })
-
+        if (nameQr == null) {
+            formData.append("formqr", JSON.stringify({ name: qrName }))
         } else {
-            toast.error(msg)
+            qrName = nameQr
+            formData.append("formqr", JSON.stringify({ name: nameQr }))
         }
 
+        switch (clickType) {
+            case 'facebook':
+            case 'instagram':
+            case 'x':
+            case 'twitter':
+            case 'linkedin':
+                formData.append("type", "qr-rs")
+                break;
+
+            case 'wifi':
+                formData.append("type", "qr-wifi")
+                break;
+        }
+
+
+        axios.post(API_URL + "/api/upload/qr", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                pendingNow("rs", false)
+
+                if (data.status) {
+                    setModalRs(false)
+
+                    try {
+                        addNewQr(qrName, data.img)
+                        toast.success("QR agregado con exito")
+                    } catch (err) {
+                        toast.error(String(err))
+                    }
+
+                } else {
+                    toast.error(`${data.msg}`)
+                }
+
+                setFormName(null)
+            })
+            .catch((err) => {
+                setFormName(null)
+                pendingNow("rs", false)
+            })
     }
 
     useEffect(() => {
@@ -499,7 +493,8 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
             </ModalSmall>
             <div className={`buttons-services ${boxType}`}>
 
-                <div className="qr-result" ref={ref} hidden />
+                <div className="qr-result-2" ref={ref} hidden >
+                </div>
 
                 <div className="top-title">
                     <p>1. Servicios QR</p>

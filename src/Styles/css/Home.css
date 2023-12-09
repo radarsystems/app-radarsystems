@@ -1497,6 +1497,12 @@ table th {
 
 @keyframes openWizardHome {}
 
+.qr-result-2{
+    display: block;
+    position: fixed;
+    z-index: -100;
+}
+
 .wizard-home .qr-result {
     display: block;
     width: max-content;
