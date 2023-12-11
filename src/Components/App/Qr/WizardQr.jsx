@@ -24,7 +24,6 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
     const idModal = randomId()
 
     const QrCode = new QrStyling({
-
         "width": 600,
         "height": 600,
         "margin": 0,
@@ -140,7 +139,7 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
 
         if (count === 1) {
 
-            QrCode.append(ref.current);
+            const element = document.querySelector(".qr-result")
 
             if (form.type == "qr-contact") {
                 QrCode.update({
@@ -164,6 +163,21 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                 })
             }
 
+            element.innerHTML = ""
+
+            QrCode.append(element)
+
+            await QrCode.getRawData()
+                .then((blob) => {
+                    let reader = new FileReader();
+                    reader.onload = function (event) {
+                        const base64URL = event.target.result
+                        setForm({ ...form, base64: base64URL })
+                    }
+
+                    reader.readAsDataURL(blob)
+                })
+
             approve = true
         }
 
@@ -176,16 +190,7 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                 formData.append("formqr", JSON.stringify(formQr))
                 formData.append("id_company", UserInfo?.company?.id_company)
                 formData.append("type", form.type)
-
-                let photo = await new Promise((resolve, reject) => {
-                    let canvas = document.querySelector(".qr-result canvas");
-                    let url = canvas.toDataURL("image/png");
-
-                    resolve(url);
-                })
-
-                formData.append("preview", photo)
-
+                formData.append("preview", form.base64)
                 axios.post(API_URL + "/api/upload/qr", formData, { withCredentials: true })
                     .then((response) => { return response.data })
                     .then((data) => {
@@ -422,7 +427,9 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                         </div>
 
 
-                        <div className="qr-result" ref={ref} />
+                        <div className="qr-result">
+                            <canvas></canvas>
+                        </div>
                     </div>
 
 

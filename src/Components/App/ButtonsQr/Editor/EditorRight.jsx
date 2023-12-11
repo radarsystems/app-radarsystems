@@ -253,15 +253,16 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                 data: data
             })
 
-            setTimeout(() => {
-                const canvas = document.querySelector(".qr-result-2 canvas");
-                const qrImageBase64 = canvas.toDataURL("image/png");
+            QrCode.getRawData().then((blob) => {
 
-                // qrImageBase64 contiene la imagen del código QR en formato base64
-                goCreateQRForm(qrImageBase64)
+                let reader = new FileReader()
 
-                // Continúa con el resto del código utilizando qrImageBase64 como sea necesario
-            }, 500);
+                reader.onload = function (ev) {
+                    goCreateQRForm(ev.target.result)
+                }
+
+                reader.readAsDataURL(blob)
+            })
 
         }
     }
