@@ -108,6 +108,7 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
 
     return (
         <>
+
             <ModalSmall visible={visibleUpload} callback={setVisibleUpload} onClick={goUploadPhoto} Pending={pending}>
                 <div className="top">
                     <p>Subir imagen</p>
@@ -150,7 +151,14 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
                 </div>
 
             </ModalSmall>
+
+
+            <img src="/img/icons/logo_color_1.png" alt="" hidden  />
+
+            
             <div className="title-top">
+
+
                 <p>Personalizar botonera</p>
                 <span>Personaliza tu botonera, cambiando imagenes, fondo, texto, botones, enlaces.</span>
                 <button className="close mb" onClick={VisibleMenu}><Icon icon="teenyicons:x-outline" /></button>
