@@ -7,11 +7,13 @@ import "../../../Styles/css/app.css"
 import "../../../Styles/css/Home.css"
 import ModalSmall from "../../../Components/App/ModalSmall"
 import { GetParams } from "../../../Functions/Global"
+import ModalShare from "../../../Components/App/ModalShare"
 
 export default function ButtonsQr() {
     let params = useParams()
     const [install, setInstall] = useState(false)
     const [buttons, setButtons] = useState({ elements: [] })
+    const [visible, setVisible] = useState(false)
 
     function searchButtons() {
 
@@ -37,7 +39,7 @@ export default function ButtonsQr() {
     return (
         <>
 
-
+            <ModalShare Visible={visible} CallbackVisible={setVisible} />
             {install ?
                 <ModalSmall visible={true} maxWidth={250} next={`Listo`}>
                     <div className="top">
@@ -92,7 +94,7 @@ export default function ButtonsQr() {
 
                             <br />
                             <br />
-
+                            <button className="share" onClick={(ev) => { setVisible(true) }}>Compartir</button>
                             <button className="update" onClick={(ev) => { window.location.href = window.location.href }}>Actualizar</button>
 
                             {buttons.elements.map((element, key) => (

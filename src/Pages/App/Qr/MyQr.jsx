@@ -11,7 +11,7 @@ import { LoadPreviewQr, Time, existsStringInPath } from "../../../Functions/Glob
 import { IoAddCircleOutline, IoAddOutline, IoCloudDownloadOutline, IoCloudUploadOutline, IoTrashOutline } from "react-icons/io5"
 import $ from "jquery"
 import WizardUploadQr from "../../../Components/App/Qr/WizardUploadQr"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import ModalDelete from "../../../Components/App/ModalDelete"
 import { Icon } from "@iconify/react"
 
@@ -25,6 +25,7 @@ export default function MyQr() {
     const [modalDelete, setModalDelete] = useState(false)
     const [deleteId, setDeleteId] = useState()
     const location = useLocation()
+    const Navigator = useNavigate()
 
     useEffect(() => {
         if (existsStringInPath("/add")) {
@@ -94,7 +95,7 @@ export default function MyQr() {
                     <span>Crea qr personalizados con enlaces para tus webs o qr de contacto</span>
                 </div>
 
-                <WizardQr Visible={modalView} Close={setModalView} setModalView={setModalView} loadQrs={loadQrs} />
+                <WizardQr Visible={modalView} Close={setModalView} setModalView={setModalView} loadQrs={loadQrs} key={modalView ? "x1" : "x2"} />
                 <WizardUploadQr Visible={modalUploadView} Close={setUploadView} setModalView={setUploadView} loadQrs={loadQrs} key={modalUploadView ? 'x' : 'a'} />
 
                 <div className="right">
@@ -129,7 +130,9 @@ export default function MyQr() {
                         </div>
 
                         <div className="actions">
-                            <button><Icon icon="ion:stats-chart-outline" /></button>
+
+
+                            {element?.id_concat ? <button onClick={(ev) => { Navigator("/shorturls/" + element.id_concat) }}><Icon icon="ion:stats-chart-outline" /></button> : ""}
                             <button onClick={downloadImage}><IoCloudDownloadOutline /></button>
                             <button onClick={(ev) => { setDeleteId(element.id_qr); setModalDelete(true) }}><IoTrashOutline /></button>
 

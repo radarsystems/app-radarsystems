@@ -249,28 +249,46 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
 
             QrCode.append(ref.current)
 
-            QrCode.update({
-                data: data
-            })
+            let formData = new FormData()
+            formData.append("url", data)
+            formData.append("id_company", UserInfo?.company?.id_company)
 
-            QrCode.getRawData().then((blob) => {
+            axios.post(API_URL + "/api/upload/shortlink", formData, { withCredentials: true })
+                .then((response) => {
+                    return response.data
+                })
+                .then((data) => {
 
-                let reader = new FileReader()
+                    QrCode.update({
+                        data: data.shortlink
+                    })
 
-                reader.onload = function (ev) {
-                    goCreateQRForm(ev.target.result)
-                }
+                    QrCode.getRawData().then((blob) => {
 
-                reader.readAsDataURL(blob)
-            })
+                        let reader = new FileReader()
+
+                        reader.onload = function (ev) {
+                            goCreateQRForm(ev.target.result, Number(data.id_shortlink))
+                        }
+
+                        reader.readAsDataURL(blob)
+                    })
+                })
+
+
+
 
         }
     }
 
 
-    function goCreateQRForm(image) {
+    function goCreateQRForm(image, id_concat = null) {
 
         let formData = new FormData();
+
+        if (id_concat) {
+            formData.append("id_concat", id_concat)
+        }
 
 
         let qrName = `${clickType + "-" + (new Date() / 1000).toFixed()}`;
@@ -305,6 +323,8 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                 pendingNow("rs", false)
 
                 if (data.status) {
+                    VisibleMenu(false)
+
                     setModalRs(false)
 
                     try {
@@ -499,7 +519,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
 
                 <div className="top-title">
                     <p>1. Servicios QR</p>
-                    <button className="close mb" onClick={(ev) => { VisibleMenu() }}><Icon icon="teenyicons:x-outline" /></button>
+                    <button className="close mb" onClick={(ev) => { VisibleMenu(false) }}><Icon icon="teenyicons:x-outline" /></button>
                 </div>
 
 

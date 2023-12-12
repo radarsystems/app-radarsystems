@@ -12,6 +12,7 @@ import ModalShare from "../../../Components/App/ModalShare";
 
 export default function ButtonsBody() {
     const [buttons, setButtons] = useState({})
+    const [visible, setModalVisible] = useState(false)
 
     const [click, setClick] = useState(true)
 
@@ -73,7 +74,7 @@ export default function ButtonsBody() {
     return (
         <>
 
-            <ModalShare />
+            <ModalShare Visible={visible} CallbackVisible={setModalVisible} />
 
             <div className="editor-surveys btnactive prod-buttons">
                 <div className="rows">
@@ -87,7 +88,7 @@ export default function ButtonsBody() {
                         <div className={`${"page buttonsbody " + buttons?.header?.colorBox}`}>
 
                             <div className="share-now">
-                                <button>
+                                <button onClick={(ev) => { setModalVisible(true) }}>
                                     <IoEllipsisHorizontalSharp />
 
                                 </button>

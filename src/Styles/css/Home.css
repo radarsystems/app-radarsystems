@@ -1497,7 +1497,7 @@ table th {
 
 @keyframes openWizardHome {}
 
-.qr-result-2{
+.qr-result-2 {
     display: block;
     position: fixed;
     z-index: -100;
@@ -1525,15 +1525,42 @@ table th {
     width: 100%;
     max-width: 400px;
     margin: auto;
+    position: relative;
+}
+
+.modal-share .closed {
+    position: absolute;
+    right: -7px;
+    top: -4px;
+    margin: 19px;
+    padding: 10px;
+    line-height: 0.5;
+    border-radius: 91px;
+    background: white;
+    color: black;
 }
 
 .modal-share .buttons button {
     width: 100%;
     display: block;
-    padding: 10px;
+    padding: 15px 14px;
     border-radius: 8px;
     background-color: transparent;
     color: black;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    position: relative;
+}
+
+.modal-share .buttons button i.left {
+    padding-right: 15px;
+}
+
+.modal-share .buttons button i.right {
+    position: absolute;
+    right: 0;
+    opacity: 0.5;
 }
 
 .modal-share .bk {
@@ -1548,6 +1575,7 @@ table th {
     border: 1px solid var(--bs-border-color);
     padding: 10px;
     border-radius: 12px;
+    font-size: 14px;
 }
 
 .modal-share .register {
@@ -1563,6 +1591,29 @@ table th {
 .modal-share .register span {
     font-size: 14px;
     opacity: 0.5;
+}
+
+.modal-share .actions {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.modal-share .actions button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 94px;
+    background: transparent;
+    border: 1px solid grey;
+    font-size: 14px;
+    color: black;
+}
+
+.modal-share .actions button:nth-child(1) {
+    background-color: black;
+    color: white;
 }
 
 .wizard-home .qr-result canvas {
@@ -2219,6 +2270,17 @@ table th {
     position: absolute;
     top: -6vh;
     right: 0;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 90px;
+    background-color: #494949;
+    color: white;
+}
+
+.page.buttonsbody .share {
+    position: absolute;
+    top: -6vh;
+    left: 0;
     padding: 10px 15px;
     font-size: 14px;
     border-radius: 90px;

@@ -185,32 +185,47 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
 
             if (formQr.name) {
 
+                let formLink = new FormData()
+
+
+
                 setPending(true)
-                let formData = new FormData()
-                formData.append("formqr", JSON.stringify(formQr))
-                formData.append("id_company", UserInfo?.company?.id_company)
-                formData.append("type", form.type)
-                formData.append("preview", form.base64)
-                axios.post(API_URL + "/api/upload/qr", formData, { withCredentials: true })
-                    .then((response) => { return response.data })
-                    .then((data) => {
 
-                        if (data.status) {
-                            try {
-                                loadQrs()
-                                callbackUrl(formQr.name, data.img)
-                            } catch (err) {
-                            }
+                if (form.type == "qr-stand") {
+                    await new Promise((resolve, reject) => {
 
-                            toast.success('Has subido tu qr con exito')
-                        }
+                        formLink.append("url", formQr.url)
+                        formLink.append("id_company", UserInfo?.company?.id_company)
 
-                        Close(false)
+                        axios.post(API_URL + "/api/upload/shortlink", formLink, { withCredentials: true })
+                            .then((response) => { return response.data })
+                            .then((data) => {
 
-                        setPending(false)
-                    }).catch((err) => {
-                        setPending(false)
+                                QrCode.update({
+                                    data: data.shortlink
+                                })
+
+                                QrCode.getRawData()
+                                    .then((blob) => {
+                                        let reader2 = new FileReader();
+                                        reader2.onload = function (event) {
+                                            const base64URL = event.target.result
+                                            goUploadQr(base64URL, data.id_shortlink)
+
+                                        }
+
+                                        reader2.readAsDataURL(blob)
+                                    })
+                            })
+
                     })
+
+                } else {
+                    goUploadQr(form.base64)
+                }
+
+
+
             } else {
                 approve = false
                 toast.error("Opps no has elegido un nombre para tu qr")
@@ -223,6 +238,38 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
             setCount(prevData => (prevData + 1))
         }
 
+    }
+
+    function goUploadQr(image, id_concat = undefined) {
+        let formData = new FormData()
+        formData.append("formqr", JSON.stringify(formQr))
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("type", form.type)
+        formData.append("preview", image)
+
+        if (id_concat) {
+            formData.append("id_concat", id_concat)
+        }
+        axios.post(API_URL + "/api/upload/qr", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+
+                if (data.status) {
+                    try {
+                        loadQrs()
+                        callbackUrl(formQr.name, data.img)
+                    } catch (err) {
+                    }
+
+                    toast.success('Has subido tu qr con exito')
+                }
+
+                Close(false)
+
+                setPending(false)
+            }).catch((err) => {
+                setPending(false)
+            })
     }
 
     function setNewForm(ev) {
