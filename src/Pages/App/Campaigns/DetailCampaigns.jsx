@@ -391,7 +391,7 @@ export default function DetailCampaigns() {
     }
 
 
-  
+
     return (
         <>
 
@@ -536,9 +536,13 @@ export default function DetailCampaigns() {
                         {editActive.lists == true ?
                             <>
                                 <div className="option">
-                                    <div className="form-input">
+                                    <div className="form-input small">
                                         <label>Buscar lista... (Solo obtendras las listas con contactos)</label>
-                                        <input type="search" onKeyUp={searchListsWrite} onKeyDown={cleanSearchList} placeholder="Buscar" />
+
+                                        <div className="flex">
+                                            <input type="search" onKeyUp={searchListsWrite} onKeyDown={cleanSearchList} placeholder="Buscar" />
+                                            <button onClick={(ev) => { Navigator("/contacts/lists/add") }}>Crear </button>
+                                        </div>
                                     </div>
 
                                     <div className="search-result">
@@ -611,6 +615,8 @@ export default function DetailCampaigns() {
                                                 <button onClick={setAffair} className="save">Guardar</button>
                                             </div>
                                         </div>
+
+                                        <TextareaSms onSave={setAffair} onChange={(ev) => { setForm({ ...form, affair: ev }) }} />
                                     </>
                                     :
                                     <div className="right">

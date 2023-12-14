@@ -1526,8 +1526,14 @@ table th {
     max-width: 400px;
     margin: auto;
     position: relative;
+    overflow: auto;
+    max-height: 100%;
 }
 
+.modal-share .top p{
+    font-family: 'Messina Bold';
+    text-align: center;
+}
 .modal-share .closed {
     position: absolute;
     right: -7px;

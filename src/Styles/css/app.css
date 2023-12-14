@@ -125,6 +125,19 @@ body[theme="dark"] {
     color: var(--text-white);
 }
 
+.form-input.small input{
+    font-size: 12px;
+}
+
+.form-input.small button{
+    font-size: 12px;
+    padding: 10px;
+    margin-left: 11px;
+    border-radius: 34px;
+    width: 87px;
+    background: var(--box-actions);
+}
+
 .form-input .colors {
     padding: 10px;
     display: flex;
@@ -398,4 +411,8 @@ body[theme="dark"] {
     .auth .logo img{
         height: auto;
     }
+}
+
+.flex{
+    display: flex;
 }

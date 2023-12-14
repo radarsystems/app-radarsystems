@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { API_URL } from "../../../ExportUrl"
 import { Carousel } from "react-responsive-carousel"
 import "../../../Styles/css/app.css"
@@ -14,6 +14,7 @@ export default function ButtonsQr() {
     const [install, setInstall] = useState(false)
     const [buttons, setButtons] = useState({ elements: [] })
     const [visible, setVisible] = useState(false)
+    const Navigator = useNavigate()
 
     function searchButtons() {
 
@@ -41,7 +42,7 @@ export default function ButtonsQr() {
 
             <ModalShare Visible={visible} CallbackVisible={setVisible} />
             {install ?
-                <ModalSmall visible={true} maxWidth={250} next={`Listo`}>
+                <ModalSmall visible={true} maxWidth={250} next={`Listo`} onClick={(ev) => { setInstall(false); Navigator("/buttonsqr/" + params.id) }}>
                     <div className="top">
                         <p>Instalar</p>
                         <span>instalar acceso directo rapidamente en iphone.</span>

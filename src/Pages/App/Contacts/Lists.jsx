@@ -6,7 +6,7 @@ import axios from "axios";
 import { API_URL } from "../../../ExportUrl";
 import { AuthContext } from "../../../Context/AuthContext";
 import { IoDocumentTextOutline } from "react-icons/io5";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import RequireLists from "../../../Components/App/Lists/RequireLists";
 
 export default function Lists() {
@@ -18,6 +18,7 @@ export default function Lists() {
     const params = useParams()
 
     const Navigator = useNavigate()
+    const location = useLocation()
 
 
     function CallbackWizard(value) {
@@ -42,6 +43,10 @@ export default function Lists() {
 
     useEffect(() => {
         loadLists()
+
+        if(location.pathname == "/contacts/lists/add"){
+            setOpenWizard(true)
+        }
 
     }, [params?.type])
 

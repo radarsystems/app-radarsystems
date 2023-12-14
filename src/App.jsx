@@ -119,6 +119,7 @@ function App() {
           {/* LISTASD */}
 
           <Route path="/contacts/lists" element={<Global CompanyNeed={true} Element={Lists} />} />
+          <Route path="/contacts/lists/add" element={<Global CompanyNeed={true} Element={Lists} />} />
           <Route path="/contacts/lists/logs/:id" element={<Global CompanyNeed={true} Element={LogsList} />} />
           <Route path="/contacts/lists/:type" element={<Global CompanyNeed={true} Element={Lists} />} />
           <Route path="/contacts/detail/:id" element={<Global CompanyNeed={true} Element={DetailLists} />} />

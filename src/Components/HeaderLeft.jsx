@@ -58,7 +58,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
     }
 
-  
+
 
     return (
         <>
@@ -112,8 +112,8 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className={opacityMenu ? 'opacity' : '' + "none"}>
-                        <button onClick={ToggleChild}><i className="icon"><IoSendOutline /></i> Campañas <i className="arrow"><MdArrowForwardIos /></i></button>
+                    <li className={opacityMenu ? 'opacity' : ''}>
+                        <button onClick={(ev) => { ToggleChild(ev); }}><i className="icon"><IoSendOutline /></i> Campañas <i className="arrow"><MdArrowForwardIos /></i></button>
 
                         <ul>
                             <li><Link to="/campaigns/em">Email Marketing</Link></li>
@@ -123,7 +123,7 @@ export default function HeaderLeft({ MenuLeft }) {
                             <li><Link to="/campaigns/new">Crear Campana</Link></li>
                         </ul>
                     </li>
-                    <li className={opacityMenu ? 'opacity' : '' + "none"}><button onClick={ToggleChild}><i className="icon"><IoPersonOutline /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
+                    <li className={opacityMenu ? 'opacity' : ''}><button onClick={ToggleChild}><i className="icon"><IoPersonOutline /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
 
                         <ul>
                             <li><Link to="/contacts">Mis Contactos</Link></li>
