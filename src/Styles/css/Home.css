@@ -2311,10 +2311,11 @@ table th {
 }
 
 .page.buttonsbody .share button {
-    background: #494949;
+    background: white;
     padding: 10px 15px;
     border-radius: 90px;
-    color: var(--text-fullwhite);
+    border: 1px solid black;
+    color: black;
 }
 
 .page.buttonsbody .buttons {
@@ -2334,8 +2335,14 @@ table th {
     padding: 10px 15px;
     font-size: 14px;
     border-radius: 90px;
-    background: #494949;
-    color: var(--text-fullwhite);
+    background: #ffffff;
+    color: black;
+    border: 1px solid black;
+}
+
+.page.buttonsbody .buttons-qrs .info {
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .page.buttonsbody.editmode .logo {

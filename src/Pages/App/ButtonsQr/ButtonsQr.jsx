@@ -177,7 +177,7 @@ export default function ButtonsQr() {
 
                                                         <div className="buttons-qrs">
                                                             <button onClick={(ev) => { shareQr(element.image) }}>Compartir</button>
-                                                            <button onClick={(ev) => { alert("Si dejas presionada el QR podras habilitar funciones especiales de tu sistema operativo") }}><Icon icon="carbon:information-filled" /></button>
+                                                            <button className="info" onClick={(ev) => { alert("Si dejas presionada el QR podras habilitar funciones especiales de tu sistema operativo") }}><Icon icon="carbon:information-filled" /></button>
                                                         </div>
                                                     </>
 
