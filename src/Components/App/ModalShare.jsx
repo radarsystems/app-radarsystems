@@ -1,20 +1,20 @@
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 
-export default function ModalShare({ Visible, CallbackVisible }) {
+export default function ModalShare({ Visible, CallbackVisible, value }) {
 
     const Navigator = useNavigate()
 
     let options = {
-        facebook: "https://www.facebook.com/sharer.php?u=" + window.location.href,
-        whatsapp: "https://api.whatsapp.com/send/?text=" + "Mira esta nueva botonera de enlace " + window.location.href,
-        linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=" + window.location.href,
+        facebook: "https://www.facebook.com/sharer.php?u=" + (value || window.location.href),
+        whatsapp: "https://api.whatsapp.com/send/?text=" + "Mira esta nueva botonera de enlace " + (value || window.location.href),
+        linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=" + (value || window.location.href),
         messenger: "https://www.messenger.com/new",
         instagram: "https://instagram.com/share",
         tiktok: "",
-        x: "https://x.com/intent/tweet?text=" + "Entra ahora con este link compartido " + window.location.href,
-        email: "mailto:?subject= Check out this Radarsystems! &body= " + "Mira esta nueva botonera de enlace " + window.location.href,
-    }
+        x: "https://x.com/intent/tweet?text=" + "Entra ahora con este link compartido " + (value || window.location.href),
+        email: "mailto:?subject= Check out this Radarsystems! &body= " + "Mira esta nueva botonera de enlace " + (value || window.location.href),
+    };
 
     function lestGo(ev) {
         let data = ev.target.dataset.type
@@ -47,7 +47,7 @@ export default function ModalShare({ Visible, CallbackVisible }) {
                         </div>
 
                         <div className="url">
-                            <span>{window.location.href}</span>
+                            <span>{value ?? window.location.href}</span>
                         </div>
 
                         <div className="register">

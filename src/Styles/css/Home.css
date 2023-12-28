@@ -1530,10 +1530,11 @@ table th {
     max-height: 100%;
 }
 
-.modal-share .top p{
+.modal-share .top p {
     font-family: 'Messina Bold';
     text-align: center;
 }
+
 .modal-share .closed {
     position: absolute;
     right: -7px;
@@ -2272,26 +2273,43 @@ table th {
     fill: var(--text-white) !important;
 }
 
-.page.buttonsbody .update {
-    position: absolute;
-    top: -6vh;
-    right: 0;
-    padding: 10px 15px;
+
+
+.page.buttonsbody .button-complete-share {
+    width: 100%;
+    padding: 10px;
     font-size: 14px;
-    border-radius: 90px;
-    background-color: #494949;
-    color: white;
+    max-width: 200px;
+    border-radius: 93px;
 }
 
-.page.buttonsbody .share {
+.editor-surveys .header {
+    width: 100%;
+    height: 235px;
     position: absolute;
-    top: -6vh;
+    top: 0px;
+    left: 0px;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+
+.page.buttonsbody .share {
+    display: flex;
+    position: absolute;
+    top: -7vh;
     left: 0;
     padding: 10px 15px;
-    font-size: 14px;
+    font-size: 13px;
     border-radius: 90px;
-    background-color: #494949;
     color: white;
+    gap: 10px;
+}
+
+.page.buttonsbody .share button {
+    background: #494949;
+    padding: 10px 15px;
+    border-radius: 90px;
 }
 
 .page.buttonsbody .buttons {
@@ -2635,6 +2653,7 @@ svg {
     margin: auto;
     border-radius: 12px;
     max-height: 360px;
+    pointer-events: auto !important;
 }
 
 .page.buttonsqr .qr .delete {

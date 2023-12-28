@@ -5,7 +5,7 @@ import EditTitleButtons from "../../Buttons/Editor/EditTitle";
 import EditTitleSpace from "./EditTitleSpace";
 import { useContext, useRef, useState } from "react";
 import ModalSmall from "../../ModalSmall";
-import $ from "jquery";
+import $, { data } from "jquery";
 import QrStyling from "qr-code-styling";
 import axios from "axios";
 import { API_URL } from "../../../../ExportUrl";
@@ -250,6 +250,8 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
             QrCode.append(ref.current)
 
             let formData = new FormData()
+
+            let dataQr = data;
             formData.append("url", data)
             formData.append("id_company", UserInfo?.company?.id_company)
 
@@ -268,7 +270,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         let reader = new FileReader()
 
                         reader.onload = function (ev) {
-                            goCreateQRForm(ev.target.result, Number(data.id_shortlink))
+                            goCreateQRForm(ev.target.result, Number(data.id_shortlink), dataQr)
                         }
 
                         reader.readAsDataURL(blob)
@@ -282,7 +284,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
     }
 
 
-    function goCreateQRForm(image, id_concat = null) {
+    function goCreateQRForm(image, id_concat = null, dataQr) {
 
         let formData = new FormData();
 
@@ -290,9 +292,9 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
             formData.append("id_concat", id_concat)
         }
 
-
         let qrName = `${clickType + "-" + (new Date() / 1000).toFixed()}`;
         formData.append("preview", image)
+        formData.append("dataQr", dataQr)
         formData.append("id_company", UserInfo?.company?.id_company)
 
         if (nameQr == null) {
@@ -302,13 +304,21 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
             formData.append("formqr", JSON.stringify({ name: nameQr }))
         }
 
+        console.log(clickType)
+
         switch (clickType) {
             case 'facebook':
             case 'instagram':
             case 'x':
             case 'twitter':
             case 'linkedin':
+            case 'whatsapp':
                 formData.append("type", "qr-rs")
+                break;
+
+            case 'pdf':
+            case 'img':
+                formData.append("type", "qr-file")
                 break;
 
             case 'wifi':
@@ -379,6 +389,12 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
             })
 
     }
+
+    useEffect(() => {
+        if (!modalPdf) {
+            setFileUpload([])
+        }
+    }, [modalPdf])
 
 
 
@@ -464,7 +480,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
             </ModalSmall>
 
 
-            <ModalSmall key={modalPdf ? "14" : "15"} visible={modalPdf} Pending={pending?.modalFile} callback={setModalPdf} next={"Subir"} onClick={uploadFile}>
+            <ModalSmall key={modalPdf ? "14sd" : "15asdas"} visible={modalPdf} Pending={pending?.modalFile} callback={setModalPdf} next={"Subir"} onClick={uploadFile}>
                 <input type="file" name="file" onChange={changeFile} hidden />
 
                 <div className="top">

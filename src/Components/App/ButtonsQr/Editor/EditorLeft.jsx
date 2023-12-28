@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react"
 import ColorPickerBasic from "../../ColorPicker/ColorPickerBasic"
 import { HuePicker } from "react-color"
 import ModalSmall from "../../ModalSmall"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { IoCloudUploadOutline, IoDocumentTextOutline, IoTrashOutline } from "react-icons/io5"
 import { AnalizeFileCsv, AnalizeImage } from "../../../../Functions/Global"
 import toast from "react-hot-toast"
@@ -16,6 +16,7 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
     const [fileUpload, setFileUpload] = useState({})
     const [visibleUpload, setVisibleUpload] = useState(false)
     const [pending, setPending] = useState(false)
+    const [uploadPhoto, setUploadPhoto] = useState()
 
     const { UserInfo } = useContext(AuthContext)
 
@@ -24,7 +25,7 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
 
         let name = ev.target.name
 
-        if (name == "background") {
+        if (name == "background" || name == "backgroundHeader") {
             if (value.indexOf("http") >= 0) {
                 value = `url(${value})`
             }
@@ -45,6 +46,16 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
             let newData = { ...prevData }
 
             newData.header.background = color;
+
+            return newData
+        })
+    }
+
+    function setColorHeader(color) {
+        setButtons(prevData => {
+            let newData = { ...prevData }
+
+            newData.header.backgroundHeader = color;
 
             return newData
         })
@@ -86,7 +97,15 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
                         setButtons(prevData => {
                             let newData = { ...prevData }
 
-                            newData.header.background = `url(${data.download})`
+
+                            if (uploadPhoto == "background") {
+                                newData.header.background = `url(${data.download})`
+                            }
+
+                            if (uploadPhoto == "backgroundHeader") {
+                                newData.header.backgroundHeader = `url(${data.download})`
+                            }
+
 
                             return newData
                         })
@@ -104,6 +123,10 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
             toast.error("Opps no has seleccionado ningun archivo")
         }
     }
+
+    useEffect(() => {
+        document.querySelector("input[name='background']").value = "a"
+    }, [])
 
 
     return (
@@ -153,9 +176,9 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
             </ModalSmall>
 
 
-            <img src="/img/icons/logo_color_1.png" alt="" hidden  />
+            <img src="/img/icons/logo_color_1.png" alt="" hidden />
 
-            
+
             <div className="title-top">
 
 
@@ -169,11 +192,23 @@ export default function EditorLeftButtonsQr({ setButtons, Visible, VisibleMenu }
                 <p className="title">Elige el fondo</p>
                 <input type="text" defaultValue={"#fff"} onChange={changeTheme} name="background" />
 
-                <button onClick={(ev) => { setVisibleUpload(true) }} className="action-complete"><Icon icon="material-symbols:upload-rounded" /> Elegir Imagen</button>
+                <button onClick={(ev) => { setVisibleUpload(true); setUploadPhoto("background") }} className="action-complete"><Icon icon="material-symbols:upload-rounded" /> Elegir Imagen</button>
 
                 <hr />
                 <p className="title">Colores</p>
                 <ColorPickerBasic onClick={setColor} />
+                <br />
+            </div>
+
+            <div className="option">
+                <p className="title">Elige el header</p>
+                <input type="text" defaultValue={"#fff"} onChange={changeTheme} name="backgroundHeader" />
+
+                <button onClick={(ev) => { setVisibleUpload(true); setUploadPhoto("backgroundHeader") }} className="action-complete"><Icon icon="material-symbols:upload-rounded" /> Elegir Imagen</button>
+
+                <hr />
+                <p className="title">Colores</p>
+                <ColorPickerBasic onClick={setColorHeader} />
                 <br />
             </div>
 

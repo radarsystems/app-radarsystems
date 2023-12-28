@@ -8,12 +8,14 @@ import "../../../Styles/css/Home.css"
 import ModalSmall from "../../../Components/App/ModalSmall"
 import { GetParams } from "../../../Functions/Global"
 import ModalShare from "../../../Components/App/ModalShare"
+import toast from "react-hot-toast"
 
 export default function ButtonsQr() {
     let params = useParams()
     const [install, setInstall] = useState(false)
     const [buttons, setButtons] = useState({ elements: [] })
     const [visible, setVisible] = useState(false)
+    const [linkShare, setLinkShare] = useState(null)
     const Navigator = useNavigate()
 
     function searchButtons() {
@@ -37,10 +39,39 @@ export default function ButtonsQr() {
 
     }, [])
 
+    function shareQr(image) {
+
+        let formData = new FormData()
+        let url = new URL(image)
+        image = url.searchParams.get("url")
+        formData.append("img", image)
+        axios.post(API_URL + "/api/get/dataqr", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                if (data.length) {
+                    let element = data[0]
+                    if (element.data_qr) {
+                        setLinkShare(element.data_qr)
+                        setVisible(true)
+                    } else {
+                        toast.error("Opps este QR no tiene datos para compartir.")
+                    }
+                } else {
+                    toast.error("Opps error al localizar el qr")
+                }
+            })
+    }
+
+    useEffect(() => {
+        if (!visible) {
+            setLinkShare(null)
+        }
+    }, [visible])
+
     return (
         <>
 
-            <ModalShare Visible={visible} CallbackVisible={setVisible} />
+            <ModalShare Visible={visible} CallbackVisible={setVisible} value={linkShare} />
             {install ?
                 <ModalSmall visible={true} maxWidth={250} next={`Listo`} onClick={(ev) => { setInstall(false); Navigator("/buttonsqr/" + params.id) }}>
                     <div className="top">
@@ -86,6 +117,9 @@ export default function ButtonsQr() {
                     <div className="background2" style={{ backdropFilter: `blur(${buttons?.header?.blur}px)brightness(${buttons?.header?.brightness})`, background: buttons?.header?.background2 }}>
                     </div>
 
+                    <div className="header" style={{ background: buttons?.header?.backgroundHeader }}></div>
+
+
                     <div className={`${"page buttonsbody buttonsqr " + buttons?.header?.theme}`}>
                         <div className="center-top">
 
@@ -95,35 +129,50 @@ export default function ButtonsQr() {
 
                             <br />
                             <br />
-                            <button className="share" onClick={(ev) => { setVisible(true) }}>Compartir</button>
-                            <button className="update" onClick={(ev) => { window.location.href = window.location.href }}>Actualizar</button>
+
+                            <div className="share">
+                                <button onClick={(ev) => { setVisible(true) }}>Compartir</button>
+                                <button onClick={(ev) => { setVisible(true) }}>Recomendar</button>
+                                <button className="update" onClick={(ev) => { window.location.href = window.location.href }}>Actualizar</button>
+                            </div>
+
 
                             {buttons.elements.map((element, key) => (
-                                <div className="boxqr">
+                                <>
 
-                                    <div className="top">
-                                        <div className="top-left">
-                                            <p id={key} type="titlespace">{element.title ? element.title : ''}</p>
-                                        </div>
+                                    {element?.qrs?.length ?
+                                        <div className="boxqr">
 
-
-                                    </div>
-
-
-                                    <Carousel showThumbs={false} showIndicators={false} showStatus={false}>
-                                        {element.qrs.map((element, key2) => (
+                                            <div className="top">
+                                                <div className="top-left">
+                                                    <p id={key} type="titlespace">{element.title ? element.title : ''}</p>
+                                                </div>
 
 
-                                            <div className="qr">
-                                                <img src={element.image} />
-                                                <p>{element.title}</p>
                                             </div>
 
 
-                                        ))}
-                                    </Carousel>
-                                    {element.qrs.length == 0 ? <div className="add-qr">+</div> : ''}
-                                </div>
+                                            <Carousel showThumbs={false} showIndicators={false} showStatus={false}>
+                                                {element.qrs.map((element, key2) => (
+
+                                                    <>
+                                                        <div className="qr">
+                                                            <img src={element.image} />
+                                                            <p>{element.title}</p>
+                                                        </div>
+
+                                                        <div className="x">
+                                                            <button onClick={(ev) => { shareQr(element.image) }} className="button-complete-share">Compartir</button>
+                                                        </div>
+                                                    </>
+
+
+                                                ))}
+                                            </Carousel>
+                                        </div>
+                                        : ""}
+                                </>
+
                             ))}
 
 

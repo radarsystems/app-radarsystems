@@ -210,7 +210,7 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                                         let reader2 = new FileReader();
                                         reader2.onload = function (event) {
                                             const base64URL = event.target.result
-                                            goUploadQr(base64URL, data.id_shortlink)
+                                            goUploadQr(base64URL, data.id_shortlink, formQr.url)
 
                                         }
 
@@ -240,12 +240,13 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
 
     }
 
-    function goUploadQr(image, id_concat = undefined) {
+    function goUploadQr(image, id_concat = undefined, dataQr) {
         let formData = new FormData()
         formData.append("formqr", JSON.stringify(formQr))
         formData.append("id_company", UserInfo?.company?.id_company)
         formData.append("type", form.type)
         formData.append("preview", image)
+        formData.append("dataQr", dataQr)
 
         if (id_concat) {
             formData.append("id_concat", id_concat)

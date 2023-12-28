@@ -430,8 +430,10 @@ export default function BodyButtonsQr({ addNewQr, VisibleMenu, type, visibleQr, 
 
             <div className="background2" style={{ backdropFilter: `blur(${buttons?.header?.blur}px)brightness(${buttons?.header?.brightness})`, WebkitBackdropFilter: `blur(${buttons?.header?.blur}px)`, background: buttons?.header?.background2 }}>
             </div>
+            <div className="header" style={{ background: buttons?.header?.backgroundHeader }}></div>
 
             <div className={`${"page buttonsbody buttonsqr editmode " + buttons?.header?.theme}`}>
+
                 <div className="center-top">
 
 
@@ -496,7 +498,7 @@ export default function BodyButtonsQr({ addNewQr, VisibleMenu, type, visibleQr, 
 
 
                 </div>
-            </div>
+            </div >
         </>
     )
 }
