@@ -171,7 +171,7 @@ export default function ButtonsQr() {
 
                                                     <>
                                                         <div className="qr">
-                                                            <p>{element.title}</p>
+                                                            <p style={{ textTransform: "uppercase" }}>{element.title}</p>
                                                             <img src={element.image} />
                                                         </div>
 
