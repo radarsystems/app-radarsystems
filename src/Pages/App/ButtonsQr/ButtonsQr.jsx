@@ -47,10 +47,17 @@ export default function ButtonsQr() {
         formData.append("img", image)
         axios.post(API_URL + "/api/get/dataqr", formData, { withCredentials: true })
             .then((response) => { return response.data })
-            .then((data) => {
+            .then(async (data) => {
                 if (data.length) {
                     let element = data[0]
                     if (element.data_qr) {
+
+                        await navigator.share({
+                            title: "test",
+                            text: "probando",
+                            url: element.data_qr
+                        })
+                        
                         setLinkShare(element.data_qr)
                         setVisible(true)
                     } else {

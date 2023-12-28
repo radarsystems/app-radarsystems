@@ -2314,6 +2314,7 @@ table th {
     background: #494949;
     padding: 10px 15px;
     border-radius: 90px;
+    color: var(--text-fullwhite);
 }
 
 .page.buttonsbody .buttons {
