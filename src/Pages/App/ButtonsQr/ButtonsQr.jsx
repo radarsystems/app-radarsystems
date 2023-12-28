@@ -6,7 +6,7 @@ import { Carousel } from "react-responsive-carousel"
 import "../../../Styles/css/app.css"
 import "../../../Styles/css/Home.css"
 import ModalSmall from "../../../Components/App/ModalSmall"
-import { GetParams } from "../../../Functions/Global"
+import { GetParams, getDevice } from "../../../Functions/Global"
 import ModalShare from "../../../Components/App/ModalShare"
 import toast from "react-hot-toast"
 
@@ -52,14 +52,20 @@ export default function ButtonsQr() {
                     let element = data[0]
                     if (element.data_qr) {
 
-                        await navigator.share({
-                            title: "test",
-                            text: "probando",
-                            url: element.data_qr
-                        })
-                        
-                        setLinkShare(element.data_qr)
-                        setVisible(true)
+                        if (getDevice() == "Desktop") {
+                            setLinkShare(element.data_qr)
+                            setVisible(true)
+                        } else {
+                            await navigator.share({
+                                title: "Compartir",
+                                text: "test",
+                                url: element.data_qr
+                            })
+
+                        }
+
+
+
                     } else {
                         toast.error("Opps este QR no tiene datos para compartir.")
                     }
