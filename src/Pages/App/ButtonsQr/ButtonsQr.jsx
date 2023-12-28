@@ -145,7 +145,7 @@ export default function ButtonsQr() {
                             <br />
 
                             <div className="share">
-                                <button onClick={(ev) => { setVisible(true) }}>Compartir</button>
+                                <button onClick={(ev) => { Navigator("/") }}>Home</button>
                                 <button onClick={(ev) => { setVisible(true) }}>Recomendar</button>
                                 <button className="update" onClick={(ev) => { window.location.href = window.location.href }}>Actualizar</button>
                             </div>
