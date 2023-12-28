@@ -2331,11 +2331,11 @@ table th {
 }
 
 .page.buttonsbody .buttons-qrs button {
-    color: var(--text-fullwhite);
     padding: 10px 15px;
     font-size: 14px;
     border-radius: 90px;
     background: #494949;
+    color: var(--text-fullwhite);
 }
 
 .page.buttonsbody.editmode .logo {
