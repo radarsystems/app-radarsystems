@@ -9,6 +9,7 @@ import ModalSmall from "../../../Components/App/ModalSmall"
 import { GetParams, getDevice } from "../../../Functions/Global"
 import ModalShare from "../../../Components/App/ModalShare"
 import toast from "react-hot-toast"
+import { Icon } from "@iconify/react"
 
 export default function ButtonsQr() {
     let params = useParams()
@@ -170,12 +171,13 @@ export default function ButtonsQr() {
 
                                                     <>
                                                         <div className="qr">
-                                                            <img src={element.image} />
                                                             <p>{element.title}</p>
+                                                            <img src={element.image} />
                                                         </div>
 
-                                                        <div className="x">
-                                                            <button onClick={(ev) => { shareQr(element.image) }} className="button-complete-share">Compartir</button>
+                                                        <div className="buttons-qrs">
+                                                            <button onClick={(ev) => { shareQr(element.image) }}>Compartir</button>
+                                                            <button onClick={(ev) => { alert("Si dejas presionada el QR podras habilitar funciones especiales de tu sistema operativo") }}><Icon icon="carbon:information-filled" /></button>
                                                         </div>
                                                     </>
 

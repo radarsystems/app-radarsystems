@@ -2322,6 +2322,21 @@ table th {
     display: block;
 }
 
+.page.buttonsbody .buttons-qrs {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.page.buttonsbody .buttons-qrs button {
+    color: var(--text-fullwhite);
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 90px;
+}
+
 .page.buttonsbody.editmode .logo {
     cursor: pointer;
 }
