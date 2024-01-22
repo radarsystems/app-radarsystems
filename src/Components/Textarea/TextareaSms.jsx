@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from "react";
 
-export default function TextareaSms({ value, onChange, onSave }) {
+export default function TextareaSms({ value, defaultValue, onChange, onSave, Send = true, Preview = true }) {
     const textareaRef = useRef(null);
     const [text, setText] = useState('');
     const [captureValue, setCaptureValue] = useState(true)
@@ -75,12 +75,14 @@ export default function TextareaSms({ value, onChange, onSave }) {
                         <i>166/{textCount}</i>
                     </div>
                 </div>
-                <textarea ref={textareaRef} className="text" value={value} onChange={(e) => setText(e.target.value)}></textarea>
+                <textarea ref={textareaRef} className="text" value={value} defaultValue={defaultValue} onChange={(e) => setText(e.target.value)}></textarea>
 
                 <div className="bottom-actions">
                     <button><IoTrash /> Borrar</button>
-                    <button ><IoEyeOutline /> Previsualizar SMS</button>
-                    <button className="preview" onClick={onSave}>Enviar Campaña</button>
+
+                    {Preview ? <button ><IoEyeOutline /> Previsualizar SMS</button> : ""}
+
+                    {Send ? <button className="preview" onClick={onSave}>Enviar Campaña</button> : ""}
                     <button className="preview" onClick={onSave}>Guardar </button>
                 </div>
             </div>

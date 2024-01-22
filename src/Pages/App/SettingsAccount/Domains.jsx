@@ -12,6 +12,8 @@ import { BiTime } from "react-icons/bi"
 import { IoStatsChartOutline, IoTrashOutline } from "react-icons/io5"
 import { MdAlternateEmail } from "react-icons/md"
 import ModalDelete from "../../../Components/App/ModalDelete"
+import { useNavigate } from "react-router-dom"
+import { Icon } from "@iconify/react"
 
 export default function CompanyDomains() {
 
@@ -21,6 +23,8 @@ export default function CompanyDomains() {
     const { UserInfo } = useContext(AuthContext)
     const [viewModal, setViewModal] = useState(false)
     const [viewModalDelete, setViewModalDelete] = useState(false)
+
+    const Navigator = useNavigate()
 
     function setChange(ev) {
         let name = ev.target.name
@@ -116,7 +120,7 @@ export default function CompanyDomains() {
                                         <span>Estatus: {element.status ? <BsCheckCircleFill /> : <BiTime />}</span>
 
                                         <div className="buttons">
-                                            <button><IoStatsChartOutline /></button>
+                                            <button onClick={(ev) => { Navigator(`/settings-account/domain/${element.id_domain}`) }}><Icon icon="icon-park-outline:config" /></button>
                                             <button><IoTrashOutline /></button>
                                         </div>
                                     </div>

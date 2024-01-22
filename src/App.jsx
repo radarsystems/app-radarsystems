@@ -59,6 +59,7 @@ import PreviewIphone from './Components/App/Preview/Iphone.jsx'
 import { Logout } from './Pages/App/Logout.jsx'
 import { useContext } from 'react'
 import { AuthContext } from './Context/AuthContext.jsx'
+import DomainWatch from './Pages/App/SettingsAccount/Domain.jsx'
 
 
 
@@ -95,6 +96,7 @@ function App() {
           <Route path="/settings-account/security" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
           <Route path="/settings-account/footer" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
           <Route path="/settings-account/domains" element={<Global CompanyNeed={true} Element={CompanyDomains} />} />
+          <Route path="/settings-account/domain/:id" element={<Global CompanyNeed={true} Element={DomainWatch} />} />
 
 
           {/* ROUTES PRIVATE IN APP */}

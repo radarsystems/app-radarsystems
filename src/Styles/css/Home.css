@@ -3505,3 +3505,91 @@ svg {
         display: block !important;
     }
 }
+
+.box.domain .space-config {
+    display: block;
+    padding: 10px;
+    width: 100%;
+}
+
+.box.domain .space-config>p.title {
+    color: var(--text-white);
+    font-size: 16px;
+}
+
+.box.domain .space-config table td:last-child {
+    width: 100%;
+    margin-left: auto;
+    display: block;
+    position: relative;
+}
+
+
+.box.domain .register-type {
+    color: var(--text-white);
+    background-color: var(--box-actions);
+    padding: 10px;
+    font-size: 10px;
+    margin-bottom: 10px;
+    display: block;
+    border-radius: 8px;
+    width: max-content;
+}
+
+.box.domain .space-config table {
+    border: 1px solid var(--border-box);
+}
+
+.box.domain .space-config table td {
+    opacity: 1 !important;
+    width: max-content;
+    margin: auto;
+}
+
+
+.box.domain .space-config .error {
+    background: #ff3c54;
+    padding: 6px 10px;
+    border-radius: 90px;
+    line-height: 0.5px !important;
+    font-size: 12px !important;
+}
+
+.box.domain .space-config .success {
+    color: white;
+    background-color: #33c193;
+    padding: 6px 10px;
+    border-radius: 90px;
+    line-height: 0.5px !important;
+    font-size: 12px !important;
+}
+
+
+.box.domain .space-config .input-config {
+    display: flex;
+    padding: 10px 20px;
+    background: var(--box-actions);
+    border-radius: 22px;
+    width: max-content;
+    font-size: 13px;
+    line-height: 1px;
+    max-width: 450px;
+}
+
+.box.domain .space-config .input-config span {
+    display: block;
+    line-height: 17px !important;
+    position: relative;
+    top: 2px;
+}
+
+.box.domain .space-config .input-config button {
+    border-radius: 90px;
+    padding: 5px 5px;
+    background-color: var(--border-box);
+    height: max-content;
+    width: max-content;
+    margin: auto;
+    color: var(--text-white);
+    margin-left: 12px;
+}

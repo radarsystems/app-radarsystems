@@ -43,6 +43,7 @@ export default function DetailCampaigns() {
     const [template, setTemplate] = useState({})
     const [newText, setNewText] = useState()
     const [modalSendTest, setModalTest] = useState(false)
+    const [domains, setDomains] = useState([])
 
     function searchLists(search) {
 
@@ -186,6 +187,36 @@ export default function DetailCampaigns() {
         }
     }
 
+    function useDomain(ev) {
+        let value = ev.target.value
+
+
+        if (value) {
+
+            setCampaign(prevData => {
+                let newData = { ...prevData }
+                newData.id_domain = value;
+                return newData
+            })
+
+            toast.success("Excelente")
+            setEditActive({ ...editActive, domain: false })
+
+            let formData = new FormData()
+
+            formData.append("id_company", UserInfo?.company?.id_company)
+            formData.append("id_campaign", campaign?.id_campaign)
+            formData.append("id_domain", value)
+
+            axios.post(API_URL + "/api/update/campaign/domain", formData, { withCredentials: true })
+                .then((response) => { return response.data })
+                .then((data) => {
+
+                })
+        }
+
+    }
+
     function DeleteList(ev) {
 
         let value = ev.target.value
@@ -214,26 +245,39 @@ export default function DetailCampaigns() {
 
     // SENDS
 
+    function CheckBeforeSend() {
+        let items = document.querySelectorAll(".item .top")?.length
+        let itemsCheck = document.querySelectorAll(".item .top.active")?.length
+
+        if (items !== itemsCheck) {
+            toast.error("Opps tienes campos que terminar.")
+        }
+
+
+        return items == itemsCheck
+    }
+
 
     function sendCampaign(ev) {
+        if (CheckBeforeSend()) {
+            setAwait("sendCampaign", true)
+            let formData = new FormData()
+            formData.append("id_company", UserInfo?.company?.id_company)
+            formData.append("id_campaign", params.id)
 
-        setAwait("sendCampaign", true)
-        let formData = new FormData()
-        formData.append("id_company", UserInfo?.company?.id_company)
-        formData.append("id_campaign", params.id)
-
-        axios.post(API_URL + "/api/send/campaign", formData, { withCredentials: true })
-            .then((response) => { return response.data })
-            .then((data) => {
-                setAwait("sendCampaign", false)
-                if (data.status) {
-                    toast.success("Campaña enviada!")
-                } else {
-                    toast.error(data.msg)
-                }
-            }).catch((err) => {
-                setAwait("sendCampaign", false)
-            })
+            axios.post(API_URL + "/api/send/campaign", formData, { withCredentials: true })
+                .then((response) => { return response.data })
+                .then((data) => {
+                    setAwait("sendCampaign", false)
+                    if (data.status) {
+                        toast.success("Campaña enviada!")
+                    } else {
+                        toast.error(data.msg)
+                    }
+                }).catch((err) => {
+                    setAwait("sendCampaign", false)
+                })
+        }
     }
 
     function updateForm(ev) {
@@ -263,6 +307,8 @@ export default function DetailCampaigns() {
                 if (data.status) {
                     setEditActive(editActiveDefault)
                     setCampaign(prevData => ({ ...prevData, affair: form.affair }))
+                }else{
+                    toast.error(data.msg)
                 }
             })
             .catch((err) => {
@@ -390,6 +436,19 @@ export default function DetailCampaigns() {
             })
     }
 
+    function getMyDomains() {
+        let formData = new FormData()
+
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("status", true);
+
+
+        axios.post(API_URL + "/api/get/domains", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                setDomains(data)
+            })
+    }
 
 
     return (
@@ -421,11 +480,11 @@ export default function DetailCampaigns() {
 
 
             <div className="menu-top-right">
-                <button className="programming" onClick={(ev) => { setModalProgramming(true) }}>Programar</button>
+                <button className="programming" onClick={(ev) => { if (CheckBeforeSend()) { setModalProgramming(true) } }}>Programar</button>
                 <button className="programming" onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}>Estadisticas</button>
                 <button className="programming" onClick={(ev) => { setDeleteModal(true) }}>Eliminar</button>
-                <button className={`programming ${pending.sendCampaign ? 'await' : ''}`} onClick={(ev) => { setModalTest(true) }}>Enviar Prueba <div className="loading"></div></button>
-                <button className={`send-campaign ${pending.sendCampaign ? 'await' : ''}`} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
+                <button className={`programming ${pending.sendCampaign ? 'await' : ''} `} onClick={(ev) => { setModalTest(true) }}>Enviar Prueba <div className="loading"></div></button>
+                <button className={`send - campaign ${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
             </div>
 
 
@@ -503,7 +562,7 @@ export default function DetailCampaigns() {
 
                 <div className="item">
 
-                    <div className={`top ${campaign?.lists ? 'active' : ''}`}>
+                    <div className={`top ${campaign?.lists ? 'active' : ''} `}>
 
                         <div className={`check`}>
                             <FaCheck />
@@ -514,9 +573,6 @@ export default function DetailCampaigns() {
                             <span className="desc approve">Aprobado!</span>
 
                             <div className="selects">
-
-
-
                                 {
                                     campaign?.lists?.length >= 1 ?
                                         campaign?.lists?.split(",").map((element, key) => (
@@ -576,7 +632,7 @@ export default function DetailCampaigns() {
                     <>
                         <div className="item">
 
-                            <div className={`top ${campaign?.sender ? 'active' : ''}`}>
+                            <div className={`top ${campaign?.id_domain ? 'active' : ''} `}>
                                 <div className={`check`}>
                                     <FaCheck />
                                 </div>
@@ -587,17 +643,38 @@ export default function DetailCampaigns() {
                                 </div>
 
 
+                                {editActive.domain == true ?
+                                    <>
+                                        <div className="option">
+                                            <div className="search-result">
+                                                {domains?.map((element, key) => (
+                                                    <div className="result" key={54}>
+                                                        <div className="info">
+                                                            <p>{element.domain}</p>
+                                                            <span>Correo: {element.domain_email}</span>
+                                                            <button className="select" onClick={useDomain} value={element.id_domain}><IoPushOutline /></button>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </>
+                                    :
+                                    <div className="right">
+                                        <button onClick={(ev) => { ActiveList("domain"); getMyDomains() }}>Editar</button>
+                                    </div>
+                                }
 
-                                <div className="right">
-                                    <button onClick={(ev) => { ActiveList("body") }}>Editar</button>
-                                </div>
+
+
+
                             </div>
 
                         </div>
 
                         <div className="item">
 
-                            <div className={`top ${campaign?.affair ? 'active' : ''}`}>
+                            <div className={`top ${campaign?.affair ? 'active' : ''} `}>
                                 <div className={`check`}>
                                     <FaCheck />
                                 </div>
@@ -609,15 +686,19 @@ export default function DetailCampaigns() {
 
                                 {editActive.affair == true ?
                                     <>
+
+                                        {/*
                                         <div className="option">
                                             <div className="form-input flex">
                                                 <input type="search" onChange={updateForm} name="affair" placeholder="Asunto..." />
                                                 <button onClick={setAffair} className="save">Guardar</button>
                                             </div>
                                         </div>
+                                          */}
 
-                                        <TextareaSms onSave={setAffair} onChange={(ev) => { setForm({ ...form, affair: ev }) }} />
+                                        <TextareaSms Preview={false} Send={false} onSave={setAffair} defaultValue={campaign?.affair} onChange={(ev) => { setForm({ ...form, affair: ev }) }} />
                                     </>
+
                                     :
                                     <div className="right">
                                         <button onClick={(ev) => { ActiveList("affair") }}>Editar</button>
@@ -631,7 +712,7 @@ export default function DetailCampaigns() {
 
                 <div className="item">
 
-                    <div className={`top ${campaign?.template ? 'active' : ''}`}>
+                    <div className={`top ${campaign?.template ? 'active' : ''} `}>
                         <div className={`check`}>
                             <FaCheck />
                         </div>
@@ -654,9 +735,9 @@ export default function DetailCampaigns() {
                                                     <span>Plantilla creada:  {Time(campaign?.template?.time_add)}</span>
                                                     <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
                                                     <br />
-                                                    <Link to={`/editor/canvas/${campaign?.template?.id_template}?campaign=` + params.id}>Editar plantilla</Link>
+                                                    <Link to={`/ editor / canvas / ${campaign?.template?.id_template}?campaign = ` + params.id}>Editar plantilla</Link>
                                                 </div>
-                                                : <Link to={`/editor/canvas/?campaign=` + params.id}>Crear una plantilla</Link>
+                                                : <Link to={`/ editor / canvas /? campaign = ` + params.id}>Crear una plantilla</Link>
                                             }
                                         </>
                                         : ''}
