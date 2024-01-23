@@ -98,8 +98,8 @@ export default function DomainWatch() {
                     <div className="col-md-12">
                         <div className="box box-padding stat domain">
                             <div className="top">
-                                <p>Sending records</p>
-                                <span>TXT records (known as SPF & DKIM) are required to send and receive email with Mailgun.</span>
+                                <p>Registros de Envio</p>
+                                <span>Se requieren registros TXT (conocidos como SPF y DKIM) para enviar y recibir correo electrónico con Radarsystems.</span>
                             </div>
 
                             {/* SPF CONFIG */}
