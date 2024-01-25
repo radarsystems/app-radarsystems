@@ -32,11 +32,12 @@ export function Auth() {
                     toast.error(data.msg)
                 }
 
-                $(ev.target).removeClass('await')
             }).catch((err) => {
                 toast.error(String(err))
-                $(ev.target).removeClass('await')
             })
+                .finally((output) => {
+                    $(ev.target).removeClass('await')
+                })
         } else {
             $(ev.target).removeClass('await')
         }

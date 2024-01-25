@@ -23,7 +23,9 @@ export default function CompanyDomains() {
     const { UserInfo } = useContext(AuthContext)
     const [viewModal, setViewModal] = useState(false)
     const [viewModalDelete, setViewModalDelete] = useState(false)
-
+    const [modalDelete, setModalDelete] = useState(false)
+    const [deleteId, setDeleteId] = useState(null)
+    const [pendingDelete, setPendingDelete] = useState(false)
     const Navigator = useNavigate()
 
     function setChange(ev) {
@@ -47,6 +49,8 @@ export default function CompanyDomains() {
                 setLoading(false)
                 if (data.status) {
                     setViewModal(false)
+                    toast.success("Has subido el dominio con exito")
+                    getMyDomains()
                 }
 
                 if (data.msg) {
@@ -62,6 +66,8 @@ export default function CompanyDomains() {
     function getMyDomains() {
         let formData = new FormData()
 
+        setLoading(true)
+
         formData.append("id_company", UserInfo?.company?.id_company)
 
         axios.post(API_URL + "/api/get/domains", formData, { withCredentials: true })
@@ -69,14 +75,48 @@ export default function CompanyDomains() {
             .then((data) => {
                 setDomains(data)
             })
+            .finally((err) => {
+                setLoading(false)
+            })
+    }
+
+    function openDelete(ev) {
+        let value = Number(ev.target.dataset.value)
+        setDeleteId(value)
+        setModalDelete(true)
+    }
+
+    function deleteDomain() {
+        let formData = new FormData()
+
+        setPendingDelete(true)
+
+        formData.append("id_domain", deleteId);
+        formData.append("id_company", UserInfo?.company?.id_company)
+
+        axios.post(API_URL + "/api/delete/domain", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                if (data.status) {
+                    toast.success("Has borrado el dominio con exito")
+                    getMyDomains()
+                }
+            })
+            .finally((err) => {
+                setModalDelete(false)
+                setPendingDelete(false)
+            })
     }
 
     useEffect(() => {
         getMyDomains()
     }, [])
 
+
     return (
         <>
+
+            <ModalDelete onClick={deleteDomain} Pending={pendingDelete} visible={modalDelete} callback={setModalDelete}></ModalDelete>
 
             <ModalSmall visible={viewModal} callback={setViewModal} maxWidth={"300px"} onClick={UploadDomain} Pending={loading}>
                 <div className="top">
@@ -121,7 +161,7 @@ export default function CompanyDomains() {
 
                                         <div className="buttons">
                                             <button onClick={(ev) => { Navigator(`/settings-account/domain/${element.id_domain}`) }}><Icon icon="icon-park-outline:config" /></button>
-                                            <button><IoTrashOutline /></button>
+                                            <button onClick={openDelete} data-value={element.id_domain}><IoTrashOutline /></button>
                                         </div>
                                     </div>
                                 </div>
