@@ -255,27 +255,52 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
             formData.append("url", data)
             formData.append("id_company", UserInfo?.company?.id_company)
 
-            axios.post(API_URL + "/api/upload/shortlink", formData, { withCredentials: true })
-                .then((response) => {
-                    return response.data
-                })
-                .then((data) => {
-
-                    QrCode.update({
-                        data: data.shortlink
+            if (!modalWifi) {
+                axios.post(API_URL + "/api/upload/shortlink", formData, { withCredentials: true })
+                    .then((response) => {
+                        return response.data
                     })
+                    .then((data) => {
 
-                    QrCode.getRawData().then((blob) => {
+                        QrCode.update({
+                            data: data.shortlink
+                        })
 
-                        let reader = new FileReader()
+                        QrCode.getRawData().then((blob) => {
 
-                        reader.onload = function (ev) {
-                            goCreateQRForm(ev.target.result, Number(data.id_shortlink), dataQr)
-                        }
+                            let reader = new FileReader()
 
-                        reader.readAsDataURL(blob)
+                            reader.onload = function (ev) {
+                                goCreateQRForm(ev.target.result, Number(data.id_shortlink), dataQr)
+                            }
+
+                            reader.readAsDataURL(blob)
+                        })
                     })
+                    .catch((err) => {
+                        toast.error(String(err))
+                    })
+                    .finally(() => {
+                        pendingNow("rs", false)
+                    })
+            } else {
+                QrCode.update({
+                    data: data
                 })
+
+                QrCode.getRawData().then((blob) => {
+
+                    let reader = new FileReader()
+
+                    reader.onload = function (ev) {
+                        goCreateQRForm(ev.target.result, Number(data.id_shortlink), data)
+                    }
+
+                    reader.readAsDataURL(blob)
+                })
+            }
+
+
 
 
 
@@ -340,6 +365,10 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     try {
                         addNewQr(qrName, data.img)
                         toast.success("QR agregado con exito")
+                        setModalPdf(false)
+                        setModalWifi(false)
+                        setModalRs(false)
+
                     } catch (err) {
                         toast.error(String(err))
                     }
