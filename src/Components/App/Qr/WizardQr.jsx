@@ -145,15 +145,15 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                 QrCode.update({
                     data: 'BEGIN:VCARD\n' +
                         'VERSION:3.0\n' +
-                        'N:' + formQr.lname + ';' + formQr.fname + ';;;\n' +
-                        'FN:' + formQr.fname + ' ' + formQr.lname + '\n' +
-                        'ORG:' + formQr.company + ';\n' +
-                        'TITLE:' + formQr.jobtitle + '\n' +
-                        'TEL;type=CELL:' + formQr.number + '\n' +
-                        'TEL;type=WORK:' + formQr.officenum + '\n' +
-                        'EMAIL;type=INTERNET;type=WORK;type=pref:' + formQr.email + '\n' +
-                        'URL:' + formQr.web + '\n' +
-                        'ADR;TYPE=work:;;' + formQr.address1 + ';' + formQr.address2 + ';' + formQr.city + ';' + formQr.province + ';' + formQr.country + ';' + formQr.pcode + '\n' +
+                        (formQr.lname ? 'N:' + formQr.lname + ';' + (formQr.fname || '') + ';;;\n' : '') +
+                        (formQr.fname ? 'FN:' + formQr.fname + ' ' + (formQr.lname || '') + '\n' : '') +
+                        (formQr.company ? 'ORG:' + formQr.company + ';\n' : '') +
+                        (formQr.jobtitle ? 'TITLE:' + formQr.jobtitle + '\n' : '') +
+                        (formQr.number ? 'TEL;type=CELL:' + formQr.number + '\n' : '') +
+                        (formQr.officenum ? 'TEL;type=WORK:' + formQr.officenum + '\n' : '') +
+                        (formQr.email ? 'EMAIL;type=INTERNET;type=WORK;type=pref:' + formQr.email + '\n' : '') +
+                        (formQr.web ? 'URL:' + formQr.web + '\n' : '') +
+                        (formQr.address1 ? 'ADR;TYPE=work:;;' + formQr.address1 + ';' + (formQr.address2 || '') + ';' + (formQr.city || '') + ';' + (formQr.province || '') + ';' + (formQr.country || '') + ';' + (formQr.pcode || '') + '\n' : '') +
                         'REV:' + new Date() + '\n' +
                         'END:VCARD'
                 });
