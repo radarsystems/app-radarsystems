@@ -133,7 +133,7 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
         let approve = false
         let target = $(ev.target)
 
-        if (count === 0 && form.type == "qr-stand" || form.type == "qr-contact") {
+        if (count === 0 && form.type == "qr-stand" || form.type == "qr-contact" || form.type == "qr-file") {
             approve = true
         }
 
@@ -316,8 +316,8 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                             <span className="desc">Selecciona el tipo de qr que quieres crear</span>
                         </div>
 
-                        <div className="options flex" id={`options-${idOptions[0]}`}>
-                            <div className="selector" onClick={selectOption} value={"qr-stand"}>
+                        <div className="options " id={`options-${idOptions[0]}`}>
+                            <div className="selector" style={{ marginBottom: "10px" }} onClick={selectOption} value={"qr-stand"}>
                                 <div className="check">
                                     <IoCheckmarkSharp />
                                 </div>
@@ -327,7 +327,7 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                                 </div>
                             </div>
 
-                            <div className="selector" onClick={selectOption} value={"qr-contact"}>
+                            <div className="selector" style={{ marginBottom: "10px" }} onClick={selectOption} value={"qr-contact"}>
                                 <div className="check">
                                     <IoCheckmarkSharp />
                                 </div>
@@ -337,10 +337,20 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                                 </div>
                             </div>
 
+                            <div className="selector" style={{ marginBottom: "10px" }} onClick={selectOption} value={"qr-file"}>
+                                <div className="check">
+                                    <IoCheckmarkSharp />
+                                </div>
+                                <div className="info">
+                                    <p>QR Archivo</p>
+                                    <span>Qr Archivo, este es un qr donde podras guardar un archivo de tu preferencia</span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
-                    {form.type == "qr-stand" ?
+                    {form.type == "qr-stand" &&
                         <>
                             <div className="case">
                                 <div className="top">
@@ -361,7 +371,24 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                                 </div>
                             </div>
                         </>
-                        :
+                    }
+
+                    {form.type == "qr-file" &&
+                        <div className="case">
+                            <div className="top">
+                                <p className="title">Qr archivo</p>
+                                <span className="desc">Sube tu archivo de tu preferencia para crear tu qr y luego utilizarlo en la nube</span>
+
+                                <br />
+                                <div className="form-input">
+                                    <input type="file" />
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    }
+
+                    {form.type == "qr-contact" &&
                         <div className="case">
                             <div className="top">
                                 <p className="title">Personaliza tu QR</p>
@@ -466,6 +493,7 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                             </div>
                         </div>
                     }
+
 
                     <div className="case">
 
