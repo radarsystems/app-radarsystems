@@ -65,9 +65,9 @@ export function SetCookie(cookieName, cookieValue, expire = false) {
     var expirationDate = new Date();
 
     if (expire) {
-        expirationDate.setTime(expirationDate.getTime() - 1); 
+        expirationDate.setTime(expirationDate.getTime() - 1);
     } else {
-        expirationDate.setDate(expirationDate.getDate() + 10); 
+        expirationDate.setDate(expirationDate.getDate() + 10);
     }
 
     var cookie = cookieName + "=" + encodeURIComponent(cookieValue) + "; expires=" + expirationDate.toUTCString() + "; path=/";
@@ -109,68 +109,60 @@ export function AnalizeFileCsv(ev, setPercent) {
             let fileReader = new FileReader();
 
             fileReader.onload = async function (ev) {
+
                 let analizeStatus = true;
                 let contacts = ev.currentTarget.result.split('\n');
 
                 let headers = contacts[0].split(',');
                 let headersApprove = false;
 
-                // ANALIZAR LOS HEADERS DEL ARCHIVO CSV O TXT QUE SE INTENTA SUBIR
-                headers.forEach(name => {
-                    if (name == "email" || name == "phone") {
-                        // SI CONTIENE UNO DE ESTOS HEADERS, SIGNIFICA QUE PODRÍA SER UN ARCHIVO TOTALMENTE VÁLIDO PARA SUBIR
-                        headersApprove = true;
-                    }
-                });
+                // Identificar los campos esenciales que deben estar presentes en todas las filas
+                const essentialFields = ["email"];
+
+                // Verificar que los campos esenciales estén presentes en el encabezado
+                headersApprove = essentialFields.every(field => headers.includes(field));
 
                 if (headersApprove) {
-                    // TODO BIEN, SIGNIFICA AHORA DEBEMOS ANALIZAR LOS CONTACTOS PARA VER SI CUMPLEN CON LOS CAMPOS CORRECTOS.
-
+                    // Analizar los contactos
                     const ObserverContacts = async () => {
                         for (var i = 1; i < contacts.length; i++) {
+                            // Empezamos desde el 1 porque el 0 es el encabezado
+                            let columns = contacts[i].split(',');
 
-
-                            // EMPEZAMOS DESDE EL 1 PORQUE EL 0 ES EL ENCABEZADO
-                            // CONTAMOS LOS ENCABEZADOS Y CONTAMOS LA INFORMACIÓN DE LOS CONTACTOS, Y SI EN TODOS LOS CONTACTOS ES CORRECTO TODO, SIGNIFICA QUE ESTE ARCHIVO ES VÁLIDO
-                            // NO DEBERÍA PRESENTAR NINGÚN TIPO DE PROBLEMAS.
-                            let countHeaders = headers.length;
-                            let countResults = contacts[i].split(',').length;
-
-                            if (countHeaders !== countResults) {
+                            // Verificar que la cantidad de columnas sea la misma que la cantidad de encabezados
+                            if (columns.length !== headers.length) {
                                 analizeStatus = false;
+                                break;
+                            }
+
+                            // Verificar si hay una fila vacía o con campos vacíos
+                            if (contacts[i].trim() === "" || columns.some(column => column.trim() === "")) {
+                                analizeStatus = false;
+                                break;
                             }
 
                             let percent = ((i + 1) / contacts.length * 100)
 
                             if (percent % 5 === 0) {
-
                                 await new Promise(resolve => setTimeout(() => {
                                     setPercent(percent)
                                     resolve()
                                 }, 0))
                             }
-
                         }
 
 
-                        if (analizeStatus) {
-                            response.analize = "good";
-                            response.file = file
-                            resolve(response);
-                        } else {
-                            response.analize = "bad";
-                            reject(response);
-                        }
+                        response.analize = "good";
+                        response.file = file
+                        resolve(response);
                     }
 
-                    await ObserverContacts()
-
-
+                    await ObserverContacts();
                 } else {
-                    response.analize = "bad";
-                    reject(response);
+                    response.analize = "good";
+                    response.file = file
+                    resolve(response);
                 }
-
             };
 
             fileReader.readAsText(file);
@@ -180,6 +172,8 @@ export function AnalizeFileCsv(ev, setPercent) {
         }
     });
 }
+
+
 
 export function PreviewTemplate(folder, image) {
     return `${API_URL}/api/get/imgtemplate?img=${image}&folder=${folder}`

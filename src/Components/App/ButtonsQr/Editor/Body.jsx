@@ -17,7 +17,7 @@ import { FiUpload } from "react-icons/fi"
 import { Icon } from "@iconify/react";
 
 
-export default function BodyButtonsQr({ addNewQr, VisibleMenu, type, visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
+export default function BodyButtonsQr({ addNewQr, setMyQrs, VisibleMenu, type, visibleQr, setVisibleQr, buttons, setBoxType, setButtons, editor, setEditor }) {
 
     const [visibleTitle, setVisibleTitle] = useState(false)
     const [editId, setEditId] = useState(undefined)
@@ -122,7 +122,6 @@ export default function BodyButtonsQr({ addNewQr, VisibleMenu, type, visibleQr, 
 
     async function save() {
         if (buttons.header.titlegl.length >= 1) {
-
             setPending(true)
             let formData = new FormData();
 
@@ -136,11 +135,7 @@ export default function BodyButtonsQr({ addNewQr, VisibleMenu, type, visibleQr, 
 
             formData.append("id_company", UserInfo?.company?.id_company)
 
-            let preview = await html2canvas(document.querySelector(".page .center"), { allowTaint: false, useCORS: true }).then((response) => {
-                let url = response.toDataURL()
-                return url
-            })
-
+            let preview = []
             formData.append("preview", preview);
 
 

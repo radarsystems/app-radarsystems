@@ -2507,6 +2507,13 @@ svg {
     border-radius: 10px;
 }
 
+.data .qrs .delete{
+    width: 100%;
+    border-radius: 90px;
+    margin-top: 5px;
+    background: #5b5b5b57;
+}
+
 .data .qrs {
     display: block;
     padding: 10px;
@@ -3219,6 +3226,12 @@ svg {
 .buttons-services .button span,
 .buttons-services .button i {
     pointer-events: none;
+}
+
+.buttons-services div[type="all"] {
+    opacity: 1;
+    animation: activeButtonService .5s ease infinite alternate;
+    border: 1px solid var(--details-lila);
 }
 
 .buttons-services.vcard div[type="vcard"] {

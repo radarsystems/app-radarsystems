@@ -48,7 +48,6 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
         if (target.css("opacity") !== "0.5") {
 
 
-
             setClickType(type)
 
             switch (type) {
@@ -74,7 +73,6 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                         let next = $(document.querySelector(".wizard-home.open .next"))
                         next.click()
                     }, 20)
-
 
                     break;
 
@@ -563,6 +561,19 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                 </div>
 
                 <div className="top-title">
+                    <p>Mis QR</p>
+                    <button className="close mb" onClick={(ev) => { VisibleMenu(false) }}><Icon icon="teenyicons:x-outline" /></button>
+                </div>
+
+                <div className="button" type="all" onClick={(ev) => { clickButton(ev, 'qrs') }}>
+                    <div className="img">
+                        <img src="/img/icons/apps.svg" alt="" />
+                    </div>
+                    <p>Mis QRS Favoritos</p>
+                    <span>Link to a website of your choice</span>
+                </div>
+
+                <div className="top-title">
                     <p>1. Servicios QR</p>
                     <button className="close mb" onClick={(ev) => { VisibleMenu(false) }}><Icon icon="teenyicons:x-outline" /></button>
                 </div>
@@ -685,20 +696,7 @@ export default function EditorRightButtonsQr({ VisibleMenu, getMyQrs, addNewQr, 
                     <span>Link to a website of your choice</span>
                 </div>
 
-                <div className="button" onClick={(ev) => { clickButton(ev, 'qrs') }}>
-
-
-                    <div className="img">
-                        <img src="/img/icons/apps.svg" alt="" />
-                    </div>
-
-
-                    <p>Mis QRS Favoritos</p>
-                    <span>Link to a website of your choice</span>
-                </div>
-
-
-
+              
             </div>
         </>
     )

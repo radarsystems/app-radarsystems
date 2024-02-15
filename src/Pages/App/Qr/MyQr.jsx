@@ -14,6 +14,7 @@ import WizardUploadQr from "../../../Components/App/Qr/WizardUploadQr"
 import { useLocation, useNavigate } from "react-router-dom"
 import ModalDelete from "../../../Components/App/ModalDelete"
 import { Icon } from "@iconify/react"
+import { toast } from "react-hot-toast"
 
 export default function MyQr() {
 
@@ -26,6 +27,7 @@ export default function MyQr() {
     const [deleteId, setDeleteId] = useState()
     const location = useLocation()
     const Navigator = useNavigate()
+    const [pending, setPending] = useState(false)
 
     useEffect(() => {
         if (existsStringInPath("/add")) {
@@ -74,6 +76,8 @@ export default function MyQr() {
 
     function deleteQr() {
 
+        setPending(true)
+
         let formData = new FormData()
         formData.append("id_company", UserInfo?.company?.id_company)
         formData.append("id_qr", deleteId)
@@ -81,14 +85,25 @@ export default function MyQr() {
         axios.post(API_URL + "/api/delete/qr", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
+                if (data.status) {
+                    setModalDelete(false)
+                    toast.success("Has borrado el qr con exito")
+                    setQrs(prevData => {
+                        let newData = prevData.filter(item => item.id_qr !== deleteId);
+                        return newData;
+                    });
 
+                }
+            })
+            .finally(() => {
+                setPending(false)
             })
     }
 
     return (
         <>
 
-            <ModalDelete visible={modalDelete} callback={setModalDelete} onClick={deleteQr}></ModalDelete>
+            <ModalDelete visible={modalDelete} callback={setModalDelete} Pending={pending} onClick={deleteQr}></ModalDelete>
             <div className="page-info">
                 <div className="">
                     <p className="title">QR</p>

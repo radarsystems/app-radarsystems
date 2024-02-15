@@ -307,7 +307,7 @@ export default function DetailCampaigns() {
                 if (data.status) {
                     setEditActive(editActiveDefault)
                     setCampaign(prevData => ({ ...prevData, affair: form.affair }))
-                }else{
+                } else {
                     toast.error(data.msg)
                 }
             })
@@ -727,7 +727,6 @@ export default function DetailCampaigns() {
                                 <div className="option">
 
                                     {campaign?.type_c == "em" ?
-
                                         <>
                                             {campaign?.template ?
                                                 <div className="preview-template">

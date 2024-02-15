@@ -110,6 +110,30 @@ export default function ButtonsQrEditor() {
         VisibleMenu()
     }, [visibleQr])
 
+    function deleteQr(ev) {
+
+        ev.preventDefault()
+        ev.stopPropagation()
+
+        let id = Number(ev.target.dataset.idqr)
+
+        setMyQrs(prevData => {
+            let newData = prevData.filter(item => item.id_qr !== id);
+            return newData
+        })
+
+        toast.success("Qr Eliminado");
+
+        let formData = new FormData()
+
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("id_qr", id)
+
+        axios.post(API_URL + "/api/delete/qr", formData, { withCredentials: true })
+            .finally(() => {
+            })
+    }
+
 
     return (
         <>
@@ -128,6 +152,7 @@ export default function ButtonsQrEditor() {
                             <div className="qrs" onClick={(ev) => { addNewQr(element?.title, LoadPreviewQr(element.qr_preview)) }} image={LoadPreviewQr(element.qr_preview)} title={element.title}>
                                 <img src={LoadPreviewQr(element.qr_preview)} alt="" />
                                 <p>{element.title}</p>
+                                <button className="delete" onClick={deleteQr} data-idqr={element.id_qr}><Icon icon="ph:trash-bold" /></button>
                             </div>
                         </div>
                     ))}
@@ -147,7 +172,7 @@ export default function ButtonsQrEditor() {
                         <EditorLeftButtonsQr VisibleMenu={VisibleMenu} Visible={menuVisible.left} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
                     <div className="center " style={{ background: buttons?.header?.background }}>
-                        <BodyButtonsQr addNewQr={addNewQr} VisibleMenu={VisibleMenu} type={type} setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
+                        <BodyButtonsQr setMyQrs={setMyQrs} addNewQr={addNewQr} VisibleMenu={VisibleMenu} type={type} setVisibleQr={setVisibleQr} visibleQr={visibleQr} boxType={boxType} setBoxType={setBoxType} editor={editor} setEditor={setEditor} buttons={buttons} setButtons={setButtons} />
                     </div>
 
                     <div className={`right ${menuVisible.right == true ? 'active' : ''}`}>
