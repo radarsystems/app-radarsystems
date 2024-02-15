@@ -109,6 +109,18 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
 
     });
 
+    function changeFile(ev) {
+        let files = ev.target.files
+        if (files[0]) {
+            if (files[0].type.indexOf("/pdf") >= 0 || files[0].type.indexOf("imag") >= 0) {
+                setForm({ ...form, file: files[0] })
+            } else {
+                toast.error("El archivo no es una imagen / pdf")
+                ev.target.value = ""
+            }
+        }
+    }
+
     let defaultQr = { url: "" };
     let defaultQrContact = {};
     const [formQr, setFormQr] = useState(defaultQr)
@@ -127,6 +139,27 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
         let value = target.attr("value")
 
         setForm(prevData => ({ ...prevData, type: value }))
+    }
+
+    async function uploadFile() {
+        return new Promise((resolve, reject) => {
+            let formData = new FormData()
+            formData.append("id_company", UserInfo?.company?.id_company)
+            formData.append("file", form.file)
+
+
+            axios.post(API_URL + "/api/upload/fileqr", formData, { withCredentials: true })
+                .then((response) => { return response.data })
+                .then((data) => {
+                    resolve(data)
+                })
+                .catch(() => {
+                    reject({})
+                })
+                .finally(() => {
+
+                })
+        })
     }
 
     async function Next(ev) {
@@ -157,10 +190,32 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
                         'REV:' + new Date() + '\n' +
                         'END:VCARD'
                 });
+
             } else {
-                QrCode.update({
-                    data: formQr.url
-                })
+
+                if (form.type == "qr-stand") {
+                    QrCode.update({
+                        data: formQr.url
+                    })
+                }
+
+                if (form.type == "qr-file") {
+
+                    setPending(true)
+                    await uploadFile()
+                        .then((data) => {
+                            QrCode.update({
+                                data: data.download
+                            })
+                        })
+                        .catch((err) => {
+                            toast.error("Opps error al subir archivo")
+                        })
+                        .finally(() => {
+                            setPending(false)
+                        })
+                }
+
             }
 
             element.innerHTML = ""
@@ -381,7 +436,7 @@ export default function WizardQr({ Visible, Close, loadQrs = () => { }, callback
 
                                 <br />
                                 <div className="form-input">
-                                    <input type="file" />
+                                    <input type="file" onChange={changeFile} />
                                 </div>
                                 <br />
                             </div>
