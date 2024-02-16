@@ -185,6 +185,7 @@ export default function BodyButtonsQr({ addNewQr, setMyQrs, VisibleMenu, type, v
         if (buttons.header.titlegl) {
             setVisibleTitle(false)
             toast.success("El titulo se aplico con exito")
+            save()
         }
     }
 
