@@ -1,6 +1,8 @@
 export default function ColorPickerBasic({ onClick }) {
 
     let colors = [
+        { color: "#000" },
+        { color: "#fff" },
         { color: "#FFDDC1" }, // Melocotón
         { color: "#FFA07A" }, // Salmón Claro
         { color: "#FFB6C1" }, // Rosa Claro
@@ -32,8 +34,7 @@ export default function ColorPickerBasic({ onClick }) {
         { color: "#8B4513" }, // Marrón Siena
         { color: "#8B0000" }, // Rojo Oscuro
         { color: "#800080" }, // Púrpura Oscuro
-        { color: "#000" },
-        { color: "#fff" }
+
         // Puedes continuar añadiendo más colores aquí según lo que necesites
     ];
 

@@ -182,6 +182,7 @@ export default function Home() {
                                     <td>Cam.</td>
                                     <td>Env.</td>
                                     <td>Dev.</td>
+                                    <td>Rec.</td>
                                     <td>Lei.</td>
                                     <td>Click.</td>
                                     <td>Rep. Spam</td>
@@ -200,6 +201,7 @@ export default function Home() {
                                             <br />
                                             {Time(element.time_add)}
                                         </td>
+                                        <td>{element.send}</td>
                                         <td>{element.send}</td>
                                         <td>{element.returned}</td>
                                         <td>{element.reads}</td>
@@ -229,6 +231,7 @@ export default function Home() {
                                     <td>Cam.</td>
                                     <td>Env.</td>
                                     <td>Dev.</td>
+                                    <td>Rec.</td>
                                     <td>Lei.</td>
                                     <td>Click.</td>
                                     <td>Rep. Spam</td>
@@ -247,6 +250,7 @@ export default function Home() {
                                             <br />
                                             {Time(element.time_add)}
                                         </td>
+                                        <td>{element.send}</td>
                                         <td>{element.send}</td>
                                         <td>{element.returned}</td>
                                         <td>{element.reads}</td>

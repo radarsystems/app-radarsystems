@@ -138,7 +138,7 @@ export default function ButtonsQrEditor() {
     return (
         <>
 
-            <ModalSmall visible={visibleQr} maxWidth={"450px"} callback={setVisibleQr}>
+            <ModalSmall visible={visibleQr} maxWidth={"450px"} callback={setVisibleQr} buttonSave={false}>
                 <div className="top">
                     <p>Galeria de Qr's</p>
                     <span>Tu galeria de qrs, donde podras seleccionar que qr quieres integrar</span>
