@@ -18,6 +18,7 @@ import ModalProgrammingCampaign from "../../../Components/App/Campaigns/ModalPro
 import TextareaSms from "../../../Components/Textarea/TextareaSms"
 import CampaignStatus from "../../../Components/App/Campaigns/CampaignStatus"
 import ModalSendTest from "../../../Components/App/Campaigns/ModalSendTest"
+import { Icon } from "@iconify/react"
 
 
 export default function DetailCampaigns() {
@@ -449,6 +450,7 @@ export default function DetailCampaigns() {
                 setDomains(data)
             })
     }
+    
 
 
     return (
@@ -732,6 +734,9 @@ export default function DetailCampaigns() {
                                                 <div className="preview-template">
                                                     <p>{campaign?.template?.title}</p>
                                                     <span>Plantilla creada:  {Time(campaign?.template?.time_add)}</span>
+                                                    <br />
+                                                    <br />
+                                                    <button className="action"><Icon icon="material-symbols:upload" /> Subir Html</button>
                                                     <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
                                                     <br />
                                                     <Link to={`/ editor / canvas / ${campaign?.template?.id_template}?campaign = ` + params.id}>Editar plantilla</Link>

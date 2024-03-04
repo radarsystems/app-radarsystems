@@ -9,7 +9,7 @@ import { Icon } from "@iconify/react";
 
 export function HeaderTop({ MenuLeft, MenuLeftAction }) {
     const { UserInfo } = useContext(AuthContext)
-    const [theme, setTheme] = useState('dark')
+    const [theme, setTheme] = useState('ligth')
     const Navigator = useNavigate()
     const [menuVisible, setMenuVisible] = useState(false)
 

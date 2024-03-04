@@ -12,3 +12,18 @@
     font-family: "Messina Regular";
     src: url("./../fonts/MessinaSansWeb-Regular.woff2");
 }
+
+@font-face {
+    font-family: "Rubik Regular";
+    src: url("./../fonts/Rubik-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Rubik Medium";
+    src: url("./../fonts/Rubik-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Rubik Bold";
+    src: url("./../fonts/Rubik-Black.ttf");
+}

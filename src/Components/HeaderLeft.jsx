@@ -15,6 +15,8 @@ export default function HeaderLeft({ MenuLeft }) {
     const { UserInfo } = useContext(AuthContext)
     const [opacityMenu, setOpacity] = useState();
     const Navigator = useNavigate()
+    const [viewMenuSpecial, setViewMenu] = useState(false);
+
 
     useEffect(() => {
 
@@ -58,6 +60,10 @@ export default function HeaderLeft({ MenuLeft }) {
 
     }
 
+    useEffect(() => {
+        setViewMenu('none')
+    }, [])
+
 
 
     return (
@@ -84,7 +90,7 @@ export default function HeaderLeft({ MenuLeft }) {
                     </li>
 
 
-                    <li className={opacityMenu ? 'opacity' : '' + "none"}>
+                    <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><VscTools /></i> Herramientas <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/editor/canvas">Editor Canvas</Link></li>
@@ -92,7 +98,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className="none">
+                    <li>
                         <button onClick={ToggleChild}><i className="icon"><IoBusinessOutline /></i> Cuentas <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/companys">Mis Cuentas</Link></li>
@@ -103,7 +109,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
 
 
-                    <li className={opacityMenu ? 'opacity' : '' + "none"}>
+                    <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><IoSendOutline /></i> Recordatorios <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/campaigns">Email </Link></li>
@@ -112,7 +118,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className={opacityMenu ? 'opacity' : 'none'}>
+                    <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}>
                         <button onClick={(ev) => { ToggleChild(ev); }}><i className="icon"><IoSendOutline /></i> Campañas <i className="arrow"><MdArrowForwardIos /></i></button>
 
                         <ul>
@@ -124,11 +130,11 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className="none">
+                    <li className={viewMenuSpecial}>
                         <button onClick={(ev) => { window.location.href = "https://workflows.radarsystems.net/" }}><i className="icon"><Icon icon="octicon:workflow-16" /> </i> Workflow <i className="arrow"><MdArrowForwardIos /></i></button>
                     </li>
 
-                    <li className={opacityMenu ? 'opacity' : 'none'}><button onClick={ToggleChild}><i className="icon"><IoPersonOutline /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
+                    <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}><button onClick={ToggleChild}><i className="icon"><IoPersonOutline /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
 
                         <ul>
                             <li><Link to="/contacts">Mis Contactos</Link></li>
@@ -139,7 +145,7 @@ export default function HeaderLeft({ MenuLeft }) {
                             <li><Link to="/contacts/segments">Segmentos</Link></li>
                         </ul>
                     </li>
-                    <li className={opacityMenu ? 'opacity' : '' + "none"}><button onClick={ToggleChild}><i className="icon"><IoTimerOutline /></i> Automatizacion <i className="arrow"><MdArrowForwardIos /></i></button>
+                    <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}><button onClick={ToggleChild}><i className="icon"><IoTimerOutline /></i> Automatizacion <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link>WorkFlow</Link></li>
                             <li><Link>Programacion</Link></li>
@@ -147,7 +153,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className={opacityMenu ? 'opacity' : '' + "none"}>
+                    <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><IoStatsChartOutline /></i> Estadisticas <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li to="/stats/campaign"><Link>Email Marketing</Link></li>
@@ -166,7 +172,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
 
 
-                    <li className={"" + "none"}>
+                    <li className={"" + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><IoCopyOutline /></i> Formulario <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/surveys/editor">Crear Formulario</Link></li>
@@ -175,7 +181,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
                         </ul>
                     </li>
-                    <li className={"" + "none"}>
+                    <li className={"" + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><IoReceiptOutline /></i> Boletines Electronicos <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/templates">Mis Boletines</Link></li>
@@ -186,7 +192,7 @@ export default function HeaderLeft({ MenuLeft }) {
                     </li>
 
 
-                    <li className={"" + "none"}>
+                    <li className={"" + '' + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><IoReceiptOutline /></i> Landings Page <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/landings">Mis Landings</Link></li>
@@ -221,7 +227,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className={"" + "none"}>
+                    <li className={"" + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><Icon icon="ri:links-fill" /></i> Botonera URL <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/editor/buttons">Crear Botonera URL</Link></li>
@@ -229,7 +235,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className={"" + "none"}>
+                    <li className={"" + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><IoBusinessOutline /></i> Validador Email <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/companys">Mis Validaciones</Link></li>
@@ -240,7 +246,7 @@ export default function HeaderLeft({ MenuLeft }) {
                     </li>
 
 
-                    <li className={"" + "none"}>
+                    <li className={"" + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><IoBusinessOutline /></i>  API <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/companys">Mis Credenciales</Link></li>

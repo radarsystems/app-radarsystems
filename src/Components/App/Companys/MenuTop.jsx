@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthContext";
 
 export default function CompanyMenuTop() {
+
+    const { UserInfo } = useContext(AuthContext)
 
     return (<>
         <div className="menu-top">
@@ -8,6 +12,12 @@ export default function CompanyMenuTop() {
                 <li>
                     <Link to="/companys">Cuentas</Link>
                 </li>
+
+                {UserInfo?.company?.id_company &&
+                    <li>
+                        <Link to="/companys/plans">Planes</Link>
+                    </li>
+                }
 
                 <li>
                     <Link to="/companys/roles">Roles</Link>

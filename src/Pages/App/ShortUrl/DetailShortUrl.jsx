@@ -18,6 +18,7 @@ export default function DetailShortUrl() {
     const [data, setData] = useState([])
     const [token, setToken] = useState();
     const [devices, setDevices] = useState([])
+    const [total, setTotal] = useState(0);
     const ref = useRef(null);
     const [charts, setCharts] = useState({
         series: [{
@@ -73,6 +74,7 @@ export default function DetailShortUrl() {
             .then((data) => {
                 setCountry(data.countrys)
                 setDevices(data.devices)
+                setTotal(data.total)
                 setCharts((prevData) => {
                     prevData.series[0].data = data.dayResponse
                     prevData.xaxis.categories = data.days
@@ -133,7 +135,7 @@ export default function DetailShortUrl() {
                                 <p>Visitas</p>
                             </div>
                             <div className="resp-number">
-                                <p>20</p>
+                                <p>{total}</p>
                             </div>
                         </div>
                     </div>

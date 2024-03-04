@@ -1,12 +1,13 @@
 body[theme="ligth"] {
     --details-grey: #abbee31a;
     --details-ad: #ff000014;
-    --background-body: #f5f5f5;
+    --background-body: #f5f7fa;
     --text-white: #000;
-    --left-menu: #e7e8ed;
+    --left-menu: #ffffff;
     --grey-oscuro: #1212120a;
     --dropbackground-modal: #00000061;
     --editors-background: #fff;
+    --box-shadow: transparent;
 }
 
 body[theme="dark"] {
@@ -22,6 +23,7 @@ body[theme="dark"] {
     --box-actions: #34373f;
     --border-box: #f5f5f512;
     --editors-background: #000;
+    --box-shadow: #00000012;
 
 }
 
@@ -33,7 +35,9 @@ body[theme="dark"] {
     --details-grey: #abbee31a;
     --details-grey3: #eaebed;
     --details-ad: #ff000014;
-    --details-lila: #8f83f3;
+    /*--details-lila: #8f83f3;*/
+
+    --details-lila: #9C17FF;
 }
 
 body {
@@ -399,8 +403,8 @@ body {
 .app .box {
     display: block;
     background: var(--left-menu);
-    border-radius: 12px;
-    box-shadow: 0px 0px 8px #00000012;
+    border-radius: 6px;
+    box-shadow: 0px 0px 8px var(--box-shadow);
     margin-bottom: 20px;
 }
 
@@ -614,6 +618,16 @@ body {
     color: var(--text-white);
 }
 
+
+.app .box .item .top .action {
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--details-blue);
+    font-size: 14px;
+    margin-left: auto;
+    width: max-content;
+}
+
 .app .box .item .icon-app {
     max-width: 31px;
     margin: auto;
@@ -805,6 +819,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    color: var(--text-white);
 }
 
 .loading-modal {
@@ -2507,7 +2522,7 @@ svg {
     border-radius: 10px;
 }
 
-.data .qrs .delete{
+.data .qrs .delete {
     width: 100%;
     border-radius: 90px;
     margin-top: 5px;
@@ -2930,6 +2945,90 @@ svg {
     border-radius: 93px;
     padding-right: 10px;
     padding-left: 10px;
+}
+
+.box.plans {
+    border: 2px solid transparent;
+    background: white;
+    padding: 15px !important;
+}
+
+.box.plans .info p {
+    font-size: 25px;
+    margin-bottom: 1px;
+    white-space: pre-line;
+    font-family: "Rubik Medium";
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.box.plans .before-price {
+    color: red;
+    text-decoration-line: line-through;
+    font-family: 'Rubik Medium';
+    font-size: 15px;
+}
+
+.box.plans .price .symbol {
+    font-weight: 600;
+    font-family: "Rubik Medium";
+}
+
+.box.plans .price .fix {
+    display: flex;
+    justify-content: center;
+}
+
+.box.plans .price .fix .time {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+.box.plans .price .fix span {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 3px;
+}
+
+.box.plans .offers .title {
+    padding-left: 5px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.box.plans .start {
+    background: var(--details-lila);
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-family: "Rubik Medium";
+    font-size: 13px;
+    border: 2px solid #b163eb;
+    color: var(--text-fullwhite);
+}
+
+.box.plans .offers .check {
+    color: green;
+}
+
+.box.plans .offers .no {
+    color: red;
+}
+
+.box.plans .price .price-number {
+    font-size: 35px;
+    font-family: "Rubik Medium";
+}
+
+.box.plans .info span {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.box.plans .price {
+    padding: 10px;
+    width: 100%;
 }
 
 .box .quality-upload.await {

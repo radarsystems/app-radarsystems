@@ -60,6 +60,7 @@ import { Logout } from './Pages/App/Logout.jsx'
 import { useContext } from 'react'
 import { AuthContext } from './Context/AuthContext.jsx'
 import DomainWatch from './Pages/App/SettingsAccount/Domain.jsx'
+import PlansCompany from './Pages/App/Companys/PlansCompany.jsx'
 
 
 
@@ -116,6 +117,7 @@ function App() {
           <Route path="/companys/add" element={<Global CompanyNeed={false} Element={MyCompanys} />} />
           <Route path="/companys/roles" element={<Global CompanyNeed={true} Element={RolsCompany} />} />
           <Route path="/companys/users" element={<Global CompanyNeed={true} Element={UsersCompany} />} />
+          <Route path="/companys/plans" element={<Global CompanyNeed={true} Element={PlansCompany} />} />
 
 
           {/* LISTASD */}

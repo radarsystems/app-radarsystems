@@ -1,7 +1,7 @@
 @import url("./fonts.css");
 
 body {
-    font-family: "Messina Regular" !important;
+    font-family: 'Rubik Regular' !important;
 }
 
 
@@ -125,11 +125,11 @@ body[theme="dark"] {
     color: var(--text-white);
 }
 
-.form-input.small input{
+.form-input.small input {
     font-size: 12px;
 }
 
-.form-input.small button{
+.form-input.small button {
     font-size: 12px;
     padding: 10px;
     margin-left: 11px;
@@ -357,7 +357,7 @@ body[theme="dark"] {
     display: inline-block;
     width: 15px;
     height: 15px;
-    border: 2px solid white;
+    border: 2px solid var(--text-white);
     border-radius: 90px;
     margin-top: -5px;
     position: relative;
@@ -399,7 +399,7 @@ body[theme="dark"] {
         display: block;
     }
 
-    .col-auth-left .align{
+    .col-auth-left .align {
         display: block;
         width: 100%;
         padding-right: 5px;
@@ -408,11 +408,11 @@ body[theme="dark"] {
         margin: auto;
     }
 
-    .auth .logo img{
+    .auth .logo img {
         height: auto;
     }
 }
 
-.flex{
+.flex {
     display: flex;
 }

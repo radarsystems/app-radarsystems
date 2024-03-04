@@ -5,6 +5,23 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 
 
+export function formatNumber(number) {
+    // Si el número es menor a 1000, no es necesario formatearlo
+    if (number < 1000) {
+        return number.toString();
+    }
+
+    // Si el número es mayor o igual a 1000
+    const suffixes = ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];
+    const suffixNum = Math.floor(('' + number).length / 3);
+    let shortValue = parseFloat((suffixNum !== 0 ? (number / Math.pow(1000, suffixNum)) : number).toPrecision(2));
+    // Si shortValue es entero, le agregamos .0 para indicar el decimal
+    if (shortValue % 1 === 0) {
+        shortValue = shortValue.toFixed(1);
+    }
+    return shortValue + suffixes[suffixNum];
+}
+
 export function ConvertCampaignTypeToList(CampaignType) {
 
     let response = undefined;
