@@ -450,7 +450,7 @@ export default function DetailCampaigns() {
                 setDomains(data)
             })
     }
-    
+
 
 
     return (
@@ -736,6 +736,7 @@ export default function DetailCampaigns() {
                                                     <span>Plantilla creada:  {Time(campaign?.template?.time_add)}</span>
                                                     <br />
                                                     <br />
+                                                    <input type="text" name="body_file" accept=".html" />
                                                     <button className="action"><Icon icon="material-symbols:upload" /> Subir Html</button>
                                                     <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
                                                     <br />
