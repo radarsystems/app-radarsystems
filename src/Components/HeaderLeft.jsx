@@ -130,7 +130,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className={viewMenuSpecial}>
+                    <li className={""}>
                         <button onClick={(ev) => { window.location.href = "https://workflows.radarsystems.net/" }}><i className="icon"><Icon icon="octicon:workflow-16" /> </i> Workflow <i className="arrow"><MdArrowForwardIos /></i></button>
                     </li>
 
