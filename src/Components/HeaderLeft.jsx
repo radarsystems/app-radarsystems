@@ -118,7 +118,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className={opacityMenu ? 'opacity' : ''}>
+                    <li className={opacityMenu ? '' : ''}>
                         <button onClick={(ev) => { ToggleChild(ev); }}><i className="icon"><IoSendOutline /></i> Campañas <i className="arrow"><MdArrowForwardIos /></i></button>
 
                         <ul>
@@ -134,7 +134,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         <button onClick={(ev) => { window.location.href = "https://workflows.radarsystems.net/" }}><i className="icon"><Icon icon="octicon:workflow-16" /> </i> Workflow <i className="arrow"><MdArrowForwardIos /></i></button>
                     </li>
 
-                    <li className={opacityMenu ? 'opacity' : ''}><button onClick={ToggleChild}><i className="icon"><IoPersonOutline /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
+                    <li className={opacityMenu ? '' : ''}><button onClick={ToggleChild}><i className="icon"><IoPersonOutline /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
 
                         <ul>
                             <li><Link to="/contacts">Mis Contactos</Link></li>
