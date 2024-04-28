@@ -21,6 +21,7 @@ export default function DetailShortUrl() {
     const [total, setTotal] = useState(0);
     const ref = useRef(null);
     const [charts, setCharts] = useState({
+      
         series: [{
             name: "Respuestas",
             data: []
