@@ -38,6 +38,8 @@ export function HeaderTop({ MenuLeft, MenuLeftAction }) {
         $(document.body).attr("theme", theme)
     }, [theme])
 
+
+
     return (
         <>
             <div className="header-top">

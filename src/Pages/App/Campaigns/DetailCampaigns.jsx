@@ -29,12 +29,13 @@ export default function DetailCampaigns() {
     const Navigator = useNavigate()
 
     const [editMode, setEditMode] = useState(false)
+    const [uploadFile, setUploadFile] = useState({})
     let editActiveDefault = { lists: false, body: false, affair: false };
     const [editActive, setEditActive] = useState(editActiveDefault)
     const [search, setSearch] = useState({ lists: [] })
     const [loading, setLoading] = useState({ lists: false })
     const [campaign, setCampaign] = useState([])
-    const [pending, setPending] = useState({ sendCampaign: false });
+    const [pending, setPending] = useState({ sendCampaign: false, updateHtml: false });
     const [form, setForm] = useState({ affair: "" });
     const [deleteModal, setDeleteModal] = useState(false)
     const [viewModalProgramming, setModalProgramming] = useState()
@@ -231,8 +232,23 @@ export default function DetailCampaigns() {
             formData.append("id_company", UserInfo.company.id_company)
             axios.post(API_URL + "/api/delete/listscampaign", formData, { withCredentials: true })
 
-            setCampaign(prevData => ({ ...prevData, lists: prevData?.lists?.replace("," + value, "").replace(value, "") }))
+            setCampaign(prevData => {
+                let newData = { ...prevData }
+                let newLists = newData.lists;
 
+                if (prevData?.lists) {
+                    newLists = prevData?.lists?.replace("," + value, "").replace(value, "")
+                    let split = newLists.split(",")
+
+                    if (!split[0]) {
+                        newLists = split[1]
+                    }
+                }
+
+                newData.lists = newLists;
+
+                return newData
+            })
         }
 
     }
@@ -450,6 +466,41 @@ export default function DetailCampaigns() {
                 setDomains(data)
             })
     }
+
+
+    function OpenUploadFile() {
+        document.querySelector("input[name='body_file']").click()
+    }
+
+    function OnChangeUploadHtml(ev) {
+        if (ev.target.files[0].name.indexOf(".html") >= 0) {
+            setUploadFile(ev.target.files[0])
+        } else {
+            toast.error("Opps no es un archivo HTML")
+        }
+    }
+
+    function updateBodyHtml() {
+        setPending({ ...pending, updateHtml: true })
+
+        let formData = new FormData()
+
+        formData.append("id_campaign", params.id)
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("file", uploadFile)
+        formData.append("title", uploadFile?.name)
+        formData.append("type", "email")
+
+        axios.post(API_URL + "/api/upload/bodycampaign", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+
+            })
+            .finally(() => {
+                setPending({ ...pending, updateHtml: false })
+            })
+    }
+
 
 
 
@@ -730,20 +781,45 @@ export default function DetailCampaigns() {
 
                                     {campaign?.type_c == "em" ?
                                         <>
-                                            {campaign?.template ?
-                                                <div className="preview-template">
-                                                    <p>{campaign?.template?.title}</p>
-                                                    <span>Plantilla creada:  {Time(campaign?.template?.time_add)}</span>
-                                                    <br />
-                                                    <br />
-                                                    <input type="text" name="body_file" accept=".html" />
-                                                    <button className="action"><Icon icon="material-symbols:upload" /> Subir Html</button>
-                                                    <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
-                                                    <br />
-                                                    <Link to={`/ editor / canvas / ${campaign?.template?.id_template}?campaign = ` + params.id}>Editar plantilla</Link>
-                                                </div>
-                                                : <Link to={`/ editor / canvas /? campaign = ` + params.id}>Crear una plantilla</Link>
+
+
+
+                                            {uploadFile?.name ?
+                                                <>
+                                                    <div className="upload-fast">
+                                                        <p>{uploadFile.name}</p>
+                                                        <span>Actualiza tu plantilla</span>
+
+                                                        <div className="actions">
+                                                            <button><Icon icon="material-symbols:preview" /> Previsualizar</button>
+                                                            <button className={pending?.updateHtml ? 'await' : ''} onClick={updateBodyHtml}><Icon icon="fluent:document-multiple-sync-20-regular" /> Actualizar <div className="loading"></div></button>
+                                                        </div>
+                                                    </div>
+                                                </>
+
+                                                :
+                                                <>
+                                                    {campaign?.template ?
+
+                                                        <>
+
+                                                            <div className="preview-template">
+                                                                <p>{campaign?.template?.title}</p>
+                                                                <span>Plantilla creada:  {Time(campaign?.template?.time_add)}</span>
+                                                                <br />
+                                                                <br />
+                                                                <input onChange={OnChangeUploadHtml} type="file" name="body_file" accept=".html" hidden />
+                                                                <button onClick={OpenUploadFile} className="action"><Icon icon="material-symbols:upload" /> Subir Html</button>
+                                                                <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
+                                                                <br />
+                                                                <Link to={`/editor/canvas/${campaign?.template?.id_template}?campaign=` + params.id}>Editar plantilla</Link>
+                                                            </div>
+                                                        </>
+                                                        : <Link to={`/editor/canvas/?campaign=`+params.id}>Crear una plantilla</Link>
+                                                    }
+                                                </>
                                             }
+
                                         </>
                                         : ''}
 

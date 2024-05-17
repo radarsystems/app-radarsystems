@@ -11,6 +11,7 @@ import { IoCloudUpload, IoCloudUploadOutline, IoTrashOutline } from "react-icons
 export default function ModalSendTest({ Close, campaign, setCampaign }) {
     const [lists, setLists] = useState([])
     const { UserInfo } = useContext(AuthContext)
+    const [pending, setPending] = useState(false)
 
     function searchLists() {
 
@@ -42,6 +43,28 @@ export default function ModalSendTest({ Close, campaign, setCampaign }) {
 
     function deleteListSelect() {
         setCampaign({ ...campaign, lists_test: "" })
+    }
+
+    function sendTest() {
+
+        setPending(true)
+        let formData = new FormData()
+        formData.append("id_campaign", campaign.id_campaign)
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("id_list_test", campaign.lists_test)
+
+        axios.post(API_URL + "/api/send/campaign", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                if (data.status) {
+                    toast.success("Se ha enviado el envio de pruebas.")
+                    Close(false)
+                }
+                
+            })
+            .finally(() => {
+                setPending(false)
+            })
     }
 
     useEffect(() => {
@@ -90,7 +113,7 @@ export default function ModalSendTest({ Close, campaign, setCampaign }) {
 
                     <div className="actions">
                         <button onClick={(ev) => { Close(false) }}>Cerrar</button>
-                        <button>Enviar</button>
+                        <button className={pending ? 'await' : ""} onClick={sendTest}> <div className="loading"></div> Enviar</button>
                     </div>
                 </>
                 :

@@ -3705,3 +3705,41 @@ svg {
     color: var(--text-white);
     margin-left: 12px;
 }
+
+.box .upload-fast {
+    display: block;
+    padding: 10px;
+    background: var(--background-body);
+    border-radius: 8px;
+    position: relative;
+}
+
+.box .upload-fast p {
+    margin-bottom: 0px;
+}
+
+.box .upload-fast span {
+    font-size: 14px;
+}
+
+.box .upload-fast .actions {
+    display: flex !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: max-content;
+    width: max-content;
+    padding: 10px;
+    margin: auto;
+    gap: 10px;
+}
+
+.box .upload-fast .actions button {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 90px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background: var(--details-lila);
+}

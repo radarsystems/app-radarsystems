@@ -13,10 +13,7 @@ export const AuthProvider = (params) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-
-
         function loadCompany(companySearch) {
-
             if (companySearch) {
                 let formData = new FormData()
                 formData.append("id_company", companySearch);
@@ -24,13 +21,18 @@ export const AuthProvider = (params) => {
                     .then((response) => { return response.data })
                     .then((data) => {
                         setUserInfo(prevData => {
-                            let newData = { ...prevData }
-                            newData.company = data
-                            return newData
-                        })
+                            return {
+                                ...prevData,
+                                company: data[0]
+                            };
+                        });
 
                     })
+                    .finally(() => {
+                        setLoading(false)
+                    })
             } else {
+                setLoading(false)
                 window.location.href = "/companys"
             }
 
@@ -46,7 +48,6 @@ export const AuthProvider = (params) => {
                     setAuth(true)
                     setUserInfo(data)
                     loadCompany(company ?? (data?.company_default ?? null))
-                    setLoading(false)
                 } else {
                     if (route !== "/" && route !== "/auth" && !route.startsWith("/buttonsqr/")) {
                         window.location.href = "/";
