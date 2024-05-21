@@ -9,6 +9,8 @@ import { AuthContext } from "../../../Context/AuthContext"
 import { AiOutlineFileAdd, AiOutlineFileText } from "react-icons/ai"
 import LoadingCircleApp from "../LoadingCircle"
 import { toast } from "react-hot-toast"
+import { Icon } from "@iconify/react/dist/iconify.js"
+import FormAddContact from "./FormAddContact"
 
 export default function WizardUploadContacts({ Visible, Close, Callback }) {
     const { UserInfo } = useContext(AuthContext)
@@ -18,6 +20,8 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
     const [form, setForm] = useState({ type: "", file: {} })
     const defaultActions = { analize: false, percentAnalize: "0", approve: false };
     const [actions, setActions] = useState(defaultActions)
+    const [contacts, setContacts] = useState([])
+    const [addActive, setAddActive] = useState(false)
     const [pending, setPending] = useState(false)
     let inputFile = $("input[type='file']")
 
@@ -169,64 +173,130 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
                     </div>
 
 
-                    <div className="case">
+                    {form.type == "manu" &&
+                        <>
 
-                        <div className="top">
-                            <p className="title">Subir Archivo</p>
-                            <span className="desc">Sube tu archivo rapidamente para procesarlo en tu lista de contactos.</span>
-                        </div>
+                            {addActive == false ?
+                                <div className="case">
 
-                        {
-                            actions.approve == true ?
-                                <>
-                                    <div className="file-adjunt">
-                                        <i className="icon">
-                                            <AiOutlineFileText />
-                                        </i>
-                                        <div className="file">
-                                            <p>{form?.file?.name}</p>
-                                            <div className="info">
-                                                <span>Tipo de archivo: {form.file.type}</span>
-                                                <span>Peso: {form.file.size} kb</span>
-                                            </div>
+                                    <div className="top">
+                                        <p className="title">Contactos Manuales</p>
+                                        <span className="desc">Crea tu contacto manualmente</span>
+                                    </div>
 
-                                            <button className="delete" onClick={DeleteFile}><IoTrashOutline /></button>
+                                    <div className="contacts">
+
+                                        <div className="row">
+                                            {contacts.map((element, key) => (
+
+                                                <div className="col-md-4">
+                                                    <div className="contact"></div>
+                                                </div>
+                                            ))}
+
+                                            {contacts.length == 0 && <>
+                                                <div className="col-md-4">
+                                                    <div className="box box-padding stat" onClick={(ev) => { setAddActive(true) }}>
+
+                                                        <div className="top">
+                                                            <p>No hay contactos!</p>
+                                                            <span>Crea uno rapidamente</span>
+                                                        </div>
+
+
+                                                        <button className="add-button"><Icon icon="solar:add-circle-line-duotone" /></button>
+                                                    </div>
+                                                </div>
+                                            </>}
                                         </div>
 
                                     </div>
-                                </>
-                                :
 
-                                <div className="upload-contact">
-                                    <input type="file" accept=".csv,.txt" onChange={ObserverFile} hidden />
 
-                                    {actions.analize == true ?
-                                        <>
-                                            <p>Estamos analizando tu archivo... {actions.percentAnalize}%</p>
-                                        </>
 
-                                        :
-                                        <center>
-
-                                            <div className="select-upload" onClick={OpenInputFile}>
-                                                <i className="icon">
-                                                    <AiOutlineFileAdd />
-                                                </i>
-                                                <p>Selecciona tu archivo de contactos</p>
-                                            </div>
-
-                                        </center>
-                                    }
 
                                 </div>
 
-                        }
+
+                                :
+                                <>
+                                    <div className="case">
+
+                                        <div className="top">
+                                            <p className="title">Crear Contacto</p>
+                                        </div>
+
+                                        <FormAddContact />
+                                    </div>
+                                </>
+                            }
 
 
 
 
 
-                    </div>
+                        </>
+                    }
+
+
+
+                    {form.type == "auto" &&
+
+                        <div className="case">
+
+                            <div className="top">
+                                <p className="title">Subir Archivo</p>
+                                <span className="desc">Sube tu archivo rapidamente para procesarlo en tu lista de contactos.</span>
+                            </div>
+
+                            {
+                                actions.approve == true ?
+                                    <>
+                                        <div className="file-adjunt">
+                                            <i className="icon">
+                                                <AiOutlineFileText />
+                                            </i>
+                                            <div className="file">
+                                                <p>{form?.file?.name}</p>
+                                                <div className="info">
+                                                    <span>Tipo de archivo: {form.file.type}</span>
+                                                    <span>Peso: {form.file.size} kb</span>
+                                                </div>
+
+                                                <button className="delete" onClick={DeleteFile}><IoTrashOutline /></button>
+                                            </div>
+
+                                        </div>
+                                    </>
+                                    :
+
+                                    <div className="upload-contact">
+                                        <input type="file" accept=".csv,.txt" onChange={ObserverFile} hidden />
+
+                                        {actions.analize == true ?
+                                            <>
+                                                <p>Estamos analizando tu archivo... {actions.percentAnalize}%</p>
+                                            </>
+
+                                            :
+                                            <center>
+
+                                                <div className="select-upload" onClick={OpenInputFile}>
+                                                    <i className="icon">
+                                                        <AiOutlineFileAdd />
+                                                    </i>
+                                                    <p>Selecciona tu archivo de contactos</p>
+                                                </div>
+
+                                            </center>
+                                        }
+
+                                    </div>
+
+                            }
+                        </div>
+                    }
+
 
                     <div className="actions center">
                         <button className={`next ${pending == true ? 'await' : ''}`} onClick={Next}>Siguiente <div className="loading"></div></button>

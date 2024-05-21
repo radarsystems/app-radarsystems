@@ -36,6 +36,14 @@ export default function ModalSendTest({ Close, campaign, setCampaign }) {
 
                 return newData
             })
+
+
+            let formData = new FormData()
+            formData.append("id_company", UserInfo?.company?.id_company)
+            formData.append("id_campaign", campaign.id_campaign)
+            formData.append("id_list_test", list.id_list);
+
+            axios.post(API_URL + "/api/update/campaign/idlistest", formData, { withCredentials: true })
         } else {
             toast.error("Tu lista no cumple los requisitos")
         }
@@ -60,7 +68,7 @@ export default function ModalSendTest({ Close, campaign, setCampaign }) {
                     toast.success("Se ha enviado el envio de pruebas.")
                     Close(false)
                 }
-                
+
             })
             .finally(() => {
                 setPending(false)

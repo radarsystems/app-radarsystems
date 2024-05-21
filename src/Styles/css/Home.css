@@ -1700,6 +1700,20 @@ table th {
     margin-top: 77px;
 }
 
+.wizard-home .body .case .top {
+    margin-bottom: 20px;
+}
+
+.wizard-home .add-button{
+    background: transparent;
+    color: black;
+    font-size: 45px;
+    margin: auto;
+    display: block;
+    padding: 0px;
+    margin-top: -10px;
+}
+
 .wizard-home .body .case .top .title {
     font-size: 30px;
     color: var(--text-white);

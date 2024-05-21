@@ -40,14 +40,16 @@ export default function MyCampaigns() {
             type = "em-mt"
         }
 
-        if (existsStringInPath("/sms-mt")) {
-            type = "sms-mt"
-        }
-
 
         if (existsStringInPath("/sms")) {
             type = "sms"
         }
+
+        
+        if (existsStringInPath("/sms-mt")) {
+            type = "sms-mt"
+        }
+
 
         if (!next) {
             setCampaign([])
