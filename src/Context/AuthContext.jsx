@@ -23,9 +23,11 @@ export const AuthProvider = (params) => {
                         setUserInfo(prevData => {
                             return {
                                 ...prevData,
-                                company: data[0]
+                                company: data
                             };
                         });
+
+            
 
                     })
                     .finally(() => {
