@@ -266,7 +266,7 @@ export default function StatsCampaigns() {
                             {stats.last_sends.map((element, index) => (
                                 <div className="item flex">
                                     <div>
-                                        <span>{stats.type_campaign == "em" ? element.email : ''}</span>
+                                        <span>{stats.type_campaign.indexOf("em") >= 0 ? element.email : stats.type_campaign.indexOf("sms") >= 0 ? element.phone : ''}</span>
                                     </div>
                                     <div>
                                         <button className={`status-send ${element.error ? 'error' : ''}`}>{element.error ? (<>Error <IoAlertCircleOutline /></>) : (<>Enviado  <IoCheckmarkSharp /></>)}</button>

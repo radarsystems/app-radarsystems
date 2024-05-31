@@ -23,10 +23,15 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
     const [contacts, setContacts] = useState([])
     const [addActive, setAddActive] = useState(false)
     const [pending, setPending] = useState(false)
+    const [formNewContact, setFormNewContact] = useState({})
     let inputFile = $("input[type='file']")
 
     const Navigator = useNavigate()
     const params = useParams()
+
+    function updateFormNewContact(){
+        
+    }
 
 
     function selectOption(ev) {
@@ -226,7 +231,7 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
                                             <p className="title">Crear Contacto</p>
                                         </div>
 
-                                        <FormAddContact />
+                                        <FormAddContact update={updateFormNewContact} />
                                     </div>
                                 </>
                             }

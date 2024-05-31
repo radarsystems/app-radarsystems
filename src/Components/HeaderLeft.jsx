@@ -15,7 +15,7 @@ export default function HeaderLeft({ MenuLeft }) {
     const { UserInfo } = useContext(AuthContext)
     const [opacityMenu, setOpacity] = useState();
     const Navigator = useNavigate()
-    const [viewMenuSpecial, setViewMenu] = useState(false);
+    const [viewMenuSpecial, setViewMenu] = useState(true);
 
 
     useEffect(() => {
@@ -61,6 +61,7 @@ export default function HeaderLeft({ MenuLeft }) {
     }
 
     useEffect(() => {
+
         setViewMenu('none')
     }, [])
 
@@ -90,9 +91,14 @@ export default function HeaderLeft({ MenuLeft }) {
                     </li>
 
 
-                    <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}>
+                    <li className={opacityMenu ? 'opacity' : ''}>
                         <button onClick={ToggleChild}><i className="icon"><VscTools /></i> Herramientas <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
+                            <li><Link to="/buttonsqr">Botonera QR</Link></li>
+                            <li><Link to="/buttons">Botonera URL</Link></li>
+                            <li><Link to="/templates">Boletines</Link></li>
+                            <li><Link to="/surveys">Formulario</Link></li>
+                            <li><Link to="/landings">Landings</Link></li>
                             <li><Link to="/editor/canvas">Editor Canvas</Link></li>
                             <li><Link to="/editor/buttons">Editor Botonera</Link></li>
                         </ul>
@@ -132,6 +138,10 @@ export default function HeaderLeft({ MenuLeft }) {
 
                     <li className={""}>
                         <button onClick={(ev) => { window.location.href = "https://workflows.radarsystems.net/" }}><i className="icon"><Icon icon="octicon:workflow-16" /> </i> Workflow <i className="arrow"><MdArrowForwardIos /></i></button>
+                    </li>
+
+                    <li className={""}>
+                        <button onClick={(ev) => { window.location.href = "https://tools.radarsystems.net/" }}><i className="icon"><Icon icon="octicon:workflow-16" /> </i> Herramientas <i className="arrow"><MdArrowForwardIos /></i></button>
                     </li>
 
                     <li className={opacityMenu ? '' : ''}><button onClick={ToggleChild}><i className="icon"><IoPersonOutline /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
@@ -202,7 +212,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
 
                     <li className={""}>
-                        <button onClick={ToggleChild}><i className="icon"><Icon icon="mdi:jellyfish-outline" /></i> Medusa <i className="arrow"><MdArrowForwardIos /></i></button>
+                        <button onClick={ToggleChild}><i className="icon"><Icon icon="ri:links-fill" /></i> Acortador <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/shorturls/campaigns">Mis Campañas</Link></li>
                             <li><Link to="/shorturls/campaigns/add">Crear Campana</Link></li>
@@ -211,7 +221,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         </ul>
                     </li>
 
-                    <li className={""}>
+                    <li className={"" + '' + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><IoQrCode /></i> Botonera QR <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
 

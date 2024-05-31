@@ -1,4 +1,4 @@
-export default function FormAddContact() {
+export default function FormAddContact({ update }) {
 
     return (
         <>

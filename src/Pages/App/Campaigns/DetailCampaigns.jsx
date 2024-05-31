@@ -286,7 +286,7 @@ export default function DetailCampaigns() {
                 .then((response) => { return response.data })
                 .then((data) => {
                     setAwait("sendCampaign", false)
-                    if (data.status) {
+                    if (data.status && !data.msg) {
                         toast.success("Campaña enviada!")
                     } else {
                         toast.error(data.msg)
