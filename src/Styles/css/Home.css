@@ -1,13 +1,16 @@
 body[theme="ligth"] {
     --details-grey: #abbee31a;
     --details-ad: #ff000014;
+    --details-green: #4cce89;
     --background-body: #f5f7fa;
     --text-white: #000;
-    --left-menu: #ffffff;
+    --left-menu: #000;
+    --header-top: #242424;
     --grey-oscuro: #1212120a;
     --dropbackground-modal: #00000061;
     --editors-background: #fff;
     --box-shadow: transparent;
+    --box-background: #fff;
 }
 
 body[theme="dark"] {
@@ -37,7 +40,7 @@ body[theme="dark"] {
     --details-ad: #ff000014;
     /*--details-lila: #8f83f3;*/
 
-    --details-lila: #9C17FF;
+    --details-lila: #8f83f3;
 }
 
 body {
@@ -52,7 +55,7 @@ body {
 
 .header-left {
     display: block;
-    width: 258px;
+    width: 260px;
     background: var(--left-menu);
     height: 100%;
     position: fixed;
@@ -79,10 +82,9 @@ body {
     font-weight: 600;
     position: relative;
     padding-left: 30px;
-    opacity: 0.8;
     transition: .3s ease;
     border: 0px;
-    color: var(--text-white) !important;
+    color: var(--text-fullwhite) !important;
 }
 
 
@@ -125,13 +127,14 @@ body {
 }
 
 .header-left ul li ul li>a {
-    color: var(--text-white);
-    opacity: 0.7;
+    color: var(--text-fullwhite);
+    opacity: 1;
     display: block;
-    padding: 10px;
+    padding: 8px;
     padding-left: 0;
-    font-size: 14px;
+    font-size: 13px;
     transition: .5s ease;
+    text-decoration: none;
 }
 
 .header-left ul li ul li>a:hover {
@@ -159,7 +162,7 @@ body {
     width: 100%;
     height: max-content;
     margin-left: auto;
-    background: var(--background-body);
+    background: var(--header-top);
     position: sticky;
     top: 0;
     z-index: 9;
@@ -197,7 +200,7 @@ body {
     font-size: 14px;
     margin: auto;
     padding-left: 5px;
-    color: var(--text-white);
+    color: var(--text-fullwhite);
 }
 
 .header-top .right .company .body {
@@ -208,6 +211,7 @@ body {
     padding-left: 10px;
     padding-right: 15px;
     padding-bottom: 5px;
+    color: var(--text-fullwhite);
     border-radius: 93px;
 }
 
@@ -279,7 +283,7 @@ body {
 .header-top .right button.option {
     border-radius: 90px;
     background: transparent;
-    color: var(--text-white);
+    color: var(--text-fullwhite);
     font-size: 22px;
     padding: 10px;
     line-height: 1;
@@ -295,7 +299,7 @@ body {
     cursor: pointer;
     margin-bottom: auto;
     font-size: 13px;
-    color: var(--text-white);
+    color: var(--text-fullwhite);
 }
 
 .header-top .right .name i {
@@ -346,7 +350,8 @@ body {
 .app .page-info {
     display: flex;
     position: relative;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }
 
 .app .page-info span {
@@ -370,7 +375,7 @@ body {
     padding-right: 15px;
     padding-left: 15px;
     display: flex;
-    background: var(--details-lila);
+    background: var(--details-green);
     width: max-content;
     margin: auto;
     color: var(--text-fullwhite) !important;
@@ -402,7 +407,7 @@ body {
 
 .app .box {
     display: block;
-    background: var(--left-menu);
+    background: var(--box-background);
     border-radius: 6px;
     box-shadow: 0px 0px 8px var(--box-shadow);
     margin-bottom: 20px;
@@ -669,8 +674,10 @@ body {
 
 
 .app .box.steps .item .top.active .check {
-    color: #2fc992;
-    background: #336946;
+    color: #ffffff;
+    border: 2px solid var(--details-green);
+    line-height: 1.8 !important;
+    background: #000000;
 }
 
 .app .box.steps .right button,
@@ -1428,7 +1435,7 @@ table th {
 
 
 .modal-small .actions button.done {
-    background-color: var(--details-lila);
+    background-color: black;
     color: white;
 }
 
@@ -1704,7 +1711,7 @@ table th {
     margin-bottom: 20px;
 }
 
-.wizard-home .add-button{
+.wizard-home .add-button {
     background: transparent;
     color: black;
     font-size: 45px;
@@ -2009,16 +2016,17 @@ table th {
 
 .menu-top-right button {
     padding: 10px;
-    font-size: 12px;
+    font-size: 13px;
     background: var(--border-box);
     border-radius: 25px;
     padding-right: 15px;
     padding-left: 15px;
-    color: var(--text-white);
+    color: var(--text-fullwhite);
 }
 
-.menu-top-right button.send-campaign {
-    background: var(--details-lila);
+
+.menu-top-right button.send {
+    background: var(--details-green);
     color: var(--text-fullwhite);
 }
 

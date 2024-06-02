@@ -357,7 +357,7 @@ body[theme="dark"] {
     display: inline-block;
     width: 15px;
     height: 15px;
-    border: 2px solid var(--text-white);
+    border: 2px solid var(--text-fullwhite);
     border-radius: 90px;
     margin-top: -5px;
     position: relative;
