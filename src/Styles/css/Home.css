@@ -1899,7 +1899,7 @@ table th {
     cursor: pointer;
     display: flex;
     position: relative;
-    background: var(--left-menu);
+    background: var(--box-background);
     color: var(--text-white);
 }
 
@@ -1981,25 +1981,42 @@ table th {
     pointer-events: none;
 }
 
+.wizard-home .body .selector.active {
+    background: black;
+    color: white;
+}
+
 .wizard-home .body .selector.active .check {
-    color: var(--details-lila) !important;
+    color: var(--details-green) !important;
     opacity: 1;
 }
 
 .wizard-home .actions {
     margin-left: auto;
     width: max-content;
+    display: flex;
     padding: 10px;
 }
+
+
 
 
 .wizard-home .actions.center {
     margin: auto !important;
 }
 
+.wizard-home .actions .return {
+    line-height: 1;
+    padding: 12px;
+    margin-left: 6px;
+    border-radius: 90px;
+    background: var(--box-actions);
+    color: black;
+}
+
 .wizard-home .actions .next {
     display: block;
-    background-color: var(--details-lila);
+    background-color: black;
     padding: 10px 15px;
     border-radius: 25px;
     color: var(--text-fullwhite);

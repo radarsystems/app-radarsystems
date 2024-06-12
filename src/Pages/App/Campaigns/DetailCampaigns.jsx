@@ -494,7 +494,10 @@ export default function DetailCampaigns() {
         axios.post(API_URL + "/api/upload/bodycampaign", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
-
+                if (data.status) {
+                    toast.success("Has subido correctamente tu archivo html")
+                    setUploadFile(false)
+                }
             })
             .finally(() => {
                 setPending({ ...pending, updateHtml: false })
@@ -799,6 +802,8 @@ export default function DetailCampaigns() {
 
                                                 :
                                                 <>
+                                                    <input onChange={OnChangeUploadHtml} type="file" name="body_file" accept=".html" hidden />
+
                                                     {campaign?.template ?
 
                                                         <>
@@ -808,14 +813,20 @@ export default function DetailCampaigns() {
                                                                 <span>Plantilla creada:  {Time(campaign?.template?.time_add)}</span>
                                                                 <br />
                                                                 <br />
-                                                                <input onChange={OnChangeUploadHtml} type="file" name="body_file" accept=".html" hidden />
-                                                                <button onClick={OpenUploadFile} className="action"><Icon icon="material-symbols:upload" /> Subir Html</button>
+
                                                                 <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
                                                                 <br />
                                                                 <Link to={`/editor/canvas/${campaign?.template?.id_template}?campaign=` + params.id}>Editar plantilla</Link>
                                                             </div>
                                                         </>
-                                                        : <Link to={`/editor/canvas/?campaign=`+params.id}>Crear una plantilla</Link>
+                                                        :
+
+                                                        <>
+
+                                                            <Link to={`/editor/canvas/?campaign=` + params.id}>Crear una plantilla</Link>
+                                                            <br />
+                                                            <button onClick={OpenUploadFile} className="action"><Icon icon="material-symbols:upload" /> Subir Html</button>
+                                                        </>
                                                     }
                                                 </>
                                             }

@@ -7,6 +7,7 @@ import { API_URL } from "../../../ExportUrl"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../../Context/AuthContext"
 import toast from "react-hot-toast"
+import { Icon } from "@iconify/react/dist/iconify.js"
 
 export default function WizardCampaign({ Visible, Close }) {
 
@@ -100,7 +101,7 @@ export default function WizardCampaign({ Visible, Close }) {
                 <div className="body">
                     <div className="case">
                         <div className="top">
-                            <p className="title">Crear una nueva campaña</p>
+                            <p className="title">Crea una nueva campaña</p>
                             <span className="desc">Selecciona el tipo de campaña que te gustaría enviar</span>
                         </div>
 
@@ -177,6 +178,7 @@ export default function WizardCampaign({ Visible, Close }) {
 
                     <div className="actions">
                         <button className="next" onClick={Next}>Siguiente <div className="loading"></div></button>
+                        <button className="return"><Icon icon="teenyicons:left-outline" /></button>
                     </div>
                 </div>
             </div >
