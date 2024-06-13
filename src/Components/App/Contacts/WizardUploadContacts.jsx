@@ -29,8 +29,11 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
     const Navigator = useNavigate()
     const params = useParams()
 
-    function updateFormNewContact(){
-        
+    function updateFormNewContact(ev) {
+        let name = ev.target.name
+        let value = ev.target.value
+
+        setFormNewContact({ ...formNewContact, [name]: value })
     }
 
 
@@ -66,7 +69,44 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
                 break;
 
             case 'manu':
-                if (count == 1) { }
+                if (count == 1) {
+
+                    if (addActive) {
+
+                        if (formNewContact.email || formNewContact.phone) {
+                            if (formNewContact.name) {
+
+                                const emailExists = contacts.some(contact => contact.email === formNewContact.email);
+                                const phoneExists = contacts.some(contact => contact.phone === formNewContact.phone);
+
+                                if (!emailExists) {
+                                    setCount(1)
+                                    setAddActive(false)
+                                    approve = false;
+                                    setContacts((prevData) => {
+                                        let newData = [...prevData];
+                                        newData.push(formNewContact)
+                                        return newData;
+                                    });
+                                } else {
+                                    toast.error("Ya este contacto existe");
+                                    approve = false;
+                                }
+                            } else {
+                                toast.error("Opps el contacto debe de contar con un nombre")
+                                approve = false;
+                            }
+                        } else {
+                            toast.error("Opps no tienes ningun elemento de contacto agendado")
+                            approve = false
+                        }
+                    } else {
+                        approve = false;
+                        uploadContact()
+                    }
+
+                }
+
                 break;
         }
 
@@ -82,6 +122,22 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
 
 
     }, [count])
+
+    function uploadContact() {
+        let formData = new FormData()
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("contacts", JSON.stringify(contacts))
+        formData.append("id_list", params.id)
+
+        axios.post(API_URL + "/api/upload/contactsWeb", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                if (data.status) {
+                    toast.success("Contactos subidos");
+                    Navigator("/contacts/detail/" + params.id)
+                }
+            })
+    }
 
     function OpenInputFile() {
         document.querySelector("input[type='file']").click()
@@ -193,13 +249,20 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
 
                                         <div className="row">
                                             {contacts.map((element, key) => (
-
                                                 <div className="col-md-4">
-                                                    <div className="contact"></div>
+                                                    <div className="box box-padding stat" onClick={(ev) => { setAddActive(true) }}>
+
+                                                        <div className="top">
+                                                            <p>{(element.email || element.phone)}</p>
+                                                            <span>{element.name}</span>
+
+                                                            <button className="add-button" style={{ fontSize: "40px", color: "var(--bs-danger)" }}><Icon icon="ph:trash-light" /></button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             ))}
 
-                                            {contacts.length == 0 && <>
+                                            {contacts.length == 0 ? <>
                                                 <div className="col-md-4">
                                                     <div className="box box-padding stat" onClick={(ev) => { setAddActive(true) }}>
 
@@ -212,7 +275,26 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
                                                         <button className="add-button"><Icon icon="solar:add-circle-line-duotone" /></button>
                                                     </div>
                                                 </div>
-                                            </>}
+                                            </>
+
+                                                :
+                                                <>
+                                                    <div className="col-md-4">
+                                                        <div className="box box-padding stat" onClick={(ev) => { setAddActive(true) }}>
+
+                                                            <div className="top">
+                                                                <p>Agregar Contacto</p>
+                                                                <span>Crea uno nuevo</span>
+                                                            </div>
+
+
+                                                            <button className="add-button"><Icon icon="solar:add-circle-line-duotone" /></button>
+                                                        </div>
+                                                    </div>
+                                                </>
+
+
+                                            }
                                         </div>
 
                                     </div>

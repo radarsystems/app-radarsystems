@@ -10,6 +10,7 @@ export default function PlansCompany() {
     const { UserInfo } = useContext(AuthContext)
     const [plans, setPlans] = useState([])
     const [loading, setLoading] = useState(false)
+    const [resumen, setResumen] = useState({})
 
     function getPlans() {
         let formData = new FormData()
@@ -23,8 +24,19 @@ export default function PlansCompany() {
             })
     }
 
+    function getResumen() {
+        let formData = new FormData()
+        formData.append("id_company", UserInfo?.company?.id_company)
+        axios.post(API_URL + "/api/get/my/resumen", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                setResumen(data)
+            })
+    }
+
     useEffect(() => {
         getPlans()
+        getResumen()
     }, [])
 
     return (
@@ -37,6 +49,40 @@ export default function PlansCompany() {
             </div>
 
             <CompanyMenuTop />
+
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="box stat box-padding">
+                        <div className="top">
+                            <p className="title">Resumen</p>
+                            <span>Observa cuanto te queda disponible este mes en tu plan adquirido</span>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-md-4">
+                                <div className="box resumen-plans box-padding">
+                                    <p>Emails</p>
+                                    <span>{resumen?.emails_quantity}</span>
+                                </div>
+                            </div>
+
+                            <div className="col-md-4">
+                                <div className="box resumen-plans box-padding">
+                                    <p>Mensajes</p>
+                                    <span>{resumen?.sms_quantity}</span>
+                                </div>
+                            </div>
+
+                            <div className="col-md-4">
+                                <div className="box resumen-plans box-padding">
+                                    <p>Contactos</p>
+                                    <span>{resumen?.contacts_quantity}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
             <div className="row">

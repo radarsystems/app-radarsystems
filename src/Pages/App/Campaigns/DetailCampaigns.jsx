@@ -46,6 +46,7 @@ export default function DetailCampaigns() {
     const [newText, setNewText] = useState()
     const [modalSendTest, setModalTest] = useState(false)
     const [domains, setDomains] = useState([])
+    const [buttonSend, setButtonSend] = useState(false)
 
     function searchLists(search) {
 
@@ -113,6 +114,11 @@ export default function DetailCampaigns() {
             .then((response) => { return response.data })
             .then((data) => {
                 setCampaign(data)
+                if (data.type_c) {
+                    if (data.type_c == "em" || data.type_c == "sms") {
+                        setButtonSend(true)
+                    }
+                }
             })
             .catch((err) => {
 
@@ -539,8 +545,15 @@ export default function DetailCampaigns() {
                 <button className="programming" onClick={(ev) => { if (CheckBeforeSend()) { setModalProgramming(true) } }}>Programar</button>
                 <button className="programming" onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}>Estadisticas</button>
                 <button className="programming" onClick={(ev) => { setDeleteModal(true) }}>Eliminar</button>
-                <button className={`programming ${pending.sendCampaign ? 'await' : ''} `} onClick={(ev) => { setModalTest(true) }}>Enviar Prueba <div className="loading"></div></button>
-                <button className={`send${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
+
+
+                {buttonSend &&
+
+                    <>
+                        <button className={`send${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
+                        <button className={`programming ${pending.sendCampaign ? 'await' : ''} `} onClick={(ev) => { setModalTest(true) }}>Enviar Prueba <div className="loading"></div></button>
+                    </>
+                }
             </div>
 
 
@@ -816,6 +829,7 @@ export default function DetailCampaigns() {
 
                                                                 <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
                                                                 <br />
+
                                                                 <Link to={`/editor/canvas/${campaign?.template?.id_template}?campaign=` + params.id}>Editar plantilla</Link>
                                                             </div>
                                                         </>

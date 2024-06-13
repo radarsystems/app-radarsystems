@@ -401,8 +401,9 @@ body {
     padding-left: 15px;
     border-radius: 93px;
     font-size: 14px;
-    background: var(--diference-1);
-    color: var(--text-white);
+    background: var(--details-green);
+    color: white;
+    font-weight: 600;
 }
 
 .app .box {
@@ -950,7 +951,7 @@ body {
     margin: auto;
     display: block;
     margin-top: 7px;
-    background: var(--details-lila);
+    background: var(--left-menu);
     width: 100%;
     border-radius: 28px;
 }
@@ -1800,12 +1801,13 @@ table th {
     height: max-content;
     margin: auto;
     padding: 30px;
-    background: var(--left-menu);
+    background: var(--box-background);
     margin-top: 40px;
     margin-bottom: 40px;
     border-radius: 12px;
     color: var(--text-white);
     min-width: 400px;
+    border: 2px solid var(--details-green);
 }
 
 .wizard-home .file-adjunt .icon {
@@ -1825,7 +1827,7 @@ table th {
     width: max-content;
     background: transparent;
     border: 1px solid;
-    color: #ff9696;
+    color: #ff3636;
     font-size: 14px;
     border-radius: 94px;
     margin-left: auto;
@@ -3035,16 +3037,31 @@ svg {
     opacity: 0.9;
 }
 
+.box.resumen-plans {
+    background: var(--background-body);
+    padding: 30px 50px !important;
+    text-align: center;
+}
+
+.box.resumen-plans p {
+    font-size: 18px;
+}
+
+
+.box.resumen-plans span {
+    font-size: 30px;
+}
+
 .box.plans .start {
-    background: var(--details-lila);
+    background: var(--bs-blue);
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
-    border-radius: 6px;
     font-family: "Rubik Medium";
     font-size: 13px;
-    border: 2px solid #b163eb;
+    border: 2px solid #2c81ff;
     color: var(--text-fullwhite);
+    border-radius: 93px;
 }
 
 .box.plans .offers .check {
@@ -3105,7 +3122,7 @@ svg {
 
 
 .settings-account {
-    background: var(--left-menu);
+    background: var(--box-background);
     padding: 20px;
     border-radius: 16px;
     margin-top: 60px;
@@ -3198,7 +3215,7 @@ svg {
     border-radius: 90px;
     padding-right: 15px;
     padding-left: 15px;
-    background-color: var(--details-lila);
+    background-color: var(--details-green);
     border: 0px;
 }
 
