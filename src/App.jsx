@@ -61,6 +61,7 @@ import { useContext } from 'react'
 import { AuthContext } from './Context/AuthContext.jsx'
 import DomainWatch from './Pages/App/SettingsAccount/Domain.jsx'
 import PlansCompany from './Pages/App/Companys/PlansCompany.jsx'
+import CheckOut from './Pages/App/Checkout/CheckOut.jsx'
 
 
 
@@ -118,6 +119,7 @@ function App() {
           <Route path="/companys/roles" element={<Global CompanyNeed={true} Element={RolsCompany} />} />
           <Route path="/companys/users" element={<Global CompanyNeed={true} Element={UsersCompany} />} />
           <Route path="/companys/plans" element={<Global CompanyNeed={true} Element={PlansCompany} />} />
+          <Route path="/checkout/:id" element={<Global CompanyNeed={true} Element={CheckOut} />} />
 
 
           {/* LISTASD */}

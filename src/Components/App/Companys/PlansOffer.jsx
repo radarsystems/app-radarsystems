@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { formatNumber } from "../../../Functions/Global";
 
-export default function PlansOffer({ data }) {
+export default function PlansOffer({ data, onClick }) {
 
     return (
         <>
@@ -25,7 +25,7 @@ export default function PlansOffer({ data }) {
                     </div>
                 </div>
 
-                <button className="start">Comenzar Ahora!</button>
+                <button className="start" onClick={(ev) => { onClick(data.id_plan) }}>Comenzar Ahora!</button>
 
                 <div className="offers">
                     <p>El plan incluye:</p>

@@ -1,6 +1,6 @@
 import CompanyMenuTop from "../../../Components/App/Companys/MenuTop";
 import axios from "axios"
-import { API_URL } from "../../../ExportUrl";
+import { API_URL, PAYMENT_URL } from "../../../ExportUrl";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
 import PlansOffer from "../../../Components/App/Companys/PlansOffer";
@@ -32,6 +32,10 @@ export default function PlansCompany() {
             .then((data) => {
                 setResumen(data)
             })
+    }
+
+    function GoPlan(id_plan) {
+        axios.get(`https://paytest.megasoft.com.ve/action/paymentgatewayuniversal-prereg?cod_afiliacion=20240516&factura={{bp_nu_factura}}&monto=100.00&nombre=ANA%20A%20GOICONFA&tipo=V&cedula_rif=19650641&tipo_pago=CREDITO`)
     }
 
     useEffect(() => {
@@ -88,7 +92,7 @@ export default function PlansCompany() {
             <div className="row">
                 {plans.map((element, key) => (
                     <div className="col-md-3" key={key}>
-                        <PlansOffer data={element} />
+                        <PlansOffer data={element} onClick={GoPlan} />
                     </div>
                 ))}
             </div>
