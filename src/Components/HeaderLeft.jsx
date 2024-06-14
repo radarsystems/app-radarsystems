@@ -87,6 +87,7 @@ export default function HeaderLeft({ MenuLeft }) {
                             <li><Link to="/settings-account/security">Seguridad</Link></li>
                             <li><Link to="/settings-account/footer">Footer</Link></li>
                             <li><Link to="/settings-account/domains">Dominios</Link></li>
+                            <li><Link to="/settings-account/credentials">API</Link></li>
                         </ul>
                     </li>
 
@@ -249,17 +250,6 @@ export default function HeaderLeft({ MenuLeft }) {
                         <button onClick={ToggleChild}><i className="icon"><IoBusinessOutline /></i> Validador Email <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/companys">Mis Validaciones</Link></li>
-                            <li><Link to="/companys">Crear Validacion</Link></li>
-                            <li><Link to="/companys">Estadisticas</Link></li>
-
-                        </ul>
-                    </li>
-
-
-                    <li className={"" + viewMenuSpecial}>
-                        <button onClick={ToggleChild}><i className="icon"><IoBusinessOutline /></i>  API <i className="arrow"><MdArrowForwardIos /></i></button>
-                        <ul>
-                            <li><Link to="/companys">Mis Credenciales</Link></li>
                             <li><Link to="/companys">Crear Validacion</Link></li>
                             <li><Link to="/companys">Estadisticas</Link></li>
 

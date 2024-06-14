@@ -3809,3 +3809,40 @@ svg {
     left: 0;
     top: 0;
 }
+
+.form-credentials{
+    position: relative;
+}
+
+.form-credentials input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 90px;
+    border: 0px;
+    text-align: center;
+    color: black;
+    background: var(--background-body);
+}
+
+
+.form-credentials input.client {
+    border: 1px solid var(--bs-blue);
+}
+
+.form-credentials input.secret {
+    border: 1px solid var(--bs-danger);
+}
+
+.form-credentials button{
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    bottom: 0;
+    height: max-content;
+    width: max-content;
+    border-radius: 90px;
+    line-height: 1;
+    padding: 10px;
+    background: var(--border-box);
+    color: black;
+}

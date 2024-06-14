@@ -62,6 +62,7 @@ import { AuthContext } from './Context/AuthContext.jsx'
 import DomainWatch from './Pages/App/SettingsAccount/Domain.jsx'
 import PlansCompany from './Pages/App/Companys/PlansCompany.jsx'
 import CheckOut from './Pages/App/Checkout/CheckOut.jsx'
+import Credentials from './Pages/App/Companys/Credentials.jsx'
 
 
 
@@ -99,6 +100,7 @@ function App() {
           <Route path="/settings-account/footer" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
           <Route path="/settings-account/domains" element={<Global CompanyNeed={true} Element={CompanyDomains} />} />
           <Route path="/settings-account/domain/:id" element={<Global CompanyNeed={true} Element={DomainWatch} />} />
+          <Route path="/settings-account/credentials" element={<Global CompanyNeed={true} Element={Credentials} />} />
 
 
           {/* ROUTES PRIVATE IN APP */}
