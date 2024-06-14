@@ -33,12 +33,15 @@ export default function Credentials() {
 
     function updateCredentials() {
         let formData = new FormData()
-        
         formData.append("client_id", form.client_id)
-        axios.post(API_URL + "/api/auth/newkey", {}, { withCredentials: true })
+
+        axios.post(API_URL + "/api/auth/newkey", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
-                console.log(response)
+                if (data.status) {
+                    toast.success("Secret Key actualizada con exito")
+                    getCredentials()
+                }
             })
     }
 
