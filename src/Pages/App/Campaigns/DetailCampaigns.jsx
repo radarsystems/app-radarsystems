@@ -697,49 +697,51 @@ export default function DetailCampaigns() {
 
                 </div>
 
+                <div className="item">
+
+                    <div className={`top ${campaign?.id_domain ? 'active' : ''} `}>
+                        <div className={`check`}>
+                            <FaCheck />
+                        </div>
+
+                        <div className="information">
+                            <p className="title">Remitente</p>
+                            <span className="desc approve">Aprobado!</span>
+                        </div>
+
+
+                        {editActive.domain == true ?
+                            <>
+                                <div className="option">
+                                    <div className="search-result">
+                                        {domains?.map((element, key) => (
+                                            <div className="result" key={54}>
+                                                <div className="info">
+                                                    <p>{element.domain}</p>
+                                                    <span>Correo: {element.domain_email}</span>
+                                                    <button className="select" onClick={useDomain} value={element.id_domain}><IoPushOutline /></button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </>
+                            :
+                            <div className="right">
+                                <button onClick={(ev) => { ActiveList("domain"); getMyDomains() }}>Editar</button>
+                            </div>
+                        }
+
+
+
+
+                    </div>
+
+                </div>
+
                 {campaign?.type_c == "em" ?
                     <>
-                        <div className="item">
 
-                            <div className={`top ${campaign?.id_domain ? 'active' : ''} `}>
-                                <div className={`check`}>
-                                    <FaCheck />
-                                </div>
-
-                                <div className="information">
-                                    <p className="title">Remitente</p>
-                                    <span className="desc approve">Aprobado!</span>
-                                </div>
-
-
-                                {editActive.domain == true ?
-                                    <>
-                                        <div className="option">
-                                            <div className="search-result">
-                                                {domains?.map((element, key) => (
-                                                    <div className="result" key={54}>
-                                                        <div className="info">
-                                                            <p>{element.domain}</p>
-                                                            <span>Correo: {element.domain_email}</span>
-                                                            <button className="select" onClick={useDomain} value={element.id_domain}><IoPushOutline /></button>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </>
-                                    :
-                                    <div className="right">
-                                        <button onClick={(ev) => { ActiveList("domain"); getMyDomains() }}>Editar</button>
-                                    </div>
-                                }
-
-
-
-
-                            </div>
-
-                        </div>
 
                         <div className="item">
 
