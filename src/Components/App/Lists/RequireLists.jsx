@@ -4,6 +4,7 @@ import MenuViewLists from "./MenuViewLists";
 import { IoEyeOutline, IoTrashOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import ModalDelete from "../ModalDelete";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function RequireLists({ type, lists }) {
     const [selectMultiple, setSelectMultiple] = useState(false);
@@ -46,10 +47,13 @@ export default function RequireLists({ type, lists }) {
 
                                     <div className="text">
                                         <p className="title" title={element.name}>
-                                            {limitText(element.name, 15)}
+                                            {limitText(element.name, 8)}
                                         </p>
                                         <span className="desc">Creado el: {Time(element.time_add)}</span>
                                         <br />
+                                        <button  onClick={(ev) => { Navigator("/contacts/upload/" + element.id_list) }} className="upload">
+                                            <Icon icon="mdi:upload" />
+                                        </button>
 
                                         {selectMultiple && (
                                             <input
@@ -59,6 +63,7 @@ export default function RequireLists({ type, lists }) {
                                             />
                                         )}
                                     </div>
+
                                 </div>
 
                                 <div className="actions">
@@ -69,6 +74,7 @@ export default function RequireLists({ type, lists }) {
                                         <IoTrashOutline />
                                     </button>
                                 </div>
+
                             </div>
                         </div>
                     </div>

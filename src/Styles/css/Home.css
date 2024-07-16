@@ -471,6 +471,24 @@ body {
     color: var(--text-white);
 }
 
+.app .page-lists button.upload {
+    margin-bottom: -10px;
+    font-size: 14px;
+    background: var(--box-actions);
+    color: black;
+    border-radius: 90px;
+    padding: 5px;
+    margin-top: 6px;
+    width: 125%;
+}
+
+.wizard-home .actions .download-file{
+    padding: 10px 20px;
+    border-radius: 90px;
+    font-size: 14px;
+    background: var(--details-blue);
+}
+
 .app .page-lists {
     position: relative;
 }
@@ -3262,6 +3280,7 @@ svg {
     margin-right: 10px;
     margin-left: 10px;
     position: relative;
+    color: black;
 }
 
 .textarea-sms .options {
@@ -3274,10 +3293,11 @@ svg {
 
 .textarea-sms .options button {
     font-size: 13px;
-    background-color: #28292c;
+    background-color: var(--background-body);
     padding: 5px;
     border-radius: 19px;
     padding-right: 10px;
+    color: var(--text-white);
     padding-left: 10px;
 }
 
@@ -3296,6 +3316,7 @@ svg {
     max-height: 200px;
     height: 58px;
     font-size: 14px;
+    color: var(--text-white);
 }
 
 .textarea-sms .bottom-actions {
@@ -3328,7 +3349,7 @@ svg {
     padding: 14px;
     font-size: 14px;
     padding-right: 18px;
-
+    color: var(--text-white);
 }
 
 .editor-surveys .center.complete {

@@ -4,7 +4,7 @@ import { AnalizeFileCsv, randomId } from "../../../Functions/Global"
 import $, { data, type } from "jquery"
 import axios from "axios"
 import { API_URL } from "../../../ExportUrl"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../../../Context/AuthContext"
 import { AiOutlineFileAdd, AiOutlineFileText } from "react-icons/ai"
 import LoadingCircleApp from "../LoadingCircle"
@@ -335,52 +335,67 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
                                 <p className="title">Subir Archivo</p>
                                 <span className="desc">Sube tu archivo rapidamente para procesarlo en tu lista de contactos.</span>
                             </div>
+                            <>
+                                {
+                                    actions.approve == true ?
+                                        <>
+                                            <div className="file-adjunt">
+                                                <i className="icon">
+                                                    <AiOutlineFileText />
+                                                </i>
+                                                <div className="file">
+                                                    <p>{form?.file?.name}</p>
+                                                    <div className="info">
+                                                        <span>Tipo de archivo: {form.file.type}</span>
+                                                        <span>Peso: {form.file.size} kb</span>
+                                                    </div>
 
-                            {
-                                actions.approve == true ?
-                                    <>
-                                        <div className="file-adjunt">
-                                            <i className="icon">
-                                                <AiOutlineFileText />
-                                            </i>
-                                            <div className="file">
-                                                <p>{form?.file?.name}</p>
-                                                <div className="info">
-                                                    <span>Tipo de archivo: {form.file.type}</span>
-                                                    <span>Peso: {form.file.size} kb</span>
+                                                    <button className="delete" onClick={DeleteFile}><IoTrashOutline /></button>
                                                 </div>
 
-                                                <button className="delete" onClick={DeleteFile}><IoTrashOutline /></button>
                                             </div>
 
+                                        </>
+                                        :
+
+                                        <div className="upload-contact">
+                                            <input type="file" accept=".csv,.txt" onChange={ObserverFile} hidden />
+
+                                            {actions.analize == true ?
+                                                <>
+                                                    <p>Estamos analizando tu archivo... {actions.percentAnalize}%</p>
+                                                </>
+
+                                                :
+                                                <center>
+
+                                                    <div className="select-upload" onClick={OpenInputFile}>
+                                                        <i className="icon">
+                                                            <AiOutlineFileAdd />
+                                                        </i>
+                                                        <p>Selecciona tu archivo de contactos</p>
+                                                    </div>
+
+                                                </center>
+                                            }
+
                                         </div>
-                                    </>
-                                    :
 
-                                    <div className="upload-contact">
-                                        <input type="file" accept=".csv,.txt" onChange={ObserverFile} hidden />
-
-                                        {actions.analize == true ?
-                                            <>
-                                                <p>Estamos analizando tu archivo... {actions.percentAnalize}%</p>
-                                            </>
-
-                                            :
-                                            <center>
-
-                                                <div className="select-upload" onClick={OpenInputFile}>
-                                                    <i className="icon">
-                                                        <AiOutlineFileAdd />
-                                                    </i>
-                                                    <p>Selecciona tu archivo de contactos</p>
-                                                </div>
-
-                                            </center>
-                                        }
-
+                                }
+                                <div className="box box-stat box-padding">
+                                    <div className="top">
+                                        <p style={{ fontSize: "18px", marginBottom: "0px" }} className="title">Descarga un archivo de pruebas</p>
+                                        <span className="desc">descarga desde aqui un archivo de pruebas para saber como funciona nuestro sistema.</span>
                                     </div>
 
-                            }
+                                    <div className="actions">
+
+                                        <Link to={"/TestUploadContacts.csv"} target="_blank">
+                                            <button className="download-file">Descargar <Icon icon="solar:file-download-linear" /></button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </>
                         </div>
                     }
 
