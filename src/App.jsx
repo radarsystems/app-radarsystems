@@ -63,6 +63,7 @@ import DomainWatch from './Pages/App/SettingsAccount/Domain.jsx'
 import PlansCompany from './Pages/App/Companys/PlansCompany.jsx'
 import CheckOut from './Pages/App/Checkout/CheckOut.jsx'
 import Credentials from './Pages/App/Companys/Credentials.jsx'
+import CheckOutCheck from './Pages/App/Checkout/CheckOutCheck.jsx'
 
 
 
@@ -122,6 +123,7 @@ function App() {
           <Route path="/companys/users" element={<Global CompanyNeed={true} Element={UsersCompany} />} />
           <Route path="/companys/plans" element={<Global CompanyNeed={true} Element={PlansCompany} />} />
           <Route path="/checkout/:id" element={<Global CompanyNeed={true} Element={CheckOut} />} />
+          <Route path="/checkout/check" element={<Global CompanyNeed={true} Element={CheckOutCheck} />} />
 
 
           {/* LISTASD */}

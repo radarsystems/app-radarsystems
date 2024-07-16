@@ -153,17 +153,17 @@ export default function StatsCampaigns() {
                             <p>Enviados</p>
                         </div>
                         <div className="resp-number">
-                            <p>{stats.total_sends}</p>
+                            <p>{Number(stats.total_sends)}</p>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-3">
                     <div className="box stat box-padding">
                         <div className="top">
-                            <p>Clicks</p>
+                            <p>Recibidos</p>
                         </div>
                         <div className="resp-number">
-                            <p>{stats.total_clicks}</p>
+                            <p>{Number(stats.total_sends) - Number(stats.total_errors)}</p>
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@ export default function StatsCampaigns() {
                             <p>Leidos</p>
                         </div>
                         <div className="resp-number">
-                            <p>{stats.total_reads}</p>
+                            <p>{Number(stats.total_reads)}</p>
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,7 @@ export default function StatsCampaigns() {
                             <p>Errores</p>
                         </div>
                         <div className="resp-number">
-                            <p>{stats.total_errors}</p>
+                            <p>{Number(stats.total_errors)}</p>
                         </div>
                     </div>
                 </div>
