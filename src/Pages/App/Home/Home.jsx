@@ -15,6 +15,8 @@ export default function Home() {
 
     const [lastCampaignSms, setLastCampaignSms] = useState([])
     const [lastCampaignEmail, setLastCampaignEmail] = useState([])
+    const [lastCampaignEmailMt, setLastCampaignEmailMt] = useState([])
+    const [lastCampaignSmsMt, setLastCampaignSmsMt] = useState([])
     const [lastCampaignWhatsapp, setLastCampaignWhatsapp] = useState([]);
     const [topsCampaignSms, setTopsCampaignSms] = useState([])
     const [topsCampaignEmail, setTopsCampaignEmail] = useState([])
@@ -22,8 +24,15 @@ export default function Home() {
     const [surveys, setSurveys] = useState([])
     const [stats, setStats] = useState({})
 
-    function getTopsCampaigns(type) {
+    function getStatsGlobalHome(type) {
+        let formData = new FormData()
+        formData.append("id_company", UserInfo?.company?.id_company)
 
+        axios.post(API_URL + "/api/get/stats/global", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                setStats(data);
+            })
     }
 
 
@@ -44,6 +53,14 @@ export default function Home() {
 
                     case 'em':
                         setLastCampaignEmail(data.results ?? [])
+                        break;
+
+                    case 'em-mt':
+                        setLastCampaignEmailMt(data.results ?? [])
+                        break;
+
+                    case 'sms-mt':
+                        setLastCampaignSmsMt(data.results ?? [])
                         break;
                 }
             })
@@ -76,14 +93,14 @@ export default function Home() {
     }
 
     useEffect(() => {
-
-        getTopsCampaigns("email")
-        getTopsCampaigns("sms")
         getLastCampaigns("em")
+        getLastCampaigns("em-mt")
         getLastCampaigns("sms")
+        getLastCampaigns("sms-mt")
+
         getTemplates()
         getSurveys()
-
+        getStatsGlobalHome()
     }, [])
 
     return (
@@ -104,33 +121,33 @@ export default function Home() {
                     <div className="col-md-3">
                         <div className="box stat box-padding">
                             <div className="top">
-                                <p>Total email marketing enviados</p>
+                                <p>Total Envios Emails</p>
                             </div>
 
                             <div className="resp-number">
-                                <p>1</p>
+                                <p>{stats.total_sends}</p>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-3">
                         <div className="box stat box-padding">
                             <div className="top">
-                                <p>Total email transaccional enviados</p>
+                                <p>Total Envios Sms</p>
                             </div>
 
                             <div className="resp-number">
-                                <p>12</p>
+                                <p>{stats.total_sends_sms}</p>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-3">
                         <div className="box stat box-padding">
                             <div className="top">
-                                <p>Total campañas sms marketing</p>
+                                <p>Campañas Creadas</p>
                             </div>
 
                             <div className="resp-number">
-                                <p>13</p>
+                                <p>{stats.total_campaigns}</p>
                             </div>
                         </div>
                     </div>
@@ -139,11 +156,11 @@ export default function Home() {
                     <div className="col-md-3">
                         <div className="box stat box-padding">
                             <div className="top">
-                                <p>Total campañas sms transaccional</p>
+                                <p>Total Contactos</p>
                             </div>
 
                             <div className="resp-number">
-                                <p>1</p>
+                                <p>{stats.total_contacts}</p>
                             </div>
                         </div>
                     </div>
@@ -188,7 +205,9 @@ export default function Home() {
                                     <td>Rep. Spam</td>
                                     <td>Opt. Out</td>
                                     <td>Opt. Net</td>
-                                    <td><IoStatsChartOutline /></td>
+                                    <td>
+                                        <IoStatsChartOutline />
+                                    </td>
 
 
 
@@ -209,7 +228,7 @@ export default function Home() {
                                         <td>{element.clicks}</td>
                                         <td>{element.clicks}</td>
                                         <td>{element.clicks}</td>
-                                        <td><Link><IoStatsChartOutline /></Link></td>
+                                        <td><Link to={"/campaigns/detail/" + element.id_campaign}><IoStatsChartOutline /></Link></td>
                                     </tr>
                                 ))}
                             </table>
@@ -244,7 +263,7 @@ export default function Home() {
                                 </tr>
 
 
-                                {lastCampaignEmail.map((element, key) => (
+                                {lastCampaignEmailMt.map((element, key) => (
                                     <tr id={key}>
                                         <td><span>{element.name}</span>
                                             <br />
@@ -287,7 +306,7 @@ export default function Home() {
                                 </tr>
 
 
-                                {lastCampaignEmail.map((element, key) => (
+                                {lastCampaignSms.map((element, key) => (
                                     <tr id={key}>
                                         <td>
                                             <span>{element.name}</span>
@@ -327,7 +346,7 @@ export default function Home() {
                                 </tr>
 
 
-                                {lastCampaignEmail.map((element, key) => (
+                                {lastCampaignSmsMt.map((element, key) => (
                                     <tr id={key}>
                                         <td>
                                             <span>{element.name}</span>
