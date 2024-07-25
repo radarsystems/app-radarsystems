@@ -45,7 +45,7 @@ export default function MyCampaigns() {
             type = "sms"
         }
 
-        
+
         if (existsStringInPath("/sms-mt")) {
             type = "sms-mt"
         }
@@ -118,8 +118,8 @@ export default function MyCampaigns() {
                                 </div>
 
                                 <div className="actions">
-                                    <button onClick={ViewDetail} value={element.id_campaign}><IoDocumentTextOutline /></button>
-                                    <button><IoStatsChartOutline /></button>
+                                    <button className="blue" onClick={ViewDetail} value={element.id_campaign}><IoDocumentTextOutline /></button>
+                                    <button className="green"><IoStatsChartOutline /></button>
                                 </div>
                             </div>
                         ))}

@@ -66,6 +66,21 @@ body {
 
 }
 
+.header-left ul li button:hover {
+    color: #d1ffd1 !important;
+    background: #ffffff24 !important;
+}
+
+.header-left ul li button.active {
+    color: #d1ffd1 !important;
+    background: #ffffff24 !important;
+}
+
+
+.header-left ul li ul li>a:hover {
+    color: #d1ffd1 !important;
+}
+
 .header-left ul li.opacity {
     opacity: 0.3;
     pointer-events: none;
@@ -85,6 +100,7 @@ body {
     transition: .3s ease;
     border: 0px;
     color: var(--text-fullwhite) !important;
+    border-radius: 10px 0px 0px 10px;
 }
 
 
@@ -106,7 +122,7 @@ body {
     top: 0;
     margin: auto;
     height: max-content;
-    left: 0;
+    left: 5px;
 }
 
 .header-left ul li>button .arrow {
@@ -219,13 +235,13 @@ body {
 .header-top .right .company .select-company {
     display: block;
     padding: 10px;
-    font-size: 14px;
+    font-size: 13px;
     text-decoration: none;
     border-radius: 105px;
     background: #8994a91a;
     padding-right: 15px;
     padding-left: 15px;
-    color: var(--text-white);
+    color: var(--text-fullwhite);
 }
 
 .header-top .right {
@@ -460,6 +476,17 @@ body {
     gap: 8px;
 }
 
+.app .page-lists .actions button.blue {
+    color: var(--text-fullwhite);
+    background: var(--details-blue) !important;
+}
+
+
+.app .page-lists .actions button.red {
+    color: var(--text-fullwhite);
+    background: var(--bs-danger);
+}
+
 .app .page-lists .actions button {
     padding: 10px;
     font-size: 14px;
@@ -482,7 +509,7 @@ body {
     width: 125%;
 }
 
-.wizard-home .actions .download-file{
+.wizard-home .actions .download-file {
     padding: 10px 20px;
     border-radius: 90px;
     font-size: 14px;
@@ -1108,6 +1135,16 @@ body {
     display: block;
     margin-top: 12px;
     margin-bottom: auto;
+}
+
+.app .box .item.flex .actions button.blue {
+    background: var(--details-blue);
+    color: var(--text-fullwhite);
+}
+
+.app .box .item.flex .actions button.green {
+    background: var(--details-green);
+    color: white;
 }
 
 .app .box .item.flex .actions button {
@@ -2064,6 +2101,11 @@ table th {
 
 .menu-top-right button.send {
     background: var(--details-green);
+    color: var(--text-fullwhite);
+}
+
+.menu-top-right button.return {
+    background: var(--details-blue);
     color: var(--text-fullwhite);
 }
 

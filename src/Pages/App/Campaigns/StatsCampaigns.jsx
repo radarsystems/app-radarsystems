@@ -173,7 +173,7 @@ export default function StatsCampaigns() {
                             <p>Leidos</p>
                         </div>
                         <div className="resp-number">
-                            <p>{Number(stats.total_reads)}</p>
+                            <p>{Number(stats.total_clicks)}</p>
                         </div>
                     </div>
                 </div>

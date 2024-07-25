@@ -550,7 +550,13 @@ export default function DetailCampaigns() {
                 {buttonSend &&
 
                     <>
-                        <button className={`send${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
+
+                        {campaign.sendsCampaign ?
+                            <button className={`return${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}> <Icon icon="ant-design:retweet-outlined" /> Reenviar Campaña <div className="loading"></div></button>
+                            :
+                            <button className={`send${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
+
+                        }
                         <button className={`programming ${pending.sendCampaign ? 'await' : ''} `} onClick={(ev) => { setModalTest(true) }}>Enviar Prueba <div className="loading"></div></button>
                     </>
                 }

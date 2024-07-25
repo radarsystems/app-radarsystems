@@ -67,10 +67,10 @@ export default function RequireLists({ type, lists }) {
                                 </div>
 
                                 <div className="actions">
-                                    <button onClick={(ev) => { Navigator("/contacts/detail/" + element.id_list) }}>
+                                    <button className="blue" onClick={(ev) => { Navigator("/contacts/detail/" + element.id_list) }}>
                                         <IoEyeOutline />
                                     </button>
-                                    <button onClick={(ev) => { setModalDelete(true) }}>
+                                    <button className="red" onClick={(ev) => { setModalDelete(true) }}>
                                         <IoTrashOutline />
                                     </button>
                                 </div>
