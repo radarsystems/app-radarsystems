@@ -76,7 +76,7 @@ export default function WizardUploadContacts({ Visible, Close, Callback }) {
                         if (formNewContact.email || formNewContact.phone) {
                             if (formNewContact.name) {
 
-                                const emailExists = contacts.some(contact => contact.email === formNewContact.email);
+                                const emailExists = contacts.some(contact => contact.email !== undefined && contact.email === formNewContact.email);
                                 const phoneExists = contacts.some(contact => contact.phone === formNewContact.phone);
 
                                 if (!emailExists) {

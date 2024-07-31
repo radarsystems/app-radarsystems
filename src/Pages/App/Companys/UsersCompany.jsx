@@ -62,6 +62,8 @@ export default function UsersCompany() {
                         setModalUser(false)
                         setUsers([])
                         LoadUsers()
+                    } else {
+                        toast.error(data.msg)
                     }
 
                 }).catch((err) => {
@@ -104,10 +106,7 @@ export default function UsersCompany() {
         axios.post(API_URL + "/api/get/roles", formData, { withCredentials: true }).then((response) => { return response.data }).then((data) => {
             setRols(data)
         })
-
         LoadUsers()
-
-
     }, [])
 
     function HandleEditUser() {
