@@ -91,7 +91,7 @@ export default function UsersCompany() {
     }
 
     function OpenModalRemove(key) {
-        let id = users[key].id
+        let id = users[key].id_admin
 
         if (id) {
             setDeleteId(id)
@@ -151,7 +151,14 @@ export default function UsersCompany() {
                     toast.success("Has borrado el usuario correctamente.")
                 }
 
+                if (data.msg) {
+                    toast.error(data.msg)
+                }
+
             })
+                .finally(() => {
+                    setPending(false)
+                })
         } else {
             toast.error("Opps no has seleccionado nada")
         }
@@ -232,8 +239,13 @@ export default function UsersCompany() {
                                     </div>
 
                                     <div className="text">
-                                        <p className="title">{element.name}</p>
-                                        <span className="desc">Rol - {element.rol}</span>
+                                        <p className="title">{element.user}</p>
+                                        {element.is_owner ?
+                                            <span className="desc">Rol - Creador</span>
+                                            :
+                                            <span className="desc">Rol - {element.rol}</span>
+
+                                        }
                                         <br />
                                         <span className="desc">Creado el: 29 de may de 2023</span>
                                     </div>

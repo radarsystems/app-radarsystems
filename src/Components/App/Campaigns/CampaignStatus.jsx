@@ -9,13 +9,13 @@ export default function CampaignStatus({ status, PauseCampaign, style }) {
 
             {status == "prepare" ?
                 <>
-                    <span style={style}>En espera... <Icon icon="mdi:check" /></span>
+                    <span style={style} className="wait">En espera... <Icon icon="mdi:check" /></span>
                 </>
                 : ""}
 
             {status == "programmed" ?
                 <>
-                    <span style={style} className="wait-list"> Programada <IoTimerOutline /></span>
+                    <span style={style} className="programmed"> Programada <Icon icon="fa-solid:check" /></span>
                 </>
                 : ""}
 

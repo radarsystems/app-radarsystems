@@ -4,6 +4,10 @@ import $ from "jquery"
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 
+export function HistoryBack() {
+    return window.history.back()
+}
+
 
 export function formatNumber(number) {
     // Si el número es menor a 1000, no es necesario formatearlo

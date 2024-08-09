@@ -294,6 +294,7 @@ export default function DetailCampaigns() {
                     setAwait("sendCampaign", false)
                     if (data.status && !data.msg) {
                         toast.success("Campaña enviada!")
+                        setCampaign({ ...campaign, status: "sending" })
                     } else {
                         toast.error(data.msg)
                     }
@@ -406,8 +407,8 @@ export default function DetailCampaigns() {
             .then((data) => {
                 setPendingProgramming(false)
                 if (data.status) {
-
                     setModalProgramming(false)
+                    setCampaign({ ...campaign, status: "programmed" })
                     toast.success("Campana programada con exito")
                 }
             })
@@ -510,6 +511,23 @@ export default function DetailCampaigns() {
             })
     }
 
+    function resetStatusCampaign() {
+        let formData = new FormData()
+        formData.append("id_campaign", params.id)
+        formData.append("id_company", UserInfo?.company?.id_company)
+
+        axios.post(API_URL + "/api/update/resetCampaign", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                if (data.status) {
+                    setCampaign({ ...campaign, status: "prepare" })
+                    toast.success("Has restablecito tu campaña.")
+                } else {
+                    toast.error("Opps error al restablecer tu campaña.")
+                }
+            })
+    }
+
 
 
 
@@ -544,7 +562,7 @@ export default function DetailCampaigns() {
             <div className="menu-top-right">
 
                 {campaign.status == "programmed" ?
-                    <button className="programming" onClick={(ev) => { if (CheckBeforeSend()) { setModalProgramming(true) } }}>Desprogramar</button>
+                    <button className="programming" onClick={resetStatusCampaign}>Reprogramar</button>
                     :
                     <button className="programming" onClick={(ev) => { if (CheckBeforeSend()) { setModalProgramming(true) } }}>Programar</button>
                 }
@@ -558,12 +576,13 @@ export default function DetailCampaigns() {
 
                         {(campaign.status !== "programmed" && campaign.status !== "sending") &&
                             <>
+                                <button className={`programming ${pending.sendCampaign ? 'await' : ''} `} onClick={(ev) => { setModalTest(true) }}>Enviar Prueba <div className="loading"></div></button>
+
                                 {campaign.sendsCampaign ?
                                     <button className={`return${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}> <Icon icon="ant-design:retweet-outlined" /> Reenviar Campaña <div className="loading"></div></button>
                                     :
                                     <button className={`send${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
                                 }
-                                <button className={`programming ${pending.sendCampaign ? 'await' : ''} `} onClick={(ev) => { setModalTest(true) }}>Enviar Prueba <div className="loading"></div></button>
                             </>
                         }
 
@@ -578,12 +597,12 @@ export default function DetailCampaigns() {
                 <div className="item flex">
                     <div className="info">
                         <div className="icon">
-                            <img src="/img/icons/default_profile.png" alt="" />
+                            <img src="/img/icons/campaign_profile.png" alt="" />
                         </div>
 
                         <div className="text">
-                            <p className="title">{campaign.name}</p>
-                            <span className="desc">Creado el: 29 de may de 2023</span>
+                            <p className="title"> <b>Campaña:</b> {campaign.name} </p>
+                            <p className="title"> <b>Creada:</b> 29 de may de 2023 </p>
                         </div>
                     </div>
 
@@ -594,7 +613,7 @@ export default function DetailCampaigns() {
                         <p style={{ display: "inline" }}>Estatus:</p>
                         <CampaignStatus style={{
                             marginLeft: "9px",
-                            fontSize: "13px",
+                            fontSize: "16px",
                             position: "relative",
                             top: "-1px"
                         }} PauseCampaign={PauseCampaign} status={campaign?.status} />
@@ -692,7 +711,7 @@ export default function DetailCampaigns() {
                                                     <p>{element.name}</p>
                                                     <span>Contactos: {element.contacts}</span>
                                                     <span>Agregado: 05/05/2022</span>
-                                                    <button className="select" onClick={UseList} value={element.id_list}><IoPushOutline /></button>
+                                                    <button className="select" onClick={UseList} value={element.id_list}><Icon icon="tabler:upload" /></button>
                                                 </div>
                                             </div>
                                         ))}
