@@ -92,6 +92,8 @@ export default function AddSegments() {
     function saveSegment() {
         let formData = new FormData()
 
+        setPending(true)
+
         formData.append("json", JSON.stringify(skeleton))
         formData.append("id_company", UserInfo?.company?.id_company)
         formData.append("name", form.name)
@@ -108,6 +110,9 @@ export default function AddSegments() {
                 if (data.status) {
                     Navigator("/contacts/detail/" + data.id_list)
                 }
+            })
+            .finally(() => {
+                setPending(false)
             })
     }
 
