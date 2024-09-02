@@ -6,6 +6,7 @@ import axios from "axios"
 import { API_URL } from "../../../ExportUrl"
 import { AuthContext } from "../../../Context/AuthContext"
 import ListStatus from "../../../Components/App/Contacts/ListsStatus"
+import { HistoryBack } from "../../../Functions/Global"
 
 export default function DetailLists() {
 
@@ -39,7 +40,7 @@ export default function DetailLists() {
                 </div>
 
                 <div className="right">
-                    <button className="go-wizard" onClick={(ev) => { Navigator("/contacts/lists") }}><IoArrowBackOutline /></button>
+                    <button className="go-wizard" onClick={HistoryBack}><IoArrowBackOutline /></button>
                 </div>
             </div>
 

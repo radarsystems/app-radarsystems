@@ -10,7 +10,7 @@ import html2canvas from "html2canvas";
 import { toast } from "react-hot-toast";
 import ModalSmall from "../ModalSmall"
 import NotFoundItems from "../NotFoundItems"
-import { PreviewTemplate, Time } from "../../../Functions/Global";
+import { HistoryBack, PreviewTemplate, Time } from "../../../Functions/Global";
 
 export default function EditorCanvas() {
     const [loading, setLoading] = useState(true);
@@ -333,7 +333,7 @@ export default function EditorCanvas() {
                 <div className="topnav1">
 
                     <div className="buttons">
-                        <button style={{ background: "transparent" }} onClick={(ev) => { Navigator("/home") }}><IoArrowBackOutline /> Volver</button>
+                        <button style={{ background: "transparent" }} onClick={HistoryBack}><IoArrowBackOutline /> Volver</button>
                         {campaign.name ?
                             <>
                                 <div className="campaign">

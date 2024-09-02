@@ -8,7 +8,7 @@ import { API_URL } from "../../../ExportUrl"
 import LoadingCircleApp from "../../../Components/App/LoadingCircle"
 import NotFoundItems from "../../../Components/App/NotFoundItems"
 import $, { param } from "jquery"
-import { PreviewTemplate, Time, formatNumberZero } from "../../../Functions/Global"
+import { PreviewTemplate, Time, formatNumberZero, unescapeHTML } from "../../../Functions/Global"
 import { toast } from "react-hot-toast"
 import ModalSmall from "../../../Components/App/ModalSmall"
 import ModalDelete from "../../../Components/App/ModalDelete"
@@ -46,6 +46,8 @@ export default function DetailCampaigns() {
     const [newText, setNewText] = useState()
     const [modalSendTest, setModalTest] = useState(false)
     const [domains, setDomains] = useState([])
+    const [preview, setPreview] = useState(false)
+    const [htmlPreview, setHtmlPreview] = useState(<></>)
     const [buttonSend, setButtonSend] = useState(false)
 
     function searchLists(search) {
@@ -479,9 +481,28 @@ export default function DetailCampaigns() {
         document.querySelector("input[name='body_file']").click()
     }
 
+    function deleteFileUpload() {
+        setUploadFile({})
+    }
+
     function OnChangeUploadHtml(ev) {
         if (ev.target.files[0].name.indexOf(".html") >= 0) {
             setUploadFile(ev.target.files[0])
+
+            const reader = new FileReader()
+
+
+            reader.onload = function (e) {
+                const htmlContent = e.target.result;
+                setHtmlPreview(htmlContent)
+            };
+
+            reader.onerror = function () {
+                toast.error("Error al leer el archivo HTML");
+            };
+
+            reader.readAsText(ev.target.files[0]);
+
         } else {
             toast.error("Opps no es un archivo HTML")
         }
@@ -529,10 +550,25 @@ export default function DetailCampaigns() {
     }
 
 
+    function previewNow() {
+        setPreview(true)
+    }
+
 
 
     return (
         <>
+
+            {preview && <div className="preview-html">
+                <div className="controls">
+                    <div className="left">
+                        <button className="btn-action" onClick={(ev) => { setPreview(false) }}><Icon icon="icon-park-outline:return" /></button>
+                    </div>
+
+                    <p className="title">Previsualizar HTML</p>
+                </div>
+                <div className="body" dangerouslySetInnerHTML={{ __html: htmlPreview }}></div>
+            </div>}
 
             <ModalSmall maxWidth={400} minWidth={400} visible={modalSendTest} callback={setModalTest} buttonsActions={false}>
                 <ModalSendTest Close={setModalTest} setCampaign={setCampaign} campaign={campaign} />
@@ -847,8 +883,9 @@ export default function DetailCampaigns() {
                                                         <span>Actualiza tu plantilla</span>
 
                                                         <div className="actions">
-                                                            <button><Icon icon="material-symbols:preview" /> Previsualizar</button>
-                                                            <button className={pending?.updateHtml ? 'await' : ''} onClick={updateBodyHtml}><Icon icon="fluent:document-multiple-sync-20-regular" /> Actualizar <div className="loading"></div></button>
+                                                            <button onClick={(ev) => { previewNow() }}><Icon icon="material-symbols:preview" /> Previsualizar</button>
+                                                            <button onClick={deleteFileUpload} className={`delete ${pending?.updateHtml ? 'await' : ''}`}><Icon icon="akar-icons:trash" /> Eliminar <div className="loading"></div></button>
+                                                            <button className={` ${pending?.updateHtml ? 'await' : ''}`} onClick={updateBodyHtml}><Icon icon="fluent:document-multiple-sync-20-regular" /> Actualizar <div className="loading"></div></button>
                                                         </div>
                                                     </div>
                                                 </>
@@ -868,9 +905,17 @@ export default function DetailCampaigns() {
                                                                 <br />
 
                                                                 <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
-                                                                <br />
 
-                                                                <Link to={`/editor/canvas/${campaign?.template?.id_template}?campaign=` + params.id}>Editar plantilla</Link>
+                                                                {campaign?.template?.json ?
+                                                                    <Link to={`/ editor / canvas / ${campaign?.template?.id_template}?campaign=` + params.id}>Editar plantilla</Link>
+                                                                    :
+
+                                                                    <>
+                                                                        <button onClick={OpenUploadFile} className="action"><Icon icon="material-symbols:upload" /> Actualizar HTML</button>
+                                                                        <button className={'action preview'} onClick={(ev) => { setHtmlPreview(unescapeHTML(campaign?.template?.html)); previewNow(); console.log(campaign?.template?.html) }}><Icon icon="fluent:document-multiple-sync-20-regular" /> Previsualizar <div className="loading"></div></button>
+                                                                    </>
+                                                                }
+
                                                             </div>
                                                         </>
                                                         :
@@ -921,7 +966,7 @@ export default function DetailCampaigns() {
 
 
 
-            </div>
+            </div >
         </>
     )
 }

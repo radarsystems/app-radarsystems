@@ -8,6 +8,9 @@ import { IoColorWandOutline, IoDocumentTextOutline, IoStatsChartOutline } from "
 import { useLocation, useNavigate } from "react-router-dom";
 import { Time, existsStringInPath } from "../../../Functions/Global";
 import NotFoundItems from "../../../Components/App/NotFoundItems";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import SearchsBasic from "../../../Components/Inputs/SearchsBasic";
+import { ShowStatsMiniature } from "../../../Components/App/Campaigns/ShowStatsMiniature";
 
 
 export default function MyCampaigns() {
@@ -76,8 +79,27 @@ export default function MyCampaigns() {
 
 
     function ViewDetail(ev) {
-        let value = ev.target.value
+        let value = ev.target.dataset.value
         Navigate("/campaigns/detail/" + value)
+    }
+
+    function showStatsCampaign(key) {
+        axios.post(API_URL + "/api/get/stats", { formData }, { withCredentials: true })
+    }
+    function toggleStats(keySearch) {
+        setCampaign(prevData => {
+            let newData = prevData.map((campaign, key) => {
+                if (key === keySearch) {
+                    return {
+                        ...campaign,
+                        showStats: !(campaign.showStats || false)
+                    };
+                }
+                return campaign;
+            });
+
+            return newData;
+        });
     }
 
 
@@ -99,28 +121,52 @@ export default function MyCampaigns() {
                 </div>
             </div>
 
+            <SearchsBasic />
 
             <div className="row">
                 <div className="col-md-12">
                     <div className="box box-padding">
                         {campaign?.map((element, key) => (
-                            <div className="item flex">
-                                <div className="info">
-                                    <div className="icon">
-                                        <img src="/img/icons/campaign_profile.png" alt="" />
+                            <div className="item " style={{ padding: 0 }}>
+                                <div className="item flex">
+                                    <div className="info">
+                                        <div className="icon">
+                                            <img src="/img/icons/campaign_profile.png" alt="" />
+                                        </div>
+
+                                        <div className="text">
+                                            <p className="title">NOMBRE DE CAMPANA: {element.name}</p>
+                                            <span className="desc">FECHA: {Time(element.time_add)}</span>
+
+                                            <br style={{ marginBottom: "10px" }} />
+                                            <div className="details-campaign" >
+                                                <span className="desc"><b>Enviados:</b> 12</span>
+                                                <span className="desc"><b>Devueltos:</b> 12</span>
+                                                <span className="desc"><b>Recibidos:</b> 12</span>
+                                                <span className="desc"><b>Leidos:</b> 12</span>
+                                                <span className="desc"><b>Clicks:</b> 12</span>
+                                                <span className="desc"><b>Removidos:</b> 0</span>
+                                            </div>
+
+                                        </div>
+
                                     </div>
 
-                                    <div className="text">
-                                        <p className="title">{element.name}</p>
-                                        <span className="desc">Creado el: {Time(element.time_add)}</span>
+                                    <div className="actions">
+                                        <button className="blue" onClick={ViewDetail} data-value={element.id_campaign}><Icon icon="line-md:cog-loop" /></button>
+                                        <button className="green" onClick={(ev) => { toggleStats(key) }}>
+                                            {element.showStats ? <Icon icon="grommet-icons:up" /> : <Icon icon="ps:stats" />}
+                                        </button>
                                     </div>
-
                                 </div>
 
-                                <div className="actions">
-                                    <button className="blue" onClick={ViewDetail} value={element.id_campaign}><IoDocumentTextOutline /></button>
-                                    <button className="green"><IoStatsChartOutline /></button>
-                                </div>
+                                {element.showStats &&
+                                    <>
+                                        <div className="stats">
+                                            <ShowStatsMiniature idCampaign={element.id_campaign} idCompany={UserInfo?.company?.id_company} />
+                                        </div>
+                                    </>
+                                }
                             </div>
                         ))}
 

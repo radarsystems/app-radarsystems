@@ -8,6 +8,10 @@ export function HistoryBack() {
     return window.history.back()
 }
 
+export function unescapeHTML(escapedString) {
+    const doc = new DOMParser().parseFromString(escapedString, "text/html");
+    return doc.documentElement.textContent;
+}
 
 export function formatNumber(number) {
     // Si el número es menor a 1000, no es necesario formatearlo

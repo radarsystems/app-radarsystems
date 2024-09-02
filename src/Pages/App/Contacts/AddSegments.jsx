@@ -1,8 +1,11 @@
 import axios from "axios"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { IoCheckmarkOutline, IoTrashOutline } from "react-icons/io5"
 import { API_URL } from "../../../ExportUrl"
 import { AuthContext } from "../../../Context/AuthContext"
+import toast from "react-hot-toast"
+import { HistoryBack } from "../../../Functions/Global"
+import { useNavigate } from "react-router-dom"
 
 export default function AddSegments() {
 
@@ -12,6 +15,7 @@ export default function AddSegments() {
     const [form, setForm] = useState({ name: "", desc: "" })
 
     const { UserInfo } = useContext(AuthContext)
+    const Navigator = useNavigate()
 
     function updateValue(ev) {
         let name = ev.target.name
@@ -61,7 +65,6 @@ export default function AddSegments() {
                 })
             })
     }
-
     function pushWhereLists(ev) {
         ev.preventDefault();
 
@@ -72,11 +75,19 @@ export default function AddSegments() {
                 newData.map.wheres = [];
             }
 
-            newData.map.wheres.push({ [newData.map.typeWhereContact]: newData.formValue });
+            const newEntry = { [newData.map.typeWhereContact]: newData.formValue };
+            const exists = newData.map.wheres.some(entry =>
+                Object.keys(entry).some(key => entry[key] === newEntry[key])
+            );
+
+            if (!exists) {
+                newData.map.wheres.push(newEntry);
+            }
 
             return newData;
         });
     }
+
 
     function saveSegment() {
         let formData = new FormData()
@@ -90,6 +101,13 @@ export default function AddSegments() {
         axios.post(API_URL + "/api/upload/segments", formData, { withCredentials: true })
             .then((response) => { return response.data })
             .then((data) => {
+                if (data.msg) {
+                    toast.error(data.msg)
+                }
+
+                if (data.status) {
+                    Navigator("/contacts/detail/" + data.id_list)
+                }
             })
     }
 
@@ -102,6 +120,33 @@ export default function AddSegments() {
         }
     }
 
+    function deleteWhere(ev) {
+        ev.preventDefault();
+
+        const key = ev.target.dataset.key;
+
+        setSkeleton(prevData => {
+            const newSkeleton = prevData.map.wheres.filter(obj => !Object.keys(obj).includes(key));
+
+            return {
+                ...prevData,
+                map: {
+                    ...prevData.map,
+                    wheres: newSkeleton
+                }
+            };
+        });
+    }
+
+
+    useEffect(() => {
+
+        if (skeleton.type == "lists") {
+            searchLists()
+        }
+
+    }, [skeleton.type])
+
 
     return (
         <>
@@ -112,7 +157,7 @@ export default function AddSegments() {
                 </div>
 
                 <div className="right">
-                    <button className="go-wizard" >Cancelar Creacion</button>
+                    <button className="go-wizard" onClick={HistoryBack}>Cancelar Creacion</button>
                 </div>
             </div>
 
@@ -124,11 +169,6 @@ export default function AddSegments() {
                     <div className="form-input">
                         <label htmlFor="">Nombre</label>
                         <input type="text" name="name" onChange={updateForm} placeholder="Nombre del segmento" />
-                    </div>
-
-                    <div className="form-input">
-                        <label htmlFor="">Descripcion</label>
-                        <input type="text" name="desc" onChange={updateForm} placeholder="Descripcion del segmento" />
                     </div>
                     <div className="inputs">
                         <select id="" name="type" onChange={updateValue}>
@@ -147,7 +187,7 @@ export default function AddSegments() {
                                     <option value="where">Lista Especifica</option>
                                 </select>
 
-                                <i>=</i>
+                                <i className="some"> = </i>
 
                                 {skeleton?.map.type_lists == "all" ?
                                     <>
@@ -156,7 +196,6 @@ export default function AddSegments() {
                                     :
                                     skeleton?.map?.type_lists == "where" ?
                                         <>
-                                            {searchLists()}
 
 
                                             <select name="lists" action="add" id="" onChange={updateMap}>
@@ -173,8 +212,6 @@ export default function AddSegments() {
                                                         <select name="typeWhereContact" action="add" onChange={updateMap}>
                                                             <option selected disabled>Selecciona una condicion</option>
                                                             <option value="email">Correo</option>
-                                                            <option value="name">Nombre</option>
-                                                            <option value="lastname">Apellido</option>
                                                             <option value="age">Edad</option>
                                                             <option value="country">Pais</option>
                                                         </select>
@@ -211,7 +248,7 @@ export default function AddSegments() {
                                                                     <p>{key} (Where)</p>
                                                                     <p>{value}</p>
 
-                                                                    <button><IoTrashOutline /></button>
+                                                                    <button className="trash" onClick={deleteWhere} data-key={key}><IoTrashOutline /></button>
                                                                 </div>
                                                             ))}
                                                         </div>
