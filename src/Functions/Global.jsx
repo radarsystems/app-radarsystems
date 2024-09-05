@@ -8,6 +8,17 @@ export function HistoryBack() {
     return window.history.back()
 }
 
+export const downloadFile = (url, name) => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.download = name + '.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
+
+
 export function unescapeHTML(escapedString) {
     const doc = new DOMParser().parseFromString(escapedString, "text/html");
     return doc.documentElement.textContent;

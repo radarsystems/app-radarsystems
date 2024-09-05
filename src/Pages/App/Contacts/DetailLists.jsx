@@ -7,6 +7,7 @@ import { API_URL } from "../../../ExportUrl"
 import { AuthContext } from "../../../Context/AuthContext"
 import ListStatus from "../../../Components/App/Contacts/ListsStatus"
 import { HistoryBack } from "../../../Functions/Global"
+import FooterConvertion from "../Global/FooterConvertion/FooterConvertion"
 
 export default function DetailLists() {
 
@@ -43,6 +44,7 @@ export default function DetailLists() {
                     <button className="go-wizard" onClick={HistoryBack}><IoArrowBackOutline /></button>
                 </div>
             </div>
+
 
             <div className="menu-top-right">
                 <button className="programming" onClick={(ev) => { Navigator("/contacts/lists/logs/" + params.id) }}>Logs</button>
@@ -141,6 +143,9 @@ export default function DetailLists() {
 
 
             </div>
+
+            <FooterConvertion type="lists" id_company={UserInfo?.company?.id_company} id_list={params.id} />
+
         </>
     )
 }

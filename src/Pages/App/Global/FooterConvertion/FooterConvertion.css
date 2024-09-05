@@ -1,0 +1,35 @@
+.footer-convertion {
+    display: block;
+    padding: 20px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.footer-convertion button,
+.footer-convertion a {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 90px;
+    padding: 10px 15px;
+    background: transparent;
+    color: black;
+    border: 1px solid;
+    text-decoration: none;
+}
+
+.footer-convertion .title {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.footer-convertion .title p {
+    margin-bottom: 0;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.footer-convertion .title span {
+    font-size: 14px;
+}
