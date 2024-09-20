@@ -93,7 +93,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
 
                     <li className={opacityMenu ? 'opacity' : ''}>
-                        <button onClick={ToggleChild}><i className="icon"><VscTools /></i> Herramientas <i className="arrow"><MdArrowForwardIos /></i></button>
+                        <button onClick={ToggleChild}><i className="icon"><Icon icon="tabler:apps" /></i> Kit Marketing <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/buttonsqr">Botonera QR</Link></li>
                             <li><Link to="/buttons">Botonera URL</Link></li>
@@ -145,7 +145,7 @@ export default function HeaderLeft({ MenuLeft }) {
                         <button onClick={(ev) => { window.location.href = "https://tools.radarsystems.net/" }}><i className="icon"><Icon icon="octicon:workflow-16" /> </i> Herramientas <i className="arrow"><MdArrowForwardIos /></i></button>
                     </li>
 
-                    <li className={opacityMenu ? '' : ''}><button onClick={ToggleChild}><i className="icon"><IoPersonOutline /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
+                    <li className={opacityMenu ? '' : ''}><button onClick={ToggleChild}><i className="icon"><Icon icon="material-symbols:contacts-outline" /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
 
                         <ul>
                             <li><Link to="/contacts">Mis Contactos</Link></li>
@@ -213,7 +213,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
 
                     <li className={""}>
-                        <button onClick={ToggleChild}><i className="icon"><Icon icon="ri:links-fill" /></i> Acortador <i className="arrow"><MdArrowForwardIos /></i></button>
+                        <button onClick={ToggleChild}><i className="icon"><Icon icon="ri:links-fill" /></i> Embudo de Conversion <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/shorturls/campaigns">Mis Campañas</Link></li>
                             <li><Link to="/shorturls/campaigns/add">Crear Campana</Link></li>

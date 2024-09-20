@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import $ from "jquery";
-import { IoAddCircleOutline, IoArrowBackOutline, IoCloudUploadOutline, IoColorWandOutline, IoEllipsisVerticalOutline, IoFlashOutline, IoSaveOutline, IoTrashOutline } from "react-icons/io5"
+import { IoAddCircleOutline, IoArrowBackOutline, IoCloudUploadOutline, IoCogOutline, IoColorWandOutline, IoEllipsisVerticalOutline, IoFlashOutline, IoSaveOutline, IoTrashOutline } from "react-icons/io5"
 import axios from "axios";
 import { API_URL } from "../../../ExportUrl"
 import { useContext } from "react";
@@ -11,6 +11,10 @@ import { toast } from "react-hot-toast";
 import ModalSmall from "../ModalSmall"
 import NotFoundItems from "../NotFoundItems"
 import { HistoryBack, PreviewTemplate, Time } from "../../../Functions/Global";
+import { AiOutlineMail } from "react-icons/ai";
+import { FiLink2 } from "react-icons/fi";
+import { ImEmbed2 } from "react-icons/im";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function EditorCanvas() {
     const [loading, setLoading] = useState(true);
@@ -19,13 +23,25 @@ export default function EditorCanvas() {
     const [templates, setTemplates] = useState({ results: [], loadingTemplate: false })
     const [modalTitle, setModalTitle] = useState(false)
     const [campaign, setCampaign] = useState({});
+    const [stylesMenu, setStylesMenu] = useState({ width: "", left: "" })
     const [title, setTitle] = useState("")
+    const [menuChange, setMenuChange] = useState();
     const [viewTemplates, setViewTemplates] = useState(false)
     const { UserInfo } = useContext(AuthContext)
     const params = useParams()
     const [letterView, setLetter] = useState();
     let letterLoading = ['Cargando editor...', 'Nos tardaremos un poco', 'Que tal tu dia?', 'Vamos! con mucha imaginacion.', 'Ahora es un buen momento!', 'Un poco mas...', 'Ya casi!', 'Había una vez!']
 
+
+    function changeMenu(ev) {
+        let value = ev.target.dataset.value
+
+        console.log(ev.target)
+
+        setMenuChange(value)
+
+        setStylesMenu(prevData => ({ ...prevData, width: ev.target.offsetWidth, left: ev.target.offsetLeft }))
+    }
 
     const Navigator = useNavigate();
     const letterInterval = undefined;
@@ -278,6 +294,10 @@ export default function EditorCanvas() {
             })
     }
 
+    useEffect(() => {
+        console.log(menuChange)
+    }, [menuChange])
+
 
     return (
         <>
@@ -307,21 +327,36 @@ export default function EditorCanvas() {
             </ModalSmall>
             <ModalSmall visible={viewTemplates} minWidth={"50%"} buttonSave={false} maxWidth={"150px"} callback={setViewTemplates}>
                 <div className="top">
-                    <p>Mis Plantillas</p>
+                    <p>Plantillas</p>
+                    <span>Aca tendras todas las plantillas disponibles</span>
                 </div>
                 <br />
-                <div className="content row">
-                    {templates.results.map((element, key) => (
-                        <div className="col-md-4" key={key}>
-                            <div className="template" onClick={(ev) => { getTemplate(element.id_template) }}>
-                                <p>{element.title}</p>
-                                <span>Agregada: {Time(element.time_add)}</span>
-                                <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, element.preview_image)} />
-                            </div>
-                        </div>
-                    ))}
 
-                    {templates.loadingTemplate == false ? templates.results.length == 0 ? <NotFoundItems name={"plantillas"} /> : '' : ''}
+                <div className="menu-change span">
+                    <ul>
+                        <li><button className={`${menuChange == "my" ? 'active' : ''}`} onClick={changeMenu} data-value="my"><Icon icon="carbon:template" /> <span>Mis Plantillas</span></button></li>
+                        <li><button className={`${menuChange == "all" ? 'active' : ''}`} onClick={changeMenu} data-value="all"><Icon icon="carbon:template" /> <span>Plantillas</span></button></li>
+
+                        <div className="hover" style={{ left: stylesMenu.left + "px", width: stylesMenu.width + "px" }}></div>
+                    </ul>
+                </div>
+                <div className="content row">
+
+
+                    {menuChange == "my" && <>
+                        {templates.results.map((element, key) => (
+                            <div className="col-md-4" key={key}>
+                                <div className="template" onClick={(ev) => { getTemplate(element.id_template) }}>
+                                    <p>{element.title}</p>
+                                    <span>Agregada: {Time(element.time_add)}</span>
+                                    <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, element.preview_image)} />
+                                </div>
+                            </div>
+                        ))}
+
+                        {templates.loadingTemplate == false ? templates.results.length == 0 ? <NotFoundItems name={"plantillas"} /> : '' : ''}
+                    </>}
+
                 </div>
             </ModalSmall>
 

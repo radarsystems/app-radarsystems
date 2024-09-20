@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { API_SHORT, API_URL } from "../../../ExportUrl"
 import { useContext } from "react"
 import { AuthContext } from "../../../Context/AuthContext"
@@ -10,6 +10,8 @@ import ModalSmall from "../../../Components/App/ModalSmall"
 import LoadingCircleApp from "../../../Components/App/LoadingCircle"
 import NotFoundItems from "../../../Components/App/NotFoundItems"
 import { existsStringInPath } from "../../../Functions/Global"
+import toast from "react-hot-toast"
+import ModalDelete from "../../../Components/App/ModalDelete"
 
 export default function MyShortUrls() {
 
@@ -21,6 +23,9 @@ export default function MyShortUrls() {
     const [pending, setPending] = useState(false)
     const [viewModal, setViewModal] = useState(false)
     const [form, setForm] = useState({ url: "" })
+
+    const [viewModalD, setViewModalD] = useState(false);
+    const [idDelete, setIdDelete] = useState(false)
 
 
 
@@ -54,19 +59,31 @@ export default function MyShortUrls() {
     function NewShort() {
         let formData = new FormData()
         formData.append("url", form.url)
+        formData.append("name", form.name)
         formData.append("id_company", UserInfo?.company?.id_company)
-        setPending(true)
-        axios.post(API_URL + "/api/upload/shortlink", formData, { withCredentials: true })
-            .then((response) => { return response.data })
-            .then((data) => {
-                setPending(false)
-                if (data.status) {
-                    LoadUrls()
-                    setViewModal(false)
-                }
-            }).catch((err) => {
-                setPending(false)
-            })
+        if (form.url) {
+            setPending(true)
+            axios.post(API_URL + "/api/upload/shortlink", formData, { withCredentials: true })
+                .then((response) => { return response.data })
+                .then((data) => {
+                    setPending(false)
+                    if (data.status) {
+                        LoadUrls()
+                        setViewModal(false)
+                    }
+                }).catch((err) => {
+                    setPending(false)
+                })
+        } else {
+            toast.error("Opps no has ingresado el enlace correctamente")
+        }
+    }
+
+    function updateForm(ev) {
+        let name = ev.target.name
+        let value = ev.target.value
+
+        setForm({ ...form, [name]: value })
     }
 
     useEffect(() => {
@@ -75,6 +92,9 @@ export default function MyShortUrls() {
 
     return (<>
 
+
+        <ModalDelete visible={viewModalD} callback={setViewModalD} name={"enlace"} />
+
         <ModalSmall visible={viewModal} onClick={NewShort} callback={setViewModal} Pending={pending} next={'Crear'}>
             <div className="top">
                 <p>Nuevo enlace</p>
@@ -82,7 +102,11 @@ export default function MyShortUrls() {
             </div>
             <br />
             <div className="form-input">
-                <input type="url" placeholder="Enlace" onChange={(ev) => { setForm({ url: ev.target.value }) }} />
+                <input type="name" placeholder="Nombre de Enlace" name="name" onChange={updateForm} />
+            </div>
+
+            <div className="form-input">
+                <input type="url" placeholder="Enlace" name="url" onChange={updateForm} />
             </div>
         </ModalSmall>
 
@@ -108,9 +132,9 @@ export default function MyShortUrls() {
 
                                 <div className="text">
                                     <p className="title">URL CORTA</p>
-                                    <span className="desc">{API_SHORT}/{element.token}</span>
-                                    <br />
-                                    <span className="desc">{API_SHORT}/{element.token}</span>
+
+                                    {element.name && <><span className="desc">NOMBRE: {element.name}</span> <br /></>}
+                                    <span className="desc">ENLACE CORTO: <Link target="_blank" to={`${API_SHORT}/${element.token}`}>{element.token}</Link></span>
                                 </div>
                             </div>
 
@@ -121,7 +145,7 @@ export default function MyShortUrls() {
                             </div>
 
                             <div className="actions">
-                                <button onClick={(ev) => { Navigator("") }}><IoTrashOutline /></button>
+                                <button onClick={(ev) => { setViewModalD(true); setIdDelete(element.id_shortlink) }}><IoTrashOutline /></button>
                                 <button onClick={(ev) => { Navigator("/shorturls/" + element.id_shortlink) }}><IoStatsChartOutline /> </button>
                             </div>
                         </div>

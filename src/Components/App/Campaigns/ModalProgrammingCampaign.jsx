@@ -65,7 +65,7 @@ export default function ModalProgrammingCampaign({ campaign, setFormProgamming }
                             <input type="text" placeholder="hora" name="hh" onChange={setFormProgamming} />
                             <input type="text" placeholder="minuto" name="ii" onChange={setFormProgamming} />
 
-                            <select name="x" id="">
+                            <select name="ampm" id="">
                                 <option value="pm">p.m.</option>
                                 <option value="am">a.m.</option>
                             </select>

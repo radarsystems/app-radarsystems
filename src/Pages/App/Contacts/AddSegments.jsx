@@ -6,6 +6,8 @@ import { AuthContext } from "../../../Context/AuthContext"
 import toast from "react-hot-toast"
 import { HistoryBack } from "../../../Functions/Global"
 import { useNavigate } from "react-router-dom"
+import WizardButtonsQr from "../../../Components/App/ButtonsQr/WizardButtonsQr"
+import WizardAddSegment from "../../../Components/App/Contacts/WizardAddSegment"
 
 export default function AddSegments() {
 
@@ -155,6 +157,8 @@ export default function AddSegments() {
 
     return (
         <>
+
+            <WizardAddSegment />
             <div className="page-info">
                 <div className="">
                     <p className="title">Mis Segmentos</p>

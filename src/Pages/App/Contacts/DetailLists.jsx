@@ -8,12 +8,16 @@ import { AuthContext } from "../../../Context/AuthContext"
 import ListStatus from "../../../Components/App/Contacts/ListsStatus"
 import { HistoryBack } from "../../../Functions/Global"
 import FooterConvertion from "../Global/FooterConvertion/FooterConvertion"
+import { Icon } from "@iconify/react/dist/iconify.js"
+import ModalDelete from "../../../Components/App/ModalDelete"
+import toast from "react-hot-toast"
 
 export default function DetailLists() {
 
     const { UserInfo } = useContext(AuthContext)
     const params = useParams()
-
+    const [viewModalD, setViewModalD] = useState(false)
+    const [pendingD, setPendingD] = useState(false)
     const [list, setList] = useState({})
     const Navigator = useNavigate()
     const [editMode, setEditMode] = useState(false)
@@ -30,9 +34,31 @@ export default function DetailLists() {
         })
     }, [])
 
+    function deleteList() {
+        let formData = new FormData()
+
+        setPendingD(true)
+        formData.append("id_list", params.id)
+        formData.append("id_company", UserInfo?.company?.id_company)
+
+        axios.post(API_URL + "/api/delete/list", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                if (data.status) {
+                    Navigator("/contacts/lists")
+                    toast.success("Lista eliminada")
+                }
+            })
+            .finally(() => {
+                setPendingD(false)
+            })
+    }
+
 
     return (
         <>
+
+            <ModalDelete Pending={pendingD} onClick={deleteList} visible={viewModalD} name={"lista"} callback={setViewModalD} />
             <div className="page-info">
                 <div className="">
                     <p className="title">Detalles de lista</p>
@@ -47,7 +73,8 @@ export default function DetailLists() {
 
 
             <div className="menu-top-right">
-                <button className="programming" onClick={(ev) => { Navigator("/contacts/lists/logs/" + params.id) }}>Logs</button>
+                <button className="programming" onClick={(ev) => { Navigator("/contacts/lists/contacts/" + params.id) }}><Icon icon="material-symbols:contacts-sharp" /> Contactos</button>
+                <button className="programming" onClick={(ev) => { Navigator("/contacts/lists/logs/" + params.id) }}><Icon icon="f7:doc-fill" /> Detalles</button>
             </div>
 
             <div className="box steps">
@@ -82,9 +109,8 @@ export default function DetailLists() {
                     </div>
 
                     <div className="actions">
-                        <button><IoDocumentTextOutline /></button>
                         <button onClick={(ev) => { Navigator("/contacts/upload/" + params.id) }}><IoCloudUploadOutline /></button>
-                        <button><IoTrashOutline /></button>
+                        <button onClick={(ev) => { setViewModalD(true) }}><IoTrashOutline /></button>
                     </div>
 
                 </div>

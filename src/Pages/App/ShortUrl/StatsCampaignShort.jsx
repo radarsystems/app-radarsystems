@@ -10,6 +10,7 @@ import LoadingCircleApp from "../../../Components/App/LoadingCircle"
 import { IoDocumentTextOutline } from "react-icons/io5"
 import { LoadIconApp, getRealAppName } from "../../../Functions/Global"
 import Chart from "react-apexcharts"
+import NotFoundItems from "../../../Components/App/NotFoundItems"
 
 
 export default function StatsCampaignShort() {
@@ -205,52 +206,61 @@ export default function StatsCampaignShort() {
                 </div>
             </div>
 
+            {data.links?.length == 0 && <>
+                <NotFoundItems callback={() => { setViewModal(true) }} name={"Enlaces"} addNew={true} buttonName={"Mi Primer Tracking"} />
+            </>}
 
-            <div className="body-stats">
 
-                <div className="row">
+            {data.links?.length >= 1 && <>
 
-                    <div className="col-md-12">
-                        <div className="stat box box-padding">
-                            <div className="top">
-                                <p>Clicks este mes</p>
-                                <span>Aca podras evaluar los clicks hecho por el mes actual y anteriores.</span>
-                            </div>
 
-                            {loading == false ? <Chart options={charts} series={charts.series} type="bar" height={300} /> : ''}
+                <div className="body-stats">
 
-                        </div>
-                    </div>
-                    <div className="col-md-12">
-                        <div className="box box-padding">
-                            {data?.links?.map((element, key) => (
-                                <div className="item flex" key={key}>
-                                    <div className="info">
-                                        <div className="icon">
-                                            <img src="/img/icons/default_link.png" alt="" />
-                                        </div>
+                    <div className="row">
 
-                                        <div className="text">
-                                            <p className="title">{element.real_link}</p>
-                                            <span className="desc">Creado el: 29 de may de 2023</span>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <p className="title">App</p>
-                                        <span><img className="icon-app" src={LoadIconApp(element.app)} alt="" /></span>
-                                    </div>
-
-                                    <div className="actions">
-                                        <button><IoDocumentTextOutline /></button>
-                                    </div>
+                        <div className="col-md-12">
+                            <div className="stat box box-padding">
+                                <div className="top">
+                                    <p>Clicks este mes</p>
+                                    <span>Aca podras evaluar los clicks hecho por el mes actual y anteriores.</span>
                                 </div>
-                            ))}
-                            {loading ? <LoadingCircleApp /> : !data?.links?.length ? '' : ''}
+
+                                {loading == false ? <Chart options={charts} series={charts.series} type="bar" height={300} /> : ''}
+
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <div className="box box-padding">
+                                {data?.links?.map((element, key) => (
+                                    <div className="item flex" key={key}>
+                                        <div className="info">
+                                            <div className="icon">
+                                                <img src="/img/icons/default_link.png" alt="" />
+                                            </div>
+
+                                            <div className="text">
+                                                <p className="title">{element.real_link}</p>
+                                                <span className="desc">Creado el: 29 de may de 2023</span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <p className="title">App</p>
+                                            <span><img className="icon-app" src={LoadIconApp(element.app)} alt="" /></span>
+                                        </div>
+
+                                        <div className="actions">
+                                            <button><IoDocumentTextOutline /></button>
+                                        </div>
+                                    </div>
+                                ))}
+                                {loading ? <LoadingCircleApp /> : !data?.links?.length ? '' : ''}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </>}
+
         </>
     )
 }

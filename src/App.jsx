@@ -64,6 +64,7 @@ import PlansCompany from './Pages/App/Companys/PlansCompany.jsx'
 import CheckOut from './Pages/App/Checkout/CheckOut.jsx'
 import Credentials from './Pages/App/Companys/Credentials.jsx'
 import CheckOutCheck from './Pages/App/Checkout/CheckOutCheck.jsx'
+import ContactsList from './Pages/App/Contacts/ContactsList.jsx'
 
 
 
@@ -131,6 +132,7 @@ function App() {
           <Route path="/contacts/lists" element={<Global CompanyNeed={true} Element={Lists} />} />
           <Route path="/contacts/lists/add" element={<Global CompanyNeed={true} Element={Lists} />} />
           <Route path="/contacts/lists/logs/:id" element={<Global CompanyNeed={true} Element={LogsList} />} />
+          <Route path="/contacts/lists/contacts/:id" element={<Global CompanyNeed={true} Element={ContactsList} />} />
           <Route path="/contacts/lists/:type" element={<Global CompanyNeed={true} Element={Lists} />} />
           <Route path="/contacts/detail/:id" element={<Global CompanyNeed={true} Element={DetailLists} />} />
           <Route path="/contacts/upload/:id" element={<Global CompanyNeed={true} Element={UploadContacts} />} />

@@ -663,16 +663,6 @@ body {
     gap: 10px;
 }
 
-.app .menu-top .right .form-search input {
-    background: transparent;
-    border: 2px solid var(--bs-blue);
-    border-radius: 90px;
-    font-size: 14px;
-    padding: 5px;
-    padding-left: 10px;
-    color: black;
-    padding: 10px 20px;
-}
 
 .app .box .item {
     display: block;
@@ -833,6 +823,7 @@ body {
 .app .box.steps .search-result {
     display: flex;
     flex-flow: wrap;
+    gap: 5px;
 }
 
 .app .box.steps .search-result .result {
@@ -1081,10 +1072,10 @@ body {
 .app .box.steps .item .information .desc {
     color: var(--text-white);
     padding-left: 22px;
-    margin-top: -17px;
+    margin-top: -10px;
     position: relative;
     display: block;
-    font-size: 15px;
+    font-size: 11px;
 }
 
 .app .item .actions-item {
@@ -1234,6 +1225,14 @@ body {
     pointer-events: none;
 }
 
+button svg {
+    pointer-events: none;
+}
+
+button i {
+    pointer-events: none;
+}
+
 .app .box .item.flex .actions button.blue {
     background: var(--details-blue);
     color: var(--text-fullwhite);
@@ -1285,6 +1284,10 @@ body {
 .modal-small .select-file {
     display: block;
     width: 100%;
+}
+
+button span {
+    pointer-events: none;
 }
 
 .modal-small .select-file .right button {
@@ -1488,7 +1491,13 @@ body {
     background-color: transparent;
     padding-bottom: 2px;
     padding-top: 2px;
+    color: var(--text-white);
     transition: .5s ease;
+}
+
+.modal-small .menu-change.span ul li button {
+    display: flex;
+    gap: 10px;
 }
 
 
@@ -1565,6 +1574,7 @@ table th {
     background-color: var(--details-grey);
     border-radius: 120px;
     color: var(--text-white);
+    border: 0px;
 }
 
 .modal-small .template {
@@ -2064,6 +2074,7 @@ table th {
     padding-right: 15px;
     padding-left: 15px;
     color: white;
+    font-size: 14px;
 }
 
 .setting-list {
@@ -3057,7 +3068,7 @@ table th {
     justify-content: left;
 }
 
-#form-segment .where-contact .trash{
+#form-segment .where-contact .trash {
     float: left;
     margin-left: auto;
     line-height: 1;
@@ -3066,7 +3077,7 @@ table th {
     background: var(--bs-danger);
 }
 
-#form-segment .some{
+#form-segment .some {
     display: block;
     height: max-content;
     font-size: 24px;

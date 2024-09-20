@@ -35,7 +35,16 @@ export default function PlansCompany() {
     }
 
     function GoPlan(id_plan) {
-        axios.get(`https://paytest.megasoft.com.ve/action/paymentgatewayuniversal-prereg?cod_afiliacion=20240516&factura={{bp_nu_factura}}&monto=100.00&nombre=ANA%20A%20GOICONFA&tipo=V&cedula_rif=19650641&tipo_pago=CREDITO`)
+        axios.get(API_URL + "/api/payment/control", { withCredentials: true })
+            .then((response) => { return response.request.responseText })
+
+            //1726634276598289548
+            .then((data) => {
+
+                if (data) {
+                    window.location.href = "https://paytest.megasoft.com.ve/action/paymentgatewayuniversal-data?control=" + data
+                }
+            })
     }
 
     useEffect(() => {

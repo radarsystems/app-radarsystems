@@ -19,6 +19,7 @@ import TextareaSms from "../../../Components/Textarea/TextareaSms"
 import CampaignStatus from "../../../Components/App/Campaigns/CampaignStatus"
 import ModalSendTest from "../../../Components/App/Campaigns/ModalSendTest"
 import { Icon } from "@iconify/react"
+import FooterConvertion from "../Global/FooterConvertion/FooterConvertion"
 
 
 export default function DetailCampaigns() {
@@ -106,7 +107,7 @@ export default function DetailCampaigns() {
 
     }, [editActive])
 
-    useEffect(() => {
+    function getCampaign() {
         let formData = new FormData()
 
         formData.append("id_company", UserInfo?.company?.id_company)
@@ -125,7 +126,11 @@ export default function DetailCampaigns() {
             .catch((err) => {
 
             })
+    }
 
+    useEffect(() => {
+
+        getCampaign()
 
     }, [])
 
@@ -375,7 +380,7 @@ export default function DetailCampaigns() {
 
         if (name == "date") {
             const dateObj = new Date(value);
-            const day = dateObj.getDate();
+            const day = dateObj.getDate() + 1;
             const year = dateObj.getFullYear();
             const month = dateObj.getMonth() + 1;
 
@@ -525,6 +530,7 @@ export default function DetailCampaigns() {
                 if (data.status) {
                     toast.success("Has subido correctamente tu archivo html")
                     setUploadFile(false)
+                    getCampaign()
                 }
             })
             .finally(() => {
@@ -657,7 +663,7 @@ export default function DetailCampaigns() {
 
                     <div className="actions">
                         <button><IoColorWandOutline /></button>
-                        <button><IoStatsChartOutline /> </button>
+                        <button onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}><IoStatsChartOutline /> </button>
                     </div>
 
                 </div>
@@ -747,7 +753,11 @@ export default function DetailCampaigns() {
                                                     <p>{element.name}</p>
                                                     <span>Contactos: {element.contacts}</span>
                                                     <span>Agregado: 05/05/2022</span>
-                                                    <button className="select" onClick={UseList} value={element.id_list}><Icon icon="tabler:upload" /></button>
+
+                                                    <div className="flex" style={{ gap: "10px" }}>
+                                                        <button className="select" onClick={UseList} value={element.id_list}><Icon icon="tabler:upload" /></button>
+                                                        <button className="select" onClick={(ev) => { Navigator("/contacts/detail/" + element.id_list) }}><Icon icon="lucide:cog" /></button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         ))}
@@ -965,8 +975,8 @@ export default function DetailCampaigns() {
 
 
 
-
             </div >
+
         </>
     )
 }

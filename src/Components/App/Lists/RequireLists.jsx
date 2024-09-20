@@ -48,10 +48,14 @@ export default function RequireLists({ type, lists }) {
                                     <div className="text">
                                         <p className="title" title={element.name}>
                                             {limitText(element.name, 8)}
+
+                                            <button><Icon icon="fa-solid:edit" /></button>
                                         </p>
                                         <span className="desc">Creado el: {Time(element.time_add)}</span>
                                         <br />
-                                        <button  onClick={(ev) => { Navigator("/contacts/upload/" + element.id_list) }} className="upload">
+                                        <span className="desc">Contactos: {element.contacts}</span>
+                                        <br />
+                                        <button onClick={(ev) => { Navigator("/contacts/upload/" + element.id_list) }} className="upload">
                                             <Icon icon="mdi:upload" />
                                         </button>
 

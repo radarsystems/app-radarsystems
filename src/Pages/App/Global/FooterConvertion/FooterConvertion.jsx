@@ -25,7 +25,14 @@ export default function FooterConvertion({ type = "lists,campaigns", id_company,
                         <>
                             <Link to={"/contacts/segments/add"}><Icon icon="ph:line-segments" /> Segmentar Lista</Link>
                             <button onClick={(ev) => { DownloadContacts(id_list, id_company, setLoading) }} className={loading.downloadContacts ? 'await' : ''}><Icon icon="material-symbols:download" /> Descargar Contactos <div className="loading"></div></button>
-                            <Link to={"/campaigns/add"} className={loading.downloadContacts ? 'await' : ''}><Icon icon="gg:add" /> Crear Campana <div className="loading"></div></Link>
+                            <Link to={"/campaigns/new"} className={loading.downloadContacts ? 'await' : ''}><Icon icon="gg:add" /> Crear Campana <div className="loading"></div></Link>
+                        </>}
+
+                    {type == "campaign" &&
+                        <>
+                            <Link to={"/contacts/segments/add"}><Icon icon="ph:line-segments" /> Segmentar Lista</Link>
+                            <button onClick={(ev) => { DownloadContacts(id_list, id_company, setLoading) }} className={loading.downloadContacts ? 'await' : ''}><Icon icon="material-symbols:download" /> Descargar Contactos <div className="loading"></div></button>
+                            <Link to={"/campaigns/new"} className={loading.downloadContacts ? 'await' : ''}><Icon icon="gg:add" /> Crear Campana <div className="loading"></div></Link>
                         </>}
                 </div>
 

@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthContext";
 import Chart from "react-apexcharts"
 import NotFoundItems from "../../../Components/App/NotFoundItems";
+import FooterConvertion from "../Global/FooterConvertion/FooterConvertion";
 
 
 export default function StatsCampaigns() {
@@ -290,6 +291,7 @@ export default function StatsCampaigns() {
 
 
             </div>
+            <FooterConvertion type="campaign" />
 
         </>
     )
