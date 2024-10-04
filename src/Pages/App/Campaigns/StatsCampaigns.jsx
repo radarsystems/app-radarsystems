@@ -34,13 +34,13 @@ export default function StatsCampaigns() {
         }],
         chart: {
             height: 350,
-            type: 'area'
+            type: 'line'
         },
         dataLabels: {
             enabled: false
         },
         stroke: {
-            curve: 'smooth'
+            curve: 'straight'
         },
         xaxis: {
 
@@ -197,7 +197,7 @@ export default function StatsCampaigns() {
                     <p>Estadisticas Generales</p>
                     <span>ve las estadisticas de forma general y recorre por cada dia y mes</span>
                 </div>
-                {charts?.series[0]?.data?.length ? <Chart options={charts} series={charts.series} type="area" height={300} />
+                {charts?.series[0]?.data?.length ? <Chart options={charts} series={charts.series} type="line" height={300} />
                     : ''}
             </div>
             <div className="row ">

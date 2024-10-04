@@ -156,6 +156,9 @@ export default function HeaderLeft({ MenuLeft }) {
                             <li><Link to="/contacts/segments">Segmentos</Link></li>
                         </ul>
                     </li>
+
+                    <li className={opacityMenu ? '' : ''}><button onClick={ToggleChild}><i className="icon"><Icon icon="zmdi:portable-wifi" /></i> Portal Cautivo <i className="arrow"><MdArrowForwardIos /></i></button>
+                    </li>
                     <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}><button onClick={ToggleChild}><i className="icon"><IoTimerOutline /></i> Automatizacion <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link>WorkFlow</Link></li>

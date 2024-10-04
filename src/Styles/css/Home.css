@@ -4012,6 +4012,12 @@ table th {
     top: 0;
 }
 
+.checkout .logo {
+    max-width: 150px;
+    margin: auto;
+    display: block;
+}
+
 .form-credentials {
     position: relative;
 }

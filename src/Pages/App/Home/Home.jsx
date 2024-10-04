@@ -196,11 +196,12 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Cam.</td>
+                                    <td>Campaña</td>
                                     <td>Env.</td>
                                     <td>Dev.</td>
                                     <td>Rec.</td>
                                     <td>Lei.</td>
+                                    <td>No Lei.</td>
                                     <td>Click.</td>
                                     <td>Rep. Spam</td>
                                     <td>Opt. Out</td>
@@ -228,6 +229,7 @@ export default function Home() {
                                         <td>{element.clicks}</td>
                                         <td>{element.clicks}</td>
                                         <td>{element.clicks}</td>
+                                        <td>{element.clicks}</td>
                                         <td><Link to={"/campaigns/detail/" + element.id_campaign}><IoStatsChartOutline /></Link></td>
                                     </tr>
                                 ))}
@@ -247,11 +249,12 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Cam.</td>
+                                    <td>Campaña</td>
                                     <td>Env.</td>
                                     <td>Dev.</td>
                                     <td>Rec.</td>
                                     <td>Lei.</td>
+                                    <td>No Lei.</td>
                                     <td>Click.</td>
                                     <td>Rep. Spam</td>
                                     <td>Opt. Out</td>
@@ -277,6 +280,7 @@ export default function Home() {
                                         <td>{element.clicks}</td>
                                         <td>{element.clicks}</td>
                                         <td>{element.clicks}</td>
+                                        <td>{element.clicks}</td>
                                         <td><Link><IoStatsChartOutline /></Link></td>
                                     </tr>
                                 ))}
@@ -296,7 +300,7 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Cam.</td>
+                                    <td>Campaña</td>
                                     <td>Env.</td>
                                     <td>Dev.</td>
                                     <td>Rec.</td>
@@ -336,7 +340,7 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Cam.</td>
+                                    <td>Campaña</td>
                                     <td>Env.</td>
                                     <td>Dev.</td>
                                     <td>Rec.</td>
@@ -376,7 +380,7 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Cam.</td>
+                                    <td>Campaña</td>
                                     <td>Env.</td>
                                     <td>Dev.</td>
                                     <td>Rec.</td>
@@ -418,7 +422,7 @@ export default function Home() {
                             <table className="stat-home">
 
                                 <tr>
-                                    <td>Cam.</td>
+                                    <td>Campaña</td>
                                     <td>Env.</td>
                                     <td>Dev.</td>
                                     <td>Rec.</td>
