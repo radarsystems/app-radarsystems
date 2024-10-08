@@ -8,7 +8,7 @@ import { API_URL } from "../../../ExportUrl"
 import { toast } from "react-hot-toast"
 import LoadingCircleApp from "../../../Components/App/LoadingCircle"
 import { IoDocumentTextOutline } from "react-icons/io5"
-import { LoadIconApp, getRealAppName } from "../../../Functions/Global"
+import { HistoryBack, LoadIconApp, getRealAppName } from "../../../Functions/Global"
 import Chart from "react-apexcharts"
 import NotFoundItems from "../../../Components/App/NotFoundItems"
 
@@ -202,6 +202,7 @@ export default function StatsCampaignShort() {
                 </div>
 
                 <div className="right">
+                    <button onClick={HistoryBack} className="add" >Volver</button>
                     <button onClick={(ev) => { setViewModal(true) }} className="add" >Agregar nuevo enlace</button>
                 </div>
             </div>

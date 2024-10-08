@@ -161,6 +161,16 @@ export default function StatsCampaigns() {
                 <div className="col-md-3">
                     <div className="box stat box-padding">
                         <div className="top">
+                            <p>Devueltos</p>
+                        </div>
+                        <div className="resp-number">
+                            <p>{Number(stats.total_errors)}</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-3">
+                    <div className="box stat box-padding">
+                        <div className="top">
                             <p>Recibidos</p>
                         </div>
                         <div className="resp-number">
@@ -178,16 +188,54 @@ export default function StatsCampaigns() {
                         </div>
                     </div>
                 </div>
+
                 <div className="col-md-3">
                     <div className="box stat box-padding">
                         <div className="top">
-                            <p>Errores</p>
+                            <p>No Leidos </p>
                         </div>
                         <div className="resp-number">
                             <p>{Number(stats.total_errors)}</p>
                         </div>
                     </div>
                 </div>
+
+                <div className="col-md-3">
+                    <div className="box stat box-padding">
+                        <div className="top">
+                            <p>Opt Out</p>
+                        </div>
+                        <div className="resp-number">
+                            <p>{Number(stats.total_errors)}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className="col-md-3">
+                    <div className="box stat box-padding">
+                        <div className="top">
+                            <p>Opt Net</p>
+                        </div>
+                        <div className="resp-number">
+                            <p>{Number(stats.total_errors)}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div className="col-md-3">
+                    <div className="box stat box-padding">
+                        <div className="top">
+                            <p>Rep Spam</p>
+                        </div>
+                        <div className="resp-number">
+                            <p>{Number(stats.total_errors)}</p>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
 

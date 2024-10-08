@@ -604,12 +604,12 @@ export default function DetailCampaigns() {
             <div className="menu-top-right">
 
                 {campaign.status == "programmed" ?
-                    <button className="programming" onClick={resetStatusCampaign}>Reprogramar</button>
+                    <button className="h-blue" onClick={resetStatusCampaign}>Reprogramar</button>
                     :
-                    <button className="programming" onClick={(ev) => { if (CheckBeforeSend()) { setModalProgramming(true) } }}>Programar</button>
+                    <button className="h-blue" onClick={(ev) => { if (CheckBeforeSend()) { setModalProgramming(true) } }}><Icon icon="svg-spinners:clock" /> Programar</button>
                 }
-                <button className="programming" onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}>Estadisticas</button>
-                <button className="programming" onClick={(ev) => { setDeleteModal(true) }}>Eliminar</button>
+                <button className="h-blue" onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}><Icon icon="bx:stats" /> Estadisticas</button>
+                <button className="h-red " onClick={(ev) => { setDeleteModal(true) }}><Icon icon="iconamoon:trash" /> Eliminar</button>
 
 
                 {buttonSend &&
@@ -618,12 +618,12 @@ export default function DetailCampaigns() {
 
                         {(campaign.status !== "programmed" && campaign.status !== "sending") &&
                             <>
-                                <button className={`programming ${pending.sendCampaign ? 'await' : ''} `} onClick={(ev) => { setModalTest(true) }}>Enviar Prueba <div className="loading"></div></button>
+                                <button className={`h-blue ${pending.sendCampaign ? 'await' : ''} `} onClick={(ev) => { setModalTest(true) }}><Icon icon="streamline:interface-share-user-human-person-share-signal-transmit-user" /> Enviar Prueba <div className="loading"></div></button>
 
                                 {campaign.sendsCampaign ?
                                     <button className={`return${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}> <Icon icon="ant-design:retweet-outlined" /> Reenviar Campaña <div className="loading"></div></button>
                                     :
-                                    <button className={`send${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}>Enviar Campaña <div className="loading"></div></button>
+                                    <button className={`send${pending.sendCampaign ? 'await' : ''} `} onClick={sendCampaign}><Icon icon="lucide:send" /> Enviar Campaña <div className="loading"></div></button>
                                 }
                             </>
                         }

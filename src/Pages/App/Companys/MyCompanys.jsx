@@ -9,7 +9,7 @@ import ModalSmall from "../../../Components/App/ModalSmall";
 import CircleColor from "../../../Components/CircleColor";
 import SelectTypeCompany from "../../../Components/SelectTypeCompany";
 import $ from "jquery"
-import { GetCookie, LoadImageProfile, SetCookie, existsStringInPath, randomId } from "../../../Functions/Global";
+import { GetCookie, LoadImageProfile, SetCookie, Time, existsStringInPath, randomId } from "../../../Functions/Global";
 import { AuthContext } from "../../../Context/AuthContext";
 import { toast } from "react-hot-toast";
 
@@ -227,7 +227,7 @@ export default function MyCompanys() {
 
                                     <div className="text">
                                         <p className="title">{element.name}</p>
-                                        <span className="desc">Creado el: 29 de may de 2023</span>
+                                        <span className="desc">Creado el: {Time(element.time_add, 'complete')}</span>
                                     </div>
 
                                 </div>

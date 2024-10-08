@@ -21,6 +21,7 @@ export default function MyCampaigns() {
     const [campaign, setCampaign] = useState([])
     const [modalWizard, setModalWizard] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [formCampaign, setFormCampaign] = useState({ name: "" })
     const location = useLocation()
 
     useEffect(() => {
@@ -60,6 +61,8 @@ export default function MyCampaigns() {
 
         formData.append("id_company", UserInfo?.company?.id_company)
         formData.append("type", type);
+        formData.append("name", formCampaign.name)
+
         axios.post(API_URL + "/api/get/campaign", formData, { withCredentials: true }).then((response) => { return response.data }).then((data) => {
             if (data?.results?.length) {
                 setCampaign(data.results)
@@ -69,6 +72,14 @@ export default function MyCampaigns() {
         }).catch((err) => {
             setLoading(false)
         })
+    }
+
+    function newFormCampaign(ev) {
+        let name = ev.target.name
+        let value = ev.target.value
+
+
+        setFormCampaign({ ...formCampaign, [name]: value })
     }
 
     useEffect(() => {
@@ -101,6 +112,13 @@ export default function MyCampaigns() {
             return newData;
         });
     }
+    useEffect(() => {
+        if (formCampaign.type) {
+            Navigate("/campaigns/" + formCampaign.type)
+        } else {
+            searchCampaign(false)
+        }
+    }, [formCampaign])
 
 
     return (
@@ -116,12 +134,12 @@ export default function MyCampaigns() {
                 </div>
 
                 <div className="right">
-                    <button className="add" onClick={(ev) => { setModalWizard(true) }}>Crear nueva campaña</button>
-                    <button className="go-wizard" onClick={(ev) => { setModalWizard(true) }}>Wizard</button>
+                    <button className="go-wizard" onClick={(ev) => { setModalWizard(true) }}>Crear nueva campaña</button>
+                    <button onClick={(ev) => { setModalWizard(true) }}>Wizard</button>
                 </div>
             </div>
 
-            <SearchsBasic />
+            <SearchsBasic newFormCampaign={newFormCampaign} />
 
             <div className="row">
                 <div className="col-md-12">
@@ -130,8 +148,9 @@ export default function MyCampaigns() {
                             <div className="item " style={{ padding: 0 }}>
                                 <div className="item flex">
                                     <div className="info">
-                                        <div className="icon">
-                                            <img src="/img/icons/campaign_profile.png" alt="" />
+                                        <div className="icon-i">
+                                            <i style={{ color: "var(--details-blue)" }}>
+                                                <Icon icon="nimbus:marketing" />                                        </i>
                                         </div>
 
                                         <div className="text">
@@ -140,12 +159,13 @@ export default function MyCampaigns() {
 
                                             <br style={{ marginBottom: "10px" }} />
                                             <div className="details-campaign" >
-                                                <span className="desc"><b>Enviados:</b> 12</span>
-                                                <span className="desc"><b>Devueltos:</b> 12</span>
-                                                <span className="desc"><b>Recibidos:</b> 12</span>
-                                                <span className="desc"><b>Leidos:</b> 12</span>
-                                                <span className="desc"><b>Clicks:</b> 12</span>
-                                                <span className="desc"><b>Removidos:</b> 0</span>
+                                                <span className="desc">Enviados: <b>{element.send}</b> </span>
+                                                <span className="desc">Devueltos: <b>12</b> </span>
+                                                <span className="desc">Recibidos: <b>{Number(element.send) - Number(element.errors)}</b></span>
+                                                <span className="desc">No Leidos: <b>{element.unread}</b></span>
+                                                <span className="desc">Leidos: <b>{element.views}</b></span>
+                                                <span className="desc">Clicks: <b>{element.clicks}</b></span>
+                                                <span className="desc">Removidos: <b>{element.unsubscribe}</b></span>
                                             </div>
 
                                         </div>
@@ -153,8 +173,8 @@ export default function MyCampaigns() {
                                     </div>
 
                                     <div className="actions">
-                                        <button className="blue" onClick={ViewDetail} data-value={element.id_campaign}><Icon icon="line-md:cog-loop" /></button>
-                                        <button className="green" onClick={(ev) => { toggleStats(key) }}>
+                                        <button className="" onClick={ViewDetail} data-value={element.id_campaign}><Icon icon="line-md:cog-loop" /></button>
+                                        <button className="h-green" onClick={(ev) => { toggleStats(key) }}>
                                             {element.showStats ? <Icon icon="grommet-icons:up" /> : <Icon icon="ps:stats" />}
                                         </button>
                                     </div>

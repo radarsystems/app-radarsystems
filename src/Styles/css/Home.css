@@ -4,13 +4,15 @@ body[theme="ligth"] {
     --details-green: #4cce89;
     --background-body: #f5f7fa;
     --text-white: #000;
-    --left-menu: #000;
-    --header-top: #242424;
+    --left-menu: #fff;
+    --text-menu: #000;
+    --header-top: transparent;
     --grey-oscuro: #1212120a;
     --dropbackground-modal: #00000061;
     --editors-background: #fff;
     --box-shadow: transparent;
     --box-background: #fff;
+    --border-input: #cdcdcd;
 }
 
 body[theme="dark"] {
@@ -34,7 +36,7 @@ body[theme="dark"] {
 :root {
     --text-fullwhite: #fff;
     --details-purple2: #4036bb;
-    --details-blue: #4367ff;
+    --details-blue: #584aff;
     --details-grey: #abbee31a;
     --details-grey3: #eaebed;
     --details-ad: #ff000014;
@@ -63,22 +65,22 @@ body {
     overflow: auto;
     padding-top: 140px;
     padding-bottom: 20px;
-
+    border-right: 1px solid var(--border-input);
 }
 
 .header-left ul li button:hover {
-    color: #d1ffd1 !important;
+    color: var(--details-blue) !important;
     background: #ffffff24 !important;
 }
 
 .header-left ul li button.active {
-    color: #d1ffd1 !important;
+    color: var(--details-blue) !important;
     background: #ffffff24 !important;
 }
 
 
 .header-left ul li ul li>a:hover {
-    color: #d1ffd1 !important;
+    color: var(--details-blue) !important;
 }
 
 .header-left ul li.opacity {
@@ -99,7 +101,7 @@ body {
     padding-left: 30px;
     transition: .3s ease;
     border: 0px;
-    color: var(--text-fullwhite) !important;
+    color: var(--text-menu) !important;
     border-radius: 10px 0px 0px 10px;
 }
 
@@ -143,7 +145,7 @@ body {
 }
 
 .header-left ul li ul li>a {
-    color: var(--text-fullwhite);
+    color: var(--text-white);
     opacity: 1;
     display: block;
     padding: 8px;
@@ -408,6 +410,17 @@ body {
     position: relative;
     margin: auto;
     margin-right: 0;
+    gap: 10px;
+}
+
+.app .page-info .right button {
+    padding: 10px 20px;
+    border-radius: 7px !important;
+    font-size: 14px !important;
+    background-color: transparent;
+    color: var(--text-white);
+    font-weight: 600;
+    border: 1px solid var(--border-input)
 }
 
 .app .page-info .right .go-wizard {
@@ -418,9 +431,10 @@ body {
     padding-left: 15px;
     border-radius: 93px;
     font-size: 14px;
-    background: var(--details-green);
+    background: var(--details-blue);
     color: white;
     font-weight: 600;
+    border: 0px;
 }
 
 .app .box {
@@ -429,6 +443,7 @@ body {
     border-radius: 6px;
     box-shadow: 0px 0px 8px var(--box-shadow);
     margin-bottom: 20px;
+    border: 1px solid var(--border-input);
 }
 
 .app .box.select-list {
@@ -456,6 +471,7 @@ body {
 .app .page-lists .box .item .icon img {
     max-width: 26px;
 }
+
 
 .app .box .item.select {
     cursor: pointer !important;
@@ -781,11 +797,10 @@ body {
 .app .box.steps .right button,
 .app .box.steps .right a {
     padding: 12px;
-    border-radius: 28px;
+    border-radius: 7px;
     padding-right: 15px;
     padding-left: 15px;
     background: transparent;
-    border: 1px solid;
     font-size: 14px;
     color: var(--text-white);
     text-decoration: none;
@@ -797,11 +812,12 @@ body {
     bottom: 0;
     height: max-content;
     font-weight: 600;
-    transition: .5s ease;
+    border: 1px solid var(--border-input);
 }
 
 .app .box.steps .right button:hover {
-    background: var(--details-lila);
+    background: var(--details-blue);
+    border: 0px;
     color: white;
 }
 
@@ -1189,6 +1205,30 @@ body {
     color: var(--text-white);
 }
 
+.app .box .item .info .icon-i {
+    display: flex;
+    padding: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 7px;
+    border: 1px solid var(--border-input);
+    justify-content: center;
+    margin-right: 15px;
+    position: relative;
+}
+
+.app .box .item .info .icon-i i {
+    font-size: 50px;
+    height: max-content;
+    width: max-content;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
 .app .box .item .info .title b {
     text-transform: uppercase;
     font-weight: 400;
@@ -1202,14 +1242,21 @@ body {
 .app .box .item .info .details-campaign {
     display: flex;
     gap: 10px;
-    padding: 10px 20px;
-    background: var(--box-actions);
-    border-radius: 20px;
+    border-radius: 7px;
     margin-top: 10px;
+    border: 1px solid var(--border-input);
+    margin-left: 5px;
 }
 
 .app .box .item .info .details-campaign span {
     font-size: 12px !important;
+    padding: 10px 15px;
+    border-right: 1px solid var(--border-input);
+}
+
+
+.app .box .item .info .details-campaign span:last-child {
+    border-right: 0px;
 }
 
 .app .box .item.flex .actions {
@@ -1244,13 +1291,14 @@ button i {
 }
 
 .app .box .item.flex .actions button {
-    background-color: var(--box-actions);
     border-radius: 90px;
     padding: 10px;
     width: 45px;
+    background: transparent;
     margin-right: 8px;
     color: var(--text-white);
     transition: .2s ease;
+    border: 1px solid var(--border-input);
 }
 
 .app .box .item button:hover {
@@ -2205,21 +2253,37 @@ table th {
     padding: 10px;
     font-size: 13px;
     background: var(--border-box);
-    border-radius: 25px;
+    border-radius: 7px;
     padding-right: 15px;
     padding-left: 15px;
-    color: var(--text-fullwhite);
+    color: var(--text-white);
+    background-color: transparent;
+    font-weight: 600;
+    border: 1px solid var(--border-input);
 }
 
 
 .menu-top-right button.send {
     background: var(--details-green);
     color: var(--text-fullwhite);
+    border: 0px;
+}
+
+.h-red:hover {
+    border: 1px solid var(--bs-danger);
+    color: var(--bs-danger);
+}
+
+.h-blue:hover{
+    border: 1px solid var(--details-blue);
+    color: var(--details-blue);
+
 }
 
 .menu-top-right button.return {
     background: var(--details-blue);
     color: var(--text-fullwhite);
+    border: 0px;
     transition: .5s ease;
 }
 

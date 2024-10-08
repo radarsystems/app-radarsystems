@@ -5,7 +5,7 @@ import { API_SHORT, API_URL } from "../../../ExportUrl"
 import { useContext } from "react"
 import { AuthContext } from "../../../Context/AuthContext"
 import { useState } from "react"
-import { LoadFlagCountry, LoadLogoSystems, LoadNameCountry } from "../../../Functions/Global"
+import { HistoryBack, LoadFlagCountry, LoadLogoSystems, LoadNameCountry } from "../../../Functions/Global"
 import QrCode from "qrcode.react"
 import Chart from "react-apexcharts"
 import QrStyling from "qr-code-styling"
@@ -21,7 +21,7 @@ export default function DetailShortUrl() {
     const [total, setTotal] = useState(0);
     const ref = useRef(null);
     const [charts, setCharts] = useState({
-      
+
         series: [{
             name: "Respuestas",
             data: []
@@ -111,7 +111,7 @@ export default function DetailShortUrl() {
                 </div>
 
                 <div className="right">
-                    <button className="add" onClick={""}>Volver</button>
+                    <button className="add" onClick={HistoryBack}>Volver</button>
                 </div>
             </div>
 
