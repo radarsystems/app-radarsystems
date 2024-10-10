@@ -68,6 +68,14 @@ body {
     border-right: 1px solid var(--border-input);
 }
 
+.header-left ul {
+    padding: 20px;
+}
+
+svg{
+    margin: auto;
+}
+
 .header-left ul li button:hover {
     color: var(--details-blue) !important;
     background: #ffffff24 !important;
@@ -2274,7 +2282,7 @@ table th {
     color: var(--bs-danger);
 }
 
-.h-blue:hover{
+.h-blue:hover {
     border: 1px solid var(--details-blue);
     color: var(--details-blue);
 

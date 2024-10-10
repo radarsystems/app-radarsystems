@@ -331,6 +331,10 @@ export function LoadLogoSystems(name) {
 }
 
 export function LoadIconApp(code) {
+
+    if (code == "") {
+        code = "default"
+    }
     return "/img/icons/apps/" + code + ".png"
 }
 

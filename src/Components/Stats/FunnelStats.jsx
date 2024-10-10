@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Funnel, FunnelChart, Tooltip, ResponsiveContainer, LabelList } from "recharts"
+import "../../Styles/css/Funnel.css"
 
 export default function FunnelStats({ data }) {
     const [activeIndex, setActiveIndex] = useState(-1)
@@ -48,7 +49,7 @@ export default function FunnelStats({ data }) {
                             padding: '10px'
                         }}
                     />
-                    
+
                     <Funnel
                         dataKey="value"
                         data={data}

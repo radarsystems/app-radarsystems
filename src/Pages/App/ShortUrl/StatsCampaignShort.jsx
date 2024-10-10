@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useContext } from "react"
 import { AuthContext } from "../../../Context/AuthContext"
 import axios from "axios"
-import { API_URL } from "../../../ExportUrl"
+import { API_SHORT, API_URL } from "../../../ExportUrl"
 import { toast } from "react-hot-toast"
 import LoadingCircleApp from "../../../Components/App/LoadingCircle"
 import { IoDocumentTextOutline } from "react-icons/io5"
@@ -12,6 +12,7 @@ import { HistoryBack, LoadIconApp, getRealAppName } from "../../../Functions/Glo
 import Chart from "react-apexcharts"
 import NotFoundItems from "../../../Components/App/NotFoundItems"
 import FunnelStats from "../../../Components/Stats/FunnelStats"
+import { Icon } from "@iconify/react/dist/iconify.js"
 
 
 export default function StatsCampaignShort() {
@@ -196,6 +197,10 @@ export default function StatsCampaignShort() {
         }
     }, [loadStat]);
 
+    function goLink(token) {
+        window.open(API_SHORT + "/" + token)
+    }
+
     return (
         <>
 
@@ -253,19 +258,33 @@ export default function StatsCampaignShort() {
 
                     <div className="row">
 
-                        <div className="col-md-12">
-                            <div className="stat box box-padding">
-                                <div className="top">
-                                    <p>Clicks este mes</p>
-                                    <span>Aca podras evaluar los clicks hecho por el mes actual y anteriores.</span>
+
+
+                        {data.links.length >= 3 ?
+
+                            <div className="col-md-12">
+                                <div className="stat box box-padding">
+                                    <div className="top">
+                                        <p>Clicks este mes</p>
+                                        <span>Aca podras evaluar los clicks hecho por el mes actual y anteriores.</span>
+                                    </div>
+                                    <FunnelStats data={dataFunnel} />
                                 </div>
-
-                                <FunnelStats data={dataFunnel} />
-
-                                {loading == false ? <Chart options={charts} series={charts.series} type="bar" height={300} /> : ''}
-
                             </div>
-                        </div>
+                            :
+                            <>
+                                <div className="box">
+                                    <br />
+                                    <div className="nofound-items">
+                                        <img src="   https://cdn-icons-png.flaticon.com/512/7574/7574854.png " alt="" />
+                                        <p>Para ver el embudo de conversion necesitas al menos 3 enlaces!</p>
+                                        <br />
+
+                                    </div>                                </div>
+                            </>
+                        }
+
+
                         <div className="col-md-12">
                             <div className="box box-padding">
                                 {data?.links?.map((element, key) => (
@@ -277,6 +296,8 @@ export default function StatsCampaignShort() {
 
                                             <div className="text">
                                                 <p className="title">{element.real_link}</p>
+                                                <span className="desc">{API_SHORT + "/" + element.token}</span>
+                                                <br />
                                                 <span className="desc">Creado el: 29 de may de 2023</span>
                                             </div>
                                         </div>
@@ -286,8 +307,14 @@ export default function StatsCampaignShort() {
                                             <span><img className="icon-app" src={LoadIconApp(element.app)} alt="" /></span>
                                         </div>
 
+                                        <div>
+                                            <p className="title">Visitas</p>
+                                            <span>{element.views}</span>
+                                        </div>
+
                                         <div className="actions">
                                             <button><IoDocumentTextOutline /></button>
+                                            <button onClick={(ev) => { goLink(element.token) }}><Icon icon="streamline:web" /></button>
                                         </div>
                                     </div>
                                 ))}
