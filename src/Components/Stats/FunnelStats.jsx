@@ -48,6 +48,7 @@ export default function FunnelStats({ data }) {
                             padding: '10px'
                         }}
                     />
+                    
                     <Funnel
                         dataKey="value"
                         data={data}
