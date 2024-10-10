@@ -7,7 +7,12 @@ export default function FunnelStats({ data }) {
 
 
     const getPercent = (value) => {
-        const total = data[0].value
+        let total = 0;
+
+        for (let i = 0; i < data.length; i++) {
+            total = total + data[i].views
+        }
+
         return Math.round((value / total) * 100)
     }
 
