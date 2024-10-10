@@ -10,8 +10,9 @@ export default function FunnelStats({ data }) {
         let total = 0;
 
         for (let i = 0; i < data.length; i++) {
-            total = total + data[i].views
+            total = total + data[i].value
         }
+
 
         return Math.round((value / total) * 100)
     }
