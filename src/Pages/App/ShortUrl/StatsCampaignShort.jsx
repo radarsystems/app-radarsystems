@@ -11,6 +11,7 @@ import { IoDocumentTextOutline } from "react-icons/io5"
 import { HistoryBack, LoadIconApp, getRealAppName } from "../../../Functions/Global"
 import Chart from "react-apexcharts"
 import NotFoundItems from "../../../Components/App/NotFoundItems"
+import FunnelStats from "../../../Components/Stats/FunnelStats"
 
 
 export default function StatsCampaignShort() {
@@ -24,6 +25,8 @@ export default function StatsCampaignShort() {
 
     let defaultForm = { url: "", app: "others" };
     const [form, setForm] = useState(defaultForm)
+
+    const [dataFunnel, setDataFunnel] = useState([])
 
     const [charts, setCharts] = useState({
         series: [
@@ -75,6 +78,29 @@ export default function StatsCampaignShort() {
         setForm({ ...form, [ev.target.name]: ev.target.value })
     }
 
+    const getColors = () => {
+        const colors = [
+            '#8A2BE2', // Purple
+            '#4169E1', // Royal Blue
+            '#00CED1', // Dark Turquoise
+            '#3CB371', // Medium Sea Green
+            '#9370DB', // Medium Purple
+            '#1E90FF', // Dodger Blue
+            '#20B2AA', // Light Sea Green
+            '#32CD32'  // Lime Green
+        ];
+
+        const getRandomColor = () => {
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        };
+
+        return {
+            all: colors,
+            random: getRandomColor
+        };
+    };
+
     function Campaign() {
 
         let formData = new FormData();
@@ -100,9 +126,17 @@ export default function StatsCampaignShort() {
                 });
 
                 data?.stats?.forEach((value, index) => {
+                    /*
+                                        counts.push(value.count)
+                                        app.push(getRealAppName(value.app) + " (" + (value.count * 100 / total).toFixed(0) + "%)")
+                                  */
 
-                    counts.push(value.count)
-                    app.push(getRealAppName(value.app) + " (" + (value.count * 100 / total).toFixed(0) + "%)")
+
+                    setDataFunnel(prevData => {
+                        let newValue = [...prevData]
+                        newValue.push({ value: Number(value.views), name: getRealAppName(value.app), fill: getColors().random() })
+                        return newValue;
+                    })
                 });
 
 
@@ -225,6 +259,8 @@ export default function StatsCampaignShort() {
                                     <p>Clicks este mes</p>
                                     <span>Aca podras evaluar los clicks hecho por el mes actual y anteriores.</span>
                                 </div>
+
+                                <FunnelStats data={dataFunnel} />
 
                                 {loading == false ? <Chart options={charts} series={charts.series} type="bar" height={300} /> : ''}
 

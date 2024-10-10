@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from 'react'
 import { Funnel, FunnelChart, Tooltip, ResponsiveContainer, LabelList } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -12,14 +10,15 @@ export default function Component() {
     { name: "Facebook", value: 3000, fill: "#1E40AF" },
     { name: "Instagram", value: 1500, fill: "#9333EA" },
     { name: "YouTube", value: 500, fill: "#DC2626" },
+    { name: "Fe", value: 2333333, fill: "#000" }
   ]
 
-  const getPercent = (value: number) => {
+  const getPercent = (number) => {
     const total = data[0].value
     return Math.round((value / total) * 100)
   }
 
-  const renderCustomizedLabel = (props: any) => {
+  const renderCustomizedLabel = (any) => {
     const { x, y, width, height, value, index } = props
     const radius = 10
     const fontSize = 12
@@ -54,7 +53,7 @@ export default function Component() {
         <div className="w-full h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <FunnelChart>
-              <Tooltip 
+              <Tooltip
                 formatter={(value, name) => [`${value} (${getPercent(value)}%)`, name]}
                 labelStyle={{ color: '#000' }}
               />

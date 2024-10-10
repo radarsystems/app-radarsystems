@@ -195,7 +195,7 @@ function App() {
           <Route path='/buttonsqr/:id' element={<ButtonsQr />} />
 
           {/* TEST PAGE*/}
-          <Route path='/test' element={<WizardQr Visible={true} />} />
+          <Route path='/test' element={<Test />} />
           <Route path='/testiphone' element={<PreviewIphone />} />
           {/* RECOVERY */}
           <Route path='/recovery' element={<Recovery />} />
