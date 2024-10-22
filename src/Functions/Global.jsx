@@ -215,6 +215,28 @@ export function PreviewTemplate(folder, image) {
     return `${API_URL}/api/get/imgtemplate?img=${image}&folder=${folder}`
 }
 
+export function CampaignType(type) {
+
+    let response = "default";
+    switch (type) {
+        case 'em':
+            response = "Email Marketing"
+            break;
+        case 'em-mt':
+            response = "Email Transaccional"
+            break;
+        case 'sms':
+            response = "Sms Marketing"
+            break;
+
+        case 'sms-mt':
+            response = "Sms Transaccional"
+            break;
+    }
+
+    return response;
+}
+
 export function Time(timestamp, type = undefined) {
     // Multiplica el timestamp por 1000 para convertirlo a milisegundos
     const date = new Date(timestamp * 1000);

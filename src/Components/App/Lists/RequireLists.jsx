@@ -37,27 +37,26 @@ export default function RequireLists({ type, lists }) {
 
             <div className="row">
                 {lists.map((element, key) => (
-                    <div className="col-md-3 page-lists" key={key}>
+                    <div className="col-md-6 page-lists" key={key}>
                         <div className="box box-padding">
-                            <div className="item flex-wrap">
+                            <div className="item flex-wrap item-list">
                                 <div className="info">
                                     <div className="icon">
                                         <img src="/img/icons/lists.png" alt="" />
                                     </div>
 
                                     <div className="text">
-                                        <p className="title" title={element.name}>
-                                            {limitText(element.name, 8)}
+                                        <p className="title" style={{ textTransform: "uppercase", fontWeight: 600 }} title={element.name}>
+                                            {limitText(element.name, 15)}
 
-                                            <button><Icon icon="fa-solid:edit" /></button>
                                         </p>
                                         <span className="desc">Creado el: {Time(element.time_add)}</span>
                                         <br />
                                         <span className="desc">Contactos: {element.contacts}</span>
                                         <br />
-                                        <button onClick={(ev) => { Navigator("/contacts/upload/" + element.id_list) }} className="upload">
-                                            <Icon icon="mdi:upload" />
-                                        </button>
+
+
+
 
                                         {selectMultiple && (
                                             <input
@@ -66,13 +65,23 @@ export default function RequireLists({ type, lists }) {
                                                 checked={selects.includes(element.id_list)}
                                             />
                                         )}
+
+                                        <button onClick={(ev) => { Navigator("/contacts/upload/" + element.id_list) }} className="upload">
+                                            <Icon icon="mdi:upload" />
+                                        </button>
+
                                     </div>
+
+
 
                                 </div>
 
                                 <div className="actions">
                                     <button className="blue" onClick={(ev) => { Navigator("/contacts/detail/" + element.id_list) }}>
                                         <IoEyeOutline />
+                                    </button>
+                                    <button className="blue" onClick={(ev) => { Navigator("/contacts/detail/" + element.id_list) }}>
+                                        <Icon icon="tdesign:edit" />
                                     </button>
                                     <button className="red" onClick={(ev) => { setModalDelete(true) }}>
                                         <IoTrashOutline />

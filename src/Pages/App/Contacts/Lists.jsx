@@ -90,12 +90,6 @@ export default function Lists() {
                     </div>
                 </div>
             </div > : <RequireLists lists={lists} type={params?.type} />}
-
-
-            <FooterConvertion type="lists"/>
-
-
-
         </>
     )
 }

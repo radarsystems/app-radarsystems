@@ -9,7 +9,6 @@ export default function SearchsBasic({ newFormCampaign }) {
 
                 <div className="right">
                     <div className="form-search">
-
                         <div className="form-input">
                             <input onChange={newFormCampaign} name="name" type="text" placeholder="Buscar por campañas..." />
                         </div>
@@ -24,10 +23,8 @@ export default function SearchsBasic({ newFormCampaign }) {
                         </div>
 
                         <div className="form-input">
-                            <input type="date" onChange={newFormCampaign} />
+                            <input id="ffer" type="date" onChange={newFormCampaign} />
                         </div>
-
-
                     </div>
                 </div>
             </div>

@@ -60,7 +60,7 @@ export function HeaderTop({ MenuLeft, MenuLeftAction }) {
                                     </div>
                                 </>
                                 :
-                                <Link to="/companys" className="select-company">Seleccionar Cuenta</Link>
+                                <Link to="/companys" className="select-company"><Icon icon="carbon:enterprise" /> Seleccionar Cuenta</Link>
                         }
                     </div>
                     <button className="option" onClick={changeTheme} >

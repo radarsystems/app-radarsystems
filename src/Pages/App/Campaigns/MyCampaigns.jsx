@@ -143,9 +143,9 @@ export default function MyCampaigns() {
 
             <div className="row">
                 <div className="col-md-12">
-                    <div className="box box-padding">
+                    <div className="box ">
                         {campaign?.map((element, key) => (
-                            <div className="item " style={{ padding: 0 }}>
+                            <div className="item " id={`${key % 2 === 0 ? 'item-white' : 'item-grey'}`} style={{ padding: 0 }}>
                                 <div className="item flex">
                                     <div className="info">
                                         <div className="icon-i">
@@ -159,13 +159,13 @@ export default function MyCampaigns() {
 
                                             <br style={{ marginBottom: "10px" }} />
                                             <div className="details-campaign" >
-                                                <span className="desc">Enviados: <b>{element.send}</b> </span>
-                                                <span className="desc">Devueltos: <b>12</b> </span>
-                                                <span className="desc">Recibidos: <b>{Number(element.send) - Number(element.errors)}</b></span>
-                                                <span className="desc">No Leidos: <b>{element.unread}</b></span>
-                                                <span className="desc">Leidos: <b>{element.views}</b></span>
-                                                <span className="desc">Clicks: <b>{element.clicks}</b></span>
-                                                <span className="desc">Removidos: <b>{element.unsubscribe}</b></span>
+                                                <span className="desc blue">Enviados: <b>{element.send}</b> </span>
+                                                <span className="desc red">Devueltos: <b>12</b> </span>
+                                                <span className="desc blue">Recibidos: <b>{Number(element.send) - Number(element.errors)}</b></span>
+                                                <span className="desc red">No Leidos: <b>{element.unread}</b></span>
+                                                <span className="desc blue">Leidos: <b>{element.views}</b></span>
+                                                <span className="desc blue">Clicks: <b>{element.clicks}</b></span>
+                                                <span className="desc red">Removidos: <b>{element.unsubscribe}</b></span>
                                             </div>
 
                                         </div>

@@ -6,7 +6,7 @@ import axios from "axios"
 import { API_URL } from "../../../ExportUrl"
 import { AuthContext } from "../../../Context/AuthContext"
 import ListStatus from "../../../Components/App/Contacts/ListsStatus"
-import { HistoryBack } from "../../../Functions/Global"
+import { CampaignType, HistoryBack, Time } from "../../../Functions/Global"
 import FooterConvertion from "../Global/FooterConvertion/FooterConvertion"
 import { Icon } from "@iconify/react/dist/iconify.js"
 import ModalDelete from "../../../Components/App/ModalDelete"
@@ -73,44 +73,45 @@ export default function DetailLists() {
 
 
             <div className="menu-top-right">
-                <button className="programming" onClick={(ev) => { Navigator("/contacts/lists/contacts/" + params.id) }}><Icon icon="material-symbols:contacts-sharp" /> Contactos</button>
-                <button className="programming" onClick={(ev) => { Navigator("/contacts/lists/logs/" + params.id) }}><Icon icon="f7:doc-fill" /> Detalles</button>
+                <button className="prograxmming" onClick={(ev) => { Navigator("/contacts/lists/contacts/" + params.id) }}><Icon icon="material-symbols:contacts-sharp" /> Contactos</button>
+                <button className="prograxmming" onClick={(ev) => { Navigator("/contacts/lists/logs/" + params.id) }}><Icon icon="f7:doc-fill" /> Detalles</button>
             </div>
 
             <div className="box steps">
                 <div className="item flex">
                     <div className="info">
-                        <div className="icon">
-                            <img src="/img/icons/default_profile.png" alt="" />
+                        <div style={{ fontSize: "50px" }} className="icon-i">
+                            <Icon icon="ep:document" />
                         </div>
 
                         <div className="text">
-                            <p className="title">{list.name}</p>
-                            <span className="desc">Creado el: 29 de may de 2023</span>
+                            <b>  <p>LISTA:</p></b>
+                            <p className="title" style={{ textTransform: "uppercase" }}>{list.name}</p>
+                            <span className="desc">Creado el: {Time(list.time_add)}</span>
                         </div>
                     </div>
 
-                    <div>
-                        <p>Contactos</p>
+                    <div className="center">
+                        <b><p>CONTACTOS</p> </b>
                         <span>{list.contacts}</span>
                     </div>
 
 
-                    <div>
-                        <p>Tipo</p>
-                        <span>{list.type}</span>
+                    <div className="center">
+                        <b>  <p>TIPO</p></b>
+                        <span>{CampaignType(list.type)}</span>
                     </div>
 
-                    <div>
-                        <p>Estatus</p>
+                    <div className="center">
+                        <b>  <p>ESTATUS</p></b>
 
                         <ListStatus Status={list.status} />
 
                     </div>
 
                     <div className="actions">
-                        <button onClick={(ev) => { Navigator("/contacts/upload/" + params.id) }}><IoCloudUploadOutline /></button>
-                        <button onClick={(ev) => { setViewModalD(true) }}><IoTrashOutline /></button>
+                        <button className="blue" onClick={(ev) => { Navigator("/contacts/upload/" + params.id) }}><IoCloudUploadOutline /></button>
+                        <button className="red" onClick={(ev) => { setViewModalD(true) }}><IoTrashOutline /></button>
                     </div>
 
                 </div>
@@ -125,7 +126,7 @@ export default function DetailLists() {
 
                         <div className="information">
                             <p className="title">Crear Lista</p>
-                            <span className="desc approve"><span className="ready-list">Completado !</span></span>
+                            <span className="desc approve"><span className="left-ready-list"><Icon icon="hugeicons:task-done-01" /> Completado</span></span>
                         </div>
 
                     </div>
@@ -141,7 +142,7 @@ export default function DetailLists() {
 
                         <div className="information">
                             <p className="title">Elegir Tipo</p>
-                            <span className="desc approve"><span className="ready-list">Completado !</span></span>
+                            <span className="desc approve"><span className="left-ready-list"><Icon icon="hugeicons:task-done-01" /> Completado</span></span>
                         </div>
                     </div>
 
@@ -156,7 +157,7 @@ export default function DetailLists() {
 
                         <div className="information">
                             <p className="title">Subir Contactos</p>
-                            <span className="desc">{list.contacts == 0 ? <span className="wait-list">Pendiente</span> : <span className="ready-list">Completado !</span>}</span>
+                            <span className="desc">{list.contacts == 0 ? <span className="left-wait-list"><Icon icon="hugeicons:task-remove-01" /> Pendiente</span> : <span className="left-ready-list"><Icon icon="hugeicons:task-done-01" /> Completado</span>}</span>
                         </div>
 
                         <div className="right">

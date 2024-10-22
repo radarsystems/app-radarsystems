@@ -146,7 +146,7 @@ export default function CompanyDomains() {
                     <div className="info">
                         <p>Dominios</p>
                         <span>Estos dominios son los que has configurado para ser manejados en tu campanas de envios email</span>
-                        <button onClick={(ev) => { setViewModal(true) }}>Agregar Dominio</button>
+                        <button onClick={(ev) => { setViewModal(true) }}><Icon icon="material-symbols:add" /> Agregar Dominio</button>
                     </div>
 
                     <div className="action">

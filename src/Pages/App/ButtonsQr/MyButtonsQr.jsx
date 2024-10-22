@@ -99,7 +99,7 @@ export default function MyButtonsQr() {
                 {Buttons.map((element, key) => (
                     <div className="col-md-3" key={key}>
                         <div className="box survey-b">
-                            <div className="preview" style={{ background: `url(${API_URL}/api/get/previewbuttons?hash=${element.preview}&w=buttonsqr)` }}>
+                            <div className="preview" >
                                 <div className="right-top">
                                     <button title="editar" onClick={(ev) => { Navigator("/editor/buttonsqr/" + element.id_buttonsqr) }}><Icon icon="carbon:edit" /></button>
                                     <button title="previsualizar" onClick={(ev) => { Navigator(`/buttonsqr/${element.token}`) }}><Icon icon="mingcute:eye-line" /></button>

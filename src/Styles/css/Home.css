@@ -6,7 +6,7 @@ body[theme="ligth"] {
     --text-white: #000;
     --left-menu: #fff;
     --text-menu: #000;
-    --header-top: transparent;
+    --header-top: #fff;
     --grey-oscuro: #1212120a;
     --dropbackground-modal: #00000061;
     --editors-background: #fff;
@@ -72,7 +72,7 @@ body {
     padding: 20px;
 }
 
-svg{
+svg {
     margin: auto;
 }
 
@@ -226,19 +226,20 @@ svg{
     font-size: 14px;
     margin: auto;
     padding-left: 5px;
-    color: var(--text-fullwhite);
+    color: var(--text-white);
 }
 
 .header-top .right .company .body {
     display: flex;
     margin: auto;
-    background: #8994a91a;
+    background: #e5e5ef;
     padding-top: 5px;
     padding-left: 10px;
     padding-right: 15px;
     padding-bottom: 5px;
-    color: var(--text-fullwhite);
     border-radius: 93px;
+    color: black !important;
+    font-weight: 600;
 }
 
 
@@ -248,10 +249,11 @@ svg{
     font-size: 13px;
     text-decoration: none;
     border-radius: 105px;
-    background: #8994a91a;
+    background: var(--box-actions);
     padding-right: 15px;
     padding-left: 15px;
-    color: var(--text-fullwhite);
+    color: var(--text-menu);
+    font-weight: 600;
 }
 
 .header-top .right {
@@ -309,10 +311,11 @@ svg{
 .header-top .right button.option {
     border-radius: 90px;
     background: transparent;
-    color: var(--text-fullwhite);
+    color: var(--text-menu);
     font-size: 22px;
     padding: 10px;
     line-height: 1;
+    height: -moz-max-content;
     height: max-content;
 }
 
@@ -325,7 +328,8 @@ svg{
     cursor: pointer;
     margin-bottom: auto;
     font-size: 13px;
-    color: var(--text-fullwhite);
+    color: var(--text-white);
+    font-weight: 600;
 }
 
 .header-top .right .name i {
@@ -502,14 +506,18 @@ svg{
 }
 
 .app .page-lists .actions button.blue {
-    color: var(--text-fullwhite);
-    background: var(--details-blue) !important;
+    color: var(--details-blue) !important;
+    border: 1px solid;
+    background: transparent;
+    line-height: 0.5;
 }
 
 
 .app .page-lists .actions button.red {
-    color: var(--text-fullwhite);
-    background: var(--bs-danger);
+    color: var(--bs-danger);
+    background: transparent;
+    border: 1px solid;
+    line-height: 0.5;
 }
 
 .app .page-lists .actions button {
@@ -526,12 +534,13 @@ svg{
 .app .page-lists button.upload {
     margin-bottom: -10px;
     font-size: 14px;
-    background: var(--box-actions);
+    background: transparent;
     color: black;
     border-radius: 90px;
     padding: 5px;
     margin-top: 6px;
-    width: 125%;
+    width: 100%;
+    border: 1px solid var(--border-box);
 }
 
 .wizard-home .actions .download-file {
@@ -693,6 +702,11 @@ svg{
     padding: 10px;
     border-bottom: 1px solid var(--border-box);
     color: var(--text-white);
+}
+
+
+#item-grey {
+    background: #e7ebf17d !important;
 }
 
 
@@ -1080,11 +1094,11 @@ svg{
     margin: auto;
     display: block;
     margin-top: 7px;
-    background: var(--details-lila);
     width: 100%;
     border-radius: 28px;
     transition: .5s ease;
     line-height: 0.5;
+    border: 1px solid;
 }
 
 .app .box.steps .search-result .result button.select:hover {
@@ -1100,6 +1114,12 @@ svg{
     position: relative;
     display: block;
     font-size: 11px;
+}
+
+.app .box.steps .item .information .approve .ready-list {
+    background-color: transparent !important;
+    border: 1px solid var(--bs-green);
+    color: var(--bs-green);
 }
 
 .app .item .actions-item {
@@ -1192,11 +1212,37 @@ svg{
     justify-content: space-between;
 }
 
-.app .box .item:last-child {
-    border-bottom: 1px solid transparent;
+.app .box .item .info {
+    display: block;
+
 }
 
-.app .box .item .icon img {
+.box .item-list {
+    position: relative;
+}
+
+.box .item-list .info {
+    width: 100% !important;
+    display: block !important;
+    position: relative;
+}
+
+
+.box .item-list .info {
+    padding-left: 35px;
+}
+
+
+.box .item-list .icon {
+    position: absolute !important;
+    left: 0;
+}
+
+.box .item-list {
+    border-bottom: 0px !important;
+}
+
+.box .item .icon img {
     display: block;
     max-width: 80px;
     border-radius: 10px;
@@ -1262,6 +1308,19 @@ svg{
     border-right: 1px solid var(--border-input);
 }
 
+.app .box .item .info .details-campaign span.red b {
+    color: var(--bs-danger);
+}
+
+
+.app .box .item .info .details-campaign span.blue b {
+    color: var(--details-blue);
+}
+
+.app .box .item .info .details-campaign span.green b {
+    color: var(--details-green);
+}
+
 
 .app .box .item .info .details-campaign span:last-child {
     border-right: 0px;
@@ -1284,14 +1343,14 @@ button svg {
     pointer-events: none;
 }
 
+svg {
+    display: inline-block !important;
+}
+
 button i {
     pointer-events: none;
 }
 
-.app .box .item.flex .actions button.blue {
-    background: var(--details-blue);
-    color: var(--text-fullwhite);
-}
 
 .app .box .item.flex .actions button.green {
     background: var(--details-green);
@@ -2122,26 +2181,46 @@ table th {
     pointer-events: none;
 }
 
+.left-ready-list {
+    font-weight: 600;
+    color: #48bc86;
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 93px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 14px;
+    position: relative;
+    top: 3px;
+}
+
+
 .ready-list {
     font-weight: 600;
-    background: var(--details-lila);
-    padding: 9px;
+    background: #48bc86;
+    padding: 5px;
     border-radius: 93px;
     padding-right: 15px;
     padding-left: 15px;
     color: white;
     font-size: 14px;
+    position: relative;
+    top: 3px;
 }
 
 .setting-list {
-    font-size: 14px;
     font-weight: 600;
-    background: var(--details-lila);
-    padding: 9px;
+    background: var(--bs-yellow);
+    padding: 5px;
     border-radius: 93px;
     padding-right: 15px;
     padding-left: 15px;
-    color: white;
+    font-size: 14px;
+    position: relative;
+    left: -18px;
+    top: 3px;
+    border: 1px solid #cd9c0a;
+    color: black;
 }
 
 .wait-list {
@@ -2153,6 +2232,20 @@ table th {
     padding-right: 15px;
     padding-left: 15px;
     color: white;
+}
+
+.left-wait-list {
+    font-weight: 600;
+    background: transparent;
+    padding: 5px;
+    border-radius: 93px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 14px;
+    position: relative;
+    top: 3px;
+    border: 1px solid var(--bs-danger);
+    color: var(--bs-danger);
 }
 
 .programmed {
@@ -3479,10 +3572,12 @@ table th {
     bottom: 0;
     height: max-content;
     font-size: 14px;
-    border-radius: 90px;
+    border-radius: 7px;
     padding-right: 15px;
     padding-left: 15px;
-    background-color: var(--details-green);
+    background-color: var(--details-blue);
+    font-weight: 600;
+    color: var(--text-fullwhite);
     border: 0px;
 }
 
@@ -3762,6 +3857,16 @@ table th {
 
 .mb {
     display: none !important;
+}
+
+.app .box .item.flex .actions button.red {
+    color: var(--bs-danger);
+    border: 1px solid;
+}
+
+.app .box .item.flex .actions button.blue {
+    color: var(--details-blue);
+    border: 1px solid;
 }
 
 
@@ -4139,4 +4244,9 @@ table th {
     height: max-content;
     left: 0;
     border-radius: 12px;
+}
+
+.app .box .item.flex .center {
+    justify-content: center;
+    text-align: center !important;
 }

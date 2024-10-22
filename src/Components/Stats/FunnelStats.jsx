@@ -45,7 +45,7 @@ export default function FunnelStats({ data }) {
     return (
         <div className="w-full h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
-                <FunnelChart>
+                <FunnelChart >
                     <Tooltip
                         formatter={(value, name) => [`${value} (${getPercent(value)}%)`, name]}
                         contentStyle={{
@@ -63,6 +63,7 @@ export default function FunnelStats({ data }) {
                         activeIndex={activeIndex}
                         onMouseEnter={(_, index) => setActiveIndex(index)}
                         onMouseLeave={() => setActiveIndex(-1)}
+                        labelLine
                     >
                         <LabelList
                             position="right"
