@@ -433,9 +433,9 @@ svg {
     border-radius: 7px !important;
     font-size: 14px !important;
     background-color: transparent;
-    color: var(--text-white);
+    color: #5e6ff4;
     font-weight: 600;
-    border: 1px solid var(--border-input)
+    border: 2px solid #5e6ff4;
 }
 
 .app .page-info .right .go-wizard {

@@ -9,6 +9,9 @@ import { AuthContext } from "../../../Context/AuthContext"
 import { IoDocumentTextOutline, IoTrashOutline } from "react-icons/io5"
 import { useLocation, useNavigate } from "react-router-dom"
 import { existsStringInPath } from "../../../Functions/Global"
+import ModalDelete from "../../../Components/App/ModalDelete"
+import toast from "react-hot-toast"
+import { Icon } from "@iconify/react/dist/iconify.js"
 
 export default function CampaignsUrl() {
 
@@ -19,11 +22,13 @@ export default function CampaignsUrl() {
     const [pending, setPending] = useState(false)
     const [form, setForm] = useState({ name: "" })
     const { UserInfo } = useContext(AuthContext)
+    const [modalDelete, setModalDelete] = useState(false)
+    const [deleteId, setDeleteId] = useState(null)
 
     const location = useLocation()
 
     useEffect(() => {
-        if(existsStringInPath("/add")){
+        if (existsStringInPath("/add")) {
             setModalView(true)
         }
     }, [location])
@@ -62,12 +67,32 @@ export default function CampaignsUrl() {
             })
     }
 
+    function deleteCampaign() {
+        setPending(true)
+
+        let formData = new FormData()
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("id_campaign", deleteId)
+
+        axios.post(API_URL + "/api/delete/shortlinks/campaign", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                if (data.status) {
+                    toast.success("Has eliminado correctamente esta campana");
+                    LoadCampaigns()
+                    setModalDelete(false)
+                }
+            })
+    }
+
     useEffect(() => {
         LoadCampaigns()
     }, [])
 
     return (
         <>
+
+            <ModalDelete onClick={deleteCampaign} Pending={pending} visible={modalDelete} callback={setModalDelete} />
 
             <ModalSmall key={viewModal} visible={viewModal} onClick={AddNewCampaign} callback={setModalView} maxWidth={"250px"} Pending={pending} next={"Agregar"}>
                 <div className="top">
@@ -87,7 +112,7 @@ export default function CampaignsUrl() {
                 </div>
 
                 <div className="right">
-                    <button className="add" onClick={(ev) => { setModalView(true) }}>Crear nueva campaña</button>
+                    <button className="go-wizard" onClick={(ev) => { setModalView(true) }}><Icon icon="gg:add" /> Crear nueva campaña</button>
                 </div>
             </div>
 
@@ -110,7 +135,7 @@ export default function CampaignsUrl() {
                                     </div>
 
                                     <div className="actions">
-                                        <button><IoTrashOutline /></button>
+                                        <button onClick={(ev) => { setDeleteId(element.id_campaign); setModalDelete(true) }}><IoTrashOutline /></button>
                                         <button onClick={(ev) => { Navigator("/shorturls/campaigns/" + element.id_campaign) }}><IoDocumentTextOutline /></button>
                                     </div>
                                 </div>

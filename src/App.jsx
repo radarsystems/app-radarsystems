@@ -65,6 +65,7 @@ import CheckOut from './Pages/App/Checkout/CheckOut.jsx'
 import Credentials from './Pages/App/Companys/Credentials.jsx'
 import CheckOutCheck from './Pages/App/Checkout/CheckOutCheck.jsx'
 import ContactsList from './Pages/App/Contacts/ContactsList.jsx'
+import Template from './Pages/App/Templates/Template.jsx'
 
 
 
@@ -207,6 +208,7 @@ function App() {
 
           {/* TEMPLATES */}
           <Route path="/templates" element={<Global CompanyNeed={true} Element={Templates} />} />
+          <Route path="/template/:token" element={<Global CompanyNeed={true} Element={Template} />} />
 
 
 

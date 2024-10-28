@@ -98,7 +98,7 @@ export default function HeaderLeft({ MenuLeft }) {
                             <li><Link to="/buttonsqr">Botonera QR</Link></li>
                             <li><Link to="/buttons">Botonera URL</Link></li>
                             <li><Link to="/templates">Boletines</Link></li>
-                            <li><Link to="/surveys">Formulario</Link></li>
+                            {/* <li><Link to="/surveys">Formulario</Link></li> */}
                             {/*<li><Link to="/landings">Landings</Link></li>*/}
                             <li><Link to="/editor/canvas">Editor Canvas</Link></li>
                             <li><Link to="/editor/buttons">Editor Botonera</Link></li>

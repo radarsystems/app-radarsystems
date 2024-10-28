@@ -9,6 +9,7 @@ import { IoDocumentTextOutline } from "react-icons/io5";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import RequireLists from "../../../Components/App/Lists/RequireLists";
 import FooterConvertion from "../Global/FooterConvertion/FooterConvertion";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function Lists() {
 
@@ -66,7 +67,7 @@ export default function Lists() {
                 </div>
 
                 <div className="right">
-                    <button className="add" onClick={(ev) => { setOpenWizard(true) }}>Crear nueva lista</button>
+                    <button className="go-wizard" onClick={(ev) => { setOpenWizard(true) }}><Icon icon="gg:add" /> Crear nueva lista</button>
                 </div>
             </div>
 

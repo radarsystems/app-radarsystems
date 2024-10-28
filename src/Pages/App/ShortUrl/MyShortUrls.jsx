@@ -12,6 +12,7 @@ import NotFoundItems from "../../../Components/App/NotFoundItems"
 import { existsStringInPath } from "../../../Functions/Global"
 import toast from "react-hot-toast"
 import ModalDelete from "../../../Components/App/ModalDelete"
+import { Icon } from "@iconify/react/dist/iconify.js"
 
 export default function MyShortUrls() {
 
@@ -23,7 +24,7 @@ export default function MyShortUrls() {
     const [pending, setPending] = useState(false)
     const [viewModal, setViewModal] = useState(false)
     const [form, setForm] = useState({ url: "" })
-
+    const [deletePending, setDeletePending] = useState(false)
     const [viewModalD, setViewModalD] = useState(false);
     const [idDelete, setIdDelete] = useState(false)
 
@@ -79,6 +80,30 @@ export default function MyShortUrls() {
         }
     }
 
+    function deleteUrl() {
+        let formData = new FormData()
+
+        formData.append("id_company", UserInfo?.company?.id_company)
+        formData.append("id_shortlink", idDelete)
+
+        setDeletePending(true)
+
+        axios.post(API_URL + "/api/delete/shortlink", formData, { withCredentials: true })
+            .then((response) => { return response.data })
+            .then((data) => {
+                LoadUrls()
+
+                if (data.status) {
+                    toast.success("Has eliminado correctamente")
+                    setViewModalD(false)
+                }
+
+            })
+            .finally(() => {
+                setDeletePending(false)
+            })
+    }
+
     function updateForm(ev) {
         let name = ev.target.name
         let value = ev.target.value
@@ -93,7 +118,7 @@ export default function MyShortUrls() {
     return (<>
 
 
-        <ModalDelete visible={viewModalD} callback={setViewModalD} name={"enlace"} />
+        <ModalDelete visible={viewModalD} onClick={deleteUrl} Pending={deletePending} callback={setViewModalD} name={"enlace"} />
 
         <ModalSmall visible={viewModal} onClick={NewShort} callback={setViewModal} Pending={pending} next={'Crear'}>
             <div className="top">
@@ -116,7 +141,7 @@ export default function MyShortUrls() {
                 <span>Estas son tus urls cortas que has creado donde podras llevar las estadisticas de cada una.</span>
             </div>
             <div className="right">
-                <button className="add" onClick={(ev) => { setViewModal(true) }}>Crear nueva URL</button>
+                <button className="go-wizard" onClick={(ev) => { setViewModal(true) }}><Icon icon="gg:add" /> Crear nueva URL</button>
             </div>
         </div>
 
@@ -126,8 +151,8 @@ export default function MyShortUrls() {
                     {urls.map((element, key) => (
                         <div className="item flex" key={key}>
                             <div className="info">
-                                <div className="icon">
-                                    <img src="img/icons/campaign_profile.png" alt="" />
+                                <div className="icon-i">
+                                    <Icon icon="lucide:link" fontSize={30} color="#4367ff" />
                                 </div>
 
                                 <div className="text">
