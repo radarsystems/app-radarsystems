@@ -150,6 +150,8 @@ svg {
 .header-left ul li ul {
     list-style-type: none;
     display: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .header-left ul li ul li>a {
@@ -161,6 +163,7 @@ svg {
     font-size: 13px;
     transition: .5s ease;
     text-decoration: none;
+    font-weight: 600;
 }
 
 .header-left ul li ul li>a:hover {
