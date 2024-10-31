@@ -699,7 +699,7 @@ export default function DetailCampaigns() {
 
 
                         <div className="right">
-                            <button>Editar</button>
+                            <button>Seleccionar</button>
                         </div>
                     </div>
 
@@ -769,7 +769,7 @@ export default function DetailCampaigns() {
                             </>
                             :
                             <div className="right">
-                                <button onClick={(ev) => { ActiveList("lists") }}>Editar</button>
+                                <button onClick={(ev) => { ActiveList("lists") }}>Seleccionar</button>
                             </div>
                         }
 
@@ -809,7 +809,7 @@ export default function DetailCampaigns() {
                                 </>
                                 :
                                 <div className="right">
-                                    <button onClick={(ev) => { ActiveList("domain"); getMyDomains() }}>Editar</button>
+                                    <button onClick={(ev) => { ActiveList("domain"); getMyDomains() }}>Seleccionar</button>
                                 </div>
                             }
 
@@ -825,7 +825,7 @@ export default function DetailCampaigns() {
                 {(campaign?.type_c == "em") &&
                     <div className="item">
 
-                        <div className={`top ${campaign?.id_domain ? 'active' : ''} `}>
+                        <div className={`top ${campaign?.footer ? 'active' : ''} `}>
                             <div className={`check`}>
                                 <FaCheck />
                             </div>
@@ -834,33 +834,6 @@ export default function DetailCampaigns() {
                                 <p className="title">Footer</p>
                                 <span className="desc approve">Aprobado!</span>
                             </div>
-
-
-                            {editActive.domain == true ?
-                                <>
-                                    <div className="option">
-                                        <div className="search-result">
-                                            {domains?.map((element, key) => (
-                                                <div className="result" key={54}>
-                                                    <div className="info">
-                                                        <p>{element.domain}</p>
-                                                        <span>Correo: {element.domain_email}</span>
-                                                        <button className="select" onClick={useDomain} value={element.id_domain}><IoPushOutline /></button>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </>
-                                :
-                                <div className="right">
-                                    <button onClick={(ev) => { ActiveList("domain"); getMyDomains() }}>Editar</button>
-                                </div>
-                            }
-
-
-
-
                         </div>
 
                     </div>
@@ -901,7 +874,7 @@ export default function DetailCampaigns() {
 
                                     :
                                     <div className="right">
-                                        <button onClick={(ev) => { ActiveList("affair") }}>Editar</button>
+                                        <button onClick={(ev) => { ActiveList("affair") }}>Seleccionar</button>
                                     </div>
                                 }
                             </div>
@@ -962,7 +935,7 @@ export default function DetailCampaigns() {
                                                                 <img src={PreviewTemplate(UserInfo?.company?.folder_sftp, campaign?.template?.preview_image)} alt="" />
 
                                                                 {campaign?.template?.json ?
-                                                                    <Link to={`/ editor / canvas / ${campaign?.template?.id_template}?campaign=` + params.id}>Editar plantilla</Link>
+                                                                    <Link to={`/ editor / canvas / ${campaign?.template?.id_template}?campaign=` + params.id}>Seleccionar plantilla</Link>
                                                                     :
 
                                                                     <>
@@ -1011,7 +984,7 @@ export default function DetailCampaigns() {
                         }
 
                         {editActive.body == false ? <div className="right">
-                            <button onClick={(ev) => { ActiveList("body") }}>Editar</button>
+                            <button onClick={(ev) => { ActiveList("body") }}>Seleccionar</button>
                         </div> : ""}
 
                     </div>

@@ -20,12 +20,7 @@ export const AuthProvider = (params) => {
                 axios.post(API_URL + "/api/get/company", formData, { withCredentials: true })
                     .then((response) => { return response.data })
                     .then((data) => {
-                        setUserInfo(prevData => {
-                            return {
-                                ...prevData,
-                                company: data
-                            };
-                        });
+                       
 
             
 
