@@ -1,93 +1,78 @@
-import axios from "axios"
-import { useEffect } from "react"
-import { API_URL } from "../../../ExportUrl"
-import { useState } from "react"
-import { useContext } from "react"
-import { AuthContext } from "../../../Context/AuthContext"
-import MenuContacts from "../../../Components/App/Contacts/MenuContacts"
+import axios from "axios";
+import { useEffect, useState, useContext } from "react";
+import { API_URL } from "../../../ExportUrl";
+import { AuthContext } from "../../../Context/AuthContext";
+import ReusableTable from "../../../Components/App/ReusableTable";
+import "../../../Styles/css/custom-table.css";
 
 export default function MyContacts() {
+    const [contacts, setContacts] = useState([]);
+    const { UserInfo } = useContext(AuthContext);
 
-    const [contacts, setContacts] = useState([])
+    // Función para obtener contactos desde la API
+    const fetchContacts = async (search = "", last_id = null) => {
+        try {
+            const formData = new FormData();
+            formData.append("id_company", UserInfo?.company?.id_company || "");
+            if (search) formData.append("search", search);
+            if (last_id) formData.append("last_id", last_id);
 
-    const { UserInfo } = useContext(AuthContext)
-
-    function Contacts(search, last_id) {
-
-        let formData = new FormData()
-
-        if (search) {
-
+            const response = await axios.post(`${API_URL}/api/get/contacts`, formData, { withCredentials: true });
+            setContacts(response.data?.result || []);
+        } catch (error) {
+            console.error("Error fetching contacts:", error);
         }
-
-        formData.append("id_company", UserInfo?.company?.id_company)
-
-        axios.post(API_URL + "/api/get/contacts", formData, { withCredentials: true })
-            .then((response) => { return response.data })
-            .then((data) => {
-                setContacts(data.result)
-            })
-
-    }
-
+    };
 
     useEffect(() => {
-        Contacts()
-    }, [])
+        fetchContacts();
+    }, []);
+
+    // Columnas configuradas para la tabla reutilizable
+    const columns = [
+        { key: "email", label: "Email" },
+        { key: "name", label: "Nombre" },
+        { key: "lastname", label: "Apellido" },
+        { key: "phone", label: "Teléfono" },
+        {
+            key: "status",
+            label: "Estatus",
+            render: (value) => (
+                <span className={`status-badge ${value === "Activo" ? "badge-green" : "badge-red"}`}>
+                    {value || "Activo"}
+                </span>
+            ),
+        },
+        {
+            key: "actions",
+            label: "Acciones",
+            render: (_, row) => (
+                <button onClick={() => console.log(`Editar contacto ${row.email}`)} className="action-button">
+                    ✏️
+                </button>
+            ),
+        },
+    ];
 
     return (
-        <>
+        <div>
             <div className="page-info">
-                <div className="">
+                <div>
                     <p className="title">Mis Contactos</p>
-                    <span>Esta es tu lista de contactos, puedes revisarlo y exportarlos</span>
+                    <span>Esta es tu lista de contactos, puedes revisarlos y exportarlos</span>
                 </div>
             </div>
 
-            <MenuContacts />
-
-            <div className="box box-padding">
-
-
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Email</td>
-                            <td>Nombre</td>
-                            <td>Apellido</td>
-                            <td>Dni</td>
-                            <td>Numero</td>
-                            <td>Sexo</td>
-                            <td>Email Verificado</td>
-                            <td>Estatus</td>
-
-                        </tr>
-
-                        {contacts.map((element, key) => (
-
-                            <tr>
-                                <td><span>{element.email ? element.email : 'No disponible'}</span></td>
-                                <td><span>{element.name ? element.name : 'No disponible'}</span></td>
-                                <td><span>{element.lastname ? element.lastname : 'No disponible'}</span></td>
-
-                                <td><span>{element.dni ? element.dni : 'No disponible'}</span></td>
-
-                                <td><span>{element.phone ? element.phone : 'No disponible'}</span></td>
-
-                                <td><span>{element.sexo ? element.name : 'No disponible'}</span></td>
-
-                                <td><span>{element.email_verified ? element.email_Verified : 'No disponible'}</span></td>
-
-                                <td><span>{element.status ? element.status : 'No disponible'}</span></td>
-
-                            </tr>
-
-                        ))}
-                    </tbody>
-                </table>
-
-
+            <div className="table-container">
+                <ReusableTable
+                    data={contacts}
+                    columns={columns}
+                    onSearch={(query) => fetchContacts(query)}
+                    enablePagination
+                    enableExport
+                    enableRowSelection
+                />
             </div>
-        </>
-    )
+        </div>
+    );
 }

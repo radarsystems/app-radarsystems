@@ -6,6 +6,7 @@ module.exports = {
     './components/**/*.{ts,jsx}',
     './app/**/*.{ts,jsx}',
     './src/**/*.{ts,jsx}',
+    './node_modules/@tremor/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     container: {

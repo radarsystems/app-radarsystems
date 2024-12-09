@@ -1,0 +1,197 @@
+/* Contenedor de la tabla */
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Cabecera de la tabla */
+.table-header {
+    background: linear-gradient(135deg, #584aff, #7c3aed);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.table-header th {
+    padding: 5px 16px;
+    text-align: center;
+}
+
+/* Estilos para filas */
+.table-container .table-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.table-container .table-row:nth-child(even) {
+    background: rgba(101, 101, 101, 0.1);
+}
+
+.table-container .table-row:nth-child(odd) {
+    background: rgb(255, 255, 255);
+}
+
+.table-row:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para celdas */
+.table-cell {
+    padding: 12px 16px;
+    color: #000000;
+    font-size: 0.99rem;
+    text-align: center;
+}
+
+/* Estilo de la paginación */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding: 0 16px;
+
+
+}
+
+.pagination-info {
+    font-size: 17px;
+    color: #000000;
+    text-align: right;
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    border-color: black;
+
+    border-radius: 10px;
+}
+
+.pagination-button,
+.pagination-number {
+    border: 1px solid black !important;
+    border-width: 1px;
+    border-radius: 10px;
+    color: black !important;
+    padding: 10px 12px;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.pagination-number {
+    background-color: transparent;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.pagination-number.active {
+    background-color: #270463;
+    color: #fff;
+    font-weight: bold;
+}
+
+.pagination-button:hover,
+.pagination-number:hover {
+    background-color: #6d5ef9;
+}
+
+.pagination-button:disabled,
+.pagination-number:disabled {
+    background-color: transparent;
+    color: rgba(98, 14, 244, 0.4);
+    cursor: not-allowed;
+}
+
+.row-checkbox {
+    width: 13px;
+    /* Ajusta el ancho del checkbox */
+    height: 13px;
+    /* Ajusta la altura del checkbox */
+    transform: scale(1.2);
+    /* Escala el tamaño global del checkbox */
+    margin: 0 8px;
+    /* Opcional: espacio alrededor del checkbox */
+    cursor: pointer;
+    /* Cambia el cursor al pasar por encima */
+}
+
+/* Controles de la tabla */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* Estilo del buscador */
+.search-input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 30%;
+}
+
+/* Botón Exportar con opciones */
+.export-dropdown {
+    position: relative;
+}
+
+.export-button {
+    padding: 8px 12px;
+    border: 1px solid #7c3aed;
+    background-color: #7c3aed;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.export-button:hover {
+    background-color: #5a2dbf;
+
+}
+
+.export-options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.export-dropdown:hover .export-options {
+    display: block;
+}
+
+.export-options button {
+    padding: 8px 12px;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+}
+
+.export-options button:hover {
+    background-color: rgba(124, 58, 237, 0.1);
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin: 0 8px;
+}

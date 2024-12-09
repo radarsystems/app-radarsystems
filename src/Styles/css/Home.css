@@ -1,7 +1,7 @@
 body[theme="ligth"] {
     --details-grey: #abbee31a;
     --details-ad: #ff000014;
-    --details-green: #4cce89;
+    --details-green: #fff;
     --background-body: #f5f7fa;
     --text-white: #000;
     --left-menu: #fff;
@@ -12,7 +12,7 @@ body[theme="ligth"] {
     --editors-background: #fff;
     --box-shadow: transparent;
     --box-background: #fff;
-    --border-input: #cdcdcd;
+    --border-input: #000000;
 }
 
 body[theme="dark"] {
@@ -34,7 +34,7 @@ body[theme="dark"] {
 
 
 :root {
-    --text-fullwhite: #fff;
+    --text-fullwhite: #000000;
     --details-purple2: #4036bb;
     --details-blue: #584aff;
     --details-grey: #abbee31a;
@@ -219,7 +219,7 @@ svg {
 .header-top .right .company .body img {
     max-width: 31px;
     width: 31px;
-    border-radius: 100px;
+    border-radius: 10px;
     height: 31px;
     position: relative;
     right: 4px;
@@ -228,21 +228,27 @@ svg {
 .header-top .right .company .body span {
     font-size: 14px;
     margin: auto;
-    padding-left: 5px;
+    padding-left: 7px;
     color: var(--text-white);
 }
 
 .header-top .right .company .body {
     display: flex;
     margin: auto;
-    background: #e5e5ef;
+    background: #fefefe;
     padding-top: 5px;
     padding-left: 10px;
     padding-right: 15px;
     padding-bottom: 5px;
-    border-radius: 93px;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 10px;
     color: black !important;
     font-weight: 600;
+}
+
+.header-top .right .company .body:hover {
+    background: rgb(216, 216, 216);
 }
 
 
@@ -326,24 +332,34 @@ svg {
 .header-top .right .name {
     display: inline-block;
     padding: 10px;
-    padding-right: 10px;
-    padding-left: 12px;
+    padding-right: 20px;
+    padding-left: 20px;
     cursor: pointer;
     margin-bottom: auto;
     font-size: 13px;
     color: var(--text-white);
     font-weight: 600;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 10px;
 }
+
+.header-top .right .name:hover {
+    background: rgb(216, 216, 216);
+}
+
 
 .header-top .right .name i {
     padding-left: 5px;
 }
 
 .header-top .right .user img {
-    border-radius: 98px;
-    max-width: 35px;
+    border-radius: 10px;
+    max-width: 41px;
     display: inline-block;
     object-fit: cover;
+    border-width: 1px;
+    border-color: black;
 }
 
 .app .page {
@@ -413,6 +429,12 @@ svg {
     width: max-content;
     margin: auto;
     color: var(--text-fullwhite) !important;
+    transition: background 0.3s, color 0.3s;
+
+}
+
+.app .page-info .right .add:hover {
+    background: rgb(92, 98, 250);
 }
 
 .app .page-info .right {
@@ -433,23 +455,34 @@ svg {
     border-radius: 7px !important;
     font-size: 14px !important;
     background-color: transparent;
-    color: #5e6ff4;
+    color: #000000;
     font-weight: 600;
     border: 2px solid #5e6ff4;
 }
 
+.app .page-info .right button:hover {
+    background: #5e6ff4;
+}
+
 .app .page-info .right .go-wizard {
-    display: block;
+    display: flex;
     margin-left: 10px;
     padding: 10px;
     padding-right: 15px;
     padding-left: 15px;
     border-radius: 93px;
     font-size: 14px;
-    background: var(--details-blue);
-    color: white;
+    background: var(--details-green);
+    color: var(--text-fullwhite) !important;
     font-weight: 600;
-    border: 0px;
+    border: 2px solid #5e6ff4;
+    width: max-content;
+    margin: auto;
+    transition: background 0.3s, color 0.3s;
+}
+
+.app .page-info .right .go-wizard:hover {
+    background: #5e6ff4;
 }
 
 .app .box {
@@ -459,6 +492,8 @@ svg {
     box-shadow: 0px 0px 8px var(--box-shadow);
     margin-bottom: 20px;
     border: 1px solid var(--border-input);
+    border-color: black;
+    border-width: 1px;
 }
 
 .app .box.select-list {
@@ -1356,7 +1391,7 @@ button i {
 
 
 .app .box .item.flex .actions button.green {
-    background: var(--details-green);
+    background: rgb(2, 246, 22);
     color: white;
 }
 
@@ -1369,6 +1404,40 @@ button i {
     color: var(--text-white);
     transition: .2s ease;
     border: 1px solid var(--border-input);
+}
+
+.app .box .item.flex .actions .edit-btn {
+    border-radius: 90px;
+    padding: 10px;
+    width: 45px;
+    background: transparent;
+    margin-right: 8px;
+    color: var(--text-white);
+    transition: .2s ease;
+    border: 1px solid var(--border-input);
+}
+
+.app .box .item.flex .actions .edit-btn:hover {
+    background: rgb(219, 255, 129);
+}
+
+.app .box .item.flex .actions .remove-btn {
+    border-radius: 90px;
+    padding: 10px;
+    width: 45px;
+    background: transparent;
+    margin-right: 8px;
+    color: var(--text-white);
+    transition: .2s ease;
+    border: 1px solid var(--border-input);
+}
+
+.app .box .item.flex .actions .remove-btn:hover {
+    background: rgb(255, 5, 5);
+}
+
+.app .box .item.flex .actions button:hover {
+    background: rgb(189, 188, 188);
 }
 
 .app .box .item button:hover {
@@ -2336,11 +2405,13 @@ table th {
 
 .wizard-home .actions .next {
     display: block;
-    background-color: black;
+    background-color: transparent;
     padding: 10px 15px;
     border-radius: 25px;
     color: var(--text-fullwhite);
     font-size: 14px;
+    border: 1xpx solid #000;
+
 }
 
 .menu-top-right {
@@ -4253,4 +4324,221 @@ table th {
 .app .box .item.flex .center {
     justify-content: center;
     text-align: center !important;
+}
+
+/* Estilo base */
+.progress-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.circle {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #e5e7eb;
+    /* Fondo del círculo */
+    border-radius: 50%;
+}
+
+.mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 120px, 120px, 60px);
+}
+
+.mask.full {
+    clip: rect(0, 60px, 120px, 0);
+}
+
+.fill {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #4ade80;
+    /* Color del progreso */
+    border-radius: 50%;
+    clip: rect(0, 60px, 120px, 0);
+    transform: rotate(234deg);
+    /* Ajusta el ángulo según el porcentaje */
+    transform-origin: center;
+}
+
+.mask.half .fill {
+    background-color: #3b82f6;
+    /* Color del segundo medio */
+}
+
+.inside-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #374151;
+    animation: pulse 2s infinite;
+}
+
+/* Hover: Escalar y Cambiar Brillo */
+.progress-circle:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+/* Tarjetas del home */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border-radius: 8px;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: #8bf9ea;
+}
+
+.card .metric {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2564eb;
+}
+
+/* Fondo del círculo */
+.circle-bg {
+    fill: none;
+    stroke: #e6e6e6;
+    /* Color de fondo */
+    stroke-width: 10;
+}
+
+/* Círculo de progreso */
+.circle-progress {
+    fill: none;
+    stroke: #7d92f9;
+    /* Cambia el color dinámicamente según el saldo */
+    stroke-width: 10;
+    stroke-linecap: round;
+    /* Extremos redondeados */
+    stroke-dasharray: 283;
+    /* Perímetro del círculo */
+    stroke-dashoffset: 283;
+    /* Oculta el progreso por defecto */
+    transition: stroke-dashoffset 0.6s ease;
+    /* Animación suave */
+}
+
+/* Texto dentro del círculo */
+.balance-value {
+    font-size: 16px;
+    font-weight: bold;
+    fill: #333;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #333;
+}
+
+/* Contenedor del SVG */
+.progress-circle {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+/* Información de vencimiento */
+.expiry-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.expiry-info {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Tooltip personalizado */
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    /* Por defecto, tooltip arriba */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Variantes de posición */
+
+/* Tooltip abajo */
+[data-tooltip-position="bottom"]::after {
+    top: 100%;
+    bottom: auto;
+    transform: translateX(-50%);
+}
+
+/* Tooltip a la izquierda */
+[data-tooltip-position="left"]::after {
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    right: 100%;
+    transform: translateY(-50%);
+}
+
+/* Tooltip a la derecha */
+[data-tooltip-position="right"]::after {
+    top: 50%;
+    bottom: auto;
+    left: 100%;
+    transform: translateY(-50%);
 }

@@ -83,7 +83,8 @@ export default function HeaderLeft({ MenuLeft }) {
                     <li>
                         <button onClick={ToggleChild}><i className="icon"><IoLinkOutline /></i> Configuracion <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
-                            <li><Link to="/settings-account/account">Cuenta</Link></li>
+                            <li><Link to="/settings-account/account">Mi Cuenta</Link></li>
+                            <li><Link to="/companys">Mis Empresas</Link></li>
                             <li><Link to="/settings-account/security">Seguridad</Link></li>
                             <li><Link to="/settings-account/footer">Footer</Link></li>
                             <li><Link to="/settings-account/domains">Dominios</Link></li>
@@ -92,27 +93,14 @@ export default function HeaderLeft({ MenuLeft }) {
                     </li>
 
 
-                    <li className={opacityMenu ? 'opacity' : ''}>
-                        <button onClick={ToggleChild}><i className="icon"><Icon icon="tabler:apps" /></i> Kit Marketing <i className="arrow"><MdArrowForwardIos /></i></button>
-                        <ul>
-                            <li><Link to="/buttonsqr">Botonera QR</Link></li>
-                            <li><Link to="/buttons">Botonera URL</Link></li>
-                            <li><Link to="/templates">Boletines</Link></li>
-                            {/* <li><Link to="/surveys">Formulario</Link></li> */}
-                            {/*<li><Link to="/landings">Landings</Link></li>*/}
-                            <li><Link to="/editor/canvas">Editor Canvas</Link></li>
-                            <li><Link to="/editor/buttons">Editor Botonera</Link></li>
-                        </ul>
-                    </li>
-
-                    <li>
+                    {/* <li>
                         <button onClick={ToggleChild}><i className="icon"><IoBusinessOutline /></i> Cuentas <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
                             <li><Link to="/companys">Mis Cuentas</Link></li>
                             <li><Link to="/companys/add">Crear Cuenta</Link></li>
 
                         </ul>
-                    </li>
+                    </li>*/}
 
 
 
@@ -136,17 +124,7 @@ export default function HeaderLeft({ MenuLeft }) {
                             <li><Link to="/campaigns/new">Crear Campana</Link></li>
                         </ul>
                     </li>
-
-                    <li className={""}>
-                        <button onClick={(ev) => { window.location.href = "https://workflows.radarsystems.net/" }}><i className="icon"><Icon icon="octicon:workflow-16" /> </i> Workflow <i className="arrow"><MdArrowForwardIos /></i></button>
-                    </li>
-
-                    <li className={""}>
-                        <button onClick={(ev) => { window.location.href = "https://tools.radarsystems.net/" }}><i className="icon"><Icon icon="octicon:workflow-16" /> </i> Herramientas <i className="arrow"><MdArrowForwardIos /></i></button>
-                    </li>
-
                     <li className={opacityMenu ? '' : ''}><button onClick={ToggleChild}><i className="icon"><Icon icon="material-symbols:contacts-outline" /></i> Listas <i className="arrow"><MdArrowForwardIos /></i></button>
-
                         <ul>
                             <li><Link to="/contacts">Mis Contactos</Link></li>
                             <li><Link to="/contacts/lists">Mis Listas</Link></li>
@@ -156,15 +134,46 @@ export default function HeaderLeft({ MenuLeft }) {
                             <li><Link to="/contacts/segments">Segmentos</Link></li>
                         </ul>
                     </li>
+                    <li className={""}>
+                        <button onClick={ToggleChild}><i className="icon"><Icon icon="ri:links-fill" /></i> Embudo de Conversion <i className="arrow"><MdArrowForwardIos /></i></button>
+                        <ul>
+                            <li><Link to="/shorturls/campaigns">Mis Campañas</Link></li>
+                            <li><Link to="/shorturls/campaigns/add">Crear Campana</Link></li>
+                            <li><Link to="/shorturls">Mis Enlaces</Link></li>
+                            <li><Link to="/shorturls/add">Crear Enlace</Link></li>
+                        </ul>
+                    </li>
+
+
+                    <li className={opacityMenu ? 'opacity' : ''}>
+                        <button onClick={ToggleChild}><i className="icon"><Icon icon="tabler:apps" /></i> Kit Marketing <i className="arrow"><MdArrowForwardIos /></i></button>
+                        <ul>
+                            <li><Link to="/buttonsqr">Botonera QR</Link></li>
+                            <li><Link to="/buttons">Botonera URL</Link></li>
+                            <li><Link to="/templates">Boletines</Link></li>
+                            {/* <li><Link to="/surveys">Formulario</Link></li> */}
+                            {/*<li><Link to="/landings">Landings</Link></li>*/}
+                            <li><Link to="/editor/canvas">Editor Canvas</Link></li>
+                            <li><Link to="/editor/buttons">Editor Botonera</Link></li>
+                        </ul>
+                    </li>
+
+                    <li className={opacityMenu ? '' : ''}><button onClick={ToggleChild}><i className="icon"><Icon icon="octicon:workflow-16" /></i> Automatización <i className="arrow"><MdArrowForwardIos /></i></button>
+                        <ul>
+                            <li><Link to="https://workflows.radarsystems.net/">WorkFlow</Link></li>
+                            <li><Link to="">Programacion</Link></li>
+                            <li><Link to="">Auto-Responders</Link></li>
+                        </ul>
+                    </li>
+
+                    <li className={""}>
+                        <button onClick={(ev) => { window.location.href = "https://tools.radarsystems.net/" }}><i className="icon"><Icon icon="octicon:workflow-16" /> </i> Herramientas <i className="arrow"><MdArrowForwardIos /></i></button>
+                    </li>
 
                     <li className={opacityMenu ? '' : ''}><button onClick={ToggleChild}><i className="icon"><Icon icon="zmdi:portable-wifi" /></i> Portal Cautivo <i className="arrow"><MdArrowForwardIos /></i></button>
                     </li>
                     <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}><button onClick={ToggleChild}><i className="icon"><IoTimerOutline /></i> Automatizacion <i className="arrow"><MdArrowForwardIos /></i></button>
-                        <ul>
-                            <li><Link>WorkFlow</Link></li>
-                            <li><Link>Programacion</Link></li>
-                            <li><Link>Auto-Responders</Link></li>
-                        </ul>
+
                     </li>
 
                     <li className={opacityMenu ? 'opacity' : '' + viewMenuSpecial}>
@@ -215,16 +224,6 @@ export default function HeaderLeft({ MenuLeft }) {
                     </li>
 
 
-                    <li className={""}>
-                        <button onClick={ToggleChild}><i className="icon"><Icon icon="ri:links-fill" /></i> Embudo de Conversion <i className="arrow"><MdArrowForwardIos /></i></button>
-                        <ul>
-                            <li><Link to="/shorturls/campaigns">Mis Campañas</Link></li>
-                            <li><Link to="/shorturls/campaigns/add">Crear Campana</Link></li>
-                            <li><Link to="/shorturls">Mis Enlaces</Link></li>
-                            <li><Link to="/shorturls/add">Crear Enlace</Link></li>
-                        </ul>
-                    </li>
-
                     <li className={"" + '' + viewMenuSpecial}>
                         <button onClick={ToggleChild}><i className="icon"><IoQrCode /></i> Botonera QR <i className="arrow"><MdArrowForwardIos /></i></button>
                         <ul>
@@ -258,7 +257,7 @@ export default function HeaderLeft({ MenuLeft }) {
 
                         </ul>
                     </li>
-                </ul>
+                </ul >
             </div >
         </>
     )

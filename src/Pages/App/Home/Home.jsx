@@ -7,6 +7,11 @@ import { Time } from "../../../Functions/Global"
 import { IoArrowForward, IoEyeOutline, IoStatsChartOutline } from "react-icons/io5"
 import ModalSmall from "../../../Components/App/ModalSmall"
 import NotFoundItems from "../../../Components/App/NotFoundItems"
+import { Card, Metric, Text, Flex, Icon, BarChart } from "@tremor/react";
+import "../../../Styles/css/custom-table.css";
+import StatsDashboard from "../../../Components/App/StatsDashboard";
+import ReusableTable from "../../../Components/App/ReusableTable";
+
 
 export default function Home() {
 
@@ -91,6 +96,127 @@ export default function Home() {
             })
 
     }
+    const columns = [
+        {
+            key: "name",
+            label: <span data-tooltip="Email Marketing" data-tooltip-position="bottom">Campañas</span>,
+            render: (value, row) => (
+                <div>
+                    <span>{value}</span>
+                    <br />
+                    <small>{Time(row.time_add)}</small>
+                </div>
+            ),
+        },
+        { key: "send", label: <span data-tooltip="Enviados" data-tooltip-position="bottom">Env</span>, },
+        { key: "returned", label: <span data-tooltip="Devueltos" data-tooltip-position="bottom">DEV</span>, },
+        { key: "received", label: <span data-tooltip="Recibidos" data-tooltip-position="bottom">REC</span>, },
+        { key: "reads", label: <span data-tooltip="Leidos" data-tooltip-position="bottom">Leidos</span>, },
+        { key: "not_reads", label: <span data-tooltip="No Leidos" data-tooltip-position="bottom">No Leidos</span>, },
+        { key: "clicks", label: <span data-tooltip="Click" data-tooltip-position="bottom">Click</span>, },
+        { key: "spam_reports", label: <span data-tooltip="Reporte Spam" data-tooltip-position="bottom">Spam</span>, },
+        { key: "opt_out", label: <span data-tooltip="Opt. Out" data-tooltip-position="bottom">Opt. Out</span>, },
+        { key: "opt_net", label: <span data-tooltip="Opt. Net" data-tooltip-position="bottom">Opt. Net</span>, },
+        {
+            key: "id_campaign",
+            label: <span data-tooltip="Acciones" data-tooltip-position="bottom">Acciones</span>,
+            render: (value) => (
+                <Link to={`/campaigns/detail/${value}`}>
+                    <IoStatsChartOutline />
+                </Link>
+            ),
+
+        },
+    ];
+
+    const columnsem_mt = [
+        {
+            key: "name",
+            label: <span data-tooltip="Email Transaccional" data-tooltip-position="bottom">Campañas</span>,
+            render: (value, row) => (
+                <div>
+                    <span>{value}</span>
+                    <br />
+                    <small>{Time(row.time_add)}</small>
+                </div>
+            ),
+        },
+        { key: "send", label: <span data-tooltip="Enviados" data-tooltip-position="bottom">Env.</span>, },
+        { key: "returned", label: <span data-tooltip="Devueltos" data-tooltip-position="bottom">DEV</span>, },
+        { key: "rec", label: <span data-tooltip="Recibidos" data-tooltip-position="bottom">REC</span>, },
+        { key: "reads", label: <span data-tooltip="Leidos" data-tooltip-position="bottom">Leidos</span>, },
+        { key: "unread", label: <span data-tooltip="No Leidos" data-tooltip-position="bottom">No Leidos</span>, },
+        { key: "clicks", label: <span data-tooltip="Clicks" data-tooltip-position="bottom">Clicks</span>, },
+        { key: "spam", label: <span data-tooltip="Reporte Spam" data-tooltip-position="bottom">Spam</span>, },
+        { key: "optOut", label: <span data-tooltip="Opt. Out" data-tooltip-position="bottom">Opt. Out</span>, },
+        { key: "optNet", label: <span data-tooltip="Opt. Net" data-tooltip-position="bottom">Opt. Net</span>, },
+        {
+            key: "action",
+            label: <span data-tooltip="Acciones" data-tooltip-position="bottom">Acciones</span>,
+            render: (value) => (
+                <Link to={`/campaigns/detail/${value}`}>
+                    <IoStatsChartOutline />
+                </Link>
+            ),
+
+        },
+    ];
+    const columnsms = [
+        {
+            key: "name",
+            label: <span data-tooltip="Sms Marketing" data-tooltip-position="bottom">Campañas</span>,
+            render: (value, row) => (
+                <div>
+                    <span>{value}</span>
+                    <br />
+                    <small>{Time(row.time_add)}</small>
+                </div>
+            ),
+        },
+        { key: "send", label: <span data-tooltip="Enviados" data-tooltip-position="bottom">Env.</span>, },
+        { key: "returned", label: <span data-tooltip="Devueltos" data-tooltip-position="bottom">Dev.</span>, },
+        { key: "reads", label: <span data-tooltip="Recibidos" data-tooltip-position="bottom">Rec.</span>, },
+        { key: "clicks", label: <span data-tooltip="Click" data-tooltip-position="bottom">Click.</span>, },
+        {
+            key: "action",
+            label: <span data-tooltip="Acciones" data-tooltip-position="bottom">Acciones</span>,
+            render: (value) => (
+                <Link to={`/campaigns/detail/${value}`}>
+                    <IoStatsChartOutline />
+                </Link>
+            ),
+
+        },
+    ];
+    const columnsms_mt = [
+        {
+            key: "name",
+            label: <span data-tooltip="Sms Transaccional" data-tooltip-position="bottom">Campañas</span>,
+            render: (value, row) => (
+                <div>
+                    <span>{value}</span>
+                    <br />
+                    <small>{Time(row.time_add)}</small>
+                </div>
+            ),
+        },
+        { key: "send", label: <span data-tooltip="Enviados" data-tooltip-position="bottom">Env.</span>, },
+        { key: "returned", label: <span data-tooltip="Devueltos" data-tooltip-position="bottom">Dev.</span>, },
+        { key: "reads", label: <span data-tooltip="Recibidos" data-tooltip-position="bottom">Rec.</span>, },
+        { key: "clicks", label: <span data-tooltip="Click" data-tooltip-position="bottom">Click.</span>, },
+        {
+            key: "action",
+            label: <span data-tooltip="Acciones" data-tooltip-position="bottom">Acciones</span>,
+            render: (value) => (
+                <Link to={`/campaigns/detail/${value}`}>
+                    <IoStatsChartOutline />
+                </Link>
+            ),
+
+        },
+    ];
+
+
 
     useEffect(() => {
         getLastCampaigns("em")
@@ -102,6 +228,8 @@ export default function Home() {
         getSurveys()
         getStatsGlobalHome()
     }, [])
+
+
 
     return (
         <>
@@ -117,22 +245,24 @@ export default function Home() {
             </div>
 
             <div className="body-stat">
-                <div className="row">
+
+                <div className="row"> {/*
                     <div className="col-md-3">
                         <div className="box stat box-padding">
                             <div className="top">
-                                <p>Total Envios Emails</p>
+                                <p>Total Contactos Unicos</p>
                             </div>
 
                             <div className="resp-number">
-                                <p>{stats.total_sends}</p>
+                                <p>{stats.total_campaigns}</p>
                             </div>
                         </div>
                     </div>
+
                     <div className="col-md-3">
                         <div className="box stat box-padding">
                             <div className="top">
-                                <p>Total Envios Sms</p>
+                                <p>Total contactos en listas </p>
                             </div>
 
                             <div className="resp-number">
@@ -143,11 +273,11 @@ export default function Home() {
                     <div className="col-md-3">
                         <div className="box stat box-padding">
                             <div className="top">
-                                <p>Campañas Creadas</p>
+                                <p>Total Listas </p>
                             </div>
 
                             <div className="resp-number">
-                                <p>{stats.total_campaigns}</p>
+                                <p>{stats.total_sends}</p>
                             </div>
                         </div>
                     </div>
@@ -156,7 +286,7 @@ export default function Home() {
                     <div className="col-md-3">
                         <div className="box stat box-padding">
                             <div className="top">
-                                <p>Total Contactos</p>
+                                <p>Total Campañas Enviadas </p>
                             </div>
 
                             <div className="resp-number">
@@ -165,210 +295,255 @@ export default function Home() {
                         </div>
                     </div>
 
+                    <div className="col-md-3">
+                        <div className="box stat box-padding">
+                            <div className="top">
+                                <p>Total Emails marketing</p>
+                            </div>
 
-                    <div className="col-md-6">
-                        <div className="box stat box-padding hr">
+                            <div className="resp-number">
+                                <p>{stats.total_contacts}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="box stat box-padding">
                             <div className="top">
-                                <p>Top's Campañas EMAIL</p>
-                                <span>Ve las campanas mas demandadas</span>
-                                <span></span>
+                                <p>Total Emails Transaccionales</p>
+                            </div>
+
+                            <div className="resp-number">
+                                <p>{stats.total_contacts}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="box stat box-padding">
+                            <div className="top">
+                                <p>Total SMS Marketing</p>
+                            </div>
+
+                            <div className="resp-number">
+                                <p>{stats.total_contacts}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="box stat box-padding">
+                            <div className="top">
+                                <p>Total SMS Transaccionales</p>
+                            </div>
+
+                            <div className="resp-number">
+                                <p>{stats.total_contacts}</p>
+                            </div>
+                        </div>
+                    </div>   */}
+                    <div className="p-6">
+                        <h1 className="text-2xl font-bold mb-4">Panel de Estadísticas</h1>
+                        <StatsDashboard stats={stats} />
+                    </div>
+                    <div className="col-md-6">
+                        <div className="box stat box-padding hr shadow-lg rounded-lg bg-white p-4">
+                            <div className="top">
+                                <p className="font-semibold text-lg text-gray-700 mb-4">Saldo SMS Marketing</p>
+                                <div className="balance-info flex items-center justify-between">
+                                    {/* Circular Progress Bar */}
+                                    <div className="progress-circle" data-tooltip="Saldo consumido" data-tooltip-position="top" >
+                                        <div className="circle">
+                                            <div className="mask full">
+                                                <div className="fill"></div>
+                                            </div>
+                                            <div className="mask half">
+                                                <div className="fill"></div>
+                                            </div>
+                                            <div className="inside-circle">
+                                                65%
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Expiry Info */}
+                                    <div className="expiry-info ml-4">
+                                        <p className="text-sm text-gray-500 mb-1">
+                                            Saldo disponible: <strong className="text-gray-800">6,500 SMS</strong>
+                                        </p>
+                                        <p className="text-sm text-gray-500">
+                                            Vence: <strong className="text-gray-800">15/12/2024</strong>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="box stat box-padding hr">
+                        <div className="box stat box-padding hr shadow-lg rounded-lg bg-white p-4">
                             <div className="top">
-                                <p>Top's Campañas SMS</p>
-                                <span>Ve las campanas mas demandadas</span>
-                                <span></span>
+                                <p className="font-semibold text-lg text-gray-700 mb-4">Saldo SMS Transaccional</p>
+                                <div className="balance-info flex items-center justify-between">
+                                    {/* Circular Progress Bar */}
+                                    <div className="progress-circle" data-tooltip="Saldo consumido">
+                                        <div className="circle">
+                                            <div className="mask full">
+                                                <div className="fill"></div>
+                                            </div>
+                                            <div className="mask half">
+                                                <div className="fill"></div>
+                                            </div>
+                                            <div className="inside-circle">
+                                                35%
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Expiry Info */}
+                                    <div className="expiry-info ml-4">
+                                        <p className="text-sm text-gray-500 mb-1">
+                                            Saldo disponible: <strong className="text-gray-800">500 SMS</strong>
+                                        </p>
+                                        <p className="text-sm text-gray-500">
+                                            Vence: <strong className="text-gray-800">30/12/2024</strong>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div className="col-md-6">
+                        <div className="box stat box-padding hr shadow-lg rounded-lg bg-white p-4">
+                            <div className="top">
+                                <p className="font-semibold text-lg text-gray-700 mb-4">Saldo Email Marketing</p>
+                                <div className="balance-info flex items-center justify-between">
+                                    {/* Circular Progress Bar */}
+                                    <div className="progress-circle" data-tooltip="Saldo consumido">
+                                        <div className="circle">
+                                            <div className="mask full">
+                                                <div className="fill"></div>
+                                            </div>
+                                            <div className="mask half">
+                                                <div className="fill"></div>
+                                            </div>
+                                            <div className="inside-circle">
+                                                35%
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Expiry Info */}
+                                    <div className="expiry-info ml-4">
+                                        <p className="text-sm text-gray-500 mb-1">
+                                            Saldo disponible: <strong className="text-gray-800">500 SMS</strong>
+                                        </p>
+                                        <p className="text-sm text-gray-500">
+                                            Vence: <strong className="text-gray-800">30/12/2024</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="box stat box-padding hr shadow-lg rounded-lg bg-white p-4">
+                            <div className="top">
+                                <p className="font-semibold text-lg text-gray-700 mb-4">Saldo Email Transaccional</p>
+                                <div className="balance-info flex items-center justify-between">
+                                    {/* Circular Progress Bar */}
+                                    <div className="progress-circle" data-tooltip="Saldo consumido" data-tooltip-position="top">
+                                        <div className="circle">
+                                            <div className="mask full">
+                                                <div className="fill"></div>
+                                            </div>
+                                            <div className="mask half">
+                                                <div className="fill"></div>
+                                            </div>
+                                            <div className="inside-circle">
+                                                85%
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Expiry Info */}
+                                    <div className="expiry-info ml-4">
+                                        <p className="text-sm text-gray-500 mb-1">
+                                            Saldo disponible: <strong className="text-gray-800">500 SMS</strong>
+                                        </p>
+                                        <p className="text-sm text-gray-500">
+                                            Vence: <strong className="text-gray-800">30/12/2024</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div className="col-md-12">
                         <div className="box stat box-padding hr">
-                            <div className="top">
-                                <p>Ultimas Campañas Email Marketing</p>
-                                <span>Ve las campanas mas demandadas</span>
-                                <span></span>
+                            <div className="table-container">
+                                <h2 className="text-lg font-semibold mb-2">Últimas Campañas Email Marketing</h2>
+                                <ReusableTable
+                                    data={lastCampaignEmail} // Cambia según el tipo de campaña
+                                    columns={columns}
+                                    enablePagination={true}
+                                    enableExport={true}
+                                    enableRowSelection={false}
+                                />
                             </div>
-
-                            <table className="stat-home">
-
-                                <tr>
-                                    <td>Campaña</td>
-                                    <td>Env.</td>
-                                    <td>Dev.</td>
-                                    <td>Rec.</td>
-                                    <td>Lei.</td>
-                                    <td>No Lei.</td>
-                                    <td>Click.</td>
-                                    <td>Rep. Spam</td>
-                                    <td>Opt. Out</td>
-                                    <td>Opt. Net</td>
-                                    <td>
-                                        <IoStatsChartOutline />
-                                    </td>
-
-
-
-                                </tr>
-
-
-                                {lastCampaignEmail.map((element, key) => (
-                                    <tr id={key}>
-                                        <td><span>{element.name}</span>
-                                            <br />
-                                            {Time(element.time_add)}
-                                        </td>
-                                        <td>{element.send}</td>
-                                        <td>{element.send}</td>
-                                        <td>{element.returned}</td>
-                                        <td>{element.reads}</td>
-                                        <td>{element.clicks}</td>
-                                        <td>{element.clicks}</td>
-                                        <td>{element.clicks}</td>
-                                        <td>{element.clicks}</td>
-                                        <td>{element.clicks}</td>
-                                        <td><Link to={"/campaigns/detail/" + element.id_campaign}><IoStatsChartOutline /></Link></td>
-                                    </tr>
-                                ))}
-                            </table>
 
                         </div>
                     </div>
-
                     <div className="col-md-12">
                         <div className="box stat box-padding hr">
-                            <div className="top">
-                                <p>Ultimas Campañas Email Transaccional (MT)</p>
-                                <span>Ve las campanas mas demandadas</span>
-                                <span></span>
+                            <div className="table-container">
+                                <h2 className="text-lg font-semibold mb-2">Últimas Campañas Email Transacional</h2>
+                                <ReusableTable
+                                    data={lastCampaignEmailMt}
+                                    columns={columnsem_mt}
+                                    enablePagination={true}
+                                    enableExport={true}
+                                    enableRowSelection={false}
+                                />
                             </div>
-
-                            <table className="stat-home">
-
-                                <tr>
-                                    <td>Campaña</td>
-                                    <td>Env.</td>
-                                    <td>Dev.</td>
-                                    <td>Rec.</td>
-                                    <td>Lei.</td>
-                                    <td>No Lei.</td>
-                                    <td>Click.</td>
-                                    <td>Rep. Spam</td>
-                                    <td>Opt. Out</td>
-                                    <td>Opt. Net</td>
-                                    <td><IoStatsChartOutline /></td>
-
-
-
-                                </tr>
-
-
-                                {lastCampaignEmailMt.map((element, key) => (
-                                    <tr id={key}>
-                                        <td><span>{element.name}</span>
-                                            <br />
-                                            {Time(element.time_add)}
-                                        </td>
-                                        <td>{element.send}</td>
-                                        <td>{element.send}</td>
-                                        <td>{element.returned}</td>
-                                        <td>{element.reads}</td>
-                                        <td>{element.clicks}</td>
-                                        <td>{element.clicks}</td>
-                                        <td>{element.clicks}</td>
-                                        <td>{element.clicks}</td>
-                                        <td>{element.clicks}</td>
-                                        <td><Link><IoStatsChartOutline /></Link></td>
-                                    </tr>
-                                ))}
-                            </table>
-
                         </div>
                     </div>
 
                     <div className="col-md-6">
                         <div className="box stat box-padding hr">
-                            <div className="top">
-                                <p>Ultimas Campañas Sms Marketing</p>
-                                <span>Ve las campanas mas demandadas</span>
-                                <span></span>
+                            <div className="table-container">
+                                <h2 className="text-lg font-semibold mb-2">Últimas Campañas SMS Marketing</h2>
+                                <ReusableTable
+                                    data={lastCampaignSms}
+                                    columns={columnsms}
+                                    enablePagination={true}
+                                    enableExport={true}
+                                    enableRowSelection={false}
+                                />
                             </div>
-
-                            <table className="stat-home">
-
-                                <tr>
-                                    <td>Campaña</td>
-                                    <td>Env.</td>
-                                    <td>Dev.</td>
-                                    <td>Rec.</td>
-                                    <td>Click.</td>
-                                    <td><IoStatsChartOutline /></td>
-
-                                </tr>
-
-
-                                {lastCampaignSms.map((element, key) => (
-                                    <tr id={key}>
-                                        <td>
-                                            <span>{element.name}</span>
-                                            <br />
-                                            {Time(element.time_add)}
-                                        </td>
-                                        <td>{element.send}</td>
-                                        <td>{element.returned}</td>
-                                        <td>{element.reads}</td>
-                                        <td>{element.clicks}</td>
-                                        <td><Link><IoStatsChartOutline /></Link></td>
-
-                                    </tr>
-                                ))}
-                            </table>
                         </div>
                     </div>
+
 
                     <div className="col-md-6">
                         <div className="box stat box-padding hr">
-                            <div className="top">
-                                <p>Ultimas Campañas Sms Transaccional (MT)</p>
-                                <span>Ve las campanas mas demandadas</span>
-                                <span></span>
+                            <div className="table-container">
+                                <h2 className="text-lg font-semibold mb-2">Últimas Campañas SMS Transaccional</h2>
+                                <ReusableTable
+                                    data={lastCampaignSmsMt}
+                                    columns={columnsms_mt}
+                                    enablePagination={true}
+                                    enableExport={true}
+                                    enableRowSelection={false}
+                                />
                             </div>
 
-                            <table className="stat-home">
 
-                                <tr>
-                                    <td>Campaña</td>
-                                    <td>Env.</td>
-                                    <td>Dev.</td>
-                                    <td>Rec.</td>
-                                    <td>Click.</td>
-                                    <td><IoStatsChartOutline /></td>
-
-                                </tr>
-
-
-                                {lastCampaignSmsMt.map((element, key) => (
-                                    <tr id={key}>
-                                        <td>
-                                            <span>{element.name}</span>
-                                            <br />
-                                            {Time(element.time_add)}
-                                        </td>
-                                        <td>{element.send}</td>
-                                        <td>{element.returned}</td>
-                                        <td>{element.reads}</td>
-                                        <td>{element.clicks}</td>
-                                        <td><Link><IoStatsChartOutline /></Link></td>
-
-                                    </tr>
-                                ))}
-                            </table>
                         </div>
                     </div>
 
+
+
+
+                    {/* Expiry Info 
                     <div className="col-md-6">
                         <div className="box stat box-padding hr">
                             <div className="top">
@@ -452,6 +627,7 @@ export default function Home() {
                             {lastCampaignWhatsapp.length == 0 ? <NotFoundItems name={"Whatsapp"} /> : ''}
                         </div>
                     </div>
+                    
 
                     <div className="col-md-6">
                         <div className="box stat box-padding hr">
@@ -504,7 +680,7 @@ export default function Home() {
                         </div>
                     </div>
 
-
+*/}
                 </div>
             </div >
         </>
