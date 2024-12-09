@@ -9,6 +9,7 @@ import NotFoundItems from "../../../Components/App/NotFoundItems";
 import LoadingCircleApp from "../../../Components/App/LoadingCircle";
 import { IoCreateOutline, IoTrashOutline } from "react-icons/io5";
 import ModalDelete from "../../../Components/App/ModalDelete";
+import { Time } from "../../../Functions/Global"
 
 export default function UsersCompany() {
     const { UserInfo } = useContext(AuthContext)
@@ -247,15 +248,15 @@ export default function UsersCompany() {
 
                                         }
                                         <br />
-                                        <span className="desc">Creado el: 29 de may de 2023</span>
+                                        <span className="desc">Creado el: {Time(users.time_add)}</span>
                                     </div>
 
                                 </div>
 
                                 <div>
                                     <div className="actions">
-                                        <button onClick={(ev) => { OpenEdit(key) }} value={key}><IoCreateOutline /></button>
-                                        <button onClick={(ev) => { OpenModalRemove(key) }} value={element.id_rol}><IoTrashOutline /></button>
+                                        <button className="edit-btn" onClick={(ev) => { OpenEdit(key) }} value={key}><IoCreateOutline /></button>
+                                        <button className="remove-btn" onClick={(ev) => { OpenModalRemove(key) }} value={element.id_rol}><IoTrashOutline /></button>
                                     </div>
                                 </div>
                             </div>
