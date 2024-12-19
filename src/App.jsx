@@ -66,6 +66,7 @@ import Credentials from './Pages/App/Companys/Credentials.jsx'
 import CheckOutCheck from './Pages/App/Checkout/CheckOutCheck.jsx'
 import ContactsList from './Pages/App/Contacts/ContactsList.jsx'
 import Template from './Pages/App/Templates/Template.jsx'
+import AutoResponders from './Pages/App/Campaigns/AutoResponders.jsx'
 
 
 
@@ -110,6 +111,7 @@ function App() {
           <Route path="/" element={<Global CompanyNeed={true} Element={Home} />} />
           <Route path="/home" element={<Global CompanyNeed={true} Element={Home} />} />
           <Route path="/campaigns" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
+          <Route path="/campaigns/autoresponse/:id" element={<Global CompanyNeed={true} Element={AutoResponders} />} />
           <Route path="/campaigns/em" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
           <Route path="/campaigns/sms" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />
           <Route path="/campaigns/sms-mt" element={<Global CompanyNeed={true} Element={MyCampaigns} />} />

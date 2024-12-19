@@ -460,6 +460,40 @@ svg {
     border: 2px solid #5e6ff4;
 }
 
+.app .autoresponse .options-auto {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 90px;
+}
+
+.app .autoresponse .options-auto .option {
+    padding: 50px;
+    text-align: center;
+    background-color: var(--bs-body-bg);
+    line-height: 0;
+    border-radius: 7px;
+    border: 1px solid var(--border-input);
+}
+
+.app .autoresponse .options-auto .option i {
+    font-size: 45px;
+    color: blue;
+    position: relative;
+    top: -15px;
+}
+
+.app .autoresponse .options-auto .option p {
+    font-weight: 600;
+    font-size: px;
+}
+
+.app .autoresponse .top p,
+.app .autoresponse .top span {
+    padding: 0 !important;
+}
+
 .app .page-info .right button:hover {
     background: #5e6ff4;
 }

@@ -610,6 +610,7 @@ export default function DetailCampaigns() {
                 }
                 <button className="h-blue" onClick={(ev) => (Navigator("/campaigns/stats/" + params?.id))}><Icon icon="bx:stats" /> Estadisticas</button>
                 <button className="h-red " onClick={(ev) => { setDeleteModal(true) }}><Icon icon="iconamoon:trash" /> Eliminar</button>
+                <button className="h-blue " onClick={(ev) => { Navigator("/campaigns/autoresponse/" + params?.id) }}><Icon icon="material-symbols:autostop-rounded" /> AutoResponder</button>
 
 
                 {buttonSend &&
