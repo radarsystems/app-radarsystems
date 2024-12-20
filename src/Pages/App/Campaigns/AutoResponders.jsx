@@ -131,6 +131,7 @@ export default function AutoResponders() {
             formData.append("type_response", autoResponse.type_response)
             formData.append("affair", item.affair);
             formData.append("minutes", item.minutes)
+            formData.append("id_campaign", params.id)
 
             if (item.sms) {
                 formData.append("sms", item?.sms)
